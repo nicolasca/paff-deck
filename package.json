@@ -1,0 +1,22 @@
+{
+  "name": "paff-deck",
+  "homepage": "http://www.knacss.com/",
+  "description": "KNACSS is a minimalist, responsive and extensible style sheet to kick-start your HTML / CSS projects. It relies on common best practices and experience on the topic.",
+  "main": "https://github.com/alsacreations/KNACSS/tree/master/css",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicolasca/paff-deck"
+  },
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "latest",
+    "gulp-concat": "latest",
+    "gulp-minify-css": "latest",
+    "gulp-rename": "latest",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "latest"
+  },
+  "engines": {}
+}
