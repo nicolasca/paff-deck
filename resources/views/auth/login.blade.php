@@ -23,12 +23,12 @@
             @if ($errors->has('name'))
                 <span class="help-block">
                     <strong>{{ $errors->first('name') }}</strong>
-                </span>
+                </span> 
             @endif
         </p>
       </div>
 
-     <p class="center"><input class="awesome large green" type="submit" value="Se connecter"></p>
+     <p class="center"><input class="button" type="submit" value="Se connecter"></p>
     </form>
 </div>
 @endsection

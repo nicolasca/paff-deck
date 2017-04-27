@@ -493,8 +493,8 @@ html {
 
 body {
   font-size: 1.4rem;
-  background-color: #fff;
-  color: #000;
+  background-color: #F4F0EB;
+  color: #292B27;
   font-family: sans-serif;
   line-height: 1.4;
 }
@@ -512,11 +512,11 @@ body {
 }
 
 a {
-  color: #333;
+  color: #0F601E;
 }
 
 a:focus, a:hover, a:active {
-  color: #000;
+  color: #68564D;
 }
 
 ul,
@@ -1022,7 +1022,7 @@ input,
 optgroup,
 select,
 textarea {
-  color: #000;
+  color: #292B27;
 }
 
 label {
@@ -2486,6 +2486,21 @@ ul.is-unstyled, ul.unstyled {
   }
 }
 
+.button {
+  padding: 15px;
+  background-color: white;
+  border: 1px solid #0F601E;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.button:hover {
+  background-color: #0F601E;
+  color: white;
+}
+
 #page-register .form-item label {
   display: block;
   margin-bottom: 1rem;
@@ -2512,15 +2527,6 @@ ul.is-unstyled, ul.unstyled {
   text-decoration: none;
   padding: 15px;
   margin: 15px;
-  cursor: pointer;
-  border: 1px solid #dd9606;
-  border-radius: 5px;
-  /* future proofing */
-  transition: all 0.3s ease;
-}
-
-#connexion-page .card:hover {
-  box-shadow: 0px 0px 3px 3px rgba(221, 150, 6, 0.75);
 }
 
 #login-page .form-item label {

@@ -58,6 +58,22 @@
 // Grids
 @import "grids/_grillade.scss"; // grids
 
+.button {
+    padding:15px;
+    background-color:white;
+    border: 1px solid $color2;
+    cursor:pointer;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    outline: none;
+}
+.button:hover {
+    background-color:$color2;
+    color: white;
+}
+
+
+
 #page-register {
   .form-item label {
     display: block;
@@ -79,14 +95,6 @@
     text-decoration: none;
     padding: 15px;
     margin: 15px;
-    cursor: pointer;
-    border: 1px solid rgb(221, 150, 6);
-    border-radius: 5px; /* future proofing */
-
-    transition: all 0.3s ease;
-  }
-  .card:hover {
-    box-shadow: 0px 0px 3px 3px rgba(221, 150, 6, .75);
   }
 }
 
