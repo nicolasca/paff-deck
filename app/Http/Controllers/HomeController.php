@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Auth;
+
+use App\Deck;
 
 class HomeController extends Controller
 {
@@ -24,6 +27,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+      $decks = Auth::user()->decks;
+
+        return view('home', ['decks' => $decks]);
     }
 }

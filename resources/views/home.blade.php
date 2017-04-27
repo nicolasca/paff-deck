@@ -1,16 +1,14 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+<div>
+  <div>
+    @foreach($decks as $deck)
+        <p>{{ $deck->nom }}  -->  {{ $deck->faction->nom }}</p>
+        @foreach($deck->cartes as $carte)
+        <img src="{{ URL::to('/') }}/images/{{$deck->faction->nom}}/{{$carte->path}}" />
+        @endforeach
 
-                <div class="panel-body">
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
+    @endforeach
+  </div>
 </div>
 @endsection
