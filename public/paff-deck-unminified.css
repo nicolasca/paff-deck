@@ -2494,6 +2494,7 @@ ul.is-unstyled, ul.unstyled {
   border-radius: 4px;
   transition: all 0.3s ease;
   outline: none;
+  text-decoration: none;
 }
 
 .button:hover {
@@ -2524,7 +2525,6 @@ ul.is-unstyled, ul.unstyled {
 #connexion-page .card {
   width: 20%;
   text-align: center;
-  text-decoration: none;
   padding: 15px;
   margin: 15px;
 }
@@ -2537,6 +2537,24 @@ ul.is-unstyled, ul.unstyled {
 #login-page .form-text {
   width: 80%;
   padding: 1rem;
+}
+
+#dashboard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 50px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#dashboard .button {
+  font-size: 2.8rem;
+}
+
+#deck_cartes p {
+  margin: 15px;
 }
 
 /* ----------------------------- */

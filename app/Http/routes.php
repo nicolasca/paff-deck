@@ -20,4 +20,7 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('faction', 'FactionController@index');
+Route::get('mes-decks', 'MesDecksController@index');
+
+// Appel Ajax depuis la vue mes-decks
+Route::get('getMonDeck', 'MesDecksController@updateDeck');
