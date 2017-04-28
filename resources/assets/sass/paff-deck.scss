@@ -119,9 +119,15 @@
 }
 
 #deck_cartes {
-  h2 {
-    margin-bottom: 0;
+
+  .titre_deck {
+    h2 {
+      margin-bottom: 0;
+      text-align: center;
+      color: $color2;
+    }
   }
+
   p {
       margin: 15px;
       text-align: center;

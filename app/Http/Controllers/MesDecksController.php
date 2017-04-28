@@ -25,7 +25,18 @@ class MesDecksController extends Controller {
     $deckShow = Deck::find($id);
     $cartesByType = $deckShow->cartes->groupBy('type');
 
-    return view('layouts.deckShow')->with("cartesByType",$cartesByType)->with('deckShow', $deckShow);
+    //Récupérer les informations à afficher dans le récapitulatif
+    $nombreCartes = $pointsDeploiement = 0;
+    $recapitulatif = array();
+    foreach ($deckShow->cartes as $carte) {
+      $nombreCartes += $carte->pivot->nombre;
+      $pointsDeploiement += $carte->pivot->nombre * $carte->cout_deploiement;
+    }
+    $recapitulatif["nbCartes"] = $nombreCartes;
+    $recapitulatif["ptsDeploiement"] = $pointsDeploiement;
+
+    return view('layouts.deckShow')->with("cartesByType",$cartesByType)
+              ->with('deckShow', $deckShow)->with('recapitulatif', $recapitulatif);
   }
 
 }
