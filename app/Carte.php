@@ -12,7 +12,7 @@ class Carte extends Model
 
 
   public function decks() {
-  return $this->belongsToMany('App\Deck', 'deck_carte');
+  return $this->belongsToMany('App\Deck', 'deck_carte')->withPivot('nombre');
 }
 
   public function faction() {

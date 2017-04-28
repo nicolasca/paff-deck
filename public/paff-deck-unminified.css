@@ -2553,8 +2553,13 @@ ul.is-unstyled, ul.unstyled {
   font-size: 2.8rem;
 }
 
+#deck_cartes h2 {
+  margin-bottom: 0;
+}
+
 #deck_cartes p {
   margin: 15px;
+  text-align: center;
 }
 
 /* ----------------------------- */
