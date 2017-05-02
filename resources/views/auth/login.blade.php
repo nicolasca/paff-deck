@@ -3,7 +3,7 @@
 @section('content')
 <div id="login-page" class="center">
 
-    <form class="form center w50" role="form" method="POST" action="{{ url('/login') }}">
+    <form class="form center w50" role="form" method="post" action="{{ url('/login') }}">
       {{ csrf_field() }}
 
       <div>
@@ -23,7 +23,7 @@
             @if ($errors->has('name'))
                 <span class="help-block">
                     <strong>{{ $errors->first('name') }}</strong>
-                </span> 
+                </span>
             @endif
         </p>
       </div>

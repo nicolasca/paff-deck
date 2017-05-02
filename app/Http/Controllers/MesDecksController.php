@@ -94,4 +94,8 @@ class MesDecksController extends Controller {
             ->with('deckShow', $deckShow);
   }
 
+  public function createDeck() {
+    return view('layouts.deckEdit');
+  }
+
 }

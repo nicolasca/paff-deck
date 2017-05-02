@@ -2502,6 +2502,13 @@ ul.is-unstyled, ul.unstyled {
   color: white;
 }
 
+.card {
+  width: 20%;
+  text-align: center;
+  padding: 15px;
+  margin: 15px;
+}
+
 #page-register .form-item label {
   display: block;
   margin-bottom: 1rem;
@@ -2520,13 +2527,6 @@ ul.is-unstyled, ul.unstyled {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-}
-
-#connexion-page .card {
-  width: 20%;
-  text-align: center;
-  padding: 15px;
-  margin: 15px;
 }
 
 #login-page .form-item label {

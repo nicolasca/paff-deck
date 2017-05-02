@@ -10,9 +10,6 @@
           Points de déploiment: {{$recapitulatif['ptsDeploiement']}} <br />
           Nombre de cartes: {{$recapitulatif['nbCartes']}}
         </p>
-        <p>
-
-        </p>
     </div>
 
     @if(isset($cartesByType['troupe']))
