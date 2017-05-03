@@ -14,27 +14,6 @@
   </div>
 </div>
 
-<!-- Récapitulatif
-
-Points Depl : 68
-Nombre Carte : 44
-
-troupe
-8x Guerriers Nordiques
-10x Jeunes Nordiques
-cavalerie
-6x Guerriers Nordiques a cheval
-2x Chevaucheurs d ours
-elite
-4x Gardiens du Nord
-unique
-1x Roi Borrud Wosdork et sa garde
-ordre
-3x Tenez la ligne
-4x A l ancienne
-3x Grands Chefs du Nord
-3x Boucliers -->
-
 @if(isset($cartesByType['troupe']))
 <div>
   <p>Troupe</p>

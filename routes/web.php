@@ -35,4 +35,6 @@ Route::get('mes-decks/delete', 'MesDecksController@deleteDeck');
 
 Route::get('mes-decks/show', 'MesDecksController@showDeck');
 
-Route::get('mes-decks/create', 'MesDecksController@createDeck');
+Route::get('creer-deck', 'CreerDeckController@index');
+
+Route::get('creer-deck/afficherFaction', 'CreerDeckController@afficherFaction');

@@ -1,14 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div id="login-page" class="center">
+<div id="login-page" class="center w50">
 
-    <form class="form center w50" role="form" method="post" action="{{ url('/login') }}">
-      {{ csrf_field() }}
-
+  {!! Form::open(['url' => url('/login')]) !!}
       <div>
         <p class="form-item center">
-          <label for="name">Pseudo</label>
+          <label for="register_name">Pseudo</label>
           <input class="form-text" type="text" required="required" name="name" id="register_name" value="{{ old('name') }}" maxlength="20">
             @if ($errors->has('name'))
                 <span class="help-block">
@@ -29,6 +27,7 @@
       </div>
 
      <p class="center"><input class="button" type="submit" value="Se connecter"></p>
-    </form>
+     {!! Form::close() !!}
+    <!-- </form> -->
 </div>
 @endsection
