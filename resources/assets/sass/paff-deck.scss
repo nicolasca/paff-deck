@@ -59,6 +59,8 @@
 @import "grids/_grillade.scss"; // grids
 
 .button {
+  font-family: $font-stack-headings;
+  font-weight: bold;
   padding:15px;
   background-color:white;
   border: 1px solid $color2;

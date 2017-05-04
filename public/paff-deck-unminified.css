@@ -495,19 +495,19 @@ body {
   font-size: 1.4rem;
   background-color: #F4F0EB;
   color: #292B27;
-  font-family: sans-serif;
+  font-family: helvetica neue;
   line-height: 1.4;
 }
 
 @media screen and (min-width: 544px) {
   body {
-    font-size: 1.9rem;
+    font-size: 2rem;
   }
 }
 
 @media screen and (min-width: 544px) {
   body {
-    line-height: 1.6;
+    line-height: 1.7;
   }
 }
 
@@ -556,21 +556,23 @@ figure {
 
 h1, .h1-like {
   font-size: 2.8rem;
+  font-family: "Cormorant Infant", serif;
 }
 
 @media screen and (min-width: 544px) {
   h1, .h1-like {
-    font-size: 3.2rem;
+    font-size: 3.4rem;
   }
 }
 
 h2, .h2-like {
   font-size: 2.4rem;
+  font-family: "Cormorant Infant", serif;
 }
 
 @media screen and (min-width: 544px) {
   h2, .h2-like {
-    font-size: 2.8rem;
+    font-size: 3rem;
   }
 }
 
@@ -580,7 +582,7 @@ h3, .h3-like {
 
 @media screen and (min-width: 544px) {
   h3, .h3-like {
-    font-size: 2.4rem;
+    font-size: 2.6rem;
   }
 }
 
@@ -590,7 +592,7 @@ h4, .h4-like {
 
 @media screen and (min-width: 544px) {
   h4, .h4-like {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 }
 
@@ -598,20 +600,8 @@ h5, .h5-like {
   font-size: 1.6rem;
 }
 
-@media screen and (min-width: 544px) {
-  h5, .h5-like {
-    font-size: 1.8rem;
-  }
-}
-
 h6, .h6-like {
   font-size: 1.4rem;
-}
-
-@media screen and (min-width: 544px) {
-  h6, .h6-like {
-    font-size: 3.2rem;
-  }
 }
 
 /* alternate font-sizing */
@@ -2487,6 +2477,8 @@ ul.is-unstyled, ul.unstyled {
 }
 
 .button {
+  font-family: "Cormorant Infant", serif;
+  font-weight: bold;
   padding: 15px;
   background-color: white;
   border: 1px solid #0F601E;
@@ -2612,7 +2604,7 @@ header nav h1 {
 }
 
 #dashboard .button {
-  font-size: 2.8rem;
+  font-size: 3rem;
 }
 
 #deck_cartes {
@@ -2655,7 +2647,7 @@ header nav h1 {
 }
 
 #deck_cartes .type-carte {
-  font-size: 2.4rem;
+  font-size: 2.6rem;
   color: #AF9A0E;
 }
 
