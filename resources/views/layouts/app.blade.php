@@ -22,9 +22,9 @@
   @if (Auth::check())
   <header>
     <nav>
-      <span> Connecté - {{ Auth::user()->name }} </span>
+      <span><i class="fa fa-user" aria-hidden="true"></i></i> {{ Auth::user()->name }} </span>
       <h1><a href="{{ url('/home') }}">PAFF</a></h1>
-      <a href="{{ url('/logout') }}">Logout</a>
+      <a href="{{ url('/logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
     </nav>
   </header>
     @endif
