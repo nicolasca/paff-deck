@@ -88,7 +88,7 @@ h1, h2 {
   width: 20%;
   text-align: center;
   margin: 15px;
-  font-size: $h2-size-l; 
+  font-size: $h2-size-l;
 }
 
 .form-item label {
@@ -206,6 +206,10 @@ header {
   .type-carte {
     font-size: $h3-size-l;
     color: $color3;
+  }
+  input[type="number"] {
+      width: 50px;
+      text-align: center;
   }
   img {
     max-height: 460px;

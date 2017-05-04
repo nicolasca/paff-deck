@@ -2651,6 +2651,11 @@ header nav h1 {
   color: #AF9A0E;
 }
 
+#deck_cartes input[type="number"] {
+  width: 50px;
+  text-align: center;
+}
+
 #deck_cartes img {
   max-height: 460px;
 }

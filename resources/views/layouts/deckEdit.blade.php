@@ -66,7 +66,7 @@
         @foreach($cartesByType['tir']  as $carte)
         <p>
           <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
-          # <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
+          <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
               max="{{$carte->nombre_max}}">
         </p>
         @endforeach
@@ -81,7 +81,7 @@
         @foreach($cartesByType['cavalerie']  as $carte)
         <p>
           <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
-          # <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
+          <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
               max="{{$carte->nombre_max}}">
         </p>
         @endforeach
@@ -96,7 +96,7 @@
         @foreach($cartesByType['artillerie']  as $carte)
         <p>
           <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
-          # <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
+          <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
               max="{{$carte->nombre_max}}">
         </p>
         @endforeach
@@ -111,7 +111,7 @@
         @foreach($cartesByType['elite']  as $carte)
         <p>
           <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
-          # <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
+          <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
               max="{{$carte->nombre_max}}">
         </p>
         @endforeach
@@ -126,7 +126,7 @@
         @foreach($cartesByType['unique']  as $carte)
         <p>
           <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
-          # <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
+          <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
               max="{{$carte->nombre_max}}">
         </p>
         @endforeach
@@ -141,7 +141,7 @@
         @foreach($cartesByType['ordre']  as $carte)
         <p>
           <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
-          # <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
+          <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
               max="{{$carte->nombre_max}}">
         </p>
         @endforeach
