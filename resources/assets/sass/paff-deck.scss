@@ -72,6 +72,9 @@
     background-color:$color2;
     color: white;
 }
+select {
+  height: 50px;
+}
 
 .card {
   width: 20%;
@@ -80,6 +83,14 @@
   margin: 15px;
 }
 
+.form-item label {
+  display: block;
+  margin-bottom: 1rem;
+}
+.form-text {
+  width: 80%;
+  padding: 1rem;
+}
 
 
 #page-register {
@@ -120,21 +131,30 @@
 }
 
 #deck_cartes {
-
+  text-align: center;
   .titre_deck {
+    border: 1px solid $color2;
+    text-align: center;
     h2 {
       margin-bottom: 0;
       text-align: center;
       color: $color2;
     }
   }
-
   p {
       margin: 15px;
       text-align: center;
   }
-
-
+  .titre_deck_create {
+    border: none;
+  }
+  .type-carte {
+    font-size: $h3-size-l;
+    color: $color3;
+  }
+  img {
+    max-height: 460px;
+  }
 }
 
 /* ----------------------------- */

@@ -16,7 +16,7 @@
 
 @if(isset($cartesByType['troupe']))
 <div>
-  <p>Troupe</p>
+  <p class="type-carte">Troupe</p>
   <div id="deck_cartes" class="grid-4 has-gutter">
     @foreach($cartesByType['troupe']  as $carte)
     <p>
@@ -30,7 +30,7 @@
 
 @if(isset($cartesByType['tir']))
 <div>
-  <p>Tir</p>
+  <p class="type-carte">Tir</p>
   <div id="deck_cartes" class="grid-4 has-gutter">
     @foreach($cartesByType['tir']  as $carte)
     <p>
@@ -44,7 +44,7 @@
 
 @if(isset($cartesByType['cavalerie']))
 <div>
-  <p>Cavalerie</p>
+  <p class="type-carte">Cavalerie</p>
   <div id="deck_cartes" class="grid-4 has-gutter">
     @foreach($cartesByType['cavalerie']  as $carte)
     <p>
@@ -58,7 +58,7 @@
 
 @if(isset($cartesByType['artillerie']))
 <div>
-  <p>Artillerie</p>
+  <p class="type-carte">Artillerie</p>
   <div id="deck_cartes" class="grid-4 has-gutter">
     @foreach($cartesByType['artillerie']  as $carte)
     <p>
@@ -72,7 +72,7 @@
 
 @if(isset($cartesByType['elite']))
 <div>
-  <p>Elite</p>
+  <p class="type-carte">Elite</p>
   <div id="deck_cartes" class="grid-4 has-gutter">
     @foreach($cartesByType['elite']  as $carte)
     <p>
@@ -86,7 +86,7 @@
 
 @if(isset($cartesByType['unique']))
 <div>
-  <p>Unique</p>
+  <p class="type-carte">Unique</p>
   <div id="deck_cartes" class="grid-4 has-gutter">
     @foreach($cartesByType['unique']  as $carte)
     <p>
@@ -100,7 +100,7 @@
 
 @if(isset($cartesByType['ordre']))
 <div>
-  <p>Ordre</p>
+  <p class="type-carte">Ordre</p>
   <div id="deck_cartes" class="grid-4 has-gutter">
     @foreach($cartesByType['ordre']  as $carte)
     <p>

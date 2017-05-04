@@ -24,32 +24,39 @@
         </p>
   </div>
   @else
-  <div class="titre_deck center w50">
-        <label for="nom_deck">Nom du deck</label>
-        <input type="text" name="nom_deck">
-        <label for="description">Description</label>
-        <input type="textarea" name="description">
+  <div class="titre_deck titre_deck_create center w50">
+    <p class="form-item center">
+      <label for="nom_deck">Nom du deck</label>
+      <input type="text" class="form-text" id="nom_deck" name="nom_deck">
+    </p>
+    <p class="form-item center">
+      <label for="description">Description</label>
+      <textarea rows="2" cols="50" name="description" id="description" class="form-text"></textarea>
+    </p>
+
+
+
   </div>
   @endif
 
     @if(isset($cartesByType['troupe']))
     <div>
-      <p>Troupe</p>
-      <div class="grid-4 has-gutter">
+      <p class="type-carte">Troupe</p>
+      <section class="grid-4 has-gutter">
         @foreach($cartesByType['troupe']  as $carte)
-        <p>
+        <div>
           <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
-          # <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
+          <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
               max="{{$carte->nombre_max}}">
-        </p>
+        </div>
         @endforeach
-      </div>
+      </section>
     </div>
     @endif
 
      @if(isset($cartesByType['tir']))
     <div>
-      <p>Tir</p>
+      <p class="type-carte">Tir</p>
       <div class="grid-4 has-gutter">
         @foreach($cartesByType['tir']  as $carte)
         <p>
@@ -64,7 +71,7 @@
 
     @if(isset($cartesByType['cavalerie']))
     <div>
-      <p>Cavalerie</p>
+      <p class="type-carte">Cavalerie</p>
       <div class="grid-4 has-gutter">
         @foreach($cartesByType['cavalerie']  as $carte)
         <p>
@@ -79,7 +86,7 @@
 
     @if(isset($cartesByType['artillerie']))
     <div>
-      <p>Artillerie</p>
+      <p class="type-carte">Artillerie</p>
       <div class="grid-4 has-gutter">
         @foreach($cartesByType['artillerie']  as $carte)
         <p>
@@ -94,7 +101,7 @@
 
     @if(isset($cartesByType['elite']))
     <div>
-      <p>Elite</p>
+      <p class="type-carte">Elite</p>
       <div class="grid-4 has-gutter">
         @foreach($cartesByType['elite']  as $carte)
         <p>
@@ -109,7 +116,7 @@
 
     @if(isset($cartesByType['unique']))
     <div>
-      <p>Unique</p>
+      <p class="type-carte">Unique</p>
       <div class="grid-4 has-gutter">
         @foreach($cartesByType['unique']  as $carte)
         <p>
@@ -124,7 +131,7 @@
 
     @if(isset($cartesByType['ordre']))
     <div>
-      <p>Ordre</p>
+      <p class="type-carte">Ordre</p>
       <div class="grid-4 has-gutter">
         @foreach($cartesByType['ordre']  as $carte)
         <p>
@@ -137,7 +144,7 @@
     </div>
     @endif
 
-    <input type="submit" name="Valider" value="Valider" class="button">
+    <input type="submit" name="Valider" value="Valider" class="button mbm">
 
   </form>
 

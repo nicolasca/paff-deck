@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('content')
-<div>
+<div id="mes-decks">
 
+  <div id="div-choix-deck" class="mam">
   <select id="choix_deck">
       <<option selected="true" disabled="disabled">Choix du deck</option>
     @foreach($decks as $deck)
@@ -14,6 +15,7 @@
     <a class="button" id="btnModifDeck" style="display:none;">Modifier</a>
     <a class="button" id="btnSupprimerDeck"  style="display:none;">Supprimer</a>
     <a class="button" id="btnAnnulerDeck"  style="display:none;">Annuler</a>
+  </div>
 
     @if(Session::has('message'))
       <p id="message-session">{{Session::get('message')}}</p>

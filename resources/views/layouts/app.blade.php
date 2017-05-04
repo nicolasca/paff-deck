@@ -28,7 +28,7 @@
 <body id="app-layout">
 
   @if (Auth::check())
-    <div>
+    <div class="mlm">
       <a href="{{ url('/home') }}">Home</a>
       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
         {{ Auth::user()->name }} <span class="caret"></span>
