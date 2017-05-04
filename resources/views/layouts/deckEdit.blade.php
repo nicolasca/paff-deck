@@ -1,10 +1,18 @@
 
 <div id="deck_cartes">
 
+  @if(isset($deckShow))
   <form action="mes-decks/update" method="post">
+  @else
+  <form action="creer-deck/createDeck" method="post">
+  @endif
+
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
     @if(isset($deckShow))
     <input type="hidden" name="deck_id" value="{{$deckShow->id}}">
+    @else
+    <input type="hidden" name="faction_id" value="{{$faction->id}}">
     @endif
 
   @if(isset($deckShow))

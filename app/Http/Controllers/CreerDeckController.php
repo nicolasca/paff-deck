@@ -20,14 +20,7 @@ class CreerDeckController extends Controller {
     return view('creerDeck')->with('factions', $factions);
   }
 
-
-  public function createDeck() {
-
-    // Cartes de la faction
-    $listeCartesPourFaction = Carte::where("faction_id", $deckShow->faction_id)->get();
-    return view('layouts.deckEdit');
-  }
-
+  // Afficher les cartes d'une faction
   public function afficherFaction() {
     $id = $_GET['id_faction'];
 
@@ -39,6 +32,33 @@ class CreerDeckController extends Controller {
     ->with('faction', $faction);
   }
 
+  // Enregistrer un nouveau deck avec les cartes associées
+  public function createDeck(Request $request) {
 
+    // Création du deck
+    $deck = new Deck();
+    $deck->nom = $request->input('nom_deck');
+    $deck->description = $request->input('description');
+    $deck->user_id = Auth::user()->id;
+    $deck->faction_id = $request->input('faction_id');
+    // On enregistre le deck avant d'y associer des cartes
+    $deck->save();
+
+    // Maintenant nous allons associer le deck avec les cartes (table deck_carte)
+    // Nous allons itérer sur toutes les cartes de la faction présentes dans le formulaire.
+    //  Quand on trouve une carte avec un nombre != 0, on l'ajoute
+    foreach ($request->all() as $idCarte => $nombre) {
+      //Les input ayant pour 'name' l'id de la carte
+      if(is_numeric($idCarte)) {
+        //Si on a ajouté la carte au deck
+        if ($nombre != 0) {
+          $carte = Carte::where("id", $idCarte)->get();
+          $deck->cartes()->attach($carte, ['nombre' => $nombre]);
+        }
+      }
+    }
+    //If no error, display the show deck view
+    return redirect()->back()->with('message', 'Vous avez créé le plus beau deck du monde !!');
+  }
 
 }

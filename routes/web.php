@@ -38,3 +38,5 @@ Route::get('mes-decks/show', 'MesDecksController@showDeck');
 Route::get('creer-deck', 'CreerDeckController@index');
 
 Route::get('creer-deck/afficherFaction', 'CreerDeckController@afficherFaction');
+
+Route::post('creer-deck/createDeck', 'CreerDeckController@createDeck');
