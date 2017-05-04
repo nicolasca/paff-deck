@@ -24,6 +24,11 @@
         </p>
   </div>
   @else
+  <div class="presentation-faction">
+    <h1>{{$faction->nom}}</h1>
+    <p class="description-faction">{{$faction->description}}</p>
+  </div>
+
   <div class="titre_deck titre_deck_create center w50">
     <p class="form-item center">
       <label for="nom_deck">Nom du deck</label>
@@ -42,15 +47,15 @@
     @if(isset($cartesByType['troupe']))
     <div>
       <p class="type-carte">Troupe</p>
-      <section class="grid-4 has-gutter">
+      <div class="grid-4 has-gutter">
         @foreach($cartesByType['troupe']  as $carte)
-        <div>
+        <p>
           <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
           <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
               max="{{$carte->nombre_max}}">
-        </div>
+        </p>
         @endforeach
-      </section>
+      </div>
     </div>
     @endif
 

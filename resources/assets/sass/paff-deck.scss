@@ -59,21 +59,23 @@
 @import "grids/_grillade.scss"; // grids
 
 .button {
-    padding:15px;
-    background-color:white;
-    border: 1px solid $color2;
-    cursor:pointer;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    outline: none;
-    text-decoration: none;
+  padding:15px;
+  background-color:white;
+  border: 1px solid $color2;
+  cursor:pointer;
+  border-radius: 4px;
+  outline: none;
+  text-decoration: none;
 }
 .button:hover {
-    background-color:$color2;
-    color: white;
+  background-color:$color2;
+  color: white;
 }
 select {
   height: 50px;
+}
+h1, h2 {
+  color: $color2;
 }
 
 .card {
@@ -132,18 +134,31 @@ select {
 
 #deck_cartes {
   text-align: center;
+  .description-faction {
+    text-align: justify;
+    margin: 0 30px;
+    &::first-letter {
+      float: left;
+      font-size: 75px;
+      line-height: 40px;
+      color: $color3;
+      padding-top: 4px;
+      padding-right: 8px;
+      padding-left: 3px;
+      padding-bottom: 2px
+    }
+  }
   .titre_deck {
     border: 1px solid $color2;
     text-align: center;
     h2 {
       margin-bottom: 0;
       text-align: center;
-      color: $color2;
     }
   }
   p {
-      margin: 15px;
-      text-align: center;
+    margin: 15px;
+    text-align: center;
   }
   .titre_deck_create {
     border: none;
@@ -154,6 +169,33 @@ select {
   }
   img {
     max-height: 460px;
+  }
+}
+
+#creer-deck {
+  .nav-choix-faction {
+  margin-top: 20px;
+    ul {
+      padding-left: 0;
+      border-right: 1px solid  $color2;
+      border-left: 1px solid  $color2;
+    }
+    ul:first-child {
+      border-top: 1px solid  $color2;
+    }
+    li {
+      background-color:white;
+      padding:10px;
+      cursor: pointer;
+      border-radius: 0;
+      list-style: none;
+      outline: none;
+      border-bottom: 1px solid $color2;
+    }
+    li:hover {
+      background-color:$color2;
+      color: white;
+    }
   }
 }
 

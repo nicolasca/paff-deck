@@ -1,19 +1,19 @@
 @extends('layouts.app')
 @section('content')
-<div id="creer-deck">
+<div id="creer-deck" class="flex-container">
 
-<div id="div-choix-faction" class="mam center wp50 txtcenter">
-  <select id="choix_faction">
-      <<option selected="true" disabled="disabled">Choix de la faction</option>
-    @foreach($factions as $faction)
-      <option value="{{$faction->id}}">{{$faction->nom}}</option>
-    @endforeach
-  </select>
-</div>
+  <div class="nav-choix-faction w150p" role="navigation">
+    <ul>
+      @foreach($factions as $faction)
+      <li id="{{$faction->id}}" class="choix_faction">{{$faction->nom}}</li>
+      @endforeach
+    </ul>
+  </div>
 
-<!-- Div qui contient les decks affichés par un appel Ajax  -->
-<div id="faction_show">
-</div>
+
+  <!-- Div qui contient les decks affichés par un appel Ajax  -->
+  <div id="faction_show" class="flex-item-fluid">
+  </div>
 
 
 </div>
