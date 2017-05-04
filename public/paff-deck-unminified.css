@@ -2501,6 +2501,10 @@ ul.is-unstyled, ul.unstyled {
   color: white;
 }
 
+a {
+  text-decoration: none;
+}
+
 select {
   height: 50px;
 }
@@ -2524,6 +2528,47 @@ h1, h2 {
 .form-text {
   width: 80%;
   padding: 1rem;
+}
+
+header {
+  background-color: white;
+  border-bottom: 1px solid #0F601E;
+}
+
+header nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header nav h1 {
+  text-align: center;
+  font-weight: normal;
+  margin: 0;
+}
+
+header nav h1 a {
+  color: #0F601E;
+}
+
+header nav a, header nav span, header nav h1 {
+  display: block;
+  padding: .4em 1em .4em 1em;
+}
+
+header nav a {
+  color: #AF9A0E;
+}
+
+header nav h1 {
+  text-align: center;
+  font-weight: normal;
+  margin: 0;
 }
 
 #page-register .form-item label {
@@ -2583,7 +2628,7 @@ h1, h2 {
   float: left;
   font-size: 75px;
   line-height: 40px;
-  color: #72671C;
+  color: #AF9A0E;
   padding-top: 4px;
   padding-right: 8px;
   padding-left: 3px;
@@ -2611,25 +2656,17 @@ h1, h2 {
 
 #deck_cartes .type-carte {
   font-size: 2.4rem;
-  color: #72671C;
+  color: #AF9A0E;
 }
 
 #deck_cartes img {
   max-height: 460px;
 }
 
-#creer-deck .nav-choix-faction {
-  margin-top: 20px;
-}
-
 #creer-deck .nav-choix-faction ul {
   padding-left: 0;
   border-right: 1px solid #0F601E;
   border-left: 1px solid #0F601E;
-}
-
-#creer-deck .nav-choix-faction ul:first-child {
-  border-top: 1px solid #0F601E;
 }
 
 #creer-deck .nav-choix-faction li {

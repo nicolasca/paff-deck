@@ -3,4 +3,4 @@
 /public/images
 Homestead.yaml
 Homestead.json
-.env
+./.env

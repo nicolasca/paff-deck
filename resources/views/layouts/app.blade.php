@@ -15,27 +15,21 @@
 
   <!-- Styles -->
   <link rel="stylesheet"  href="paff-deck.css" >
-  <style>
-  body {
-    font-family: 'Lato';
-  }
-
-  .fa-btn {
-    margin-right: 6px;
-  }
-  </style>
 </head>
 <body id="app-layout">
 
   @if (Auth::check())
-    <div class="mlm">
-      <a href="{{ url('/home') }}">Home</a>
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-        {{ Auth::user()->name }} <span class="caret"></span>
-      </a>
-      <a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a>
-  </div>
-@endif
+  <header>
+    <nav>
+      <span> Connecté - {{ Auth::user()->name }} </span>
+      <h1><a href="{{ url('/home') }}">PAFF</a></h1>
+      <a href="{{ url('/logout') }}">Logout</a>
+    </nav>
+  </header>
+    @endif
+
+
+
 
 
 @yield('content')

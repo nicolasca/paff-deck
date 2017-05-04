@@ -71,6 +71,10 @@
   background-color:$color2;
   color: white;
 }
+a {
+  text-decoration: none;
+}
+
 select {
   height: 50px;
 }
@@ -92,6 +96,40 @@ h1, h2 {
 .form-text {
   width: 80%;
   padding: 1rem;
+}
+
+header {
+  background-color: white;
+  border-bottom: 1px solid $color2;
+  nav {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      h1 {
+        text-align: center;
+        font-weight: normal;
+        margin: 0;
+
+        a {
+          color: $color2;
+        }
+      }
+      h1:hover {
+
+      }
+      a,span, h1  {
+        display: block;
+        padding: .4em 1em .4em 1em;
+      }
+      a {
+        color: $color3;
+      }
+      h1 {
+        text-align: center;
+        font-weight: normal;
+        margin: 0;
+      }
+  }
 }
 
 
@@ -174,14 +212,10 @@ h1, h2 {
 
 #creer-deck {
   .nav-choix-faction {
-  margin-top: 20px;
     ul {
       padding-left: 0;
       border-right: 1px solid  $color2;
       border-left: 1px solid  $color2;
-    }
-    ul:first-child {
-      border-top: 1px solid  $color2;
     }
     li {
       background-color:white;
