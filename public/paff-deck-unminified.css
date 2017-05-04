@@ -2508,8 +2508,8 @@ h1, h2 {
 .card {
   width: 20%;
   text-align: center;
-  padding: 15px;
   margin: 15px;
+  font-size: 3rem;
 }
 
 .form-item label {
