@@ -2691,25 +2691,99 @@ header nav h1 {
   font-size: 1.4rem;
 }
 
-#creer-deck .nav-choix-faction ul {
-  padding-left: 0;
-  border-right: 1px solid #0F601E;
-  border-left: 1px solid #0F601E;
+#creer-deck .nav-choix-faction {
+  margin: 10px 0;
 }
 
-#creer-deck .nav-choix-faction li {
-  background-color: white;
-  padding: 10px;
+#creer-deck .nav-choix-faction .nav-faction {
+  text-align: center;
   cursor: pointer;
-  border-radius: 0;
-  list-style: none;
-  outline: none;
-  border-bottom: 1px solid #0F601E;
+  opacity: 0.5;
 }
 
-#creer-deck .nav-choix-faction li:hover {
-  background-color: #0F601E;
-  color: white;
+#creer-deck .nav-choix-faction .nav-faction:hover .choix_faction, #creer-deck .nav-choix-faction .nav-faction:hover .circle {
+  opacity: 1;
+}
+
+#creer-deck .nav-choix-faction .circle {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  border-radius: 50%;
+  background-color: white;
+  text-align: center;
+  opacity: 0.3;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.07) 50%, transparent 50%), linear-gradient(90deg, rgba(255, 255, 255, 0.13) 50%, transparent 50%), linear-gradient(90deg, transparent 50%, rgba(255, 255, 255, 0.17) 50%), linear-gradient(90deg, transparent 50%, rgba(255, 255, 255, 0.19) 50%);
+  background-size: 13px, 29px, 37px, 53px;
+}
+
+#creer-deck .nav-choix-faction .choix_faction {
+  margin: 0;
+}
+
+#creer-deck .nav-choix-faction .bg-Elfes {
+  background-color: #fbf7f4;
+  border: 1px solid #fbf7f4;
+}
+
+#creer-deck .nav-choix-faction .bg-Gaeli {
+  background-color: #03447c;
+  border: 1px solid #03447c;
+}
+
+#creer-deck .nav-choix-faction .bg-Gobelins {
+  background-color: #6cc400;
+  border: 1px groove #6cc400;
+}
+
+#creer-deck .nav-choix-faction .bg-Jeldi {
+  background-color: #c4c2c2;
+  border: 1px groove #c4c2c2;
+}
+
+#creer-deck .nav-choix-faction .bg-Liches {
+  background-color: #e0cb94;
+  border: 1px groove #e0cb94;
+}
+
+#creer-deck .nav-choix-faction .bg-Mors {
+  background-color: #110d0a;
+  border: 1px groove #110d0a;
+}
+
+#creer-deck .nav-choix-faction .bg-Nains {
+  background-color: #e5a800;
+  border: 1px groove #e5a800;
+}
+
+#creer-deck .nav-choix-faction .bg-Nordiques {
+  background-color: #c2d5e4;
+  border: 1px groove #c2d5e4;
+}
+
+#creer-deck .nav-choix-faction .bg-Orcs {
+  background-color: #004000;
+  border: 1px groove #004000;
+}
+
+#creer-deck .nav-choix-faction .bg-Paoli {
+  background-color: #aa37a9;
+  border: 1px groove #aa37a9;
+}
+
+#creer-deck .nav-choix-faction .bg-Priana {
+  background-color: #021a40;
+  border: 1px groove #021a40;
+}
+
+#creer-deck .nav-choix-faction .bg-Sephosi {
+  background-color: #bf0101;
+  border: 1px groove #bf0101;
+}
+
+#creer-deck .nav-choix-faction .bg-Skavens {
+  background-color: #2def10;
+  border: 1px groove #2def10;
 }
 
 /* ----------------------------- */

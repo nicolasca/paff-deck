@@ -104,33 +104,33 @@ header {
   background-color: white;
   border-bottom: 1px solid $color2;
   nav {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      h1 {
-        text-align: center;
-        font-weight: normal;
-        margin: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    h1 {
+      text-align: center;
+      font-weight: normal;
+      margin: 0;
 
-        a {
-          color: $color2;
-        }
-      }
-      h1:hover {
-
-      }
-      a,span, h1  {
-        display: block;
-        padding: .4em 1em .4em 1em;
-      }
       a {
-        color: $color3;
+        color: $color2;
       }
-      h1 {
-        text-align: center;
-        font-weight: normal;
-        margin: 0;
-      }
+    }
+    h1:hover {
+
+    }
+    a,span, h1  {
+      display: block;
+      padding: .4em 1em .4em 1em;
+    }
+    a {
+      color: $color3;
+    }
+    h1 {
+      text-align: center;
+      font-weight: normal;
+      margin: 0;
+    }
   }
 }
 
@@ -218,7 +218,7 @@ header {
   .tooltip:hover .tooltip-text {
     visibility: visible;
   }
-//---------------
+  //---------------
 
   .titre_deck_create {
     border: none;
@@ -231,8 +231,8 @@ header {
     color: $color3;
   }
   input[type="number"] {
-      width: 50px;
-      text-align: center;
+    width: 50px;
+    text-align: center;
   }
   img {
     max-height: 460px;
@@ -250,23 +250,83 @@ header {
 
 #creer-deck {
   .nav-choix-faction {
-    ul {
-      padding-left: 0;
-      border-right: 1px solid  $color2;
-      border-left: 1px solid  $color2;
-    }
-    li {
-      background-color:white;
-      padding:10px;
+    margin: 10px 0;
+    .nav-faction {
+      text-align: center;
       cursor: pointer;
-      border-radius: 0;
-      list-style: none;
-      outline: none;
-      border-bottom: 1px solid $color2;
+      opacity: 0.5;
     }
-    li:hover {
-      background-color:$color2;
-      color: white;
+    .nav-faction:hover .choix_faction, .nav-faction:hover .circle, {
+      opacity: 1;
+    }
+    .circle {
+      width: 50px;
+      height: 50px;
+      display: inline-block;
+      border-radius: 50%;
+      background-color:white;
+      text-align: center;
+      opacity: 0.3;
+      background-image: linear-gradient(90deg, rgba(255,255,255,.07) 50%, transparent 50%),
+      linear-gradient(90deg, rgba(255,255,255,.13) 50%, transparent 50%),
+      linear-gradient(90deg, transparent 50%, rgba(255,255,255,.17) 50%),
+      linear-gradient(90deg, transparent 50%, rgba(255,255,255,.19) 50%);
+      background-size: 13px, 29px, 37px, 53px;
+    }
+    .choix_faction {
+      margin: 0;
+    }
+    .bg-Elfes {
+      background-color: $color-elfes-bg;
+      border: 1px solid $color-elfes-bg;
+    }
+    .bg-Gaeli {
+      background-color: $color-gaeli-bg;
+      border: 1px solid $color-gaeli-bg;
+    }
+    .bg-Gobelins {
+      background-color: $color-gobelins-bg;
+      border: 1px groove $color-gobelins-bg;
+    }
+    .bg-Jeldi {
+      background-color: $color-jeldi-bg;
+      border: 1px groove $color-jeldi-bg;
+    }
+    .bg-Liches {
+      background-color: $color-liches-bg;
+      border: 1px groove $color-liches-bg;
+    }
+    .bg-Mors {
+      background-color: $color-mors-bg;
+      border: 1px groove $color-mors-bg;
+    }
+    .bg-Nains {
+      background-color: $color-nains-bg;
+      border: 1px groove $color-nains-bg;
+    }
+    .bg-Nordiques {
+      background-color: $color-nordiques-bg;
+      border: 1px groove $color-nordiques-bg;
+    }
+    .bg-Orcs {
+      background-color: $color-orcs-bg;
+      border: 1px groove $color-orcs-bg;
+    }
+    .bg-Paoli {
+      background-color: $color-paoli-bg;
+      border: 1px groove $color-paoli-bg;
+    }
+    .bg-Priana {
+      background-color: $color-priana-bg;
+      border: 1px groove $color-priana-bg;
+    }
+    .bg-Sephosi {
+      background-color: $color-sephosi-bg;
+      border: 1px groove $color-sephosi-bg;
+    }
+    .bg-Skavens {
+      background-color: $color-skavens-bg;
+      border: 1px groove $color-skavens-bg;
     }
   }
 }

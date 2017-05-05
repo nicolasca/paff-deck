@@ -27,7 +27,7 @@ $font-stack-monospace : consolas, courier, monospace !default; // monospace font
 
 // color scheme
 // https://coolors.co/292b27-af9a0e-0f601e-f4f0eb-68564d
-// Platinium - Couleur principale, fond.
+// Platinium - color principale, fond.
 $color1    : #F4F0EB !default;
 // Antique bronze
 $color3    : #AF9A0E !default;
@@ -48,6 +48,20 @@ $background-base : $color1;
 $color-link-hover: $color4;
 $brand-primary: $color5;
 
+// colors des factions
+$color-nordiques-bg: rgb(194, 213, 228);
+$color-mors-bg: rgb(17, 13, 10);
+$color-liches-bg: rgb(224, 203, 148);
+$color-priana-bg: rgb(2, 26, 64);
+$color-sephosi-bg: rgb(191, 1, 1);
+$color-orcs-bg: rgb(0, 64, 0);
+$color-jeldi-bg: rgb(196, 194, 194);
+$color-nains-bg: rgb(229, 168, 0);
+$color-gobelins-bg: rgb(108, 196, 0);
+$color-gaeli-bg: rgb(3, 68, 124);
+$color-paoli-bg: rgb(170, 55, 169);
+$color-elfes-bg: rgb(251, 247, 244);
+$color-skavens-bg: rgb(45, 239, 16);
 
 // spacings (choose unit you prefer)
 $tiny-value             : .5rem !default; // tiny value for margins / paddings

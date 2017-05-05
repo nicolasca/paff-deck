@@ -1,13 +1,16 @@
 @extends('layouts.app')
 @section('content')
-<div id="creer-deck" class="flex-container">
+<div id="creer-deck">
 
-  <div class="nav-choix-faction w150p" role="navigation">
-    <ul>
-      @foreach($factions as $faction)
-      <li id="{{$faction->id}}" class="choix_faction">{{$faction->nom}}</li>
-      @endforeach
-    </ul>
+  <div class="nav-choix-faction grid" role="navigation">
+    @foreach($factions as $faction)
+    <div class="nav-faction" id="{{$faction->id}}">
+      <p class="circle bg-{{$faction->nom}}">
+      </p>
+      <p class="choix_faction">{{$faction->nom}}</p>
+    </div>
+    @endforeach
+
   </div>
 
 
