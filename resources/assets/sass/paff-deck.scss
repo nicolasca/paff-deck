@@ -238,7 +238,13 @@ header {
     max-height: 460px;
   }
   h3 {
-    margin-bottom: 0;
+    margin: 0 auto;
+    text-align: center;
+    width: 20%;
+    cursor: pointer;
+    i {
+      font-size: $h6-size-l;
+    }
   }
 }
 

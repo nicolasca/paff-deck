@@ -2681,7 +2681,14 @@ header nav h1 {
 }
 
 #deck_cartes h3 {
-  margin-bottom: 0;
+  margin: 0 auto;
+  text-align: center;
+  width: 20%;
+  cursor: pointer;
+}
+
+#deck_cartes h3 i {
+  font-size: 1.4rem;
 }
 
 #creer-deck .nav-choix-faction ul {
