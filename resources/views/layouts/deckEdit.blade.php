@@ -49,7 +49,7 @@
       <p class="type-carte">Troupe</p>
       <div class="grid-4 has-gutter">
         @foreach($cartesByType['troupe']  as $carte)
-        <p>
+    <p class="carte">
           <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
           <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
               max="{{$carte->nombre_max}}">
@@ -64,7 +64,7 @@
       <p class="type-carte">Tir</p>
       <div class="grid-4 has-gutter">
         @foreach($cartesByType['tir']  as $carte)
-        <p>
+    <p class="carte">
           <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
           <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
               max="{{$carte->nombre_max}}">
@@ -79,7 +79,7 @@
       <p class="type-carte">Cavalerie</p>
       <div class="grid-4 has-gutter">
         @foreach($cartesByType['cavalerie']  as $carte)
-        <p>
+    <p class="carte">
           <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
           <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
               max="{{$carte->nombre_max}}">
@@ -94,7 +94,7 @@
       <p class="type-carte">Artillerie</p>
       <div class="grid-4 has-gutter">
         @foreach($cartesByType['artillerie']  as $carte)
-        <p>
+    <p class="carte">
           <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
           <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
               max="{{$carte->nombre_max}}">
@@ -109,7 +109,7 @@
       <p class="type-carte">Elite</p>
       <div class="grid-4 has-gutter">
         @foreach($cartesByType['elite']  as $carte)
-        <p>
+    <p class="carte">
           <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
           <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
               max="{{$carte->nombre_max}}">
@@ -124,7 +124,7 @@
       <p class="type-carte">Unique</p>
       <div class="grid-4 has-gutter">
         @foreach($cartesByType['unique']  as $carte)
-        <p>
+    <p class="carte">
           <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
           <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
               max="{{$carte->nombre_max}}">
