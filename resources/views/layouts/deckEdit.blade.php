@@ -19,8 +19,8 @@
   <div class="titre_deck center w50">
         <input type="text" name="nom_deck" value="{{$deckShow->nom}}">
         <p>
-          Points de déploiment: {{$recapitulatif['ptsDeploiement']}} <br />
-          Nombre de cartes: {{$recapitulatif['nbCartes']}}
+          Points de déploiment: <span id="points-deploiement">{{$recapitulatif['ptsDeploiement']}}</span> <br />
+          Nombre de cartes: <span id="nombre-cartes">{{$recapitulatif['nbCartes']}}</span>
         </p>
   </div>
   @else
@@ -52,7 +52,7 @@
     <p class="carte">
           <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" /> <br/>
           <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
-              max="{{$carte->nombre_max}}" min="0">
+              max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}">
         </p>
         @endforeach
       </div>
@@ -67,7 +67,7 @@
     <p class="carte">
           <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" /> <br/>
           <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
-              max="{{$carte->nombre_max}}" min="0">
+              max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}">
         </p>
         @endforeach
       </div>
@@ -82,7 +82,7 @@
     <p class="carte">
           <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" /> <br/>
           <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
-              max="{{$carte->nombre_max}}" min="0">
+              max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}">
         </p>
         @endforeach
       </div>
@@ -97,7 +97,7 @@
     <p class="carte">
           <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" /> <br/>
           <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
-              max="{{$carte->nombre_max}}" min="0">
+              max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}">
         </p>
         @endforeach
       </div>
@@ -112,7 +112,7 @@
     <p class="carte">
           <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" /> <br/>
           <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
-              max="{{$carte->nombre_max}}" min="0">
+              max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}">
         </p>
         @endforeach
       </div>
@@ -127,7 +127,7 @@
     <p class="carte">
           <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" /> <br/>
           <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
-              max="{{$carte->nombre_max}}" min="0">
+              max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}">
         </p>
         @endforeach
       </div>
@@ -142,7 +142,7 @@
         <p>
           <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" /> <br/>
           <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
-              max="{{$carte->nombre_max}}" min="0">
+              max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}">
         </p>
         @endforeach
       </div>
