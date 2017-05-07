@@ -52,7 +52,7 @@
     <p class="carte">
           <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
           <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
-              max="{{$carte->nombre_max}}">
+              max="{{$carte->nombre_max}}" min="0">
         </p>
         @endforeach
       </div>
@@ -67,7 +67,7 @@
     <p class="carte">
           <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
           <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
-              max="{{$carte->nombre_max}}">
+              max="{{$carte->nombre_max}}" min="0">
         </p>
         @endforeach
       </div>
@@ -82,7 +82,7 @@
     <p class="carte">
           <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
           <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
-              max="{{$carte->nombre_max}}">
+              max="{{$carte->nombre_max}}" min="0">
         </p>
         @endforeach
       </div>
@@ -97,7 +97,7 @@
     <p class="carte">
           <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
           <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
-              max="{{$carte->nombre_max}}">
+              max="{{$carte->nombre_max}}" min="0">
         </p>
         @endforeach
       </div>
@@ -112,7 +112,7 @@
     <p class="carte">
           <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
           <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
-              max="{{$carte->nombre_max}}">
+              max="{{$carte->nombre_max}}" min="0">
         </p>
         @endforeach
       </div>
@@ -127,7 +127,7 @@
     <p class="carte">
           <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
           <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
-              max="{{$carte->nombre_max}}">
+              max="{{$carte->nombre_max}}" min="0">
         </p>
         @endforeach
       </div>
@@ -142,7 +142,7 @@
         <p>
           <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
           <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
-              max="{{$carte->nombre_max}}">
+              max="{{$carte->nombre_max}}" min="0">
         </p>
         @endforeach
       </div>
