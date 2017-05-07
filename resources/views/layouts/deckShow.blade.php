@@ -1,17 +1,17 @@
 @if ($deckShow !== '')
 <div id="deck_cartes">
 
-<div class="titre_deck center w50">
-  <h2 class="center">{{$deckShow->nom}}</h2>
-  <div>
-    <p> Points de déploiment: {{$recapitulatif['ptsDeploiement']}} </p>
-    <p class="inbl">  Nombre de cartes: {{$recapitulatif['nbCartes']}} </p>
+  <div class="titre_deck center w50">
+    <h2 class="center">{{$deckShow->nom}}</h2>
+    <div>
+      <p> Points de déploiment: {{$recapitulatif['ptsDeploiement']}} </p>
+      <p class="inbl">  Nombre de cartes: {{$recapitulatif['nbCartes']}} </p>
       <div class="tooltip"><i class="fa fa-question-circle" aria-hidden="true"></i><span class="tooltip-text">
         @foreach($recapitulatif['recap'] as $nom => $nombre)
-          <p>x{{$nombre}} {{$nom}}</p>
+        <p>x{{$nombre}} {{$nom}}</p>
         @endforeach
-        </span>
-      </div>
+      </span>
+    </div>
   </div>
 </div>
 
@@ -23,8 +23,8 @@
   <div class="grid-4 has-gutter liste-cartes">
     @foreach($cartesByType['troupe']  as $carte)
     <p class="carte">
-      <img src="{{ URL::to('/') }}/images/{{$deckShow->faction->nom}}/{{$carte->path}}" />
-      # {{$carte->pivot->nombre}}
+      <img src="{{ URL::to('/') }}/images/{{$deckShow->faction->nom}}/{{$carte->path}}" /> <br/>
+      <span># {{$carte->pivot->nombre}}</span>
     </p>
     @endforeach
   </div>
@@ -37,7 +37,7 @@
   <div class="grid-4 has-gutter liste-cartes">
     @foreach($cartesByType['tir']  as $carte)
     <p class="carte">
-      <img src="{{ URL::to('/') }}/images/{{$deckShow->faction->nom}}/{{$carte->path}}" />
+      <img src="{{ URL::to('/') }}/images/{{$deckShow->faction->nom}}/{{$carte->path}}" /> <br/>
       # {{$carte->pivot->nombre}}
     </p>
     @endforeach
@@ -51,7 +51,7 @@
   <div class="grid-4 has-gutter liste-cartes">
     @foreach($cartesByType['cavalerie']  as $carte)
     <p class="carte">
-      <img src="{{ URL::to('/') }}/images/{{$deckShow->faction->nom}}/{{$carte->path}}" />
+      <img src="{{ URL::to('/') }}/images/{{$deckShow->faction->nom}}/{{$carte->path}}" /> <br/>
       # {{$carte->pivot->nombre}}
     </p>
     @endforeach
@@ -65,7 +65,7 @@
   <div class="grid-4 has-gutter liste-cartes">
     @foreach($cartesByType['artillerie']  as $carte)
     <p class="carte">
-      <img src="{{ URL::to('/') }}/images/{{$deckShow->faction->nom}}/{{$carte->path}}" />
+      <img src="{{ URL::to('/') }}/images/{{$deckShow->faction->nom}}/{{$carte->path}}" /> <br/>
       # {{$carte->pivot->nombre}}
     </p>
     @endforeach
@@ -79,7 +79,7 @@
   <div class="grid-4 has-gutter liste-cartes">
     @foreach($cartesByType['elite']  as $carte)
     <p class="carte">
-      <img src="{{ URL::to('/') }}/images/{{$deckShow->faction->nom}}/{{$carte->path}}" />
+      <img src="{{ URL::to('/') }}/images/{{$deckShow->faction->nom}}/{{$carte->path}}" /> <br/>
       # {{$carte->pivot->nombre}}
     </p>
     @endforeach
@@ -93,7 +93,7 @@
   <div class="grid-4 has-gutter liste-cartes">
     @foreach($cartesByType['unique']  as $carte)
     <p class="carte">
-      <img src="{{ URL::to('/') }}/images/{{$deckShow->faction->nom}}/{{$carte->path}}" />
+      <img src="{{ URL::to('/') }}/images/{{$deckShow->faction->nom}}/{{$carte->path}}" /> <br/>
       # {{$carte->pivot->nombre}}
     </p>
     @endforeach
@@ -107,7 +107,7 @@
   <div class="grid-4 has-gutter liste-cartes">
     @foreach($cartesByType['ordre']  as $carte)
     <p class="carte">
-      <img src="{{ URL::to('/') }}/images/{{$deckShow->faction->nom}}/{{$carte->path}}" />
+      <img src="{{ URL::to('/') }}/images/{{$deckShow->faction->nom}}/{{$carte->path}}" /> <br/>
       # {{$carte->pivot->nombre}}
     </p>
     @endforeach

@@ -2479,6 +2479,7 @@ ul.is-unstyled, ul.unstyled {
 .button {
   font-family: "Cormorant Infant", serif;
   font-weight: bold;
+  font-size: 2.2rem;
   padding: 15px;
   background-color: white;
   border: 1px solid #0F601E;
@@ -2631,6 +2632,12 @@ header nav h1 {
 
 #deck_cartes .titre_deck h2 {
   margin-bottom: 0;
+  text-align: center;
+}
+
+#deck_cartes .titre_deck input {
+  padding: 5px;
+  margin-top: 10px;
   text-align: center;
 }
 
@@ -2790,6 +2797,14 @@ header nav h1 {
 #creer-deck .nav-choix-faction .bg-Skavens {
   background-color: #2def10;
   border: 1px groove #2def10;
+}
+
+#creer-deck .presentation-faction {
+  margin-top: 20px;
+}
+
+#creer-deck input[type="submit"] {
+  margin-top: 20px;
 }
 
 /* ----------------------------- */

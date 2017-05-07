@@ -61,6 +61,7 @@
 .button {
   font-family: $font-stack-headings;
   font-weight: bold;
+  font-size: $h4-size-l;
   padding:15px;
   background-color:white;
   border: 1px solid $color2;
@@ -193,7 +194,11 @@ header {
       margin-bottom: 0;
       text-align: center;
     }
-
+    input {
+      padding: 5px;
+      margin-top: 10px;
+      text-align: center;
+    }
   }
 
   //---------- Tooltip for recap cartes----------
@@ -334,6 +339,12 @@ header {
       background-color: $color-skavens-bg;
       border: 1px groove $color-skavens-bg;
     }
+  }
+  .presentation-faction {
+    margin-top: 20px;
+  }
+  input[type="submit"] {
+    margin-top: 20px;
   }
 }
 
