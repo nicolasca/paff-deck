@@ -1,5 +1,24 @@
 $(function() {
 
+
+  // Positionnement du recap dans le deckEdit.
+  // Au départ, posifionnement fixe dans la page. Ensuite suit le scroll.
+    $(window).scroll(function() {
+      var recap = $(".recap-edit");
+      if(recap.length) {
+      var scroll = $(window).scrollTop();
+      var positionListeCartes = parseInt($("#liste-cartes").offset().top);
+         if (scroll >= positionListeCartes) {
+            recap.addClass("fixed");
+            recap.css("top", 10);
+          } else {
+            recap.removeClass("fixed");
+          }
+        }
+  });
+
+
+
     // Quand on change le deck, on récupère l'id, et on appelle le controller.
     // Celui ci nous renvoie une vue que l'on insert dans le div deck_show
     $("#choix_deck").change(function() {
@@ -78,6 +97,10 @@ $(function() {
             'id_faction': id_faction
         }, function(data) {
             $("#faction_show").html(data);
+
+
+
+
         });
     });
 

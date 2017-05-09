@@ -186,6 +186,11 @@ header {
       padding-bottom: 2px
     }
   }
+  .liste-cartes {
+    p:first-child {
+      margin-top: 0.75em;
+    }
+  }
   .titre_deck {
     border: 1px solid $color2;
     text-align: center;
@@ -194,11 +199,22 @@ header {
       margin-bottom: 0;
       text-align: center;
     }
+
     input {
       padding: 5px;
       margin-top: 10px;
       text-align: center;
     }
+  }
+
+  .recap-edit {
+    text-align: center;
+    background-color: white;
+    border: 1px solid $color2;
+  }
+  .fixed {
+    position: fixed;
+    right: 0;
   }
 
   //---------- Tooltip for recap cartes----------
@@ -240,7 +256,8 @@ header {
     text-align: center;
   }
   img {
-    max-height: 460px;
+    max-height: 440px;
+    display: block;
   }
   h3 {
     margin: 0 auto;

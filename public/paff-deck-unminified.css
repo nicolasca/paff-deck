@@ -2624,6 +2624,10 @@ header nav h1 {
   padding-bottom: 2px;
 }
 
+#deck_cartes .liste-cartes p:first-child {
+  margin-top: 0.75em;
+}
+
 #deck_cartes .titre_deck {
   border: 1px solid #0F601E;
   text-align: center;
@@ -2639,6 +2643,17 @@ header nav h1 {
   padding: 5px;
   margin-top: 10px;
   text-align: center;
+}
+
+#deck_cartes .recap-edit {
+  text-align: center;
+  background-color: white;
+  border: 1px solid #0F601E;
+}
+
+#deck_cartes .fixed {
+  position: fixed;
+  right: 0;
 }
 
 #deck_cartes .tooltip {
@@ -2684,7 +2699,8 @@ header nav h1 {
 }
 
 #deck_cartes img {
-  max-height: 460px;
+  max-height: 440px;
+  display: block;
 }
 
 #deck_cartes h3 {

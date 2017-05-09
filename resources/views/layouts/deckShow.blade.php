@@ -20,7 +20,7 @@
 @if(isset($cartesByType['troupe']))
 <div>
   <h3 class="type-carte">Troupe <i class="fa fa-arrow-down" aria-hidden="true"></i></h3>
-  <div class="grid-4 has-gutter liste-cartes">
+  <div class="grid-3 has-gutter liste-cartes">
     @foreach($cartesByType['troupe']  as $carte)
     <p class="carte">
       <img src="{{ URL::to('/') }}/images/{{$deckShow->faction->nom}}/{{$carte->path}}" /> <br/>
@@ -34,7 +34,7 @@
 @if(isset($cartesByType['tir']))
 <div>
   <h3 class="type-carte">Tir <i class="fa fa-arrow-down" aria-hidden="true"></i></h3>
-  <div class="grid-4 has-gutter liste-cartes">
+  <div class="grid-3 has-gutter liste-cartes">
     @foreach($cartesByType['tir']  as $carte)
     <p class="carte">
       <img src="{{ URL::to('/') }}/images/{{$deckShow->faction->nom}}/{{$carte->path}}" /> <br/>
@@ -48,7 +48,7 @@
 @if(isset($cartesByType['cavalerie']))
 <div>
   <h3 class="type-carte">Cavalerie <i class="fa fa-arrow-down" aria-hidden="true"></i></h3>
-  <div class="grid-4 has-gutter liste-cartes">
+  <div class="grid-3 has-gutter liste-cartes">
     @foreach($cartesByType['cavalerie']  as $carte)
     <p class="carte">
       <img src="{{ URL::to('/') }}/images/{{$deckShow->faction->nom}}/{{$carte->path}}" /> <br/>
@@ -62,7 +62,7 @@
 @if(isset($cartesByType['artillerie']))
 <div>
   <h3 class="type-carte">Artillerie <i class="fa fa-arrow-down" aria-hidden="true"></i></h3>
-  <div class="grid-4 has-gutter liste-cartes">
+  <div class="grid-3 has-gutter liste-cartes">
     @foreach($cartesByType['artillerie']  as $carte)
     <p class="carte">
       <img src="{{ URL::to('/') }}/images/{{$deckShow->faction->nom}}/{{$carte->path}}" /> <br/>
@@ -76,7 +76,7 @@
 @if(isset($cartesByType['elite']))
 <div>
   <h3 class="type-carte">Elite <i class="fa fa-arrow-down" aria-hidden="true"></i></h3>
-  <div class="grid-4 has-gutter liste-cartes">
+  <div class="grid-3 has-gutter liste-cartes">
     @foreach($cartesByType['elite']  as $carte)
     <p class="carte">
       <img src="{{ URL::to('/') }}/images/{{$deckShow->faction->nom}}/{{$carte->path}}" /> <br/>
@@ -90,7 +90,7 @@
 @if(isset($cartesByType['unique']))
 <div>
   <h3 class="type-carte">Unique <i class="fa fa-arrow-down" aria-hidden="true"></i></h3>
-  <div class="grid-4 has-gutter liste-cartes">
+  <div class="grid-3 has-gutter liste-cartes">
     @foreach($cartesByType['unique']  as $carte)
     <p class="carte">
       <img src="{{ URL::to('/') }}/images/{{$deckShow->faction->nom}}/{{$carte->path}}" /> <br/>
@@ -104,7 +104,7 @@
 @if(isset($cartesByType['ordre']))
 <div>
   <h3 class="type-carte">Ordre <i class="fa fa-arrow-down" aria-hidden="true"></i></h3>
-  <div class="grid-4 has-gutter liste-cartes">
+  <div class="grid-3 has-gutter liste-cartes">
     @foreach($cartesByType['ordre']  as $carte)
     <p class="carte">
       <img src="{{ URL::to('/') }}/images/{{$deckShow->faction->nom}}/{{$carte->path}}" /> <br/>

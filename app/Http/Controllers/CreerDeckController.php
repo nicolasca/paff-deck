@@ -27,7 +27,13 @@ class CreerDeckController extends Controller {
     $faction = Faction::find($id);
     $cartesByType = $faction->cartes->groupBy('type');
 
+    $recapitulatif = array();
+    $recapitulatif["nbCartes"] = 0;
+    $recapitulatif["ptsDeploiement"] = 0;
+    $recapitulatif["recap"] = array();
+
     return view('layouts.deckEdit')
+    ->with("recapitulatif",$recapitulatif)
     ->with("cartesByType",$cartesByType)
     ->with('faction', $faction);
   }

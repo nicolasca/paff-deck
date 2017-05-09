@@ -10,13 +10,13 @@
       <p class="choix_faction">{{$faction->nom}}</p>
     </div>
     @endforeach
-
   </div>
-
 
   <!-- Div qui contient les decks affichés par un appel Ajax  -->
-  <div id="faction_show" class="flex-item-fluid">
+  <div id="faction_show">
   </div>
+
+
 
 
 </div>
