@@ -17,7 +17,7 @@
 
       @if(isset($deckShow))
       <div class="titre_deck center w50">
-        <input type="text" name="nom_deck" value="{{$deckShow->nom}}">
+        <input type="text" name="nom_deck" value="{{$deckShow->nom}}" required>
       </div>
       @else
       <div class="presentation-faction">
@@ -28,7 +28,7 @@
       <div class="titre_deck titre_deck_create center w50">
         <p class="form-item center">
           <label for="nom_deck">Nom du deck</label>
-          <input type="text" class="form-text" id="nom_deck" name="nom_deck">
+          <input type="text" class="form-text" id="nom_deck" name="nom_deck" required>
         </p>
         <p class="form-item center">
           <label for="description">Description</label>
