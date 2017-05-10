@@ -53,7 +53,8 @@
               <p class="carte">
                 <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}"/>
                 <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
-                max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}">
+                max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}"
+                data-nom="{{$carte->nom}}" data-type="{{$carte->type}}">
               </p>
               @endforeach
             </div>
@@ -68,7 +69,8 @@
               <p class="carte">
                 <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
                 <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
-                max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}">
+                max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}"
+                data-nom="{{$carte->nom}}" data-type="{{$carte->type}}">
               </p>
               @endforeach
             </div>
@@ -83,7 +85,8 @@
               <p class="carte">
                 <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
                 <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
-                max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}">
+                max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}"
+                data-nom="{{$carte->nom}}" data-type="{{$carte->type}}">
               </p>
               @endforeach
             </div>
@@ -98,7 +101,8 @@
               <p class="carte">
                 <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
                 <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
-                max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}">
+                max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}"
+                data-nom="{{$carte->nom}}" data-type="{{$carte->type}}">
               </p>
               @endforeach
             </div>
@@ -113,7 +117,8 @@
               <p class="carte">
                 <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
                 <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
-                max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}">
+                max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}"
+                data-nom="{{$carte->nom}}" data-type="{{$carte->type}}">
               </p>
               @endforeach
             </div>
@@ -128,7 +133,8 @@
               <p class="carte">
                 <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}"/>
                 <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
-                max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}">
+                max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}"
+                data-nom="{{$carte->nom}}" data-type="{{$carte->type}}">
               </p>
               @endforeach
             </div>
@@ -143,7 +149,8 @@
               <p class="carte">
                 <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
                 <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
-                max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}">
+                max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}"
+                data-nom="{{$carte->nom}}" data-type="{{$carte->type}}">
               </p>
               @endforeach
             </div>
@@ -155,11 +162,42 @@
         </form>
 
       </div>
-      <div class="recap-edit fl w20">
-        <p>
+      <div id="recap-edit" class="fl w20">
+        <div id="recap-chiffres">
           Points de déploiment: <span id="points-deploiement">{{$recapitulatif['ptsDeploiement']}}</span> <br />
           Nombre de cartes: <span id="nombre-cartes">{{$recapitulatif['nbCartes']}}</span>
-        </p>
+        </div>
+        <div id="recap-liste-unites">
+          <div class="recap-unite">
+            <p class="recap-type-unite">Troupe</p>
+            <p id="recap-troupe" class="recap-cartes"></p>
+          </div>
+
+          <div class="recap-unite">
+            <p class="recap-type-unite">Tir</p>
+            <p id="recap-tir" class="recap-cartes"></p>
+          </div>
+          <div class="recap-unite">
+            <p class="recap-type-unite">Cavalerie</p>
+            <p id="recap-cavalerie" class="recap-cartes"></p>
+          </div>
+          <div class="recap-unite">
+            <p class="recap-type-unite">Artillerie</p>
+            <p id="recap-artillerie" class="recap-cartes"></p>
+          </div>
+          <div class="recap-unite">
+            <p class="recap-type-unite">Elite</p>
+            <p id="recap-elite" class="recap-cartes"></p>
+          </div>
+          <div class="recap-unite">
+            <p class="recap-type-unite">Unique</p>
+            <p id="recap-unique" class="recap-cartes"></p>
+          </div>
+          <div class="recap-unite">
+            <p class="recap-type-unite">Ordre</p>
+            <p id="recap-ordre" class="recap-cartes"></p>
+          </div>
+        </div>
       </div>
 
     </div>
