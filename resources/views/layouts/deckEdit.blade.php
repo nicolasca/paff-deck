@@ -51,7 +51,7 @@
             <div class="grid-3 has-gutter liste-cartes">
               @foreach($cartesByType['troupe']  as $carte)
               <p class="carte">
-                <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" /> <br/>
+                <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}"/>
                 <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
                 max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}">
               </p>
@@ -66,7 +66,7 @@
             <div class="grid-3 has-gutter liste-cartes">
               @foreach($cartesByType['tir']  as $carte)
               <p class="carte">
-                <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" /> <br/>
+                <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
                 <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
                 max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}">
               </p>
@@ -81,7 +81,7 @@
             <div class="grid-3 has-gutter liste-cartes">
               @foreach($cartesByType['cavalerie']  as $carte)
               <p class="carte">
-                <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" /> <br/>
+                <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
                 <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
                 max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}">
               </p>
@@ -96,7 +96,7 @@
             <div class="grid-3 has-gutter liste-cartes">
               @foreach($cartesByType['artillerie']  as $carte)
               <p class="carte">
-                <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" /> <br/>
+                <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
                 <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
                 max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}">
               </p>
@@ -111,7 +111,7 @@
             <div class="grid-3 has-gutter liste-cartes">
               @foreach($cartesByType['elite']  as $carte)
               <p class="carte">
-                <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" /> <br/>
+                <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
                 <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
                 max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}">
               </p>
@@ -126,7 +126,7 @@
             <div class="grid-3 has-gutter liste-cartes">
               @foreach($cartesByType['unique']  as $carte)
               <p class="carte">
-                <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" /> <br/>
+                <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}"/>
                 <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
                 max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}">
               </p>
@@ -141,7 +141,7 @@
             <div class="grid-3 has-gutter liste-cartes">
               @foreach($cartesByType['ordre']  as $carte)
               <p class="carte">
-                <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" /> <br/>
+                <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
                 <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
                 max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}">
               </p>

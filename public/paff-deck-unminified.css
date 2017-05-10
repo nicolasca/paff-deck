@@ -2624,6 +2624,11 @@ header nav h1 {
   padding-bottom: 2px;
 }
 
+#deck_cartes .carte img {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #deck_cartes .liste-cartes p:first-child {
   margin-top: 0.75em;
 }
@@ -2682,10 +2687,6 @@ header nav h1 {
 
 #deck_cartes .titre_deck_create {
   border: none;
-}
-
-#deck_cartes .carte {
-  margin: 15px;
 }
 
 #deck_cartes .type-carte {

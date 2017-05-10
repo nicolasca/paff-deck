@@ -186,6 +186,13 @@ header {
       padding-bottom: 2px
     }
   }
+  .carte {
+    img {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+  }
   .liste-cartes {
     p:first-child {
       margin-top: 0.75em;
@@ -243,9 +250,6 @@ header {
 
   .titre_deck_create {
     border: none;
-  }
-  .carte {
-    margin: 15px;
   }
   .type-carte {
     font-size: $h3-size-l;
