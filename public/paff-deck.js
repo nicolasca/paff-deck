@@ -55,17 +55,13 @@ $(function() {
       $.get("mes-decks/delete", {
         'id_deck': id_deck
       }, function(data) {
-        console.log(data)
         location.reload(true);
         $("#btnModifDeck, #btnSupprimerDeck").css('display', 'none');
         $("#btnSupprimerDeck").css('display', 'none');
         $("#btnAnnulerDeck").css('display', 'none');
       });
     }
-
-
   });
-
   // Appel ajax du controller. Celui ci renvoie la vue "show"
   // avec les données du deck. On insère cette vue dans le div
   // qu'on a vidé au préalable.
@@ -97,8 +93,10 @@ $(function() {
       'id_faction': id_faction
     }, function(data) {
       $("#faction_show").html(data);
+
     });
   });
+
 
 
   //--------------- DECK EDIT ------(on utilise on() car le DOM vient d'une partial view)
@@ -109,25 +107,24 @@ $(function() {
     $("i", this).toggleClass("fa-arrow-down fa-arrow-up");
   });
 
+
   // Pour le deckEdit, calcul à la volée du nombre de cartes et cout de déploiement
   // Affichage du nom des cartes choisies
   $("body").on("change", ":input[type='number']", function() {
     miseJourRecapBox();
-  });
+    });
 
   // Quand on appuie sur la touche "Entrée" dans un input, on enlève le comportement
   // par default (sumit le form), et on MAJ le recap box
   $(window).keydown(function(event){
-    console.log(event);
-     if(event.keyCode == 13) {
-       event.preventDefault();
-       console.log(event.target);
-       if(event.target == "input") {
-                miseJourRecapBox();
-       }
-       return false;
-     }
-   });
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      if(event.target == "input") {
+        miseJourRecapBox();
+      }
+      return false;
+    }
+  });
 
   function miseJourRecapBox() {
     $(".recap-cartes").html("");
@@ -153,5 +150,4 @@ $(function() {
     $("#points-deploiement").html(coutDeploiement);
     $("#nombre-cartes").html(nombreCartes);
   }
-
 });
