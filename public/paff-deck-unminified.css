@@ -600,6 +600,12 @@ h5, .h5-like {
   font-size: 1.6rem;
 }
 
+@media screen and (min-width: 544px) {
+  h5, .h5-like {
+    font-size: 1.8rem;
+  }
+}
+
 h6, .h6-like {
   font-size: 1.4rem;
 }
@@ -2650,10 +2656,36 @@ header nav h1 {
   text-align: center;
 }
 
-#deck_cartes .recap-edit {
+#deck_cartes #recap-edit {
   text-align: center;
   background-color: white;
   border: 1px solid #0F601E;
+}
+
+#deck_cartes #recap-edit #recap-chiffres {
+  border-bottom: 1px solid #0F601E;
+}
+
+#deck_cartes #recap-edit #recap-liste-unites .recap-unite {
+  display: none;
+}
+
+#deck_cartes #recap-edit #recap-liste-unites .recap-type-unite {
+  text-align: center;
+  background-color: rgba(15, 96, 30, 0.8);
+  color: white;
+}
+
+#deck_cartes #recap-edit #recap-liste-unites .recap-cartes, #deck_cartes #recap-edit #recap-liste-unites .recap-cartes p {
+  text-align: left;
+  margin-top: 0;
+  padding-left: 5px;
+}
+
+@media screen and (max-width: 1400px) {
+  #deck_cartes #recap-edit #recap-liste-unites .recap-cartes, #deck_cartes #recap-edit #recap-liste-unites .recap-cartes p {
+    font-size: 1.8rem;
+  }
 }
 
 #deck_cartes .fixed {

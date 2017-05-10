@@ -214,10 +214,33 @@ header {
     }
   }
 
-  .recap-edit {
+  #recap-edit {
     text-align: center;
     background-color: white;
     border: 1px solid $color2;
+
+    #recap-chiffres {
+    border-bottom: 1px solid $color2;
+    }
+
+    #recap-liste-unites {
+      .recap-unite {
+        display: none;
+      }
+      .recap-type-unite {
+        text-align: center;
+        background-color: rgba($color2, 0.8);
+        color: white;
+      }
+      .recap-cartes, .recap-cartes p {
+        text-align: left;
+        margin-top: 0;
+        padding-left: 5px;
+        @media screen and (max-width: 1400px) {
+          font-size: $h5-size-l; 
+        }
+      }
+    }
   }
   .fixed {
     position: fixed;
