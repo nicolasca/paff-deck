@@ -5,21 +5,27 @@
   <div id="div-choix-deck" class="mam">
   <select id="choix_deck">
       <option selected="true" disabled="disabled">Choix du deck</option>
+        @if(isset($decksByMode['classique']))
           <optgroup label="{{Config::get('constants.classique')}}">
             @foreach($decksByMode['classique'] as $deck)
               <option value="{{$deck->id}}">{{$deck->nom}}</option>
             @endforeach
           </optgroup>
+        @endif
+        @if(isset($decksByMode['escarmouche']))
           <optgroup label="{{Config::get('constants.escarmouche')}}">
             @foreach($decksByMode['escarmouche'] as $deck)
               <option value="{{$deck->id}}">{{$deck->nom}}</option>
             @endforeach
           </optgroup>
+          @endif
+          @if(isset($decksByMode['epique']))
           <optgroup label="{{Config::get('constants.epique')}}">
             @foreach($decksByMode['epique'] as $deck)
               <option value="{{$deck->id}}">{{$deck->nom}}</option>
             @endforeach
           </optgroup>
+          @endif
 
   </select>
 
