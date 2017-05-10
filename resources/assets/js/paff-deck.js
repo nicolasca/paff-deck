@@ -119,7 +119,8 @@ $(function() {
   $(window).keydown(function(event){
     if(event.keyCode == 13) {
       event.preventDefault();
-      if(event.target == "input") {
+      // if input number, on MAJ le recap
+      if(event.target.type == "number") {
         miseJourRecapBox();
       }
       return false;
