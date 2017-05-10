@@ -2662,6 +2662,12 @@ header nav h1 {
   border: 1px solid #0F601E;
 }
 
+@media screen and (max-width: 1400px) {
+  #deck_cartes #recap-edit {
+    font-size: 1.8rem;
+  }
+}
+
 #deck_cartes #recap-edit #recap-chiffres {
   border-bottom: 1px solid #0F601E;
 }
@@ -2680,12 +2686,10 @@ header nav h1 {
   text-align: left;
   margin-top: 0;
   padding-left: 5px;
-}
-
-@media screen and (max-width: 1400px) {
-  #deck_cartes #recap-edit #recap-liste-unites .recap-cartes, #deck_cartes #recap-edit #recap-liste-unites .recap-cartes p {
-    font-size: 1.8rem;
-  }
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 }
 
 #deck_cartes .fixed {

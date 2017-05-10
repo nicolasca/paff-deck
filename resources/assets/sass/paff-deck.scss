@@ -218,6 +218,9 @@ header {
     text-align: center;
     background-color: white;
     border: 1px solid $color2;
+    @media screen and (max-width: 1400px) {
+      font-size: $h5-size-l;
+    }
 
     #recap-chiffres {
     border-bottom: 1px solid $color2;
@@ -236,9 +239,10 @@ header {
         text-align: left;
         margin-top: 0;
         padding-left: 5px;
-        @media screen and (max-width: 1400px) {
-          font-size: $h5-size-l; 
-        }
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
       }
     }
   }
