@@ -52,7 +52,7 @@
               @foreach($cartesByType['troupe']  as $carte)
               <p class="carte">
                 <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}"/>
-                <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
+                <input class="carte-info" name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
                 max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}"
                 data-nom="{{$carte->nom}}" data-type="{{$carte->type}}">
               </p>
@@ -68,7 +68,7 @@
               @foreach($cartesByType['tir']  as $carte)
               <p class="carte">
                 <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
-                <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
+                <input class="carte-info" name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
                 max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}"
                 data-nom="{{$carte->nom}}" data-type="{{$carte->type}}">
               </p>
@@ -84,7 +84,7 @@
               @foreach($cartesByType['cavalerie']  as $carte)
               <p class="carte">
                 <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
-                <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
+                <input class="carte-info" name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
                 max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}"
                 data-nom="{{$carte->nom}}" data-type="{{$carte->type}}">
               </p>
@@ -100,7 +100,7 @@
               @foreach($cartesByType['artillerie']  as $carte)
               <p class="carte">
                 <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
-                <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
+                <input class="carte-info" name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
                 max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}"
                 data-nom="{{$carte->nom}}" data-type="{{$carte->type}}">
               </p>
@@ -116,7 +116,7 @@
               @foreach($cartesByType['elite']  as $carte)
               <p class="carte">
                 <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
-                <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
+                <input class="carte-info" name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
                 max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}"
                 data-nom="{{$carte->nom}}" data-type="{{$carte->type}}">
               </p>
@@ -132,7 +132,7 @@
               @foreach($cartesByType['unique']  as $carte)
               <p class="carte">
                 <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}"/>
-                <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
+                <input class="carte-info" name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
                 max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}"
                 data-nom="{{$carte->nom}}" data-type="{{$carte->type}}">
               </p>
@@ -148,7 +148,7 @@
               @foreach($cartesByType['ordre']  as $carte)
               <p class="carte">
                 <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
-                <input name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
+                <input class="carte-info" name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
                 max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}"
                 data-nom="{{$carte->nom}}" data-type="{{$carte->type}}">
               </p>
@@ -160,8 +160,8 @@
           <input type="submit" name="Valider" value="Valider" class="button mbm">
 
         </form>
-
       </div>
+
       <div id="recap-edit" class="fl w20">
         <div id="recap-chiffres">
           Points de déploiment: <span id="points-deploiement">{{$recapitulatif['ptsDeploiement']}}</span> <br />

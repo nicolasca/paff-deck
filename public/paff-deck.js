@@ -75,6 +75,7 @@ $(function() {
       $("#btnModifDeck").css('display', 'inline');
       $("#btnSupprimerDeck").css('display', 'inline');
       $("#btnAnnulerDeck").css('display', 'none');
+      miseJourRecapBox();
     });
   }
 
@@ -133,8 +134,8 @@ $(function() {
 
     var nombreCartes = 0;
     var coutDeploiement = 0;
-    $(":input[type='number']").each(function() {
-      var nombreCarteElement = parseInt($(this).val());
+    $(".carte-info").each(function() {
+      var nombreCarteElement = parseInt($(this).val()) || $(this).data("nombre");
       var coutCarteElement = $(this).data("cout");
       nombreCartes += nombreCarteElement;
       coutDeploiement += (nombreCarteElement * coutCarteElement);
