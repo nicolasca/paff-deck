@@ -18,7 +18,6 @@ $(function() {
   });
 
 
-
   // Quand on change le deck, on récupère l'id, et on appelle le controller.
   // Celui ci nous renvoie une vue que l'on insert dans le div deck_show
   $("#choix_deck").change(function() {
@@ -98,10 +97,6 @@ $(function() {
       'id_faction': id_faction
     }, function(data) {
       $("#faction_show").html(data);
-
-
-
-
     });
   });
 
@@ -119,6 +114,20 @@ $(function() {
   $("body").on("change", ":input[type='number']", function() {
     miseJourRecapBox();
   });
+
+  // Quand on appuie sur la touche "Entrée" dans un input, on enlève le comportement
+  // par default (sumit le form), et on MAJ le recap box
+  $(window).keydown(function(event){
+    console.log(event);
+     if(event.keyCode == 13) {
+       event.preventDefault();
+       console.log(event.target);
+       if(event.target == "input") {
+                miseJourRecapBox();
+       }
+       return false;
+     }
+   });
 
   function miseJourRecapBox() {
     $(".recap-cartes").html("");
