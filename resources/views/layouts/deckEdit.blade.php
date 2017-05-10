@@ -17,7 +17,17 @@
 
       @if(isset($deckShow))
       <div class="titre_deck center w50">
-        <input type="text" name="nom_deck" value="{{$deckShow->nom}}" required>
+      <p class="form-item center">
+            <input type="text" name="nom_deck" value="{{$deckShow->nom}}" required>
+        </p>
+        <p class="form-item center">
+          <?php echo Form::select('mode',
+            ['classique' => Config::get('constants.classique'),
+            'escarmouche' => Config::get('constants.escarmouche'),
+            'epique' => Config::get('constants.epique')],
+            $deckShow->mode);  ?>
+        </p>
+
       </div>
       @else
       <div class="presentation-faction">
@@ -34,9 +44,14 @@
           <label for="description">Description</label>
           <textarea rows="2" cols="50" name="description" id="description" class="form-text"></textarea>
         </p>
-
-
-
+        <p class="form-item center">
+          <label for="mode">Mode</label>
+          <select name="mode">
+            <option value="classique" selected>Classique</option>
+            <option value="escarmouche">Escarmouche</option>
+            <option value="epique">Épique</option>
+          </select>
+        </p>
       </div>
       @endif
 

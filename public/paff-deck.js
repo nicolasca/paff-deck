@@ -135,7 +135,7 @@ $(function() {
     var nombreCartes = 0;
     var coutDeploiement = 0;
     $(".carte-info").each(function() {
-      var nombreCarteElement = parseInt($(this).val()) || $(this).data("nombre");
+      var nombreCarteElement = parseInt($(this).val()) || $(this).data("nombre") || 0;
       var coutCarteElement = $(this).data("cout");
       nombreCartes += nombreCarteElement;
       coutDeploiement += (nombreCarteElement * coutCarteElement);

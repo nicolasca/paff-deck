@@ -45,6 +45,7 @@ class CreerDeckController extends Controller {
     $deck = new Deck();
     $deck->nom = $request->input('nom_deck');
     $deck->description = $request->input('description');
+    $deck->mode = $request->input('mode');
     $deck->user_id = Auth::user()->id;
     $deck->faction_id = $request->input('faction_id');
     // On enregistre le deck avant d'y associer des cartes

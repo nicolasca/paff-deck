@@ -16,10 +16,10 @@ class MesDecksController extends Controller {
 
   // Affichage de la vue principale. Aucun deck affiché.
   public function index() {
-    $decks = Auth::user()->decks;
+    $decksByMode = Auth::user()->decks->groupBy("mode");
     $deckShow = '';
 
-    return view('mes-decks')->with('decks', $decks)
+    return view('mes-decks')->with('decksByMode', $decksByMode)
     ->with('deckShow', $deckShow);
   }
 
@@ -102,6 +102,7 @@ class MesDecksController extends Controller {
     }
 
     $deckShow->nom = $request->input('nom_deck');
+    $deckShow->mode = $request->input('mode');
     $deckShow->save();
 
     //If no error, display the show deck view

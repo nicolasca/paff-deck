@@ -4,8 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Deck extends Model
-{
+class Deck extends Model {
+
+  private $modes = array(
+    "classique" => "Classique",
+    "escarmouche" => "Escarmouche",
+    "epique" => "Épique"
+  );
+
   protected $table = "deck";
 
   public $timestamps = false;
@@ -23,5 +29,8 @@ class Deck extends Model
     return $this->belongsTo('App\Faction');
   }
 
+  public function getMode() {
+    return $this->modes[$this->mode];
+  }
 
 }

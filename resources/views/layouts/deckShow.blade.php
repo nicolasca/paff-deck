@@ -2,6 +2,7 @@
 
   <div class="titre_deck center w50">
     <h2 class="center">{{$deckShow->nom}}</h2>
+    <span>Mode {{$deckShow->getMode()}}</span>
 </div>
 
 <div>
