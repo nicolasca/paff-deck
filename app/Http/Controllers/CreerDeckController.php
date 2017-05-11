@@ -26,6 +26,7 @@ class CreerDeckController extends Controller {
 
     $faction = Faction::find($id);
     $cartesByType = $faction->cartes->groupBy('type');
+        $cartesByType = $this->orderArrayByType($cartesByType);
 
     $recapitulatif = array();
     $recapitulatif["nbCartes"] = 0;
@@ -66,6 +67,19 @@ class CreerDeckController extends Controller {
     }
     //If no error, display the show deck view
     return redirect()->back()->with('message', 'Vous avez créé le plus beau deck du monde !!');
+  }
+
+  // Trier le tableau par type dans l'ordre de clé suivant:
+  // "troupe", "tir", cavalerie, "artillerie", elite, unique, ordre
+  public function orderArrayByType($cartesByType) {
+    $cartesAvecBonOrdre = array();
+    $ordreType = array("troupe", "tir", "cavalerie", "artillerie", "elite", "unique", "ordre");
+    foreach ($ordreType as $type) {
+      if(isset($cartesByType[$type])) {
+        $cartesAvecBonOrdre[$type] = $cartesByType[$type];
+      }
+    }
+    return $cartesAvecBonOrdre;
   }
 
 }
