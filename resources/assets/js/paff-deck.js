@@ -115,17 +115,21 @@ $(function() {
     miseJourRecapBox();
     });
 
-  // Quand on appuie sur la touche "Entrée" dans un input, on enlève le comportement
-  // par default (sumit le form), et on MAJ le recap box
+  // Quand on appuie sur la touche "Entrée" dans un input des decks, on enlève le comportement
+  // par default (submit le form), et on MAJ le recap box
   $(window).keydown(function(event){
-    if(event.keyCode == 13) {
-      event.preventDefault();
-      // if input number, on MAJ le recap
-      if(event.target.type == "number") {
-        miseJourRecapBox();
+    var divDeck = $("#deck_cartes");
+    if(divDeck.length) {
+      if(event.keyCode == 13) {
+        event.preventDefault();
+        // if input number, on MAJ le recap
+        if(event.target.type == "number") {
+          miseJourRecapBox();
+        }
+        return false;
       }
-      return false;
     }
+    return true;
   });
 
   function miseJourRecapBox() {
