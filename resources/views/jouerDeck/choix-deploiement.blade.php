@@ -12,6 +12,9 @@ Choix déloiement
 
 <div id="liste-cartes" class="fl w80">
   @foreach($cartesByType as $type => $cartes)
+  <!-- Sur deux lignes, car operateur logique à l'interieur du if pose des soucis  -->
+  @if($type != "ordre")
+  @if($type != "unique")
   <div>
     <h3 class="type-carte">{{Config::get('constants.'.$type)}} <i class="fa fa-arrow-down" aria-hidden="true"></i></h3>
     <div class="grid-3 has-gutter liste-cartes">
@@ -26,6 +29,8 @@ Choix déloiement
       @endforeach
     </div>
   </div>
+  @endif
+  @endif
   @endforeach
 
   <input type="submit" name="Valider" value="Valider" class="button mbm">
