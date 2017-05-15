@@ -10,12 +10,10 @@
   <!-- Fonts -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
-  <link rel="stylesheet" href="./paff-deck.css">
-  <link rel="icon" type="image/png" href="./images/favicon.png" />
+  <link rel="stylesheet" href="{{URL::asset('css/paff-deck.css')}} ">
+  <link rel="icon" type="image/png" href="{{URL::asset('./images/favicon.png')}}" />
   <link href="https://fonts.googleapis.com/css?family=Cormorant+Infant" rel="stylesheet">
 
-  <!-- Styles -->
-  <link rel="stylesheet"  href="paff-deck.css" >
 </head>
 <body id="app-layout">
 
@@ -29,10 +27,6 @@
   </header>
     @endif
 
-
-
-
-
 @yield('content')
 
 <!-- JavaScripts -->
@@ -40,6 +34,6 @@
 src="https://code.jquery.com/jquery-3.2.1.min.js"
 integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 crossorigin="anonymous"></script>
-<script type="text/javascript" src="./paff-deck.js"></script>
+<script type="text/javascript" src="{{URL::asset('js/paff.js')}}"></script>
 </body>
 </html>

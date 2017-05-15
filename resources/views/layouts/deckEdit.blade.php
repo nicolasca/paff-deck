@@ -17,15 +17,15 @@
 
       @if(isset($deckShow))
       <div class="titre_deck center w50">
-      <p class="form-item center">
-            <input type="text" name="nom_deck" value="{{$deckShow->nom}}" required>
+        <p class="form-item center">
+          <input type="text" name="nom_deck" value="{{$deckShow->nom}}" required>
         </p>
         <p class="form-item center">
           <?php echo Form::select('mode',
-            ['classique' => Config::get('constants.classique'),
-            'escarmouche' => Config::get('constants.escarmouche'),
-            'epique' => Config::get('constants.epique')],
-            $deckShow->mode);  ?>
+          ['classique' => Config::get('constants.classique'),
+          'escarmouche' => Config::get('constants.escarmouche'),
+          'epique' => Config::get('constants.epique')],
+          $deckShow->mode);  ?>
         </p>
 
       </div>
@@ -60,11 +60,12 @@
 
         <div id="liste-cartes" class="fl w80">
 
-          @if(isset($cartesByType['troupe']))
+
+          @foreach($cartesByType as $type => $cartes)
           <div>
-            <h3 class="type-carte">Troupe <i class="fa fa-arrow-down" aria-hidden="true"></i></h3>
+            <h3 class="type-carte">{{Config::get('constants.'.$type)}} <i class="fa fa-arrow-down" aria-hidden="true"></i></h3>
             <div class="grid-3 has-gutter liste-cartes">
-              @foreach($cartesByType['troupe']  as $carte)
+              @foreach($cartes as $carte)
               <p class="carte">
                 <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}"/>
                 <input class="carte-info" name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
@@ -74,103 +75,7 @@
               @endforeach
             </div>
           </div>
-          @endif
-
-          @if(isset($cartesByType['tir']))
-          <div>
-            <h3 class="type-carte">Tir <i class="fa fa-arrow-down" aria-hidden="true"></i></h3>
-            <div class="grid-3 has-gutter liste-cartes">
-              @foreach($cartesByType['tir']  as $carte)
-              <p class="carte">
-                <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
-                <input class="carte-info" name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
-                max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}"
-                data-nom="{{$carte->nom}}" data-type="{{$carte->type}}">
-              </p>
-              @endforeach
-            </div>
-          </div>
-          @endif
-
-          @if(isset($cartesByType['cavalerie']))
-          <div>
-            <h3 class="type-carte">Cavalerie <i class="fa fa-arrow-down" aria-hidden="true"></i></h3>
-            <div class="grid-3 has-gutter liste-cartes">
-              @foreach($cartesByType['cavalerie']  as $carte)
-              <p class="carte">
-                <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
-                <input class="carte-info" name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
-                max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}"
-                data-nom="{{$carte->nom}}" data-type="{{$carte->type}}">
-              </p>
-              @endforeach
-            </div>
-          </div>
-          @endif
-
-          @if(isset($cartesByType['artillerie']))
-          <div>
-            <h3 class="type-carte">Artillerie <i class="fa fa-arrow-down" aria-hidden="true"></i></h3>
-            <div class="grid-3 has-gutter liste-cartes">
-              @foreach($cartesByType['artillerie']  as $carte)
-              <p class="carte">
-                <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
-                <input class="carte-info" name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
-                max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}"
-                data-nom="{{$carte->nom}}" data-type="{{$carte->type}}">
-              </p>
-              @endforeach
-            </div>
-          </div>
-          @endif
-
-          @if(isset($cartesByType['elite']))
-          <div>
-            <h3 class="type-carte">Elite <i class="fa fa-arrow-down" aria-hidden="true"></i></h3>
-            <div class="grid-3 has-gutter liste-cartes">
-              @foreach($cartesByType['elite']  as $carte)
-              <p class="carte">
-                <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
-                <input class="carte-info" name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
-                max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}"
-                data-nom="{{$carte->nom}}" data-type="{{$carte->type}}">
-              </p>
-              @endforeach
-            </div>
-          </div>
-          @endif
-
-          @if(isset($cartesByType['unique']))
-          <div>
-            <h3 class="type-carte">Unique <i class="fa fa-arrow-down" aria-hidden="true"></i></h3>
-            <div class="grid-3 has-gutter liste-cartes">
-              @foreach($cartesByType['unique']  as $carte)
-              <p class="carte">
-                <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}"/>
-                <input class="carte-info" name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
-                max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}"
-                data-nom="{{$carte->nom}}" data-type="{{$carte->type}}">
-              </p>
-              @endforeach
-            </div>
-          </div>
-          @endif
-
-          @if(isset($cartesByType['ordre']))
-          <div>
-            <h3 class="type-carte">Ordre <i class="fa fa-arrow-down" aria-hidden="true"></i></h3>
-            <div class="grid-3 has-gutter liste-cartes">
-              @foreach($cartesByType['ordre']  as $carte)
-              <p class="carte">
-                <img src="{{ URL::to('/') }}/images/{{$faction->nom}}/{{$carte->path}}" />
-                <input class="carte-info" name="{{$carte->id}}" value="{{$carte->nombre or 0}}" type="number"
-                max="{{$carte->nombre_max}}" min="0" data-cout="{{$carte->cout_deploiement}}"
-                data-nom="{{$carte->nom}}" data-type="{{$carte->type}}">
-              </p>
-              @endforeach
-            </div>
-          </div>
-          @endif
+          @endforeach
 
           <input type="submit" name="Valider" value="Valider" class="button mbm">
 
@@ -183,35 +88,12 @@
           Nombre de cartes: <span id="nombre-cartes">{{$recapitulatif['nbCartes']}}</span>
         </div>
         <div id="recap-liste-unites">
+          @foreach($cartesByType as $type => $cartes)
           <div class="recap-unite">
-            <p class="recap-type-unite">Troupe</p>
-            <p id="recap-troupe" class="recap-cartes"></p>
+            <p class="recap-type-unite">{{Config::get('constants.'.$type)}}</p>
+            <p id="recap-{{$type}}" class="recap-cartes"></p>
           </div>
-
-          <div class="recap-unite">
-            <p class="recap-type-unite">Tir</p>
-            <p id="recap-tir" class="recap-cartes"></p>
-          </div>
-          <div class="recap-unite">
-            <p class="recap-type-unite">Cavalerie</p>
-            <p id="recap-cavalerie" class="recap-cartes"></p>
-          </div>
-          <div class="recap-unite">
-            <p class="recap-type-unite">Artillerie</p>
-            <p id="recap-artillerie" class="recap-cartes"></p>
-          </div>
-          <div class="recap-unite">
-            <p class="recap-type-unite">Elite</p>
-            <p id="recap-elite" class="recap-cartes"></p>
-          </div>
-          <div class="recap-unite">
-            <p class="recap-type-unite">Unique</p>
-            <p id="recap-unique" class="recap-cartes"></p>
-          </div>
-          <div class="recap-unite">
-            <p class="recap-type-unite">Ordre</p>
-            <p id="recap-ordre" class="recap-cartes"></p>
-          </div>
+          @endforeach
         </div>
       </div>
 

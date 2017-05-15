@@ -28,6 +28,7 @@ class MesDecksController extends Controller {
     $id = $_GET['id_deck'];
     $deckShow = Deck::find($id);
     $cartesByType = $deckShow->cartes->groupBy('type');
+    $cartesByType = $this->orderArrayByType($cartesByType);
     $recapitulatif = $this->createRecapitulatif($deckShow);
 
     return view('layouts.deckShow')
@@ -57,6 +58,7 @@ class MesDecksController extends Controller {
     }
     // On tri par type pour l'affichage
     $cartesByType = $deckShow->cartes->groupBy('type');
+    $cartesByType = $this->orderArrayByType($cartesByType);
     $recapitulatif = $this->createRecapitulatif($deckShow);
 
     return view('layouts.deckEdit')
@@ -125,6 +127,19 @@ class MesDecksController extends Controller {
     ->with('deckShow', $deckShow);
   }
 
+  // Trier le tableau par type dans l'ordre de clé suivant:
+  // "troupe", "tir", cavalerie, "artillerie", elite, unique, ordre
+  public function orderArrayByType($cartesByType) {
+    $cartesAvecBonOrdre = array();
+    $ordreType = array("troupe", "tir", "cavalerie", "artillerie", "elite", "unique", "ordre");
+    foreach ($ordreType as $type) {
+      if(isset($cartesByType[$type])) {
+        $cartesAvecBonOrdre[$type] = $cartesByType[$type];
+      }
+    }
+    return $cartesAvecBonOrdre;
+  }
+
   //Récupérer les informations à afficher dans le récapitulatif
   private function createRecapitulatif($deckShow) {
     $nombreCartes = $pointsDeploiement = 0;
@@ -132,10 +147,10 @@ class MesDecksController extends Controller {
     $recapNomsCartes = array();
     foreach ($deckShow->cartes as $carte) {
       if(isset($carte->pivot)) {
-      $nombreCartes += $carte->pivot->nombre;
-      $pointsDeploiement += $carte->pivot->nombre * $carte->cout_deploiement;
+        $nombreCartes += $carte->pivot->nombre;
+        $pointsDeploiement += $carte->pivot->nombre * $carte->cout_deploiement;
 
-      $recapNomsCartes[$carte->nom] = $carte->pivot->nombre;
+        $recapNomsCartes[$carte->nom] = $carte->pivot->nombre;
       }
     }
     $recapitulatif["nbCartes"] = $nombreCartes;

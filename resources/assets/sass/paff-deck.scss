@@ -224,7 +224,7 @@ header {
     }
 
     #recap-chiffres {
-    border-bottom: 1px solid $color2;
+      border-bottom: 1px solid $color2;
     }
 
     #recap-liste-unites {
@@ -395,6 +395,24 @@ header {
   input[type="submit"] {
     margin-top: 20px;
   }
+}
+
+#cartes-jeu {
+
+  #cartes-main {
+    margin: 20px;
+    p:first-child {
+      margin-top: 15px;
+    }
+    img {
+      max-height: 440px;
+      display: block;
+    }
+    button {
+      margin: 5px;
+    }
+  }
+
 }
 
 /* ----------------------------- */
