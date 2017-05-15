@@ -2,8 +2,7 @@
 
 namespace App;
 
-class DeckEnCours {
-
+class DeckEnCours { 
   private $deck;
 
   private $cartesDeck;
