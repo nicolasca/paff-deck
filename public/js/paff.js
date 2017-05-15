@@ -164,7 +164,6 @@ $(function() {
 
     $("body").on('click', "button.utiliserCarte", function() {
         var carte_id = $(this).attr("id");
-        console.log(carte_id);
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $.post("utiliserCarte", {
             _token: CSRF_TOKEN,
@@ -180,6 +179,20 @@ $(function() {
             $("#cartes-jeu").html(data);
 
         });
+    });
+
+    $("body").on('click', "#roll-dice", function() {
+      var nombreDes = parseInt($("#nombre-des").val());
+      var valeurs ="";
+      for(i=0;i<nombreDes;i++) {
+        if(i !=0) {
+          valeurs += " - "
+        }
+        var random = Math.floor(Math.random() * 6) + 1 ;
+        valeurs += random+"";
+      }
+
+      $("#resultat-roll-dice").html(valeurs);
     });
 
 });
