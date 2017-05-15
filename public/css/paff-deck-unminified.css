@@ -2860,6 +2860,23 @@ header nav h1 {
   margin-top: 20px;
 }
 
+#cartes-jeu #cartes-main {
+  margin: 20px;
+}
+
+#cartes-jeu #cartes-main p:first-child {
+  margin-top: 15px;
+}
+
+#cartes-jeu #cartes-main img {
+  max-height: 440px;
+  display: block;
+}
+
+#cartes-jeu #cartes-main button {
+  margin: 5px;
+}
+
 /* ----------------------------- */
 /* ==Own stylesheet              */
 /* ----------------------------- */

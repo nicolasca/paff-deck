@@ -74,6 +74,7 @@ $(function() {
       $("#deck_show").append(data);
       $("#btnModifDeck").css('display', 'inline');
       $("#btnSupprimerDeck").css('display', 'inline');
+      $("#btnJouerDeck").css('display', 'inline');
       $("#btnAnnulerDeck").css('display', 'none');
       miseJourRecapBox();
     });
@@ -115,11 +116,10 @@ $(function() {
     miseJourRecapBox();
     });
 
-  // Quand on appuie sur la touche "Entrée" dans un input, on enlève le comportement
-  // par default (sumit le form), et on MAJ le recap box
+  // Quand on appuie sur la touche "Entrée" dans un input des decks, on enlève le comportement
+  // par default (submit le form), et on MAJ le recap box
   $(window).keydown(function(event){
     var divDeck = $("#deck_cartes");
-    console.log(divDeck.length);
     if(divDeck.length) {
       if(event.keyCode == 13) {
         event.preventDefault();
