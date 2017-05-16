@@ -43,3 +43,7 @@ Route::post('jouer-deck/choixDeploiement', 'JouerDeckController@choixDeploiement
 Route::post('jouer-deck/baseJeu', 'JouerDeckController@baseJeu');
 Route::post('jouer-deck/utiliserCarte', 'JouerDeckController@utiliserCarte');
 Route::get('jouer-deck/piocher', 'JouerDeckController@piocher');
+
+//-------------PARTIE----------------
+Route::get('parties', 'PartieController@index');
+Route::get('creer-partie', 'PartieController@create');

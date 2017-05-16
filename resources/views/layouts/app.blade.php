@@ -35,5 +35,16 @@ src="https://code.jquery.com/jquery-3.2.1.min.js"
 integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 crossorigin="anonymous"></script>
 <script type="text/javascript" src="{{URL::asset('js/paff.js')}}"></script>
+  <script src="https://js.pusher.com/4.0/pusher.min.js"></script>
+<script>
+// Enable pusher logging - don't include this in production
+  Pusher.logToConsole = true;
+
+  var pusher = new Pusher('d93830141cb957ba30fa', {
+    cluster: 'eu',
+    encrypted: true
+  });
+
+</script>
 </body>
 </html>
