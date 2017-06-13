@@ -14,16 +14,16 @@ class PartieCreated implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $nomPartie;
+    public $idPartieEnCours;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($nomPartie)
+    public function __construct($idPartie)
     {
-        $this->nomPartie = $nomPartie;
+        $this->idPartieEnCours = $idPartie;
     }
 
     /**
@@ -31,8 +31,7 @@ class PartieCreated implements ShouldBroadcast
      *
      * @return Channel|array
      */
-    public function broadcastOn()
-    {
+    public function broadcastOn() {
         return ['partie-channel'];
     }
 }

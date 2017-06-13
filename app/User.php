@@ -29,8 +29,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function decks()
-{
-    return $this->hasMany('App\Deck');
-}
+    public function decks() {
+      return $this->hasMany('App\Deck');
+    }
+
+    public function partiesEnCours() {
+      return $this->hasMany('App\PartieEnCours');
+    }
 }

@@ -9,22 +9,34 @@ use App\Http\Requests;
 use Auth;
 use App\Events\PartieCreated;
 
-use App\Partie;
+use App\PartieEnCours;
 
 
 class PartieController extends Controller {
 
 
   public function index(Request $request) {
-    $partie = "toto";
-    return view('parties', compact('partie'));
+    $parties = PartieEnCours::all();
+    return view('parties', compact('parties'));
   }
 
   public function create() {
-    $partie = "partie yeah";
+    // Création du deck
+    $partie = new PartieEnCours();
+    $partie->statut = "attente_joueur";
+    $partie->user_1_id = Auth::user()->id;
+    
+    $partie->save();
+    return redirect()->route('parties');
+  }
 
-    event(new PartieCreated($partie)); 
-    return view('parties', compact('partie'));
+  public function rejoindrePartie($id) {
+    $partie = PartieEnCours::find($id);
+    $partie->user_2_id = Auth::user()->id;
+    $partie->statut = "choix_deck";
+    $partie->save();
+
+    return redirect()->route('parties');
   }
 
 }

@@ -9,7 +9,7 @@ use Auth;
 use App\Deck;
 use App\Carte;
 use App\Faction;
-use App\DeckEnCours;
+use App\DeckEnJeu;
 
 class JouerDeckController extends Controller {
 
@@ -41,7 +41,7 @@ class JouerDeckController extends Controller {
   public function baseJeu(Request $request) {
     $deck = Deck::find($request->input('deck_id'));
 
-    $deckEnCours = new DeckEnCours;
+    $deckEnCours = new DeckEnJeu;
     $deckEnCours->setDeck($deck);
 
     $cartesDeck = array();
