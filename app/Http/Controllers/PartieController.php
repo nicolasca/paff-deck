@@ -20,12 +20,14 @@ class PartieController extends Controller {
     return view('parties', compact('parties'));
   }
 
-  public function create() {
+  public function create(Request $request) {
     // Création du deck
     $partie = new PartieEnCours();
     $partie->statut = "attente_joueur";
     $partie->user_1_id = Auth::user()->id;
-    
+    $partie->nom = $request->input('nom_partie');
+    $partie->mode = $request->input('mode_partie');
+
     $partie->save();
     return redirect()->route('parties');
   }
@@ -37,6 +39,15 @@ class PartieController extends Controller {
     $partie->save();
 
     return redirect()->route('parties');
+  }
+
+  public function choixDeck($id) {
+    $partie = PartieEnCours::find($id);
+    $decksByMode = Auth::user()->decks->where("mode", $partie->mode);
+    $deckShow = '';
+
+    return view('creation-partie.choix-deck')->with('decksByMode', $decksByMode)
+    ->with('deckShow', $deckShow);
   }
 
 }

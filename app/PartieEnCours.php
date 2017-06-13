@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class PartieEnCours extends Model {
   protected $table = "partie_en_cours";
 
+  private $modes = array(
+    "classique" => "Classique",
+    "escarmouche" => "Escarmouche",
+    "epique" => "Épique"
+  );
+
   private $statuts = array(
     "attente_joueur" => "En attente d'un joueur",
     "choix_deck" => "Choix des decks",
@@ -32,5 +38,9 @@ class PartieEnCours extends Model {
 
   public function getStatut() {
     return $this->statuts[$this->statut];
+  }
+
+  public function getMode() {
+    return $this->modes[$this->mode];
   }
 }

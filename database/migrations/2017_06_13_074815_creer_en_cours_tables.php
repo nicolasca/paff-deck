@@ -14,6 +14,7 @@
     {
         Schema::create('partie', function (Blueprint $table) {
           $table->increments('id');
+          $table->string('nom', 50);
           $table->dateTime('date');
           $table->enum('mode', ['classique', 'escarmouche', 'epique']);
           $table->integer('deck_1_id')->unsigned();
@@ -52,6 +53,7 @@
 
         Schema::create('partie_en_cours', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nom', 50);
             $table->integer('user_1_id')->nullable()-->unsigned();
             $table->integer('user_2_id')->nullable()-->unsigned();
             $table->integer('deck_en_cours_1_id')->nullable()-->unsigned();
