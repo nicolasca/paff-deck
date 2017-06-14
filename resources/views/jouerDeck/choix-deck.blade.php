@@ -5,6 +5,7 @@
 
   <form action="jouer-deck/choixDeploiement" method="post">
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
+      <input type="hidden" name="url" id="url" value="{{ url('/')}}">
 
   <div id="div-choix-deck" class="mam">
   <select id="choix_deck" name="deck_id">

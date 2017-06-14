@@ -46,10 +46,12 @@ Route::get('jouer-deck/piocher', 'JouerDeckController@piocher');
 
 //-------------PARTIE----------------
 Route::get('parties', ['as' => 'parties', 'uses' => 'PartieController@index']);
-Route::get('creation-partie', function()
-{
+Route::get('creation-partie', function() {
     return View::make('creer-partie');
 });
 Route::post('creer-partie', 'PartieController@create');
 Route::get('rejoindre-partie/{id}', 'PartieController@rejoindrePartie');
-Route::get('partie/choix-deck', 'PartieController@choixDeck');
+Route::post('partie/choix-deck', 'PartieController@choixDeck');
+Route::post('partie/saveDeck', 'PartieController@saveChoixDeck');
+Route::post('partie/choix-deploiement', 'PartieController@choixDeploiement');
+Route::post('partie/saveChoixDeploiement', 'PartieController@saveChoixDeploiement');

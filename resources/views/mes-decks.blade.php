@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div id="mes-decks">
-
+  <input type="hidden" name="url" id="url" value="{{ url('/')}}">
   <div id="div-choix-deck" class="mam">
   <select id="choix_deck">
       <option selected="true" disabled="disabled">Choix du deck</option>

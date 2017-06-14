@@ -67,7 +67,8 @@ $(function() {
     function afficherDeck() {
         $("#deck_show").empty();
         var id_deck = $("#choix_deck").val();
-        $.get("mes-decks/show", {
+        var url = $("#url").val();
+        $.get(url+"/mes-decks/show", {
             'id_deck': id_deck
         }, function(data) {
             $("#deck_show").append(data);

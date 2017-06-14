@@ -33,7 +33,7 @@ class MesDecksController extends Controller {
 
     return view('layouts.deckShow')
     ->with("cartesByType",$cartesByType)
-    ->with('$decodedDeck', $deckShow)
+    ->with('deckShow', $deckShow)
     ->with('recapitulatif', $recapitulatif);
   }
 

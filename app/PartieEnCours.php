@@ -17,6 +17,7 @@ class PartieEnCours extends Model {
     "attente_joueur" => "En attente d'un joueur",
     "choix_deck" => "Choix des decks",
     "choix_deploiement" => "Choix des déploiements",
+    'attente_lancement' => "Attente de lancement",
     "en_cours" => "En cours motherfucker"
   );
 
@@ -42,5 +43,16 @@ class PartieEnCours extends Model {
 
   public function getMode() {
     return $this->modes[$this->mode];
+  }
+
+  public function getDeckIdByUser($userId) {
+    $deckId = "";
+    if($this->user_1_id === $userId) {
+      $deckId = $this->deck_1_id;
+    } else if($this->user_2_id === $userId) {
+      $deckId = $this->deck_2_id;
+    }
+
+    return $deckId;
   }
 }
