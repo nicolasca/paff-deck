@@ -36,7 +36,8 @@
 
 
   <!-- Cachés par default. Leur visibilité est modifiée par le .js -->
-    <input type="submit" class="button" id="btnJouerDeck" style="display:none;" value="Utiliser">
+    <input type="submit" data-partieId="{{$partie->id}}" class="button"
+    id="btnJouerDeck" style="display:none;" value="Utiliser">
   </div>
 
   </form>

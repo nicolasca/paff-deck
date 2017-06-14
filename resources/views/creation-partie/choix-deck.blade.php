@@ -1,12 +1,14 @@
 @extends('layouts.app')
 @section('content')
+
+@include('layouts.nav-creation-partie')
 <div>
 
 
   <form action="saveDeck" method="post">
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
       <input type="hidden" name="url" id="url" value="{{ url('/')}}">
-      <input type="hidden" name="idPartie" value="{{$idPartie}}">
+      <input type="hidden" name="idPartie" value="{{$partie->id}}">
 
   <div id="div-choix-deck" class="mam">
   <select id="choix_deck" name="deck_id">

@@ -37,6 +37,13 @@ class PartieEnCours extends Model {
     return $this->belongsTo('App\User');
   }
 
+  public function deck_1() {
+    return $this->belongsTo('App\Deck');
+  }
+  public function deck_2() {
+    return $this->belongsTo('App\Deck');
+  }
+
   public function getStatut() {
     return $this->statuts[$this->statut];
   }

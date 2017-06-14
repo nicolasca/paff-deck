@@ -415,6 +415,26 @@ header {
 
 }
 
+#recap-avant-partie {
+  .partie-item {
+    border: 1px solid black;
+  }
+  .joueur-infos {
+    background-color: white;
+  }
+  #vs-joueurs {
+    border: none;
+  }
+} 
+
+#nav-creation-partie {
+  border-bottom: 1px solid $color2;
+  div.active {
+    color: $color2;
+    font-weight: bold;
+  }
+}
+
 /* ----------------------------- */
 /* ==Own stylesheet              */
 /* ----------------------------- */

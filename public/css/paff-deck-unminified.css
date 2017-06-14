@@ -2877,6 +2877,27 @@ header nav h1 {
   margin: 5px;
 }
 
+#recap-avant-partie .partie-item {
+  border: 1px solid black;
+}
+
+#recap-avant-partie .joueur-infos {
+  background-color: white;
+}
+
+#recap-avant-partie #vs-joueurs {
+  border: none;
+}
+
+#nav-creation-partie {
+  border-bottom: 1px solid #0F601E;
+}
+
+#nav-creation-partie div.active {
+  color: #0F601E;
+  font-weight: bold;
+}
+
 /* ----------------------------- */
 /* ==Own stylesheet              */
 /* ----------------------------- */

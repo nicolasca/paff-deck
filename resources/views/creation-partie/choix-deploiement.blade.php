@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
+@include('layouts.nav-creation-partie')
+
 <div id="deck_cartes">
 Choix déloiement
 <p>{{$deck->nom}}</p>
@@ -9,7 +11,7 @@ Choix déloiement
 <form action="saveChoixDeploiement" method="post">
   <input type="hidden" name="_token" value="{{ csrf_token() }}">
   <input type="hidden" name="deck_id" value="{{$deck->id}}">
-  <input type="hidden" name="idPartie" value="{{$idPartie}}">
+  <input type="hidden" name="idPartie" value="{{$partie->id}}">
 
 <div id="liste-cartes" class="fl w80">
   @foreach($cartesByType as $type => $cartes)

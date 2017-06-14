@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 use App\Http\Requests;
 use Auth;
-use App\Events\PartieCreated;
+use App\Events\PartieLancee;
 
 use App\Http\Helpers\DeckUtils;
 
@@ -41,6 +41,11 @@ class PartieController extends Controller {
       ($partie->user_1_id === $userId || $partie->user_2_id === $userId)) {
         $boutonAction[$partie->id] = "choix_deploiement";
       }
+      // Afficher Lancer la partie s'il s'agit d'un des deux joueurs
+      else if ($partie->statut === "attente_lancement" &&
+      ($partie->user_1_id === $userId || $partie->user_2_id === $userId)) {
+        $boutonAction[$partie->id] = "attente_lancement";
+      }
     }
     return view('parties')->with('parties', $parties)->with("boutonAction", $boutonAction);
   }
@@ -73,7 +78,7 @@ class PartieController extends Controller {
     $deckShow = '';
 
     return view('creation-partie.choix-deck')->with('decksByMode', $decksByMode)
-    ->with('deckShow', $deckShow)->with("idPartie", $request->input('id_partie'));
+    ->with('deckShow', $deckShow)->with("partie", $partie);
   }
 
   // Enregistre le choix du deck
@@ -115,7 +120,7 @@ class PartieController extends Controller {
     ->with('cartesByType', $cartesByType)
     ->with('recapitulatif', $recapitulatif)
     ->with('deck', $deck)
-    ->with("idPartie", $request->input('id_partie'));
+    ->with("partie", $partie);
   }
 
   public function saveChoixDeploiement(Request $request) {
@@ -209,6 +214,26 @@ class PartieController extends Controller {
     $partie->save();
 
     return redirect()->route('parties');
+  }
+
+
+  public function recapAvantPartie($id) {
+    $partie = PartieEnCours::find($id);
+
+    return view('creation-partie.recap-avant-partie')
+    ->with('partie', $partie);
+  }
+
+  // Quand un joueur click sur le bouton pour lancer la partie
+  public function lancerPartie() {
+    $partieId = $_GET['idPartie'];
+    event(new PartieLancee($partieId)); // broadcast `ScoreUpdated` event
+  }
+
+  // Quand les 2 joueurs ont cliqué sur le lancement de la partie, on affiche la zone de jeu.
+  public function zoneJeu() {
+    $partieId = $_GET['idPartie'];
+    return view("zone-jeu.zone-jeu");
   }
 
 }

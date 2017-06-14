@@ -196,10 +196,35 @@ $(function() {
     $("#resultat-roll-dice").html(valeurs);
   });
 
-
+  // On ecoute l'event pour lancer la partie.
+  // Quand les 2 joueurs ont cliqué sur le boutton,
+  // on les redirige
   var channel = pusher.subscribe('partie-channel');
-  channel.bind('App\\Events\\PartieCreated', function(data) {
-    alert(data.nomPartie);
+  channel.bind('App\\Events\\PartieLancee', function(data) {
+    var idPartie = data.idPartie;
+    var idUser = data.idUser;
+    // Si un des joueurs a déjà rejoint, on redirige vers la zone de jeu
+    if(localStorage.getItem("partieLancee"+idPartie)) {
+      localStorage.removeItem("partieLancee"+idPartie);
+      console.log("Appel zone de jeu");
+      var url = $("#url").val();
+      window.location = url+'/partie/zone-jeu?idPartie=' + idPartie;
+    } else {
+      // Sinon on cree l'item en attentant que le 2e joueur rejoint
+      localStorage.setItem("partieLancee"+idPartie, idPartie);
+    }
+  });
+
+  // Quand un joueur clique sur le bouton "Lancer la partie",
+  // on notifie le serveur qui va trigger un Event
+  $("#btn-lancer-partie").click(function() {
+      $("#btn-lancer-partie").prop("disabled", true);
+      $("#btn-lancer-partie").html("Attente du joueur...");
+      var idPartie = $("#btn-lancer-partie").data("partieid");
+      var url = $("#url").val();
+      $.get(url+"/partie/lancer-partie", {
+          'idPartie': idPartie
+      });
   });
 
 });

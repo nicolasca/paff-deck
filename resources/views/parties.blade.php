@@ -40,6 +40,10 @@
         <input type="submit" value="Choisir son déploiement">
       </form>
     </td>
+    @elseif($boutonAction[$partie->id] === "attente_lancement")
+    <td>
+      <a href="partie/recap-avant-partie/{{$partie->id}}">Lancer la partie</a>
+    </td>
     @endif
 
   </tr>

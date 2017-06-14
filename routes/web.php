@@ -55,3 +55,6 @@ Route::post('partie/choix-deck', 'PartieController@choixDeck');
 Route::post('partie/saveDeck', 'PartieController@saveChoixDeck');
 Route::post('partie/choix-deploiement', 'PartieController@choixDeploiement');
 Route::post('partie/saveChoixDeploiement', 'PartieController@saveChoixDeploiement');
+Route::get('partie/recap-avant-partie/{id}', 'PartieController@recapAvantPartie');
+Route::get('partie/lancer-partie', 'PartieController@lancerPartie');
+Route::get('partie/zone-jeu', 'PartieController@zoneJeu');

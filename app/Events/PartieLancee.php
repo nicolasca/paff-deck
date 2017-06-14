@@ -10,7 +10,9 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class PartieCreated implements ShouldBroadcast
+use Auth;
+
+class PartieLancee implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -33,5 +35,12 @@ class PartieCreated implements ShouldBroadcast
      */
     public function broadcastOn() {
         return ['partie-channel'];
+    }
+
+    public function broadcastWith() {
+      return [
+            'idPartie' => $this->idPartieEnCours,
+            'idUser' => Auth::user()->id
+        ];
     }
 }
