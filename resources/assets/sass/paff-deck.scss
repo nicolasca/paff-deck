@@ -425,13 +425,28 @@ header {
   #vs-joueurs {
     border: none;
   }
-} 
+}
 
 #nav-creation-partie {
   border-bottom: 1px solid $color2;
   div.active {
     color: $color2;
     font-weight: bold;
+  }
+}
+
+$hauteur-carte: 150px;
+#table-jeu {
+  margin-top: 10px;
+  #zone-de-jeu {
+    margin: 10px;
+    width: ($hauteur-carte * 0.71 *10);
+  }
+  .zoneJeu {
+    border: 1px solid black;
+    margin-bottom: 10px;
+    height: $hauteur-carte;
+    width : ($hauteur-carte * 0.71);
   }
 }
 

@@ -18,7 +18,6 @@ $(function() {
   $("body").on('click', "#piocher-carte", function() {
     $.get("piocher", function(data) {
       $("#cartes-jeu").html(data);
-
     });
   });
 
@@ -36,10 +35,23 @@ $(function() {
     $("#resultat-roll-dice").html(valeurs);
   });
 
+  // Quand un joueur clique sur le bouton "Lancer la partie",
+  // on notifie le serveur qui va trigger un Event
+  $("#btn-lancer-partie").click(function() {
+    $("#btn-lancer-partie").prop("disabled", true);
+    $("#btn-lancer-partie").html("Attente du joueur...");
+    var idPartie = $("#btn-lancer-partie").data("partieid");
+    var url = $("#url").val();
+    $.get(url+"/partie/lancer-partie", {
+      'idPartie': idPartie
+    });
+  });
+
+  var channel = pusher.subscribe('partie-channel');
+
   // On ecoute l'event pour lancer la partie.
   // Quand les 2 joueurs ont cliqué sur le boutton,
   // on les redirige
-  var channel = pusher.subscribe('partie-channel');
   channel.bind('App\\Events\\PartieLancee', function(data) {
     var idPartie = data.idPartie;
     var idUser = data.idUser;
@@ -55,16 +67,52 @@ $(function() {
     }
   });
 
-  // Quand un joueur clique sur le bouton "Lancer la partie",
-  // on notifie le serveur qui va trigger un Event
-  $("#btn-lancer-partie").click(function() {
-      $("#btn-lancer-partie").prop("disabled", true);
-      $("#btn-lancer-partie").html("Attente du joueur...");
-      var idPartie = $("#btn-lancer-partie").data("partieid");
-      var url = $("#url").val();
-      $.get(url+"/partie/lancer-partie", {
-          'idPartie': idPartie
+  // Les cartes sont draggable
+  $(".carte-main").draggable({
+    revert: "invalid"
+  });
+
+  // Les zones sont droppable
+  $(".zoneJeu").droppable({
+  accept: ".carte-main",
+  drop: function(ev, ui) {
+
+        // Snap la carte dans l'emplacement
+        var dropped = ui.draggable;
+        var droppedOn = $(this);
+        $(dropped).detach().css({top: 0,left: 0}).appendTo(droppedOn);
+
+        // Envoyer la carte id et sa position
+        var data = {
+          position: $(this).data("position"),
+          identifiantCarte: ui.draggable.prop("id")
+        }
+        var url = $("#url").val();
+        $.get(url+"/partie/drag-carte", {data: data});
+      }
+  });
+
+  channel.bind('App\\Events\\DragCarteZoneJeu', function(data) {
+    console.log(data);
+    $("#"+data.identifiantCarte).appendTo("#position_"+data.position);
+  });
+
+
+  $(".bouton-pioche").click(function() {
+    var bouton = $(this);
+    var userId = $(this).data('userid');
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    $.post("piocher", {
+      _token: CSRF_TOKEN,
+      userId: userId
+    },
+    function(data) {
+      bouton.after(data);
+      // Les cartes sont draggable
+      $(".carte-main").draggable({
+        revert: "invalid"
       });
+    });
   });
 
 });

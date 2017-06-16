@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Collection;
 use App\Http\Requests;
 use Auth;
 use App\Events\PartieLancee;
+use App\Events\DragCarteZoneJeu;
 
 use App\Http\Helpers\DeckUtils;
 
@@ -231,9 +232,44 @@ class PartieController extends Controller {
   }
 
   // Quand les 2 joueurs ont cliqué sur le lancement de la partie, on affiche la zone de jeu.
-  public function zoneJeu() {
+  public function zoneJeu(Request $request) {
     $partieId = $_GET['idPartie'];
-    return view("zone-jeu.zone-jeu");
+    $partie = PartieEnCours::find($partieId);
+    $partie->statut = "en_cours";
+    $partie->save();
+    $request->session()->put('partieId', $partieId);
+    return view("zone-jeu.zone-jeu")->with('partie', $partie);
+  }
+
+  // Piocher le nombre de cartes manquantes (pour avoir 5 dans la main)
+  public function piocher(Request $request) {
+    $partieId = $request->session()->get('partieId');
+    $partie = PartieEnCours::find($partieId);
+
+    $userId = $request->input('userId');
+
+    $deckEnCours = DeckEnCours::find($partie->getDeckEnCoursIdByUser($userId));
+    $faction = $deckEnCours->deck->faction;
+
+    $cartesEnCoursMain = $deckEnCours->cartesEnCours->where("statut", "MAIN");
+    $cartePioche = $cartesEnCoursMain->random();
+
+    $cartePioche->statut = "ZONE_JEU";
+  //  $cartePioche->save();
+
+    return view('zone-jeu.carte')
+    ->with('partie', $partie)
+    ->with('faction', $faction)
+    ->with('carte', $cartePioche);
+  }
+
+  public function dragCarte() {
+    $data = $_GET['data'];
+    echo $data['identifiantCarte'];
+    $carte = CarteEnCours::where("identifiant_partie", $data['identifiantCarte'])->first();
+    $carte->position = $carte['position'];
+    //$carte->save();
+    event(new DragCarteZoneJeu($data));
   }
 
 }

@@ -44,6 +44,10 @@
     <td>
       <a href="partie/recap-avant-partie/{{$partie->id}}">Lancer la partie</a>
     </td>
+    @elseif($boutonAction[$partie->id] === "en_cours")
+    <td>
+      <a href="partie/zone-jeu/{{$partie->id}}">Go to the partie</a>
+    </td>
     @endif
 
   </tr>

@@ -2898,6 +2898,22 @@ header nav h1 {
   font-weight: bold;
 }
 
+#table-jeu {
+  margin-top: 10px;
+}
+
+#table-jeu #zone-de-jeu {
+  margin: 10px;
+  width: 1065px;
+}
+
+#table-jeu .zoneJeu {
+  border: 1px solid black;
+  margin-bottom: 10px;
+  height: 150px;
+  width: 106.5px;
+}
+
 /* ----------------------------- */
 /* ==Own stylesheet              */
 /* ----------------------------- */

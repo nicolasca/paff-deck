@@ -37,6 +37,7 @@ class CreerEnCoursTables extends Migration
       $table->increments('id');
       $table->integer('carte_id')->unsigned();
       $table->string('identifiant_partie', 20);
+      $table->integer('position');
       $table->enum('statut', ['MAIN', 'ZONE_JEU', 'DECK', 'DEFAUSSE']);
 
       $table->foreign('carte_id')->references('id')->on('carte');

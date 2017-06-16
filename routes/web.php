@@ -58,3 +58,5 @@ Route::post('partie/saveChoixDeploiement', 'PartieController@saveChoixDeploiemen
 Route::get('partie/recap-avant-partie/{id}', 'PartieController@recapAvantPartie');
 Route::get('partie/lancer-partie', 'PartieController@lancerPartie');
 Route::get('partie/zone-jeu', 'PartieController@zoneJeu');
+Route::post('partie/piocher', 'PartieController@piocher');
+Route::get('partie/drag-carte', 'PartieController@dragCarte');

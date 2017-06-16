@@ -52,14 +52,23 @@ class PartieEnCours extends Model {
     return $this->modes[$this->mode];
   }
 
+  public function getDeckEnCoursIdByUser($userId) {
+    $deckId = "";
+    if($this->user_1_id == $userId) {
+      $deckId = $this->deck_en_cours_1_id;
+    } else if($this->user_2_id == $userId) {
+      $deckId = $this->deck_en_cours_2_id;
+    }
+    return $deckId;
+  }
+
   public function getDeckIdByUser($userId) {
     $deckId = "";
-    if($this->user_1_id === $userId) {
+    if($this->user_1_id == $userId) {
       $deckId = $this->deck_1_id;
-    } else if($this->user_2_id === $userId) {
+    } else if($this->user_2_id == $userId) {
       $deckId = $this->deck_2_id;
     }
-
     return $deckId;
   }
 }
