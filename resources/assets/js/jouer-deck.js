@@ -49,6 +49,8 @@ $(function() {
 
   var channel = pusher.subscribe('partie-channel');
 
+// -------------------- ZONE DE JEU ------------------------
+
   // On ecoute l'event pour lancer la partie.
   // Quand les 2 joueurs ont cliqué sur le boutton,
   // on les redirige
@@ -84,8 +86,9 @@ $(function() {
 
         // Envoyer la carte id et sa position
         var data = {
+          statut: $(this).data("statut"),
           position: $(this).data("position"),
-          identifiantCarte: ui.draggable.prop("id")
+          carteId: ui.draggable.prop("id").split('_')[1]
         }
         var url = $("#url").val();
         $.get(url+"/partie/drag-carte", {data: data});
@@ -94,7 +97,7 @@ $(function() {
 
   channel.bind('App\\Events\\DragCarteZoneJeu', function(data) {
     console.log(data);
-    $("#"+data.identifiantCarte).appendTo("#position_"+data.position);
+    $("#carte_"+data.carteId).appendTo("#position_"+data.position);
   });
 
 
@@ -112,7 +115,63 @@ $(function() {
       $(".carte-main").draggable({
         revert: "invalid"
       });
+        $("#zone-de-jeu .carte-main img").selectable();
     });
   });
+
+  // Quand on survole une carte, on l'affiche en grand
+  $("body").on("mouseover", ".carte-main img", function() {
+    var srcImg = $(this).prop("src");
+    $("#carte-grand img").prop("src", srcImg)
+  });
+
+  // quand on click sur une carte de la zone de jeu
+  $("body").on("click", "#zone-de-jeu .carte-main img", function() {
+    var carte = $(this);
+    var offset = $(this).offset();
+    $("#tooltip-carte-action").css({top: offset.top+150, left: offset.left});
+    $("#tooltip-carte-action").toggle();
+
+    // Gestion des bordures pour indiquer les zones de combat
+    gestionZonesCombat(carte)
+    // Gestion des points de dégats
+    gestionDegats(carte);
+
+  });
+
+      // Gestion des bordures pour indiquer les zones de combat
+  function gestionZonesCombat(carte) {
+    // Gestion des bordures pour indiquer les zones de combat
+    // Pour éviter que toutes les cartes reagissent à la même action
+    $("#tooltip-carte-action .bouton-combat").unbind("click");
+    $("#tooltip-carte-action .bouton-combat").click(function(event) {
+      var flancCombat = $(this).prop("name");
+      $(carte).css("border-"+flancCombat, "3px solid red");
+      if(flancCombat=="none") {
+        $(carte).css("border", "none");
+      }
+      $("#tooltip-carte-action").css("display", "none");
+    });
+  }
+
+  // Gestion des points de dégats
+  function gestionDegats(carte) {
+    // Gestion des points de dégats
+    // Pour éviter que toutes les cartes reagissent à la même action
+    $("#tooltip-carte-action .bouton-degats").unbind("click");
+    $("#tooltip-carte-action .bouton-degats").click(function(event) {
+      var typeDegats = $(this).prop("name");
+      var degats = $(carte).data("degats");
+
+      if(typeDegats=="more") {
+        degats++;
+      } else if (typeDegats == "less") {
+        degats--;
+      }
+
+      $(carte).data("degats",degats);
+      $(carte).next("#degats").find("p").html(degats);
+    });
+  }
 
 });

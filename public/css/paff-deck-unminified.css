@@ -2907,11 +2907,57 @@ header nav h1 {
   width: 1065px;
 }
 
+#table-jeu #zone-de-jeu #tooltip-carte-action {
+  background: #1d1d1d;
+  color: #fff;
+  padding: 7px;
+  border-radius: 5px;
+  position: absolute;
+  width: 300px;
+  display: none;
+  z-index: 10;
+}
+
+#table-jeu #zone-de-jeu #degats {
+  color: red;
+  font-weight: bold;
+  background-color: white;
+  position: relative;
+}
+
+#table-jeu #zone-de-jeu #degats p {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
 #table-jeu .zoneJeu {
   border: 1px solid black;
   margin-bottom: 10px;
   height: 150px;
   width: 106.5px;
+}
+
+#table-jeu .carte-main img.combat-flanc {
+  border: 3px solid red;
+}
+
+#table-jeu .cartes-main .not-visible {
+  background-color: black;
+}
+
+#table-jeu .cartes-main .not-visible img {
+  visibility: hidden;
+}
+
+#table-jeu #cartes-defausse {
+  width: 100%;
+  height: 200px;
+  border: 1px solid black;
+}
+
+#table-jeu #carte-grand img {
+  max-height: 300px;
 }
 
 /* ----------------------------- */

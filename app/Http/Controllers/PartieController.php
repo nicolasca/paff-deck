@@ -251,11 +251,11 @@ class PartieController extends Controller {
     $deckEnCours = DeckEnCours::find($partie->getDeckEnCoursIdByUser($userId));
     $faction = $deckEnCours->deck->faction;
 
-    $cartesEnCoursMain = $deckEnCours->cartesEnCours->where("statut", "MAIN");
+    $cartesEnCoursMain = $deckEnCours->cartesEnCours->where("statut", "DECK");
     $cartePioche = $cartesEnCoursMain->random();
 
-    $cartePioche->statut = "ZONE_JEU";
-  //  $cartePioche->save();
+    $cartePioche->statut = "MAIN";
+    $cartePioche->save();
 
     return view('zone-jeu.carte')
     ->with('partie', $partie)
@@ -265,10 +265,18 @@ class PartieController extends Controller {
 
   public function dragCarte() {
     $data = $_GET['data'];
-    echo $data['identifiantCarte'];
-    $carte = CarteEnCours::where("identifiant_partie", $data['identifiantCarte'])->first();
-    $carte->position = $carte['position'];
-    //$carte->save();
+    $carte = CarteEnCours::find($data['carteId']);
+    $carte->position = $data['position'];
+    $statut = $data['statut'];
+
+    if($statut == "zone-jeu") {
+      $carte->statut = "ZONE_JEU";
+      $carte->save();
+    } else if ($statut == "defausse") {
+      $carte->statut = "DEFAUSSE";
+      $carte->save();
+    }
+
     event(new DragCarteZoneJeu($data));
   }
 

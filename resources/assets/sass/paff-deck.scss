@@ -441,12 +441,58 @@ $hauteur-carte: 150px;
   #zone-de-jeu {
     margin: 10px;
     width: ($hauteur-carte * 0.71 *10);
+
+    #tooltip-carte-action {
+      background:#1d1d1d;
+      color:#fff;
+      padding:7px;
+      border-radius:5px;
+      position:absolute;
+      width:300px;
+      display:none;
+      z-index: 10;
+    }
+    #degats {
+      color: red;
+      font-weight: bold;
+      background-color: white;
+      position: relative;
+      p {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+      }
+    }
   }
   .zoneJeu {
     border: 1px solid black;
     margin-bottom: 10px;
     height: $hauteur-carte;
     width : ($hauteur-carte * 0.71);
+  }
+  .carte-main {
+    img.combat-flanc {
+      border: 3px solid red;
+    }
+  }
+  .cartes-main {
+    .not-visible {
+      background-color: black;
+      img {
+        visibility: hidden;
+      }
+    }
+  }
+  #cartes-defausse {
+    width: 100%;
+    height: 200px;
+    border: 1px solid black;
+  }
+
+  #carte-grand {
+    img {
+      max-height: 300px;
+    }
   }
 }
 
