@@ -55,12 +55,12 @@ class CreerEnCoursTables extends Migration
     Schema::create('partie_en_cours', function (Blueprint $table) {
       $table->increments('id');
       $table->string('nom', 50);
-      $table->integer('user_1_id')->nullable()-->unsigned();
-      $table->integer('user_2_id')->nullable()-->unsigned();
-      $table->integer('deck_1_id')->nullable()-->unsigned();
-      $table->integer('deck_2_id')->nullable()-->unsigned();
-      $table->integer('deck_en_cours_1_id')->nullable()-->unsigned();
-      $table->integer('deck_en_cours_2_id')->nullable()-->unsigned();
+      $table->integer('user_1_id')->nullable()->unsigned();
+      $table->integer('user_2_id')->nullable()->unsigned();
+      $table->integer('deck_1_id')->nullable()->unsigned();
+      $table->integer('deck_2_id')->nullable()->unsigned();
+      $table->integer('deck_en_cours_1_id')->nullable()->unsigned();
+      $table->integer('deck_en_cours_2_id')->nullable()->unsigned();
       $table->enum('mode', ['classique', 'escarmouche', 'epique']);
       $table->enum('statut', ['attente_joueur', 'choix_deck', 'choix_deploiement', 'attente_lancement', 'en_cours']);
 
