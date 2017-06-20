@@ -435,9 +435,24 @@ header {
   }
 }
 
-$hauteur-carte: 150px;
+
 #table-jeu {
   margin-top: 10px;
+  .presentation-joueur {
+    border: 2px solid $color2;
+    padding: 10px;
+    width: 50%;
+    margin: 10px;
+    background-color: white;
+    div:nth-child(1) {
+      border-right: 1px double $color2;
+      font-weight: bold;
+    }
+    div:nth-child(2) {
+      text-align: center;
+    }
+  }
+
   #zone-de-jeu {
     margin: 10px;
     width: ($hauteur-carte * 0.71 *10);
@@ -448,9 +463,12 @@ $hauteur-carte: 150px;
       padding:7px;
       border-radius:5px;
       position:absolute;
-      width:300px;
+      width:350px;
       display:none;
       z-index: 10;
+      .button {
+        font-size: $h6-size-l;
+      }
     }
     #degats {
       color: red;
@@ -469,13 +487,25 @@ $hauteur-carte: 150px;
     margin-bottom: 10px;
     height: $hauteur-carte;
     width : ($hauteur-carte * 0.71);
+    background: white;
   }
   .carte-main {
+    border: 1px solid black;
+    margin-bottom: 10px;
+    height: $hauteur-carte;
+    width : ($hauteur-carte * 0.71);
     img.combat-flanc {
       border: 3px solid red;
     }
   }
+  .testMoral {
+    opacity: 0.3;
+  }
+  .enFuite {
+    transform: rotate(180deg);
+  }
   .cartes-main {
+    margin-left: 10px;
     .not-visible {
       background-color: black;
       img {
@@ -483,16 +513,20 @@ $hauteur-carte: 150px;
       }
     }
   }
-  #cartes-defausse {
-    width: 100%;
-    height: 200px;
-    border: 1px solid black;
-  }
 
   #carte-grand {
     img {
       max-height: 300px;
     }
+  }
+}
+#cartes-defausse {
+  width: 100%;
+  border: 1px solid black;
+  .zoneDefausse {
+    max-height: $hauteur-carte;
+    max-width : ($hauteur-carte * 0.71);
+    display: inline-block;
   }
 }
 

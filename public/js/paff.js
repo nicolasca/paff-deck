@@ -193,6 +193,13 @@ $(function() {
     }
 
     $("#resultat-roll-dice").html(valeurs);
+
+    // Mettre à jour le statut de la carte, et refresh dans le client
+    var data = {
+      valeurs: valeurs
+    }
+    var url = $("#url").val();
+    $.get(url+"/partie/update-dices", {data: data});
   });
 
   // Quand un joueur clique sur le bouton "Lancer la partie",
@@ -229,6 +236,55 @@ $(function() {
     }
   });
 
+  channel.bind('App\\Events\\DragCarteZoneJeu', function(data) {
+    $("#carte_"+data.carteId).appendTo("#position_"+data.position);
+  });
+
+  channel.bind('App\\Events\\DeplacerCarteDefausse', function(data) {
+    $("#carte_"+data.carteId).appendTo("#cartes-defausse");
+    $("#carte_"+data.carteId).wrap("<div class='zoneDefausse'></div>");
+  });
+
+  // Quand changement de l'état d'une carte (degats, fuite, moral...)
+  // on update dans le client
+  channel.bind('App\\Events\\UpdateEtatCarte', function(data) {
+    var carte = $("#"+data.carteId+ " img");
+
+    // Update zones combat
+    if (data.combat) {
+      console.log(data.combat);
+      console.log($(carte));
+      $(carte).css("border-"+data.combat, "3px solid red");
+      if(data.combat=="none") {
+        $(carte).css("border", "none");
+      }
+    }
+    // Update degats
+    if(data.degats) {
+      console.log(data.carteId);
+      console.log($("#"+data.carteId+ " #degats"));
+      console.log($(carte).next("#degats"));
+      $(carte).data("degats",data.degats);
+      $(carte).next("#degats").find("p").html(data.degats);
+    }
+
+    // Update moral
+    if(data.moral) {
+      var parent = $(carte).parent();
+      $("#"+$(parent).attr("id")).toggleClass("testMoral");
+    }
+
+    // Update fuite
+    if(data.fuite) {
+      var parent = $(carte).parent();
+      $("#"+$(parent).attr("id")).toggleClass("enFuite");
+    }
+  });
+
+  channel.bind('App\\Events\\UpdateDices', function(data) {
+    $("#resultat-roll-dice").html(data.valeurs);
+  });
+
   // Les cartes sont draggable
   $(".carte-main").draggable({
     revert: "invalid"
@@ -238,7 +294,6 @@ $(function() {
   $(".zoneJeu").droppable({
   accept: ".carte-main",
   drop: function(ev, ui) {
-
         // Snap la carte dans l'emplacement
         var dropped = ui.draggable;
         var droppedOn = $(this);
@@ -253,11 +308,6 @@ $(function() {
         var url = $("#url").val();
         $.get(url+"/partie/drag-carte", {data: data});
       }
-  });
-
-  channel.bind('App\\Events\\DragCarteZoneJeu', function(data) {
-    console.log(data);
-    $("#carte_"+data.carteId).appendTo("#position_"+data.position);
   });
 
 
@@ -293,6 +343,62 @@ $(function() {
     $("#tooltip-carte-action").toggle();
 
     // Gestion des bordures pour indiquer les zones de combat
+    _gestionZonesCombat(carte)
+    // Gestion des points de dégats
+    _gestionDegats(carte);
+
+    // Sur le click, déplacer une carte dans la défausse
+    $("#tooltip-carte-action .bouton-defausse").unbind("click");
+    $("#tooltip-carte-action .bouton-defausse").click(function() {
+      var flancCombat = $(this).prop("name");
+      var parent = $(carte).parent();
+      $("#"+$(parent).attr("id")).appendTo("#cartes-defausse");
+     $("#"+$(parent).attr("id")).wrap("<div class='zoneDefausse'></div>");
+      $("#tooltip-carte-action").toggle();
+
+      // Mettre à jour le statut de la carte, et refresh dans le client
+      var data = {
+        carteId: $(parent).attr("id").split('_')[1]
+      }
+      var url = $("#url").val();
+      $.get(url+"/partie/deplacer-defausse", {data: data});
+    });
+
+    // Sur le click, afficher l'indicateur de test de moral (opacity)
+    $("#tooltip-carte-action .bouton-moral").unbind("click");
+    $("#tooltip-carte-action .bouton-moral").click(function() {
+      var parent = $(carte).parent();
+
+      // Mettre à jour le statut de la carte, et refresh dans le client
+      var data = {
+        carteId: $(parent).attr("id"),
+        moral: true,
+        hasMoral: $("#"+$(parent).attr("id")).hasClass("testMoral")
+      }
+      var url = $("#url").val();
+      $.get(url+"/partie/update-etat-carte", {data: data});
+    });
+
+    // Sur le click, afficher l'indicateur de fuite (retourner la carte)
+    $("#tooltip-carte-action .bouton-fuite").unbind("click");
+    $("#tooltip-carte-action .bouton-fuite").click(function() {
+      var parent = $(carte).parent();
+
+      // Mettre à jour le statut de la carte, et refresh dans le client
+      var data = {
+        carteId: $(parent).attr("id"),
+        fuite: true,
+        isFuite: $("#"+$(parent).attr("id")+" img").hasClass("enFuite")
+      }
+      var url = $("#url").val();
+      $.get(url+"/partie/update-etat-carte", {data: data});
+    });
+
+  });
+
+      // Gestion des bordures pour indiquer les zones de combat
+  function _gestionZonesCombat(carte) {
+    // Gestion des bordures pour indiquer les zones de combat
     // Pour éviter que toutes les cartes reagissent à la même action
     $("#tooltip-carte-action .bouton-combat").unbind("click");
     $("#tooltip-carte-action .bouton-combat").click(function(event) {
@@ -302,8 +408,20 @@ $(function() {
         $(carte).css("border", "none");
       }
       $("#tooltip-carte-action").css("display", "none");
-    });
 
+      var parent = $(carte).parent();
+      // Mettre à jour le statut de la carte, et refresh dans le client
+      var data = {
+        carteId: $(parent).attr("id"),
+        combat: flancCombat
+      }
+      var url = $("#url").val();
+      $.get(url+"/partie/update-etat-carte", {data: data});
+    });
+  }
+
+  // Gestion des points de dégats
+  function _gestionDegats(carte) {
     // Gestion des points de dégats
     // Pour éviter que toutes les cartes reagissent à la même action
     $("#tooltip-carte-action .bouton-degats").unbind("click");
@@ -319,9 +437,16 @@ $(function() {
 
       $(carte).data("degats",degats);
       $(carte).next("#degats").find("p").html(degats);
+
+      var parent = $(carte).parent();
+      // Mettre à jour le statut de la carte, et refresh dans le client
+      var data = {
+        carteId: $(parent).attr("id"),
+        degats: degats
+      }
+      var url = $("#url").val();
+      $.get(url+"/partie/update-etat-carte", {data: data});
     });
-
-
-  });
+  }
 
 });

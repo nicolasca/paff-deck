@@ -7,8 +7,13 @@ use Illuminate\Database\Eloquent\Collection;
 
 use App\Http\Requests;
 use Auth;
-use App\Events\PartieLancee;
+use App\Events\DeplacerCarteDefausse;
 use App\Events\DragCarteZoneJeu;
+use App\Events\PartieLancee;
+use App\Events\UpdateDices;
+use App\Events\UpdateEtatCarte;
+
+
 
 use App\Http\Helpers\DeckUtils;
 
@@ -263,21 +268,48 @@ class PartieController extends Controller {
     ->with('carte', $cartePioche);
   }
 
+  // Quand une carte est drag dans la zone de jeu
+  // - on change le statut de la carte
+  // - on trigger un event pour le refresh dans le browser
   public function dragCarte() {
     $data = $_GET['data'];
     $carte = CarteEnCours::find($data['carteId']);
     $carte->position = $data['position'];
     $statut = $data['statut'];
 
-    if($statut == "zone-jeu") {
-      $carte->statut = "ZONE_JEU";
-      $carte->save();
-    } else if ($statut == "defausse") {
-      $carte->statut = "DEFAUSSE";
-      $carte->save();
-    }
+    $carte->statut = "ZONE_JEU";
+    $carte->save();
 
     event(new DragCarteZoneJeu($data));
+  }
+
+  // Quand une carte est déplacée dans la défausse
+  // - on change le statut de la carte
+  // - on trigger un event pour le refresh dans le browser
+  public function deplacerDefausse() {
+    $data = $_GET['data'];
+    $carte = CarteEnCours::find($data['carteId']);
+
+    $carte->statut = "DEFAUSSE";
+    $carte->save();
+
+    event(new DeplacerCarteDefausse($data));
+  }
+
+  // Quand l'état de la carte est modifié (combat, dégats, fuite, moral)
+  // - on trigger un event pour le refresh dans le browser (non presisté)
+  public function updateEtatCarte() {
+    $data = $_GET['data'];
+
+    event(new UpdateEtatCarte($data));
+  }
+
+  // Quand l'état de la carte est modifié (combat, dégats, fuite, moral)
+  // - on trigger un event pour le refresh dans le browser (non presisté)
+  public function updateDices() {
+    $data = $_GET['data'];
+
+    event(new UpdateDices($data));
   }
 
 }

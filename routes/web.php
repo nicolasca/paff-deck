@@ -60,3 +60,6 @@ Route::get('partie/lancer-partie', 'PartieController@lancerPartie');
 Route::get('partie/zone-jeu', 'PartieController@zoneJeu');
 Route::post('partie/piocher', 'PartieController@piocher');
 Route::get('partie/drag-carte', 'PartieController@dragCarte');
+Route::get('partie/deplacer-defausse', 'PartieController@deplacerDefausse');
+Route::get('partie/update-etat-carte', 'PartieController@updateEtatCarte');
+Route::get('partie/update-dices', 'PartieController@updateDices');
