@@ -2909,20 +2909,21 @@ header nav h1 {
 }
 
 #table-jeu .presentation-joueur {
-  border: 2px solid #0F601E;
-  padding: 10px;
-  width: 50%;
   margin: 10px;
+  width: 50%;
   background-color: white;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -ms-grid-rows: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+  grid-auto-flow: column;
 }
 
-#table-jeu .presentation-joueur div:nth-child(1) {
-  border-right: 1px double #0F601E;
-  font-weight: bold;
-}
-
-#table-jeu .presentation-joueur div:nth-child(2) {
-  text-align: center;
+#table-jeu .presentation-joueur .item {
+  border: 1px solid #0F601E;
+  padding: 5px 10px;
 }
 
 #table-jeu #zone-de-jeu {
@@ -2990,11 +2991,11 @@ header nav h1 {
   margin-left: 10px;
 }
 
-#table-jeu .cartes-main .not-visible {
+#table-jeu .cartes-main .not-visible, #table-jeu .cartes-deploiement .not-visible {
   background-color: black;
 }
 
-#table-jeu .cartes-main .not-visible img {
+#table-jeu .cartes-main .not-visible img, #table-jeu .cartes-deploiement .not-visible img {
   visibility: hidden;
 }
 

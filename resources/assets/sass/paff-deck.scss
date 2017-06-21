@@ -439,17 +439,17 @@ header {
 #table-jeu {
   margin-top: 10px;
   .presentation-joueur {
-    border: 2px solid $color2;
-    padding: 10px;
-    width: 50%;
     margin: 10px;
+    width: 50%;
     background-color: white;
-    div:nth-child(1) {
-      border-right: 1px double $color2;
-      font-weight: bold;
-    }
-    div:nth-child(2) {
-      text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-auto-flow: column;
+
+    .item {
+      border: 1px solid $color2;
+      padding: 5px 10px;
     }
   }
 
@@ -506,6 +506,9 @@ header {
   }
   .cartes-main {
     margin-left: 10px;
+  }
+
+  .cartes-main, .cartes-deploiement {
     .not-visible {
       background-color: black;
       img {

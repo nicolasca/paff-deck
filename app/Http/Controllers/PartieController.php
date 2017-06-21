@@ -181,12 +181,12 @@ class PartieController extends Controller {
       $deckEnCours->cartesEnCours()->attach($carteEnCours);
     }
 
-    // Save des cartes en cours dans la zone de jeu
+    // Save des cartes de jeu dans le déploiement
     foreach ($cartesTableJeu as $identifiant => $carte) {
       $carteEnCours = new carteEnCours;
       $carteEnCours->carte_id = $carte->id;
       $carteEnCours->identifiant_partie = $identifiant;
-      $carteEnCours->statut = "ZONE_JEU";
+      $carteEnCours->statut = "DEPLOIEMENT";
             $carteEnCours->save();
 
       $deckEnCours->cartesEnCours()->attach($carteEnCours);
