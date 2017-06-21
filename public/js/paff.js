@@ -396,7 +396,14 @@ $(function() {
 
   });
 
-      // Gestion des bordures pour indiquer les zones de combat
+  $("body").on("click", "#detruire-partie", function() {
+    var url = $("#url").val();
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    var partieId = $("#partieId").val();
+    $.post(url+"/partie/detruire-partie", {partieId: partieId, _token: CSRF_TOKEN});
+  });
+
+    // Gestion des bordures pour indiquer les zones de combat
   function _gestionZonesCombat(carte) {
     // Gestion des bordures pour indiquer les zones de combat
     // Pour éviter que toutes les cartes reagissent à la même action

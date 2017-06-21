@@ -34,22 +34,22 @@ class PartieController extends Controller {
     foreach ($parties as $partie) {
       $boutonAction[$partie->id] = "";
       // Afficher le bouton Rejoindre si non créateur de la partie
-      if($partie->statut === "attente_joueur" && $partie->user_1_id !== $userId) {
+      if($partie->statut == "attente_joueur" && $partie->user_1_id != $userId) {
         $boutonAction[$partie->id] = "rejoindre";
       }
       // Afficher Choix deck s'il s'agit d'un des deux joueurs
-      else if ($partie->statut === "choix_deck" &&
-      ($partie->user_1_id === $userId || $partie->user_2_id === $userId)) {
+      else if ($partie->statut == "choix_deck" &&
+      ($partie->user_1_id == $userId || $partie->user_2_id == $userId)) {
         $boutonAction[$partie->id] = "choix_deck";
       }
       // Afficher Choix déploiement s'il s'agit d'un des deux joueurs
-      else if ($partie->statut === "choix_deploiement" &&
-      ($partie->user_1_id === $userId || $partie->user_2_id === $userId)) {
+      else if ($partie->statut == "choix_deploiement" &&
+      ($partie->user_1_id === $userId || $partie->user_2_id == $userId)) {
         $boutonAction[$partie->id] = "choix_deploiement";
       }
       // Afficher Lancer la partie s'il s'agit d'un des deux joueurs
-      else if ($partie->statut === "attente_lancement" &&
-      ($partie->user_1_id === $userId || $partie->user_2_id === $userId)) {
+      else if ($partie->statut == "attente_lancement" &&
+      ($partie->user_1_id == $userId || $partie->user_2_id == $userId)) {
         $boutonAction[$partie->id] = "attente_lancement";
       }
     }
@@ -161,14 +161,6 @@ class PartieController extends Controller {
         }
       }
     }
-    // Genere la main de depart
-    $cartesMain = array();
-    for($i=0; $i < 5; $i++){
-      $key = array_rand($cartesDeck);
-      $carte = $cartesDeck[$key];
-      unset($cartesDeck[$key]);
-      $cartesMain[$key] = $carte;
-    }
 
     // Save des cartes en cours dans le deck
     foreach ($cartesDeck as $identifiant => $carte) {
@@ -188,17 +180,6 @@ class PartieController extends Controller {
       $carteEnCours->identifiant_partie = $identifiant;
       $carteEnCours->statut = "DEPLOIEMENT";
             $carteEnCours->save();
-
-      $deckEnCours->cartesEnCours()->attach($carteEnCours);
-    }
-
-    // Save des cartes en cours dans la zone de jeu
-    foreach ($cartesMain as $identifiant => $carte) {
-      $carteEnCours = new carteEnCours;
-      $carteEnCours->carte_id = $carte->id;
-      $carteEnCours->identifiant_partie = $identifiant;
-      $carteEnCours->statut = "MAIN";
-      $carteEnCours->save();
 
       $deckEnCours->cartesEnCours()->attach($carteEnCours);
     }
@@ -310,6 +291,19 @@ class PartieController extends Controller {
     $data = $_GET['data'];
 
     event(new UpdateDices($data));
+  }
+
+  public function detruirePartie(Request $request) {
+    $partieId = $request->input("partieId");
+    $partie = PartieEnCours::find($partieId);
+
+    $partie->deck_en_cours_1->cartesEnCours()->detach();
+    $partie->deck_en_cours_2->cartesEnCours()->detach();
+    $partie->deck_en_cours_1->delete();
+    $partie->deck_en_cours_2->delete();
+    $partie->delete();
+
+    return redirect()->route('/');
   }
 
 }
