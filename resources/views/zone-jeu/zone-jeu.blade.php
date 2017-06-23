@@ -35,7 +35,6 @@
       @endif
     </div>
 
-    @if(Auth::user()->id == $partie->user_1_id)
     <div class="cartes-deploiement">
       @foreach($partie->deck_en_cours_1->cartesEnCours as $carte)
       @if($carte->statut == "DEPLOIEMENT")
@@ -46,7 +45,6 @@
       @endif
       @endforeach
     </div>
-    @endif
 
     <div id="zone-de-jeu" class="grid-9 has-gutter">
       @for ($i = 0; $i < 54; $i++)
@@ -111,7 +109,6 @@
   @endif
 </div>
 
-@if(Auth::user()->id == $partie->user_2_id)
 <div class="cartes-deploiement">
   @foreach($partie->deck_en_cours_2->cartesEnCours as $carte)
   @if($carte->statut == "DEPLOIEMENT")
@@ -122,7 +119,7 @@
   @endif
   @endforeach
 </div>
-@endif
+
 
 <div class="presentation-joueur">
     <div class="item">Joueur</div>
