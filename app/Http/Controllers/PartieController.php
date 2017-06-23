@@ -44,7 +44,7 @@ class PartieController extends Controller {
       }
       // Afficher Choix déploiement s'il s'agit d'un des deux joueurs
       else if ($partie->statut == "choix_deploiement" &&
-      ($partie->user_1_id === $userId || $partie->user_2_id == $userId)) {
+      ($partie->user_1_id == $userId || $partie->user_2_id == $userId)) {
         $boutonAction[$partie->id] = "choix_deploiement";
       }
       // Afficher Lancer la partie s'il s'agit d'un des deux joueurs
@@ -94,15 +94,15 @@ class PartieController extends Controller {
     $partie = PartieEnCours::find($request->input('idPartie'));
 
     // Ajouter le deck id
-    if($partie->user_1_id === $userId) {
+    if($partie->user_1_id == $userId) {
       $partie->deck_1_id = $deckId;
-    } else if ($partie->user_2_id === $userId) {
+    } else if ($partie->user_2_id == $userId) {
       $partie->deck_2_id = $deckId;
     }
 
     //Verifier si les deux joueurs ont choisi leur deck.
     // Si c'est le cas, le statut de la partie change.
-    if($partie->deck_1_id !== null && $partie->deck_2_id !== null) {
+    if($partie->deck_1_id != null && $partie->deck_2_id != null) {
       $partie->statut = "choix_deploiement";
     }
 
@@ -179,7 +179,7 @@ class PartieController extends Controller {
       $carteEnCours->carte_id = $carte->id;
       $carteEnCours->identifiant_partie = $identifiant;
       $carteEnCours->statut = "DEPLOIEMENT";
-            $carteEnCours->save();
+      $carteEnCours->save();
 
       $deckEnCours->cartesEnCours()->attach($carteEnCours);
     }
@@ -187,15 +187,15 @@ class PartieController extends Controller {
     $userId = Auth::user()->id;
 
     // Sauvegarder le deck en cours à la partie
-    if($partie->user_1_id === $userId) {
+    if($partie->user_1_id == $userId) {
       $partie->deck_en_cours_1_id = $deckEnCours->id;
-    } else if ($partie->user_2_id === $userId) {
+    } else if ($partie->user_2_id == $userId) {
       $partie->deck_en_cours_2_id = $deckEnCours->id;
     }
 
     //Verifier si les deux joueurs ont choisi leur deploiement.
     // Si c'est le cas, le statut de la partie change.
-    if($partie->deck_en_cours_1_id !== null && $partie->deck_en_cours_2_id !== null) {
+    if($partie->deck_en_cours_1_id != null && $partie->deck_en_cours_2_id != null) {
       $partie->statut = "attente_lancement";
     }
     $partie->save();
