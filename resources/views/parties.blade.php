@@ -46,7 +46,7 @@
     </td>
     @elseif($boutonAction[$partie->id] === "en_cours")
     <td>
-      <a href="partie/zone-jeu/{{$partie->id}}">Go to the partie</a>
+      <a href="partie/zone-jeu?idPartie={{$partie->id}}">Aller sur la partie</a>
     </td>
     @endif
 

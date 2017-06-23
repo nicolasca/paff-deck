@@ -52,6 +52,11 @@ class PartieController extends Controller {
       ($partie->user_1_id == $userId || $partie->user_2_id == $userId)) {
         $boutonAction[$partie->id] = "attente_lancement";
       }
+      // Afficher Accéder à la partie  s'il s'agit d'un des deux joueurs
+      else if ($partie->statut == "en_cours" &&
+      ($partie->user_1_id == $userId || $partie->user_2_id == $userId)) {
+        $boutonAction[$partie->id] = "en_cours";
+      }
     }
     return view('parties')->with('parties', $parties)->with("boutonAction", $boutonAction);
   }
