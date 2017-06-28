@@ -76,8 +76,8 @@ class CreerEnCoursTables extends Migration
   */
   public function down()
   {
-    Schema::drop('carte_en_cours');
     Schema::drop('deck_en_cours');
+    Schema::drop('carte_en_cours');
     Schema::drop('partie_en_cours');
     Schema::drop('partie');
   }
