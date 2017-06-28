@@ -32,7 +32,6 @@ class CreerEnCoursTables extends Migration
       $table->integer('partie_en_cours_id')->unsigned();
 
       $table->foreign('deck_id')->references('id')->on('deck');
-      $table->foreign('partie_en_cours_id')->references('id')->on('partie_en_cours');
     });
 
     Schema::create('carte_en_cours', function (Blueprint $table) {
@@ -44,7 +43,6 @@ class CreerEnCoursTables extends Migration
       $table->enum('statut', ['MAIN', 'DEPLOIEMENT', 'ZONE_JEU', 'DECK', 'DEFAUSSE'])->nullable();
 
       $table->foreign('carte_id')->references('id')->on('carte');
-      $table->foreign('deck_en_cours_id')->references('id')->on('deck_en_cours')->onDelete('cascade');
     });
 
     Schema::create('partie_en_cours', function (Blueprint $table) {
@@ -66,6 +64,13 @@ class CreerEnCoursTables extends Migration
       $table->foreign('user_1_id')->references('id')->on('user');
       $table->foreign('user_2_id')->references('id')->on('user');
     });
+
+    Schema::table('deck_en_cours', function($table) {
+      $table->foreign('partie_en_cours_id')->references('id')->on('partie_en_cours');
+  });
+  Schema::table('carte_en_cours', function($table) {
+      $table->foreign('deck_en_cours_id')->references('id')->on('deck_en_cours')->onDelete('cascade');
+});
 
   }
 
