@@ -2950,6 +2950,21 @@ header nav h1 {
   font-size: 1.4rem;
 }
 
+#table-jeu #zone-de-jeu #tooltip-zone-decor {
+  background: #1d1d1d;
+  color: #fff;
+  padding: 7px;
+  border-radius: 5px;
+  position: absolute;
+  width: 350px;
+  display: none;
+  z-index: 10;
+}
+
+#table-jeu #zone-de-jeu #tooltip-zone-decor .button {
+  font-size: 1.4rem;
+}
+
 #table-jeu #zone-de-jeu #degats {
   color: red;
   font-weight: bold;
@@ -2969,6 +2984,26 @@ header nav h1 {
   height: 150px;
   width: 106.5px;
   background: white;
+}
+
+#table-jeu .zoneJeu.decor {
+  border: 5px solid yellowgreen;
+}
+
+#table-jeu .zoneJeu.colline {
+  background-color: chartreuse;
+}
+
+#table-jeu .zoneJeu.foret {
+  background-color: forestgreen;
+}
+
+#table-jeu .zoneJeu.lac {
+  background-color: cornflowerblue;
+}
+
+#table-jeu .zoneJeu.ruines {
+  background-color: grey;
 }
 
 #table-jeu .carte-main {

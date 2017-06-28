@@ -24,11 +24,11 @@ class PartieEnCours extends Model {
   public $timestamps = false;
 
   public function deck_en_cours_1() {
-    return $this->hasOne('App\DeckEnCours');
+    return $this->belongsTo('App\DeckEnCours');
   }
 
   public function deck_en_cours_2() {
-    return $this->hasOne('App\DeckEnCours');
+    return $this->belongsTo('App\DeckEnCours');
   }
 
   public function decks_en_cours() {

@@ -477,6 +477,20 @@ header {
         font-size: $h6-size-l;
       }
     }
+
+    #tooltip-zone-decor {
+      background:#1d1d1d;
+      color:#fff;
+      padding:7px;
+      border-radius:5px;
+      position:absolute;
+      width:350px;
+      display:none;
+      z-index: 10;
+      .button {
+        font-size: $h6-size-l;
+      }
+    }
     #degats {
       color: red;
       font-weight: bold;
@@ -495,6 +509,22 @@ header {
     height: $hauteur-carte;
     width : ($hauteur-carte * 0.71);
     background: white;
+
+    &.decor {
+      border: 5px solid yellowgreen;
+    }
+    &.colline {
+      background-color: chartreuse;
+    }
+    &.foret {
+      background-color: forestgreen;
+    }
+    &.lac {
+      background-color: cornflowerblue;
+    }
+    &.ruines {
+      background-color: grey;
+    }
   }
   .carte-main {
     border: 1px solid black;

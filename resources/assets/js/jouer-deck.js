@@ -54,6 +54,23 @@ $(function() {
     });
   });
 
+
+    // Dans l'écran e l aliste des parties
+    $("body").on("click", "#detruire-partie", function() {
+      var deletePartie = confirm("Etes vous sûr et certains de vouloir supprimer cette partie à tout jamais,"
+        +"jusqu'à la fin de la nuit des temps ? Vous êtes sûr ? T'es sûr kikoulol ?")
+      if (deletePartie) {
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        var partieId = $(this).data("partieid");
+        $.post("parties/detruire-partie",
+              {partieId: partieId, _token: CSRF_TOKEN},
+              function(data) {
+                var url = $("#url").val();
+                location.reload();
+        });
+      }
+    });
+
   var channel = pusher.subscribe('partie-channel');
 
 // -------------------- ZONE DE JEU ------------------------
@@ -236,21 +253,28 @@ $(function() {
 
   });
 
-  $("body").on("click", "#detruire-partie", function() {
-
-    var deletePartie = confirm("Etes vous sûr et certains de vouloir supprimer cette partie à tout jamais,"
-      +"jusqu'à la fin de la nuit des temps ? Vous êtes sûr ? T'es sûr kikoulol ?")
-    if (deletePartie) {
-      var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-      var partieId = $(this).data("partieid");
-      $.post("parties/detruire-partie",
-            {partieId: partieId, _token: CSRF_TOKEN},
-            function(data) {
-              var url = $("#url").val();
-              location.reload();
-      });
+  // quand on click sur une une zone de jeu, on affiche le tooltip décor
+  $("body").on("click", "div.zoneJeu", function() {
+    // On affiche la tooltip seulement si pas de carte sur la zone
+    if($(this).children('.carte-main').length == 0) {
+      var offset = $(this).offset();
+      $("#tooltip-zone-decor").css({top: offset.top+150, left: offset.left});
+      $("#tooltip-zone-decor").toggle();
     }
+
+    var zoneJeu = $(this);
+    // quand on choix un décor, on associe une classe à la zone
+    $("#tooltip-zone-decor .bouton-decor").unbind("click");
+    $("#tooltip-zone-decor .bouton-decor").click(function() {
+      var decor = $(this).prop("name");
+      $(zoneJeu).removeClass("foret ruines colline lac decor")
+      if(decor != "none") {
+        $(zoneJeu).addClass(decor + " decor");
+      }
+      $("#tooltip-zone-decor").css("display", "none");
+    });
   });
+
 
     // Gestion des bordures pour indiquer les zones de combat
   function _gestionZonesCombat(carte) {

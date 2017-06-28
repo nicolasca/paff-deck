@@ -51,6 +51,10 @@ class PartieController extends Controller {
       else if ($partie->statut == "attente_lancement" &&
       ($partie->user_1_id == $userId || $partie->user_2_id == $userId)) {
         $boutonAction[$partie->id] = "attente_lancement";
+      }      // Afficher Lancer la partie s'il s'agit d'un des deux joueurs
+      else if ($partie->statut == "en_cours" &&
+      ($partie->user_1_id == $userId || $partie->user_2_id == $userId)) {
+        $boutonAction[$partie->id] = "en_cours";
       }
     }
     return view('parties')->with('parties', $parties)->with("boutonAction", $boutonAction);
@@ -155,10 +159,10 @@ class PartieController extends Controller {
       //Les input ayant pour 'name' l'id de la carte
       if(is_numeric($idCarte)) {
         for ($i=0; $i < $nombre; $i++) {
-        // Si la carte est choisie -> dans les cartes table de jeu
-        $key = $idCarte."_".$i;
-        $cartesTableJeu[$key] = $cartesDeck[$key];
-        unset($cartesDeck[$key]);
+          // Si la carte est choisie -> dans les cartes table de jeu
+          $key = $idCarte."_".$i;
+          $cartesTableJeu[$key] = $cartesDeck[$key];
+          unset($cartesDeck[$key]);
         }
       }
     }
@@ -236,7 +240,7 @@ class PartieController extends Controller {
     $deckEnCours = DeckEnCours::find($partie->getDeckEnCoursIdByUser($userId));
     $faction = $deckEnCours->deck->faction;
 
-    $cartesEnCoursMain = $deckEnCours->cartesEnCours->where("statut", "DECK");
+    $cartesEnCoursMain = $deckEnCours->cartes_en_cours->where("statut", "DECK");
     $cartePioche = $cartesEnCoursMain->random();
 
     $cartePioche->statut = "MAIN";
