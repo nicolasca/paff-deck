@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
-
-<table class="table">
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<table class="table-parties">
   <thead>
     <tr>
       <th>Nom</th>
@@ -32,6 +32,9 @@
         <input type="submit" value="Choisir un deck">
       </form>
     </td>
+    <td>
+      <span id="detruire-partie" data-partieid="{{$partie->id}}"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+    </td>
     @elseif($boutonAction[$partie->id] === "choix_deploiement")
     <td>
       <form action="partie/choix-deploiement" method="post">
@@ -40,15 +43,24 @@
         <input type="submit" value="Choisir son déploiement">
       </form>
     </td>
+    <td>
+      <span id="detruire-partie" data-partieid="{{$partie->id}}"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+    </td>
     @elseif($boutonAction[$partie->id] === "attente_lancement")
     <td>
       <a href="partie/recap-avant-partie/{{$partie->id}}">Lancer la partie</a>
+    </td>
+    <td>
+      <span id="detruire-partie" data-partieid="{{$partie->id}}"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
     </td>
     @elseif($boutonAction[$partie->id] === "en_cours")
     <td>
       <a href="partie/zone-jeu?idPartie={{$partie->id}}">Aller sur la partie</a>
     </td>
     @endif
+    <td>
+      <span id="detruire-partie" data-partieid="{{$partie->id}}"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+    </td>
 
   </tr>
   @endforeach

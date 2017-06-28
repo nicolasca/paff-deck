@@ -237,10 +237,19 @@ $(function() {
   });
 
   $("body").on("click", "#detruire-partie", function() {
-    var url = $("#url").val();
-    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-    var partieId = $("#partieId").val();
-    $.post(url+"/partie/detruire-partie", {partieId: partieId, _token: CSRF_TOKEN});
+
+    var deletePartie = confirm("Etes vous sûr et certains de vouloir supprimer cette partie à tout jamais,"
+      +"jusqu'à la fin de la nuit des temps ? Vous êtes sûr ? T'es sûr kikoulol ?")
+    if (deletePartie) {
+      var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+      var partieId = $(this).data("partieid");
+      $.post("parties/detruire-partie",
+            {partieId: partieId, _token: CSRF_TOKEN},
+            function(data) {
+              var url = $("#url").val();
+              location.reload();
+      });
+    }
   });
 
     // Gestion des bordures pour indiquer les zones de combat

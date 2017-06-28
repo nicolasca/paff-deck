@@ -29,27 +29,22 @@ class CreerEnCoursTables extends Migration
     Schema::create('deck_en_cours', function (Blueprint $table) {
       $table->increments('id');
       $table->integer('deck_id')->unsigned();
+      $table->integer('partie_en_cours_id')->unsigned();
 
       $table->foreign('deck_id')->references('id')->on('deck');
+      $table->foreign('partie_en_cours_id')->references('id')->on('partie_en_cours');
     });
 
     Schema::create('carte_en_cours', function (Blueprint $table) {
       $table->increments('id');
       $table->integer('carte_id')->unsigned();
+      $table->integer('deck_en_cours_id')->unsigned();
       $table->string('identifiant_partie', 20);
       $table->integer('position')->nullable();
-      $table->enum('statut', ['MAIN', 'ZONE_JEU', 'DECK', 'DEFAUSSE'])->nullable();
+      $table->enum('statut', ['MAIN', 'DEPLOIEMENT', 'ZONE_JEU', 'DECK', 'DEFAUSSE'])->nullable();
 
       $table->foreign('carte_id')->references('id')->on('carte');
-    });
-
-    Schema::create('deck_carte_en_cours', function (Blueprint $table) {
-      $table->primary(['carte_en_cours_id', 'deck_en_cours_id']);
-      $table->integer('carte_en_cours_id')->unsigned();
-      $table->integer('deck_en_cours_id')->unsigned();
-
-      $table->foreign('carte_en_cours_id')->references('id')->on('carte_en_cours');
-      $table->foreign('deck_en_cours_id')->references('id')->on('deck_en_cours');
+      $table->foreign('deck_en_cours_id')->references('id')->on('deck_en_cours')->onDelete('cascade');
     });
 
     Schema::create('partie_en_cours', function (Blueprint $table) {
@@ -64,8 +59,8 @@ class CreerEnCoursTables extends Migration
       $table->enum('mode', ['classique', 'escarmouche', 'epique']);
       $table->enum('statut', ['attente_joueur', 'choix_deck', 'choix_deploiement', 'attente_lancement', 'en_cours']);
 
-      $table->foreign('deck_en_cours_1_id')->references('id')->on('deck_en_cours');
-      $table->foreign('deck_en_cours_2_id')->references('id')->on('deck_en_cours');
+      $table->foreign('deck_en_cours_1_id')->references('id')->on('deck_en_cours')->onDelete('cascade');;
+      $table->foreign('deck_en_cours_2_id')->references('id')->on('deck_en_cours')->onDelete('cascade');;
       $table->foreign('deck_1_id')->references('id')->on('deck');
       $table->foreign('deck_2_id')->references('id')->on('deck');
       $table->foreign('user_1_id')->references('id')->on('user');
@@ -84,5 +79,6 @@ class CreerEnCoursTables extends Migration
     Schema::drop('carte_en_cours');
     Schema::drop('deck_en_cours');
     Schema::drop('partie_en_cours');
+    Schema::drop('partie');
   }
 }

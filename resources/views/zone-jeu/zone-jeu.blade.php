@@ -163,6 +163,4 @@
   </div>
 </div>
 
-<button type="button" class="button" id="detruire-partie">Détruire ma partie</button>
-
 @endsection

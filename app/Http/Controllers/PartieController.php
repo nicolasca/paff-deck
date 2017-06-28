@@ -44,18 +44,13 @@ class PartieController extends Controller {
       }
       // Afficher Choix déploiement s'il s'agit d'un des deux joueurs
       else if ($partie->statut == "choix_deploiement" &&
-      ($partie->user_1_id == $userId || $partie->user_2_id == $userId)) {
+      ($partie->user_1_id === $userId || $partie->user_2_id == $userId)) {
         $boutonAction[$partie->id] = "choix_deploiement";
       }
       // Afficher Lancer la partie s'il s'agit d'un des deux joueurs
       else if ($partie->statut == "attente_lancement" &&
       ($partie->user_1_id == $userId || $partie->user_2_id == $userId)) {
         $boutonAction[$partie->id] = "attente_lancement";
-      }
-      // Afficher Accéder à la partie  s'il s'agit d'un des deux joueurs
-      else if ($partie->statut == "en_cours" &&
-      ($partie->user_1_id == $userId || $partie->user_2_id == $userId)) {
-        $boutonAction[$partie->id] = "en_cours";
       }
     }
     return view('parties')->with('parties', $parties)->with("boutonAction", $boutonAction);
@@ -99,15 +94,15 @@ class PartieController extends Controller {
     $partie = PartieEnCours::find($request->input('idPartie'));
 
     // Ajouter le deck id
-    if($partie->user_1_id == $userId) {
+    if($partie->user_1_id === $userId) {
       $partie->deck_1_id = $deckId;
-    } else if ($partie->user_2_id == $userId) {
+    } else if ($partie->user_2_id === $userId) {
       $partie->deck_2_id = $deckId;
     }
 
     //Verifier si les deux joueurs ont choisi leur deck.
     // Si c'est le cas, le statut de la partie change.
-    if($partie->deck_1_id != null && $partie->deck_2_id != null) {
+    if($partie->deck_1_id !== null && $partie->deck_2_id !== null) {
       $partie->statut = "choix_deploiement";
     }
 
@@ -140,6 +135,7 @@ class PartieController extends Controller {
 
     $deckEnCours = new DeckEnCours;
     $deckEnCours->deck_id = $deck->id;
+    $deckEnCours->partie_en_cours_id = $partie->id;
     $deckEnCours->save();
 
     $cartesDeck = array();
@@ -171,36 +167,34 @@ class PartieController extends Controller {
     foreach ($cartesDeck as $identifiant => $carte) {
       $carteEnCours = new carteEnCours;
       $carteEnCours->carte_id = $carte->id;
+      $carteEnCours->deck_en_cours_id = $deckEnCours->id;
       $carteEnCours->identifiant_partie = $identifiant;
       $carteEnCours->statut = "DECK";
       $carteEnCours->save();
-
-      $deckEnCours->cartesEnCours()->attach($carteEnCours);
     }
 
     // Save des cartes de jeu dans le déploiement
     foreach ($cartesTableJeu as $identifiant => $carte) {
       $carteEnCours = new carteEnCours;
       $carteEnCours->carte_id = $carte->id;
+      $carteEnCours->deck_en_cours_id = $deckEnCours->id;
       $carteEnCours->identifiant_partie = $identifiant;
       $carteEnCours->statut = "DEPLOIEMENT";
       $carteEnCours->save();
-
-      $deckEnCours->cartesEnCours()->attach($carteEnCours);
     }
 
     $userId = Auth::user()->id;
 
     // Sauvegarder le deck en cours à la partie
-    if($partie->user_1_id == $userId) {
+    if($partie->user_1_id === $userId) {
       $partie->deck_en_cours_1_id = $deckEnCours->id;
-    } else if ($partie->user_2_id == $userId) {
+    } else if ($partie->user_2_id === $userId) {
       $partie->deck_en_cours_2_id = $deckEnCours->id;
     }
 
     //Verifier si les deux joueurs ont choisi leur deploiement.
     // Si c'est le cas, le statut de la partie change.
-    if($partie->deck_en_cours_1_id != null && $partie->deck_en_cours_2_id != null) {
+    if($partie->deck_en_cours_1_id !== null && $partie->deck_en_cours_2_id !== null) {
       $partie->statut = "attente_lancement";
     }
     $partie->save();
@@ -298,17 +292,16 @@ class PartieController extends Controller {
     event(new UpdateDices($data));
   }
 
+  // On supprime la partie, ainsi que les cartes et decks en cours associés
   public function detruirePartie(Request $request) {
     $partieId = $request->input("partieId");
     $partie = PartieEnCours::find($partieId);
 
-    $partie->deck_en_cours_1->cartesEnCours()->detach();
-    $partie->deck_en_cours_2->cartesEnCours()->detach();
-    $partie->deck_en_cours_1->delete();
-    $partie->deck_en_cours_2->delete();
+    $partie->cartes_en_cours()->delete();
+    $partie->decks_en_cours()->delete();
     $partie->delete();
 
-    return redirect()->route('/');
+    return "OK";
   }
 
 }

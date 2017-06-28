@@ -14,7 +14,7 @@ class CarteEnCours extends Model
     return $this->belongsTo('App\Carte');
   }
 
-  public function decksEnCours() {
-  return $this->belongsToMany('App\DeckEnCours', 'deck_carte_en_cours');
+  public function deck_en_cours() {
+  return $this->belongsTo('App\DeckEnCours');
 }
 }

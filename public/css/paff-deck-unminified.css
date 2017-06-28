@@ -2904,6 +2904,10 @@ header nav h1 {
   font-weight: bold;
 }
 
+.table-parties #detruire-partie:hover {
+  cursor: pointer;
+}
+
 #table-jeu {
   margin-top: 10px;
 }

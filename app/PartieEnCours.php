@@ -24,12 +24,21 @@ class PartieEnCours extends Model {
   public $timestamps = false;
 
   public function deck_en_cours_1() {
-    return $this->belongsTo('App\DeckEnCours');
+    return $this->hasOne('App\DeckEnCours');
   }
 
   public function deck_en_cours_2() {
-    return $this->belongsTo('App\DeckEnCours');
+    return $this->hasOne('App\DeckEnCours');
   }
+
+  public function decks_en_cours() {
+    return $this->hasMany('App\DeckEnCours');
+  }
+
+  public function cartes_en_cours() {
+    return $this->hasManyThrough('App\CarteEnCours', 'App\DeckEnCours');
+  }
+
   public function user_1() {
     return $this->belongsTo('App\User');
   }
