@@ -32,9 +32,6 @@
         <input type="submit" value="Choisir un deck">
       </form>
     </td>
-    <td>
-      <span id="detruire-partie" data-partieid="{{$partie->id}}"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
-    </td>
     @elseif($boutonAction[$partie->id] === "choix_deploiement")
     <td>
       <form action="partie/choix-deploiement" method="post">
@@ -43,15 +40,9 @@
         <input type="submit" value="Choisir son déploiement">
       </form>
     </td>
-    <td>
-      <span id="detruire-partie" data-partieid="{{$partie->id}}"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
-    </td>
     @elseif($boutonAction[$partie->id] === "attente_lancement")
     <td>
       <a href="partie/recap-avant-partie/{{$partie->id}}">Lancer la partie</a>
-    </td>
-    <td>
-      <span id="detruire-partie" data-partieid="{{$partie->id}}"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
     </td>
     @elseif($boutonAction[$partie->id] === "en_cours")
     <td>
