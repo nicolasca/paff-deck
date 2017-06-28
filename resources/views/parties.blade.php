@@ -22,9 +22,9 @@
     <td>{{$partie->getStatut()}}</td>
 
     <!-- Affichage du bouton correspond selon le statut et userId -->
-    @if($boutonAction[$partie->id] === "rejoindre")
+    @if($boutonAction[$partie->id] == "rejoindre")
     <td><a href="{{ url('/rejoindre-partie')}}/{{$partie->id}}" >Rejoindre</a></td>
-    @elseif($boutonAction[$partie->id] === "choix_deck")
+    @elseif($boutonAction[$partie->id] == "choix_deck")
     <td>
       <form action="partie/choix-deck" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -32,7 +32,7 @@
         <input type="submit" value="Choisir un deck">
       </form>
     </td>
-    @elseif($boutonAction[$partie->id] === "choix_deploiement")
+    @elseif($boutonAction[$partie->id] == "choix_deploiement")
     <td>
       <form action="partie/choix-deploiement" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -40,7 +40,7 @@
         <input type="submit" value="Choisir son déploiement">
       </form>
     </td>
-    @elseif($boutonAction[$partie->id] === "attente_lancement")
+    @elseif($boutonAction[$partie->id] == "attente_lancement")
     <td>
       <a href="partie/recap-avant-partie/{{$partie->id}}">Lancer la partie</a>
     </td>
