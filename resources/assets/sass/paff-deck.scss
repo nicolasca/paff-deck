@@ -135,6 +135,12 @@ header {
   }
 }
 
+#home {
+  background-image: url("../images/orc.jpg");
+  background-attachment: fixed;
+  min-height: 100vh;
+  padding-top: 50px;
+}
 
 #page-register {
   .form-item label {
@@ -166,7 +172,6 @@ header {
 
 #dashboard {
   display: flex;
-  margin-top: 50px;
   justify-content: center;
 }
 

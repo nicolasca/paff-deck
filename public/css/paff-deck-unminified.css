@@ -2576,6 +2576,13 @@ header nav h1 {
   margin: 0;
 }
 
+#home {
+  background-image: url("../images/orc.jpg");
+  background-attachment: fixed;
+  min-height: 100vh;
+  padding-top: 50px;
+}
+
 #page-register .form-item label {
   display: block;
   margin-bottom: 1rem;
@@ -2610,7 +2617,6 @@ header nav h1 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-top: 50px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
