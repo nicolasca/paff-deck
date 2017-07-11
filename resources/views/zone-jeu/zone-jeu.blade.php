@@ -45,8 +45,7 @@
       @endif
       @endforeach
     </div>
-
-    <div id="zone-de-jeu" class="grid-9 has-gutter">
+    <div id="zone-de-jeu" class="grid-9 has-gutter ">
       @for ($i = 0; $i < 54; $i++)
       <div class="zoneJeu" id="position_{{$i}}" data-position="{{$i}}"
       data-statut="zone-jeu">

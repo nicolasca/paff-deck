@@ -84,7 +84,6 @@ $(function() {
     // Si un des joueurs a déjà rejoint, on redirige vers la zone de jeu
     if(localStorage.getItem("partieLancee"+idPartie)) {
       localStorage.removeItem("partieLancee"+idPartie);
-      console.log("Appel zone de jeu");
       var url = $("#url").val();
       window.location = url+'/partie/zone-jeu?idPartie=' + idPartie;
     } else {
@@ -109,8 +108,6 @@ $(function() {
 
     // Update zones combat
     if (data.combat) {
-      console.log(data.combat);
-      console.log($(carte));
       $(carte).css("border-"+data.combat, "3px solid red");
       if(data.combat=="none") {
         $(carte).css("border", "none");
@@ -118,9 +115,6 @@ $(function() {
     }
     // Update degats
     if(data.degats) {
-      console.log(data.carteId);
-      console.log($("#"+data.carteId+ " #degats"));
-      console.log($(carte).next("#degats"));
       $(carte).data("degats",data.degats);
       $(carte).next("#degats").find("p").html(data.degats);
     }
@@ -140,6 +134,13 @@ $(function() {
 
   channel.bind('App\\Events\\UpdateDices', function(data) {
     $("#resultat-roll-dice").html(data.valeurs);
+  });
+
+  channel.bind('App\\Events\\UpdateZoneDecor', function(data) {
+    $('[data-position='+data.zoneJeu+']').removeClass("foret ruines colline lac decor");
+    if(data.decor != "none") {
+      $('[data-position='+data.zoneJeu+']').addClass(data.decor + " decor");
+    }
   });
 
   // Les cartes sont draggable
@@ -262,16 +263,27 @@ $(function() {
       $("#tooltip-zone-decor").toggle();
     }
 
-    var zoneJeu = $(this);
+    var zoneJeu = this;
+
     // quand on choix un décor, on associe une classe à la zone
     $("#tooltip-zone-decor .bouton-decor").unbind("click");
     $("#tooltip-zone-decor .bouton-decor").click(function() {
+
       var decor = $(this).prop("name");
-      $(zoneJeu).removeClass("foret ruines colline lac decor")
+      $(zoneJeu).removeClass("foret ruines colline lac decor");
       if(decor != "none") {
         $(zoneJeu).addClass(decor + " decor");
       }
       $("#tooltip-zone-decor").css("display", "none");
+
+      // Mettre à jour le statut de la carte, et refresh dans le client
+      var data = {
+        'carteId': $(parent).attr("id"),
+        'decor': decor,
+        'zoneJeu': $(zoneJeu).data("position")
+      }
+      var url = $("#url").val();
+      $.get(url+"/partie/update-zone-decor", {data: data});
     });
   });
 

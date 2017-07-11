@@ -12,7 +12,7 @@ use App\Events\DragCarteZoneJeu;
 use App\Events\PartieLancee;
 use App\Events\UpdateDices;
 use App\Events\UpdateEtatCarte;
-
+use App\Events\UpdateZoneDecor;
 
 
 use App\Http\Helpers\DeckUtils;
@@ -52,8 +52,7 @@ class PartieController extends Controller {
       ($partie->user_1_id == $userId || $partie->user_2_id == $userId)) {
         $boutonAction[$partie->id] = "attente_lancement";
       }      // Afficher Lancer la partie s'il s'agit d'un des deux joueurs
-      else if ($partie->statut == "en_cours" &&
-      ($partie->user_1_id == $userId || $partie->user_2_id == $userId)) {
+      else if ($partie->statut == "en_cours") {
         $boutonAction[$partie->id] = "en_cours";
       }
     }
@@ -217,7 +216,7 @@ class PartieController extends Controller {
   // Quand un joueur click sur le bouton pour lancer la partie
   public function lancerPartie() {
     $partieId = $_GET['idPartie'];
-    event(new PartieLancee($partieId)); // broadcast `ScoreUpdated` event
+    broadcast(new PartieLancee($partieId))->toOthers();
   }
 
   // Quand les 2 joueurs ont cliqué sur le lancement de la partie, on affiche la zone de jeu.
@@ -227,6 +226,7 @@ class PartieController extends Controller {
     $partie->statut = "en_cours";
     $partie->save();
     $request->session()->put('partieId', $partieId);
+
     return view("zone-jeu.zone-jeu")->with('partie', $partie);
   }
 
@@ -264,7 +264,7 @@ class PartieController extends Controller {
     $carte->statut = "ZONE_JEU";
     $carte->save();
 
-    event(new DragCarteZoneJeu($data));
+    broadcast(new DragCarteZoneJeu($data))->toOthers();
   }
 
   // Quand une carte est déplacée dans la défausse
@@ -277,7 +277,7 @@ class PartieController extends Controller {
     $carte->statut = "DEFAUSSE";
     $carte->save();
 
-    event(new DeplacerCarteDefausse($data));
+    broadcast(new DeplacerCarteDefausse($data))->toOthers();
   }
 
   // Quand l'état de la carte est modifié (combat, dégats, fuite, moral)
@@ -285,15 +285,23 @@ class PartieController extends Controller {
   public function updateEtatCarte() {
     $data = $_GET['data'];
 
-    event(new UpdateEtatCarte($data));
+    broadcast(new UpdateEtatCarte($data))->toOthers();
   }
 
-  // Quand l'état de la carte est modifié (combat, dégats, fuite, moral)
+  // Quand on update une zone de décor
+  // - on trigger un event pour le refresh dans le browser (non presisté)
+  public function updateZoneDecor() {
+    $data = $_GET['data'];
+
+    broadcast(new UpdateZoneDecor($data))->toOthers();
+  }
+
+  // Quand les dés sont lancés
   // - on trigger un event pour le refresh dans le browser (non presisté)
   public function updateDices() {
     $data = $_GET['data'];
 
-    event(new UpdateDices($data));
+    broadcast(new UpdateDices($data))->toOthers();
   }
 
   // On supprime la partie, ainsi que les cartes et decks en cours associés
