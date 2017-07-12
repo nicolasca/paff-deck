@@ -183,7 +183,6 @@ $(function() {
       $(".carte-main").draggable({
         revert: "invalid"
       });
-        $("#zone-de-jeu .carte-main img").selectable();
     });
   });
 

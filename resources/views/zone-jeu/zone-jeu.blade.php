@@ -11,11 +11,9 @@
 
     <div class="presentation-joueur">
       <div class="item">Joueur</div>
-      <div class="item">Deck</div>
       <div class="item">Faction</div>
 
       <div class="item">{{$partie->user_1->name}}</div>
-      <div class="item">{{$partie->deck_1->nom}} </div>
       <div class="item">{{$partie->deck_1->faction->nom}}</div>
     </div>
 
@@ -118,11 +116,9 @@
 
 <div class="presentation-joueur">
   <div class="item">Joueur</div>
-  <div class="item">Deck</div>
   <div class="item">Faction</div>
 
   <div class="item">{{$partie->user_2->name}}</div>
-  <div class="item">{{$partie->deck_2->nom}} </div>
   <div class="item">{{$partie->deck_2->faction->nom}}</div>
 </div>
 

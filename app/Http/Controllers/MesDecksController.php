@@ -105,6 +105,7 @@ class MesDecksController extends Controller {
 
     $deckShow->nom = $request->input('nom_deck');
     $deckShow->mode = $request->input('mode');
+    $deckShow->description = $request->input('description');
     $deckShow->save();
 
     //If no error, display the show deck view
