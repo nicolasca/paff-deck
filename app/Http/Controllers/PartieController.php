@@ -13,7 +13,7 @@ use App\Events\PartieLancee;
 use App\Events\UpdateDices;
 use App\Events\UpdateEtatCarte;
 use App\Events\UpdateZoneDecor;
-
+use App\Events\UpdateCartePiochee;
 
 use App\Http\Helpers\DeckUtils;
 
@@ -230,7 +230,7 @@ class PartieController extends Controller {
     return view("zone-jeu.zone-jeu")->with('partie', $partie);
   }
 
-  // Piocher le nombre de cartes manquantes (pour avoir 5 dans la main)
+  // Piocher un carte dans le deck, pour la mettre dans la main
   public function piocher(Request $request) {
     $partieId = $request->session()->get('partieId');
     $partie = PartieEnCours::find($partieId);
@@ -246,9 +246,31 @@ class PartieController extends Controller {
     $cartePioche->statut = "MAIN";
     $cartePioche->save();
 
+    $data = array(
+      "carteId" => $cartePioche->id,
+      "id" => $request->input('id')
+    );
+
+    broadcast(new UpdateCartePiochee($data))->toOthers();
+
     return view('zone-jeu.carte')
     ->with('partie', $partie)
-    ->with('faction', $faction)
+    ->with('userId', $userId)
+    ->with('carte', $cartePioche);
+
+  }
+
+  public function getCarteView(Request $request) {
+    $partieId = $request->session()->get('partieId');
+    $partie = PartieEnCours::find($partieId);
+
+    $carteId = $request->input('carteId');
+    $userId = $request->input('userId');
+    $cartePioche = CarteEnCours::find($carteId);
+
+    return view('zone-jeu.carte')
+    ->with('partie', $partie)
+    ->with('userId', $userId)
     ->with('carte', $cartePioche);
   }
 
@@ -284,6 +306,8 @@ class PartieController extends Controller {
   // - on trigger un event pour le refresh dans le browser (non presisté)
   public function updateEtatCarte() {
     $data = $_GET['data'];
+    $carteId = explode("_", $data['carteId'])[1];
+    $carte = CarteEnCours::find($carteId);
 
     broadcast(new UpdateEtatCarte($data))->toOthers();
   }

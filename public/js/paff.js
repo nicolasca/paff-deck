@@ -269,7 +269,7 @@ $(function() {
     // Update zones combat
     if (data.combat) {
       $(carte).css("border-"+data.combat, "3px solid red");
-      if(data.combat=="none") {
+      if(data.combat=="aucun") {
         $(carte).css("border", "none");
       }
     }
@@ -294,6 +294,15 @@ $(function() {
 
   channel.bind('App\\Events\\UpdateDices', function(data) {
     $("#resultat-roll-dice").html(data.valeurs);
+  });
+
+  channel.bind('App\\Events\\UpdateCartePiochee', function(data) {
+    $.get("getCarteView", {
+      carteId : data['carteId']
+    }, function(view) {
+      console.log($('#'+data["id"]));
+      $('#'+data["id"]).append(view);
+    });
   });
 
   channel.bind('App\\Events\\UpdateZoneDecor', function(data) {
@@ -333,9 +342,11 @@ $(function() {
     var bouton = $(this);
     var userId = $(this).data('userid');
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
     $.post("piocher", {
       _token: CSRF_TOKEN,
-      userId: userId
+      userId: userId,
+      id : $(this).parent().attr("id")
     },
     function(data) {
       bouton.after(data);
