@@ -449,7 +449,41 @@ header {
 }
 
 #table-jeu {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: auto;
+  grid-template-areas:  "cartesDeploiement1 . . ."
+                        "cartesMain1 cartesMain1 . presJoueur1"
+                        "cartesMain1 cartesMain1 . ."
+                        "zoneJeu zoneJeu zoneJeu ."
+                        "zoneJeu zoneJeu zoneJeu infosPartie"
+                        "zoneJeu zoneJeu zoneJeu ."
+                        "cartesDeploiement2 . . ."
+                        "cartesMain2 cartesMain2 . ."
+                        "cartesMain2 cartesMain2 . presJoueur2"
+                        "defausse defausse defausse defausse";
   margin-top: 10px;
+  #presentation-joueur-1 {
+    grid-area: presJoueur1;
+  }
+  #presentation-joueur-2 {
+    grid-area: presJoueur2;
+  }
+  #cartes-main-1 {
+    grid-area: cartesMain1;
+  }
+  #cartes-main-2 {
+    grid-area: cartesMain2;
+  }
+  #cartes-deploiement-1 {
+    grid-area: cartesDeploiement1;
+  }
+  #cartes-deploiement-2 {
+    grid-area: cartesDeploiement2;
+  }
+  #defausse {
+    grid-area: defausse;
+  }
   .presentation-joueur {
     margin: 10px;
     width: 50%;
@@ -466,8 +500,19 @@ header {
   }
 
   #zone-de-jeu {
+    grid-area: zoneJeu;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-gap: 10px 10px;
     margin: 10px;
-    width: ($hauteur-carte * 0.71 *10);
+
+    .flanc-coco {
+      background-color: rgba(blue, 0.1);
+    }
+    .flanc-quetsch {
+      background-color: rgba(blue, 0.1);
+    }
 
     #tooltip-carte-action {
       background:#1d1d1d;
@@ -508,11 +553,9 @@ header {
       }
     }
   }
+
   .zoneJeu {
     border: 1px solid black;
-    margin-bottom: 10px;
-    height: $hauteur-carte;
-    width : ($hauteur-carte * 0.71);
     background: white;
 
     &.decor {
@@ -533,9 +576,8 @@ header {
   }
   .carte-main {
     border: 1px solid black;
-    margin-bottom: 10px;
-    height: $hauteur-carte;
-    width : ($hauteur-carte * 0.71);
+    max-width: 100%;
+    max-height: 100%;
     img.combat-flanc {
       border: 3px solid red;
     }
@@ -546,7 +588,7 @@ header {
   .enFuite {
     transform: rotate(180deg);
   }
-  .cartes-main {
+  .cartes-main, .cartes-deploiement {
     margin-left: 10px;
   }
 
@@ -559,6 +601,10 @@ header {
     }
   }
 
+  #infos-partie {
+    grid-area: infosPartie;
+    justify-self: center;
+  }
   #carte-grand {
     img {
       max-height: 300px;

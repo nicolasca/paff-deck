@@ -300,8 +300,7 @@ $(function() {
     $.get("getCarteView", {
       carteId : data['carteId']
     }, function(view) {
-      console.log($('#'+data["id"]));
-      $('#'+data["id"]).append(view);
+      $('#'+data["id"]).appendTo(view);
     });
   });
 

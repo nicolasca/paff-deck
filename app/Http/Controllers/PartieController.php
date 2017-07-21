@@ -227,16 +227,20 @@ class PartieController extends Controller {
     $partie->save();
     $request->session()->put('partieId', $partieId);
 
-    return view("zone-jeu.zone-jeu")->with('partie', $partie);
+    // Determiner les zones de flancs et de centre
+    $positionsParZone = array(
+      "flancCoco" => [0,1,9,10,18,19,27,28,36,37,45,46],
+      "flancQuetsch" => [7,8,16,17,25,26,34,35,43,44,52,53]
+    );
+
+    return view("zone-jeu.zone-jeu")->with('partie', $partie)->with("positionsParZone", $positionsParZone);
   }
 
   // Piocher un carte dans le deck, pour la mettre dans la main
   public function piocher(Request $request) {
     $partieId = $request->session()->get('partieId');
     $partie = PartieEnCours::find($partieId);
-
     $userId = $request->input('userId');
-
     $deckEnCours = DeckEnCours::find($partie->getDeckEnCoursIdByUser($userId));
     $faction = $deckEnCours->deck->faction;
 
@@ -257,7 +261,6 @@ class PartieController extends Controller {
     ->with('partie', $partie)
     ->with('userId', $userId)
     ->with('carte', $cartePioche);
-
   }
 
   public function getCarteView(Request $request) {

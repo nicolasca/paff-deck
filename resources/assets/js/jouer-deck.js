@@ -91,66 +91,64 @@ $(function() {
       localStorage.setItem("partieLancee"+idPartie, idPartie);
     }
   });
-  channel.bind('pusher:subscription_succeeded', function() {
-    channel.bind('App\\Events\\DragCarteZoneJeu', function(data) {
-      $("#carte_"+data.carteId).appendTo("#position_"+data.position);
-    });
 
-    channel.bind('App\\Events\\DeplacerCarteDefausse', function(data) {
-      $("#carte_"+data.carteId).appendTo("#cartes-defausse");
-      $("#carte_"+data.carteId).wrap("<div class='zoneDefausse'></div>");
-    });
+  channel.bind('App\\Events\\DragCarteZoneJeu', function(data) {
+    $("#carte_"+data.carteId).appendTo("#position_"+data.position);
+  });
 
-    // Quand changement de l'état d'une carte (degats, fuite, moral...)
-    // on update dans le client
-    channel.bind('App\\Events\\UpdateEtatCarte', function(data) {
-      var carte = $("#"+data.carteId+ " img");
+  channel.bind('App\\Events\\DeplacerCarteDefausse', function(data) {
+    $("#carte_"+data.carteId).appendTo("#cartes-defausse");
+    $("#carte_"+data.carteId).wrap("<div class='zoneDefausse'></div>");
+  });
 
-      // Update zones combat
-      if (data.combat) {
-        $(carte).css("border-"+data.combat, "3px solid red");
-        if(data.combat=="aucun") {
-          $(carte).css("border", "none");
-        }
+  // Quand changement de l'état d'une carte (degats, fuite, moral...)
+  // on update dans le client
+  channel.bind('App\\Events\\UpdateEtatCarte', function(data) {
+    var carte = $("#"+data.carteId+ " img");
+
+    // Update zones combat
+    if (data.combat) {
+      $(carte).css("border-"+data.combat, "3px solid red");
+      if(data.combat=="aucun") {
+        $(carte).css("border", "none");
       }
-      // Update degats
-      if(data.degats) {
-        $(carte).data("degats",data.degats);
-        $(carte).next("#degats").find("p").html(data.degats);
-      }
+    }
+    // Update degats
+    if(data.degats) {
+      $(carte).data("degats",data.degats);
+      $(carte).next("#degats").find("p").html(data.degats);
+    }
 
-      // Update moral
-      if(data.moral) {
-        var parent = $(carte).parent();
-        $("#"+$(parent).attr("id")).toggleClass("testMoral");
-      }
+    // Update moral
+    if(data.moral) {
+      var parent = $(carte).parent();
+      $("#"+$(parent).attr("id")).toggleClass("testMoral");
+    }
 
-      // Update fuite
-      if(data.fuite) {
-        var parent = $(carte).parent();
-        $("#"+$(parent).attr("id")).toggleClass("enFuite");
-      }
+    // Update fuite
+    if(data.fuite) {
+      var parent = $(carte).parent();
+      $("#"+$(parent).attr("id")).toggleClass("enFuite");
+    }
+  });
+
+  channel.bind('App\\Events\\UpdateDices', function(data) {
+    $("#resultat-roll-dice").html(data.valeurs);
+  });
+
+  channel.bind('App\\Events\\UpdateCartePiochee', function(data) {
+    $.get("getCarteView", {
+      carteId : data['carteId']
+    }, function(view) {
+      $('#'+data["id"]).appendTo(view);
     });
+  });
 
-    channel.bind('App\\Events\\UpdateDices', function(data) {
-      $("#resultat-roll-dice").html(data.valeurs);
-    });
-
-    channel.bind('App\\Events\\UpdateCartePiochee', function(data) {
-      $.get("getCarteView", {
-        carteId : data['carteId']
-      }, function(view) {
-        console.log($('#'+data["id"]));
-        $('#'+data["id"]).append(view);
-      });
-    });
-
-    channel.bind('App\\Events\\UpdateZoneDecor', function(data) {
-      $('[data-position='+data.zoneJeu+']').removeClass("foret ruines colline lac decor");
-      if(data.decor != "none") {
-        $('[data-position='+data.zoneJeu+']').addClass(data.decor + " decor");
-      }
-    });
+  channel.bind('App\\Events\\UpdateZoneDecor', function(data) {
+    $('[data-position='+data.zoneJeu+']').removeClass("foret ruines colline lac decor");
+    if(data.decor != "none") {
+      $('[data-position='+data.zoneJeu+']').addClass(data.decor + " decor");
+    }
   });
 
   // Les cartes sont draggable
