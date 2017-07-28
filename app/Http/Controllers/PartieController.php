@@ -242,26 +242,30 @@ class PartieController extends Controller {
     $partie = PartieEnCours::find($partieId);
     $userId = $request->input('userId');
     $deckEnCours = DeckEnCours::find($partie->getDeckEnCoursIdByUser($userId));
-    $faction = $deckEnCours->deck->faction;
 
-    $cartesEnCoursMain = $deckEnCours->cartes_en_cours->where("statut", "DECK");
-    $cartePioche = $cartesEnCoursMain->random();
+    $cartesEnMain = $deckEnCours->cartes_en_cours->where("statut", "MAIN");
+    if($cartesEnMain->count() < 5) {
+      $cartesEnCoursMain = $deckEnCours->cartes_en_cours->where("statut", "DECK");
+      $cartePioche = $cartesEnCoursMain->random();
 
-    $cartePioche->statut = "MAIN";
-    $cartePioche->save();
+      $cartePioche->statut = "MAIN";
+      $cartePioche->save();
 
-    $data = array(
-      "carteId" => $cartePioche->id,
-      "id" => $request->input('id'),
-      "userId" => $request->input('userId'),
-    );
+      $data = array(
+        "carteId" => $cartePioche->id,
+        "id" => $request->input('id'),
+        "userId" => $request->input('userId'),
+      );
 
-    broadcast(new UpdateCartePiochee($data))->toOthers();
+      broadcast(new UpdateCartePiochee($data))->toOthers();
 
-    return view('zone-jeu.carte')
-    ->with('partie', $partie)
-    ->with('userId', $userId)
-    ->with('carte', $cartePioche);
+      return view('zone-jeu.carte')
+      ->with('partie', $partie)
+      ->with('userId', $userId)
+      ->with('carte', $cartePioche);
+    }
+
+    return "KO";
   }
 
   public function getCarteView(Request $request) {
