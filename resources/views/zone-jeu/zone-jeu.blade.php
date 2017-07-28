@@ -36,7 +36,7 @@
 
 
 
-    <div id="cartes-deploiement-1" class="cartes-deploiement grid has-gutter">
+    <div id="cartes-deploiement-1" class="cartes-deploiement grid-5 has-gutter">
       @foreach($partie->deck_en_cours_1->cartes_en_cours as $carte)
       @if($carte->statut == "DEPLOIEMENT")
       @include('zone-jeu.carte', ['userId' => $partie->user_1_id,
@@ -89,7 +89,7 @@
 
   </div>
 
-  <div id="cartes-deploiement-2" class="cartes-deploiement grid has-gutter">
+  <div id="cartes-deploiement-2" class="cartes-deploiement grid-5 has-gutter">
     @foreach($partie->deck_en_cours_2->cartes_en_cours as $carte)
     @if($carte->statut == "DEPLOIEMENT")
     @include("zone-jeu.carte", ['userId' => $partie->user_2_id,
