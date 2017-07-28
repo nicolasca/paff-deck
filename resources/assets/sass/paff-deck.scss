@@ -452,13 +452,13 @@ header {
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
   grid-template-rows: auto;
-  grid-template-areas:  "cartesDeploiement1 . . ."
-                        "cartesMain1 cartesMain1 . presJoueur1"
+  grid-template-areas:  "cartesMain1 cartesMain1 . presJoueur1"
                         "cartesMain1 cartesMain1 . ."
+                        "cartesDeploiement1 cartesDeploiement1 . ."
                         "zoneJeu zoneJeu zoneJeu ."
                         "zoneJeu zoneJeu zoneJeu infosPartie"
                         "zoneJeu zoneJeu zoneJeu ."
-                        "cartesDeploiement2 . . ."
+                        "cartesDeploiement2 cartesDeploiement2 . ."
                         "cartesMain2 cartesMain2 . ."
                         "cartesMain2 cartesMain2 . presJoueur2"
                         "defausse defausse defausse defausse";
@@ -557,7 +557,8 @@ header {
   .zoneJeu {
     border: 1px solid black;
     background: white;
-
+    min-height: $hauteur-carte;
+    min-width : ($hauteur-carte * 0.71);
     &.decor {
       border: 5px solid yellowgreen;
     }
@@ -588,8 +589,13 @@ header {
   .enFuite {
     transform: rotate(180deg);
   }
+
   .cartes-main, .cartes-deploiement {
     margin-left: 10px;
+    .carte-main {
+      max-height: $hauteur-carte;
+      max-width : ($hauteur-carte * 0.71);
+    }
   }
 
   .cartes-main, .cartes-deploiement {

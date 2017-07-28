@@ -2921,7 +2921,7 @@ header nav h1 {
       grid-template-columns: 25% 25% 25% 25%;
   -ms-grid-rows: auto;
       grid-template-rows: auto;
-  grid-template-areas: "cartesDeploiement1 . . ." "cartesMain1 cartesMain1 . presJoueur1" "cartesMain1 cartesMain1 . ." "zoneJeu zoneJeu zoneJeu ." "zoneJeu zoneJeu zoneJeu infosPartie" "zoneJeu zoneJeu zoneJeu ." "cartesDeploiement2 . . ." "cartesMain2 cartesMain2 . ." "cartesMain2 cartesMain2 . presJoueur2" "defausse defausse defausse defausse";
+  grid-template-areas: "cartesMain1 cartesMain1 . presJoueur1" "cartesMain1 cartesMain1 . ." "cartesDeploiement1 cartesDeploiement1 . ." "zoneJeu zoneJeu zoneJeu ." "zoneJeu zoneJeu zoneJeu infosPartie" "zoneJeu zoneJeu zoneJeu ." "cartesDeploiement2 cartesDeploiement2 . ." "cartesMain2 cartesMain2 . ." "cartesMain2 cartesMain2 . presJoueur2" "defausse defausse defausse defausse";
   margin-top: 10px;
 }
 
@@ -3037,6 +3037,8 @@ header nav h1 {
 #table-jeu .zoneJeu {
   border: 1px solid black;
   background: white;
+  min-height: 150px;
+  min-width: 106.5px;
 }
 
 #table-jeu .zoneJeu.decor {
@@ -3080,6 +3082,11 @@ header nav h1 {
 
 #table-jeu .cartes-main, #table-jeu .cartes-deploiement {
   margin-left: 10px;
+}
+
+#table-jeu .cartes-main .carte-main, #table-jeu .cartes-deploiement .carte-main {
+  max-height: 150px;
+  max-width: 106.5px;
 }
 
 #table-jeu .cartes-main .not-visible, #table-jeu .cartes-deploiement .not-visible {

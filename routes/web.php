@@ -65,3 +65,4 @@ Route::get('partie/update-etat-carte', 'PartieController@updateEtatCarte');
 Route::get('partie/update-zone-decor', 'PartieController@updateZoneDecor');
 Route::get('partie/update-dices', 'PartieController@updateDices');
 Route::post('parties/detruire-partie', 'PartieController@detruirePartie');
+Route::get('partie/getCarteView', 'PartieController@getCarteView');

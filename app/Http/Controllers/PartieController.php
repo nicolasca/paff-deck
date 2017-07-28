@@ -252,7 +252,8 @@ class PartieController extends Controller {
 
     $data = array(
       "carteId" => $cartePioche->id,
-      "id" => $request->input('id')
+      "id" => $request->input('id'),
+      "userId" => $request->input('userId'),
     );
 
     broadcast(new UpdateCartePiochee($data))->toOthers();
