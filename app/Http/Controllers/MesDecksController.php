@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 use App\Http\Requests;
 use Auth;
+use App\Http\Helpers\DeckUtils;
 
 use App\Deck;
 use App\Carte;
@@ -29,7 +30,7 @@ class MesDecksController extends Controller {
     $deckShow = Deck::find($id);
     $cartesByType = $deckShow->cartes->groupBy('type');
     $cartesByType = $this->orderArrayByType($cartesByType);
-    $recapitulatif = $this->createRecapitulatif($deckShow);
+    $recapitulatif = DeckUtils::createRecapitulatif($deckShow);
 
     return view('layouts.deckShow')
     ->with("cartesByType",$cartesByType)
@@ -59,7 +60,7 @@ class MesDecksController extends Controller {
     // On tri par type pour l'affichage
     $cartesByType = $deckShow->cartes->groupBy('type');
     $cartesByType = $this->orderArrayByType($cartesByType);
-    $recapitulatif = $this->createRecapitulatif($deckShow);
+    $recapitulatif = DeckUtils::createRecapitulatif($deckShow);
 
     return view('layouts.deckEdit')
     ->with("cartesByType",$cartesByType)
@@ -139,26 +140,6 @@ class MesDecksController extends Controller {
       }
     }
     return $cartesAvecBonOrdre;
-  }
-
-  //Récupérer les informations à afficher dans le récapitulatif
-  private function createRecapitulatif($deckShow) {
-    $nombreCartes = $pointsDeploiement = 0;
-    $recapitulatif = array();
-    $recapNomsCartes = array();
-    foreach ($deckShow->cartes as $carte) {
-      if(isset($carte->pivot)) {
-        $nombreCartes += $carte->pivot->nombre;
-        $pointsDeploiement += $carte->pivot->nombre * $carte->cout_deploiement;
-
-        $recapNomsCartes[$carte->nom] = $carte->pivot->nombre;
-      }
-    }
-    $recapitulatif["nbCartes"] = $nombreCartes;
-    $recapitulatif["ptsDeploiement"] = $pointsDeploiement;
-    $recapitulatif["recap"] = $recapNomsCartes;
-
-    return $recapitulatif;
   }
 
 }

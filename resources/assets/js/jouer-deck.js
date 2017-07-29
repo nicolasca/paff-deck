@@ -21,6 +21,7 @@ $(function() {
         });
     });
 
+    // Quand on lance les dés
     $("body").on('click', "#roll-dice", function() {
         var nombreDes = parseInt($("#nombre-des").val());
         var valeurs = "";
@@ -34,7 +35,7 @@ $(function() {
 
         $("#resultat-roll-dice").html(valeurs);
 
-        // Mettre à jour le statut de la carte, et refresh dans le client
+        // Mettre à jour les dés chez tous les joueurs
         var data = {
             valeurs: valeurs
         }
@@ -210,7 +211,7 @@ $(function() {
         $("#carte-grand img").prop("src", srcImg)
     });
 
-    // quand on click sur une carte de la zone de jeu
+    // quand on click sur une carte de la zone de jeu, tooltip action s'affiche
     $("body").on("click", "#zone-de-jeu .carte-main img", function() {
         var carte = $(this);
         var offset = $(this).offset();

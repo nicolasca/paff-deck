@@ -68,7 +68,7 @@ $(function() {
         $("#deck_show").empty();
         var id_deck = $("#choix_deck").val();
         var url = $("#url").val();
-        $.get(url+"/mes-decks/show", {
+        $.get(url + "/mes-decks/show", {
             'id_deck': id_deck
         }, function(data) {
             $("#deck_show").append(data);
@@ -138,11 +138,14 @@ $(function() {
 
         var nombreCartes = 0;
         var coutDeploiement = 0;
+        var deplacement = 0;
         $(".carte-info").each(function() {
             var nombreCarteElement = parseInt($(this).val()) || $(this).data("nombre") || 0;
             var coutCarteElement = $(this).data("cout");
+            var deplacementCarteElement = $(this).data("deplacement");
             nombreCartes += nombreCarteElement;
             coutDeploiement += (nombreCarteElement * coutCarteElement);
+            deplacement += (nombreCarteElement * deplacementCarteElement)
 
             if (nombreCarteElement > 0) {
                 var nom = $(this).data("nom");
@@ -155,5 +158,6 @@ $(function() {
 
         $("#points-deploiement").html(coutDeploiement);
         $("#nombre-cartes").html(nombreCartes);
+        $("#deplacement-total").html(deplacement);
     }
 });

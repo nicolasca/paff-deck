@@ -24,7 +24,7 @@ Choix déloiement
         <span>Nombre: {{$carte->pivot->nombre}}</span>
         <input class="carte-info" name="{{$carte->id}}" value="{{ old($carte->id) or 0 }}" type="number"
         max="{{$carte->pivot->nombre}}" min="0" data-cout="{{$carte->cout_deploiement}}"
-        data-nom="{{$carte->nom}}" data-type="{{$carte->type}}">
+        data-nom="{{$carte->nom}}" data-type="{{$carte->type}}" data-deplacement="{{$carte->deplacement}}">
       </p>
       @endforeach
     </div>
@@ -38,20 +38,7 @@ Choix déloiement
 </form>
 </div>
 
-<div id="recap-edit" class="fr w20">
-<div id="recap-chiffres">
-  Points de déploiment: <span id="points-deploiement">{{$recapitulatif['ptsDeploiement']}}</span> <br />
-  Nombre de cartes: <span id="nombre-cartes">{{$recapitulatif['nbCartes']}}</span>
-</div>
-<div id="recap-liste-unites">
-  @foreach($cartesByType as $type => $cartes)
-  <div class="recap-unite">
-    <p class="recap-type-unite">{{Config::get('constants.'.$type)}}</p>
-    <p id="recap-{{$type}}" class="recap-cartes"></p>
-  </div>
-  @endforeach
-</div>
-</div>
+@include('layouts.recapBox')
 
 </div>
 

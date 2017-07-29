@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Collection;
 use Auth;
 
+use App\Http\Helpers\DeckUtils;
 use App\Deck;
 use App\Carte;
 use App\Faction;
@@ -29,7 +30,7 @@ class JouerDeckController extends Controller {
     $deck = Deck::find($request->input('deck_id'));
     $cartesByType = $deck->cartes->groupBy('type');
     $cartesByType = $this->orderArrayByType($cartesByType);
-    $recapitulatif = $this->createRecapitulatif($deck);
+    $recapitulatif = DeckUtils::createRecapitulatif($deck);
 
     return view('jouerDeck.choix-deploiement')
     ->with('cartesByType', $cartesByType)
@@ -156,25 +157,5 @@ class JouerDeckController extends Controller {
       }
     }
     return $cartesAvecBonOrdre;
-  }
-
-  //Récupérer les informations à afficher dans le récapitulatif
-  private function createRecapitulatif($deckShow) {
-    $nombreCartes = $pointsDeploiement = 0;
-    $recapitulatif = array();
-    $recapNomsCartes = array();
-    foreach ($deckShow->cartes as $carte) {
-      if(isset($carte->pivot)) {
-        $nombreCartes += $carte->pivot->nombre;
-        $pointsDeploiement += $carte->pivot->nombre * $carte->cout_deploiement;
-
-        $recapNomsCartes[$carte->nom] = $carte->pivot->nombre;
-      }
-    }
-    $recapitulatif["nbCartes"] = $nombreCartes;
-    $recapitulatif["ptsDeploiement"] = $pointsDeploiement;
-    $recapitulatif["recap"] = $recapNomsCartes;
-
-    return $recapitulatif;
   }
 }

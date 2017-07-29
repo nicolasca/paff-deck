@@ -244,8 +244,9 @@ class PartieController extends Controller {
     $deckEnCours = DeckEnCours::find($partie->getDeckEnCoursIdByUser($userId));
 
     $cartesEnMain = $deckEnCours->cartes_en_cours->where("statut", "MAIN");
-    if($cartesEnMain->count() < 5) {
-      $cartesEnCoursMain = $deckEnCours->cartes_en_cours->where("statut", "DECK");
+    $cartesEnCoursMain = $deckEnCours->cartes_en_cours->where("statut", "DECK");
+    // Si on a moins que 5 cartes en main ET qu'il reste des cartes dans le deck
+    if($cartesEnMain->count() < 5 && $cartesEnCoursMain->count() > 0) {
       $cartePioche = $cartesEnCoursMain->random();
 
       $cartePioche->statut = "MAIN";

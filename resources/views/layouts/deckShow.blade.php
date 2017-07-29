@@ -19,7 +19,8 @@
           <p class="carte">
             <img src="{{ URL::to('/') }}/images/{{$deckShow->faction->nom}}/{{$carte->path}}" />
             <span class="carte-info "data-cout="{{$carte->cout_deploiement}}" data-nombre="{{$carte->pivot->nombre}}"
-              data-nom="{{$carte->nom}}" data-type="{{$carte->type}}"># {{$carte->pivot->nombre}}</span>
+              data-nom="{{$carte->nom}}" data-type="{{$carte->type}}" data-deplacement="{{$carte->deplacement}}">
+              # {{$carte->pivot->nombre}}</span>
             </p>
             @endforeach
           </div>
@@ -29,21 +30,7 @@
 
       </div>
 
-      <div id="recap-edit" class="fl w20">
-        <div id="recap-chiffres">
-          Points de déploiment: <span id="points-deploiement">{{$recapitulatif['ptsDeploiement']}}</span> <br />
-          Nombre de cartes: <span id="nombre-cartes">{{$recapitulatif['nbCartes']}}</span>
-        </div>
-
-        <div id="recap-liste-unites">
-          @foreach($cartesByType as $type => $cartes)
-          <div class="recap-unite">
-            <p class="recap-type-unite">{{Config::get('constants.'.$type)}}</p>
-            <p id="recap-{{$type}}" class="recap-cartes"></p>
-          </div>
-          @endforeach
-        </div>
-      </div>
+      @include('layouts.recapBox')
 
     </div>
   </div>

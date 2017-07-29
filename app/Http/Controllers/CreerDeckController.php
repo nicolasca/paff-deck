@@ -31,6 +31,7 @@ class CreerDeckController extends Controller {
     $recapitulatif = array();
     $recapitulatif["nbCartes"] = 0;
     $recapitulatif["ptsDeploiement"] = 0;
+    $recapitulatif["deplacement"] = 0;
     $recapitulatif["recap"] = array();
 
     return view('layouts.deckEdit')
