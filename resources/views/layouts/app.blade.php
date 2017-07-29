@@ -38,7 +38,7 @@ crossorigin="anonymous"></script>
   src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
   integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
   crossorigin="anonymous"></script>
-<script type="text/javascript" src="{{URL::asset('js/paff.js')}}"></script>
+<script type="application/javascript" src="{{URL::asset('js/paff.js')}}"></script>
   <script src="https://js.pusher.com/4.0/pusher.min.js"></script>
 <script>
 // Enable pusher logging - don't include this in production
