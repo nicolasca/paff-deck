@@ -53,7 +53,7 @@
         data-position="{{$i}}"
         data-statut="zone-jeu">
         @foreach($partie->cartes_en_cours as $carteEnCours)
-          @if($carteEnCours->position !=null && $carteEnCours->position == $i)
+          @if($carteEnCours->statut == "ZONE_JEU" && $carteEnCours->position !=null && $carteEnCours->position == $i)
           <div class="inbl carte-main" id="carte_{{$carteEnCours->id}}">
             <img src="{{ URL::to('/') }}/images/{{$carteEnCours->carte->faction->nom}}/{{$carteEnCours->carte->path}}"
             data-degats="0" />
@@ -127,7 +127,14 @@
 <div id="defausse">
   <h2>Defausse</h2>
   <div id="cartes-defausse" data-statut="defausse">
-
+    @foreach($partie->cartes_en_cours as $carteEnCours)
+      @if($carteEnCours->statut == "DEFAUSSE")
+      <div class="inbl carte-main" id="carte_{{$carteEnCours->id}}">
+        <img src="{{ URL::to('/') }}/images/{{$carteEnCours->carte->faction->nom}}/{{$carteEnCours->carte->path}}"
+        data-degats="0" />
+      </div>
+      @endif
+    @endforeach
   </div>
 </div>
 

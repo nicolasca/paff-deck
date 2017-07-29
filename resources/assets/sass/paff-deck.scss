@@ -590,7 +590,7 @@ header {
     transform: rotate(180deg);
   }
 
-  .cartes-main, .cartes-deploiement {
+  .cartes-main, .cartes-deploiement, #cartes-defausse {
     margin-left: 10px;
     .carte-main {
       max-height: $hauteur-carte;

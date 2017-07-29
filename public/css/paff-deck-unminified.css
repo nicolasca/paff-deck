@@ -3080,11 +3080,11 @@ header nav h1 {
           transform: rotate(180deg);
 }
 
-#table-jeu .cartes-main, #table-jeu .cartes-deploiement {
+#table-jeu .cartes-main, #table-jeu .cartes-deploiement, #table-jeu #cartes-defausse {
   margin-left: 10px;
 }
 
-#table-jeu .cartes-main .carte-main, #table-jeu .cartes-deploiement .carte-main {
+#table-jeu .cartes-main .carte-main, #table-jeu .cartes-deploiement .carte-main, #table-jeu #cartes-defausse .carte-main {
   max-height: 150px;
   max-width: 106.5px;
 }
