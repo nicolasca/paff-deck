@@ -72,7 +72,7 @@
 
   </div>
 
-  <div id="cartes-main-2"  class="cartes-main grid-5 has-gutter">
+  <div id="cartes-main-2"  class="cartes-main grid has-gutter">
     @foreach($partie->deck_en_cours_2->cartes_en_cours as $carte)
       @if($carte->statut == "MAIN")
         @include('zone-jeu.carte', ['userId' => $partie->user_2_id,
