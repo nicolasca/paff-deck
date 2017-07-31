@@ -130,6 +130,12 @@ $(function() {
             $("#" + $(parent).attr("id")).toggleClass("testMoral");
         }
 
+        // Update moral
+        if (data.flag) {
+          var parent = $(carte).parent();
+          $("#" + $(parent).attr("id")).find("#flagCarte").toggleClass("not-visible");
+        }
+
         // Update fuite
         if (data.fuite) {
             var parent = $(carte).parent();
@@ -255,6 +261,21 @@ $(function() {
                 carteId: $(parent).attr("id"),
                 moral: true,
                 hasMoral: $("#" + $(parent).attr("id")).hasClass("testMoral")
+            }
+            var url = $("#url").val();
+            $.get(url + "/partie/update-etat-carte", {
+                data: data
+            });
+        });
+
+        // Sur le click, afficher l'indicateur du flag (opacity)
+        $("#tooltip-carte-action .bouton-flag").unbind("click");
+        $("#tooltip-carte-action .bouton-flag").click(function() {
+            var parent = $(carte).parent();
+            // Mettre à jour le statut de la carte, et refresh dans le client
+            var data = {
+                carteId: $(parent).attr("id"),
+                flag: true
             }
             var url = $("#url").val();
             $.get(url + "/partie/update-etat-carte", {

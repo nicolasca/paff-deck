@@ -8,6 +8,7 @@
   Dégâts
   <button type="button" name="more" class="button bouton-degats"><i class="fa fa-plus" aria-hidden="true"></i></button>
   <button type="button" name="less" class="button bouton-degats"><i class="fa fa-minus" aria-hidden="true"></i></button> <br />
+  <button type="button" name="flag" class="button bouton-flag">Flag</button>
   <button type="button" name="defausse" class="button bouton-defausse">Défausse</button>
   <button type="button" name="moral" class="button bouton-moral">Moral</button>
   <button type="button" name="fuite" class="button bouton-fuite">Fuite</button>

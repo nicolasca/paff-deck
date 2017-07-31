@@ -546,10 +546,26 @@ header {
       font-weight: bold;
       background-color: white;
       position: relative;
-      p {
-        position: absolute;
-        bottom: 5px;
-        right: 5px;
+    p {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+
+    }
+    }
+
+    #flagCarte {
+      color: blue;
+      font-weight: bold;
+      position: absolute;
+      bottom: 5px;
+      left: 5px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background-color: yellow;
+      &.not-visible {
+        display: none;
       }
     }
   }
