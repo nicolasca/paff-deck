@@ -4,6 +4,5 @@
   <div id="degats">
     <p></p>
   </div>
-  <div id="flagCarte" class="not-visible">
-  </div>
+  <i id="flagCarte" class="fa fa-bolt not-visible" aria-hidden="true"></i>
 </div>

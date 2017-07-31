@@ -555,15 +555,13 @@ header {
     }
 
     #flagCarte {
-      color: blue;
+      color: yellow;
       font-weight: bold;
       position: absolute;
-      bottom: 5px;
+      bottom: 10px;
       left: 5px;
       width: 15px;
       height: 15px;
-      border-radius: 50%;
-      background-color: yellow;
       &.not-visible {
         display: none;
       }
