@@ -4,4 +4,6 @@
   <div id="degats">
     <p></p>
   </div>
+  <div id="flagCarte" class="not-visible">
+  </div>
 </div>
