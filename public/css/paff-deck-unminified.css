@@ -3085,6 +3085,10 @@ header nav h1 {
   border: 3px solid red;
 }
 
+#table-jeu .carte-main #flagCarte.not-visible {
+  display: none;
+}
+
 #table-jeu .testMoral {
   opacity: 0.3;
 }

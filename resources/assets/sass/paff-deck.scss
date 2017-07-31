@@ -596,6 +596,9 @@ header {
     img.combat-flanc {
       border: 3px solid red;
     }
+    #flagCarte.not-visible {
+      display: none;
+    }
   }
   .testMoral {
     opacity: 0.3;
