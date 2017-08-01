@@ -2955,20 +2955,24 @@ header nav h1 {
 
 #table-jeu .presentation-joueur {
   margin: 10px;
-  width: 50%;
+  width: 70%;
   background-color: white;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr;
-      grid-template-columns: 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
   -ms-grid-rows: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
-  grid-auto-flow: column;
+  grid-auto-flow: row;
 }
 
 #table-jeu .presentation-joueur .item {
   border: 1px solid #0F601E;
   padding: 5px 10px;
+}
+
+#table-jeu .presentation-joueur .ptsDeploiement input {
+  width: 50px;
 }
 
 #table-jeu #zone-de-jeu {

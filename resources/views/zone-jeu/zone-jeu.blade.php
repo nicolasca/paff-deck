@@ -11,9 +11,11 @@
     <div id="presentation-joueur-1" class="presentation-joueur">
       <div class="item">Joueur</div>
       <div class="item">Faction</div>
+      <div class="item">Depl. </div>
 
       <div class="item">{{$partie->user_1->name}}</div>
       <div class="item">{{$partie->deck_1->faction->nom}}</div>
+      <div class="item ptsDeploiement"><input type="number" name="" value="0"></div>
     </div>
 
 
@@ -104,9 +106,11 @@
   <div id="presentation-joueur-2" class="presentation-joueur">
     <div class="item">Joueur</div>
     <div class="item">Faction</div>
+    <div class="item">Depl. </div>
 
     <div class="item">{{$partie->user_2->name}}</div>
     <div class="item">{{$partie->deck_2->faction->nom}}</div>
+    <div class="item ptsDeploiement"><input type="number" name="" value="0"></div>
   </div>
 
 

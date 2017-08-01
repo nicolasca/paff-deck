@@ -311,8 +311,13 @@ $(function() {
     channel.bind('App\\Events\\UpdateInfos', function(data) {
         if(data.type == 'dice') {
           $("#resultat-roll-dice").html(data.valeurs);
-        } else if(data.type == 'tour') {
+        }
+        else if(data.type == 'tour') {
           $("#tour input").val(data.valeur);
+        }
+        else if(data.type == 'depl') {
+          $("#presentation-joueur-1 .ptsDeploiement input[type='number']").val(data.valeurJ1);
+          $("#presentation-joueur-2 .ptsDeploiement input[type='number']").val(data.valeurJ2);
         }
 
     });
@@ -374,6 +379,21 @@ $(function() {
         {
           type: "tour",
           valeur: valeur}
+      });
+    });
+
+    // Quand on change le nombre de déploiement d'un joueur, on actualise chez tous les clients
+    $("body").on("change", ".ptsDeploiement input[type='number']", function() {
+      var valeurJ1 = $("#presentation-joueur-1 .ptsDeploiement input[type='number']").val();
+      var valeurJ2 = $("#presentation-joueur-2 .ptsDeploiement input[type='number']").val();
+      // Mettre à jour les dés chez tous les joueurs
+      var url = $("#url").val();
+      $.get(url + "/partie/update-infos", {data:
+        {
+          type: "depl",
+          valeurJ1: valeurJ1,
+          valeurJ2: valeurJ2
+        }
       });
     });
 

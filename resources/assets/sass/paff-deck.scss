@@ -486,16 +486,18 @@ header {
   }
   .presentation-joueur {
     margin: 10px;
-    width: 50%;
+    width: 70%;
     background-color: white;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    grid-auto-flow: column;
-
+    grid-auto-flow: row;
     .item {
       border: 1px solid $color2;
       padding: 5px 10px;
+    }
+    .ptsDeploiement input{
+      width: 50px;
     }
   }
 

@@ -9,7 +9,6 @@
 <div class="grid txtcenter mas" id="recap-joueurs">
   <div class="partie-item joueur-infos">
     <h3>{{$partie->user_1->name}}</h3>
-    <p>{{$partie->deck_1->nom}} </p>
     <p>{{$partie->deck_1->faction->nom}}</p>
   </div>
   <div class="partie-item one-fifth" id="vs-joueurs">
@@ -17,7 +16,6 @@
   </div>
   <div class="partie-item joueur-infos">
     <h3>{{$partie->user_2->name}}</h3>
-    <p>{{$partie->deck_2->nom}}</p>
     <p> {{$partie->deck_2->faction->nom}}</p>
   </div>
 </div>
