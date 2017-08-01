@@ -31,7 +31,7 @@
         <div>
           @if(Auth::user()->id == $partie->user_1_id)
           <button id="button1" type="button" name="button1" class="bouton-pioche button"
-          data-userid="{{$partie->user_1_id}}">Piocher</button>
+          data-userid="{{$partie->user_1_id}}">Piocher ({{$cartesRestantesJ1}})</button>
           @endif
         </div>
       </div>
@@ -87,7 +87,7 @@
     <div>
       @if(Auth::user()->id == $partie->user_2_id)
       <button id="button2" type="button" name="button2" class="button bouton-pioche"
-      data-userid="{{$partie->user_2_id}}">Piocher</button>
+      data-userid="{{$partie->user_2_id}}">Piocher ({{$cartesRestantesJ2}})</button>
       @endif
     </div>
 

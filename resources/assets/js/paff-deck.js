@@ -160,4 +160,22 @@ $(function() {
         $("#nombre-cartes").html(nombreCartes);
         $("#deplacement-total").html(deplacement);
     }
+
+    // Dans l'écran e l aliste des parties
+    $("body").on("click", "#detruire-partie", function() {
+        var deletePartie = confirm("Etes vous sûr et certains de vouloir supprimer cette partie à tout jamais," +
+            "jusqu'à la fin de la nuit des temps ? Vous êtes sûr ? T'es sûr kikoulol ?")
+        if (deletePartie) {
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            var partieId = $(this).data("partieid");
+            $.post("parties/detruire-partie", {
+                    partieId: partieId,
+                    _token: CSRF_TOKEN
+                },
+                function(data) {
+                    var url = $("#url").val();
+                    location.reload();
+                });
+        }
+    });
 });

@@ -233,7 +233,15 @@ class PartieController extends Controller {
       "flancQuetsch" => [7,8,16,17,25,26,34,35,43,44,52,53]
     );
 
-    return view("zone-jeu.zone-jeu")->with('partie', $partie)->with("positionsParZone", $positionsParZone);
+    $cartesRestantesJ1 = $partie->deck_en_cours_1->cartes_en_cours->where("statut", "DECK")->count();
+    $cartesRestantesJ2 = $partie->deck_en_cours_2->cartes_en_cours->where("statut", "DECK")->count();
+
+    return view("zone-jeu.zone-jeu")
+    ->with('partie', $partie)
+    ->with("positionsParZone", $positionsParZone)
+    ->with("cartesRestantesJ1", $cartesRestantesJ1)
+    ->with("cartesRestantesJ2", $cartesRestantesJ2)
+    ;
   }
 
   // Piocher un carte dans le deck, pour la mettre dans la main
@@ -252,10 +260,16 @@ class PartieController extends Controller {
       $cartePioche->statut = "MAIN";
       $cartePioche->save();
 
+      //MAJ affichage du nombre cartes restantes
+      $cartesRestantesJ1 = $partie->deck_en_cours_1->cartes_en_cours->where("statut", "DECK")->count();
+      $cartesRestantesJ2 = $partie->deck_en_cours_2->cartes_en_cours->where("statut", "DECK")->count();
+
       $data = array(
         "carteId" => $cartePioche->id,
         "id" => $request->input('id'),
         "userId" => $request->input('userId'),
+        "cartesRestantesJ1" => $cartesRestantesJ1,
+        "cartesRestantesJ2" => $cartesRestantesJ2
       );
 
       broadcast(new UpdateCartePiochee($data))->toOthers();
