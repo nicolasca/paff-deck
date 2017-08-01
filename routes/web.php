@@ -63,6 +63,6 @@ Route::get('partie/drag-carte', 'PartieController@dragCarte');
 Route::get('partie/deplacer-defausse', 'PartieController@deplacerDefausse');
 Route::get('partie/update-etat-carte', 'PartieController@updateEtatCarte');
 Route::get('partie/update-zone-decor', 'PartieController@updateZoneDecor');
-Route::get('partie/update-dices', 'PartieController@updateDices');
+Route::get('partie/update-infos', 'PartieController@updateInfos');
 Route::post('parties/detruire-partie', 'PartieController@detruirePartie');
 Route::get('partie/getCarteView', 'PartieController@getCarteView');

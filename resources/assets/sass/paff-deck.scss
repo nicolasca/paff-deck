@@ -627,6 +627,12 @@ header {
   #infos-partie {
     grid-area: infosPartie;
     justify-self: center;
+
+    #tour{
+      input {
+        width: 50px;
+      }
+    }
   }
   #carte-grand {
     img {

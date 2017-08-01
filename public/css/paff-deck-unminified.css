@@ -2921,7 +2921,7 @@ header nav h1 {
       grid-template-columns: 25% 25% 25% 25%;
   -ms-grid-rows: auto;
       grid-template-rows: auto;
-  grid-template-areas: "cartesMain1 cartesMain1 . presJoueur1" "cartesMain1 cartesMain1 . ." "cartesDeploiement1 cartesDeploiement1 . ." "zoneJeu zoneJeu zoneJeu ." "zoneJeu zoneJeu zoneJeu infosPartie" "zoneJeu zoneJeu zoneJeu ." "cartesDeploiement2 cartesDeploiement2 . ." "cartesMain2 cartesMain2 . ." "cartesMain2 cartesMain2 . presJoueur2" "defausse defausse defausse defausse";
+  grid-template-areas: "cartesMain1 cartesMain1 . presJoueur1" "cartesMain1 cartesMain1 . ." "cartesDeploiement1 cartesDeploiement1 . ." "zoneJeu zoneJeu zoneJeu ." "zoneJeu zoneJeu zoneJeu infosPartie" "zoneJeu zoneJeu zoneJeu ." "cartesDeploiement2 cartesDeploiement2 . ." "cartesMain2 cartesMain2 . ." "cartesMain2 cartesMain2 . presJoueur2" "defausse defausse defausse defausse";
   margin-top: 10px;
 }
 
@@ -3118,6 +3118,10 @@ header nav h1 {
 #table-jeu #infos-partie {
   grid-area: infosPartie;
   justify-self: center;
+}
+
+#table-jeu #infos-partie #tour input {
+  width: 50px;
 }
 
 #table-jeu #carte-grand img {

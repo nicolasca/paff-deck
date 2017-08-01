@@ -10,7 +10,7 @@ use Auth;
 use App\Events\DeplacerCarteDefausse;
 use App\Events\DragCarteZoneJeu;
 use App\Events\PartieLancee;
-use App\Events\UpdateDices;
+use App\Events\UpdateInfos;
 use App\Events\UpdateEtatCarte;
 use App\Events\UpdateZoneDecor;
 use App\Events\UpdateCartePiochee;
@@ -331,10 +331,9 @@ class PartieController extends Controller {
 
   // Quand les dés sont lancés
   // - on trigger un event pour le refresh dans le browser (non presisté)
-  public function updateDices() {
+  public function updateInfos() {
     $data = $_GET['data'];
-
-    broadcast(new UpdateDices($data))->toOthers();
+    broadcast(new UpdateInfos($data))->toOthers();
   }
 
   // On supprime la partie, ainsi que les cartes et decks en cours associés

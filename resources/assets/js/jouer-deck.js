@@ -40,7 +40,8 @@ $(function() {
             valeurs: valeurs
         }
         var url = $("#url").val();
-        $.get(url + "/partie/update-dices", {
+        $.get(url + "/partie/update-infos", {
+            type: "dice",
             data: data
         });
     });
@@ -143,8 +144,13 @@ $(function() {
         }
     });
 
-    channel.bind('App\\Events\\UpdateDices', function(data) {
-        $("#resultat-roll-dice").html(data.valeurs);
+    channel.bind('App\\Events\\UpdateInfos', function(data) {
+        if(data.type == 'dice') {
+          $("#resultat-roll-dice").html(data.valeurs);
+        } else if(data.type == 'tour') {
+          $("#tour input").val(data.valeur);
+        }
+
     });
 
     channel.bind('App\\Events\\UpdateCartePiochee', function(data) {
@@ -192,6 +198,19 @@ $(function() {
                 data: data
             });
         }
+    });
+
+    // Quand on change le nombre de tour
+    $("body").on("change", "#tour input[type='number']", function() {
+
+      var valeur = $(this).val();
+      // Mettre à jour les dés chez tous les joueurs
+      var url = $("#url").val();
+      $.get(url + "/partie/update-infos", {data:
+        {
+          type: "tour",
+          valeur: valeur}
+      });
     });
 
 

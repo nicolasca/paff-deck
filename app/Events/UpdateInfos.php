@@ -12,7 +12,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 use Auth;
 
-class UpdateDices implements ShouldBroadcast
+class UpdateInfos implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 

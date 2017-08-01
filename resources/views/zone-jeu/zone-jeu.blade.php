@@ -111,6 +111,9 @@
 
 
 <div id="infos-partie">
+  <div id="tour">
+    <b>Tour</b> <input type="number" name="" value="1">
+  </div>
     <div id="generateur-des">
       <p>Générateur de dés</p>
         <select id="nombre-des" name="nombre-des">
