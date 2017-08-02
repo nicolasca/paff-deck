@@ -2893,8 +2893,8 @@ header nav h1 {
 #table-jeu {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 25% 25% 25% 25%;
-      grid-template-columns: 25% 25% 25% 25%;
+  -ms-grid-columns: 25% 25% 30% 20%;
+      grid-template-columns: 25% 25% 30% 20%;
   -ms-grid-rows: auto;
       grid-template-rows: auto;
   grid-template-areas: "cartesMain1 cartesMain1 . presJoueur1" "cartesMain1 cartesMain1 . ." "cartesDeploiement1 cartesDeploiement1 . ." "zoneJeu zoneJeu zoneJeu ." "zoneJeu zoneJeu zoneJeu infosPartie" "zoneJeu zoneJeu zoneJeu ." "cartesDeploiement2 cartesDeploiement2 . ." "cartesMain2 cartesMain2 . ." "cartesMain2 cartesMain2 . presJoueur2" "defausse defausse defausse defausse";
@@ -3118,6 +3118,7 @@ header nav h1 {
 #table-jeu #infos-partie {
   grid-area: infosPartie;
   justify-self: end;
+  margin-right: 10px;
 }
 
 #table-jeu #infos-partie #tour input {

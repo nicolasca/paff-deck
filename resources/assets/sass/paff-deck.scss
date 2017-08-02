@@ -449,7 +449,7 @@ header {
 //--------- ZONE DE JEU----------------------
 #table-jeu {
   display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-columns: 25% 25% 30% 20%;
   grid-template-rows: auto;
   grid-template-areas:  "cartesMain1 cartesMain1 . presJoueur1"
                         "cartesMain1 cartesMain1 . ."
@@ -510,7 +510,7 @@ header {
 
     .separation-zone {
       background: #f1a629;
-      height: 125%
+      height: 110%
     }
 
     .flanc-coco {
@@ -643,7 +643,7 @@ header {
   #infos-partie {
     grid-area: infosPartie;
     justify-self: end;
-
+    margin-right: 10px;
     #tour{
       input {
         width: 50px;
