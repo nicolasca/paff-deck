@@ -2897,7 +2897,7 @@ header nav h1 {
       grid-template-columns: 25% 25% 30% 20%;
   -ms-grid-rows: auto;
       grid-template-rows: auto;
-  grid-template-areas: "cartesMain1 cartesMain1 . presJoueur1" "cartesMain1 cartesMain1 . ." "cartesDeploiement1 cartesDeploiement1 . ." "zoneJeu zoneJeu zoneJeu ." "zoneJeu zoneJeu zoneJeu infosPartie" "zoneJeu zoneJeu zoneJeu ." "cartesDeploiement2 cartesDeploiement2 . ." "cartesMain2 cartesMain2 . ." "cartesMain2 cartesMain2 . presJoueur2" "defausse defausse defausse defausse";
+  grid-template-areas: "cartesMain1 cartesMain1 . presJoueur1" "cartesMain1 cartesMain1 . ." "cartesDeploiement1 cartesDeploiement1 . ." "zoneJeu zoneJeu zoneJeu ." "zoneJeu zoneJeu zoneJeu infosPartie" "zoneJeu zoneJeu zoneJeu ." "cartesDeploiement2 cartesDeploiement2 . ." "cartesMain2 cartesMain2 . ." "cartesMain2 cartesMain2 . presJoueur2" "defausse defausse defausse defausse";
   margin-top: 10px;
 }
 
@@ -3041,23 +3041,23 @@ header nav h1 {
 }
 
 #table-jeu .zoneJeu.decor {
-  border: 5px solid yellowgreen;
+  border: 5px solid yellowgreen !important;
 }
 
 #table-jeu .zoneJeu.colline {
-  background-color: chartreuse;
+  background-color: chartreuse !important;
 }
 
 #table-jeu .zoneJeu.foret {
-  background-color: forestgreen;
+  background-color: forestgreen !important;
 }
 
 #table-jeu .zoneJeu.lac {
-  background-color: cornflowerblue;
+  background-color: cornflowerblue !important;
 }
 
 #table-jeu .zoneJeu.ruines {
-  background-color: grey;
+  background-color: grey !important;
 }
 
 #table-jeu .carte-main {

@@ -579,19 +579,19 @@ header {
     min-height: $hauteur-carte;
     min-width : ($hauteur-carte * 0.71);
     &.decor {
-      border: 5px solid yellowgreen;
+      border: 5px solid yellowgreen !important;
     }
     &.colline {
-      background-color: chartreuse;
+      background-color: chartreuse !important;
     }
     &.foret {
-      background-color: forestgreen;
+      background-color: forestgreen !important;
     }
     &.lac {
-      background-color: cornflowerblue;
+      background-color: cornflowerblue !important;
     }
     &.ruines {
-      background-color: grey;
+      background-color: grey !important;
     }
   }
   .carte-main {
