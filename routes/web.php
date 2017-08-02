@@ -44,25 +44,27 @@ Route::post('jouer-deck/baseJeu', 'JouerDeckController@baseJeu');
 Route::post('jouer-deck/utiliserCarte', 'JouerDeckController@utiliserCarte');
 Route::get('jouer-deck/piocher', 'JouerDeckController@piocher');
 
-//-------------PARTIE----------------
-Route::get('parties', ['as' => 'parties', 'uses' => 'PartieController@index']);
+//-------------GERER UNE PARTIE OU DES PARTIES----------------
+Route::get('parties', ['as' => 'parties', 'uses' => 'GererPartieController@index']);
 Route::get('creation-partie', function() {
     return View::make('creer-partie');
 });
-Route::post('creer-partie', 'PartieController@create');
-Route::get('rejoindre-partie/{id}', 'PartieController@rejoindrePartie');
-Route::post('partie/choix-deck', 'PartieController@choixDeck');
-Route::post('partie/saveDeck', 'PartieController@saveChoixDeck');
-Route::post('partie/choix-deploiement', 'PartieController@choixDeploiement');
-Route::post('partie/saveChoixDeploiement', 'PartieController@saveChoixDeploiement');
-Route::get('partie/recap-avant-partie/{id}', 'PartieController@recapAvantPartie');
-Route::get('partie/lancer-partie', 'PartieController@lancerPartie');
-Route::get('partie/zone-jeu', 'PartieController@zoneJeu');
-Route::post('partie/piocher', 'PartieController@piocher');
-Route::get('partie/drag-carte', 'PartieController@dragCarte');
-Route::get('partie/deplacer-defausse', 'PartieController@deplacerDefausse');
-Route::get('partie/update-etat-carte', 'PartieController@updateEtatCarte');
-Route::get('partie/update-zone-decor', 'PartieController@updateZoneDecor');
-Route::get('partie/update-infos', 'PartieController@updateInfos');
-Route::post('parties/detruire-partie', 'PartieController@detruirePartie');
-Route::get('partie/getCarteView', 'PartieController@getCarteView');
+Route::post('creer-partie', 'GererPartieController@create');
+Route::get('rejoindre-partie/{id}', 'GererPartieController@rejoindrePartie');
+Route::post('partie/choix-deck', 'GererPartieController@choixDeck');
+Route::post('partie/saveDeck', 'GererPartieController@saveChoixDeck');
+Route::post('partie/choix-deploiement', 'GererPartieController@choixDeploiement');
+Route::post('partie/saveChoixDeploiement', 'GererPartieController@saveChoixDeploiement');
+Route::get('partie/recap-avant-partie/{id}', 'GererPartieController@recapAvantPartie');
+Route::get('partie/lancer-partie', 'GererPartieController@lancerPartie');
+Route::post('parties/detruire-partie', 'GererPartieController@detruirePartie');
+
+//-------------JOUER UNE PARTIE----------------
+Route::get('partie/zone-jeu', 'JouerPartieController@zoneJeu');
+Route::post('partie/piocher', 'JouerPartieController@piocher');
+Route::get('partie/drag-carte', 'JouerPartieController@dragCarte');
+Route::get('partie/deplacer-defausse', 'JouerPartieController@deplacerDefausse');
+Route::get('partie/update-etat-carte', 'JouerPartieController@updateEtatCarte');
+Route::get('partie/update-zone-decor', 'JouerPartieController@updateZoneDecor');
+Route::get('partie/update-infos', 'JouerPartieController@updateInfos');
+Route::get('partie/getCarteView', 'JouerPartieController@getCarteView');

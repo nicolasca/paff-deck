@@ -56,13 +56,19 @@
         data-statut="zone-jeu">
         @foreach($partie->cartes_en_cours as $carteEnCours)
           @if($carteEnCours->statut == "ZONE_JEU" && $carteEnCours->position !=null && $carteEnCours->position == $i)
-          <div class="inbl carte-main" id="carte_{{$carteEnCours->id}}">
+          <div class="inbl carte-main {{$carteEnCours->jetMoral == 1 ? 'testMoral' : ''}}"
+            id="carte_{{$carteEnCours->id}}">
             <img src="{{ URL::to('/') }}/images/{{$carteEnCours->carte->faction->nom}}/{{$carteEnCours->carte->path}}"
-            data-degats="0" />
+            data-degats="{{$carteEnCours->degats != 0 ? $carteEnCours->degats : ''}}"
+            class=" {{$carteEnCours->enFuite == 1 ? 'enFuite' : ''}}
+                  {{$carteEnCours->frontHaut == 1 ? 'front-top' : ''}}
+                  {{$carteEnCours->frontBas == 1 ? 'front-bottom' : ''}}
+                  {{$carteEnCours->frontGauche == 1 ? 'front-left' : ''}}
+                  {{$carteEnCours->frontDroite == 1 ? 'front-right' : ''}} "/>
             <div id="degats">
-              <p></p>
+              <p>{{$carteEnCours->degats != 0 ? $carteEnCours->degats : ''}}</p>
             </div>
-            <i id="flagCarte" class="fa fa-bolt not-visible" aria-hidden="true"></i>
+            <i id="flagCarte" class="fa fa-bolt {{$carteEnCours->flag == 1 ? '' : 'not-visible'}}" aria-hidden="true"></i>
 
           </div>
           @endif

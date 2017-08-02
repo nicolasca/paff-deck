@@ -3092,6 +3092,22 @@ header nav h1 {
   display: none;
 }
 
+#table-jeu .carte-main img.front-top {
+  border-top: 3px solid red;
+}
+
+#table-jeu .carte-main img.front-bottom {
+  border-bottom: 3px solid red;
+}
+
+#table-jeu .carte-main img.front-left {
+  border-left: 3px solid red;
+}
+
+#table-jeu .carte-main img.front-right {
+  border-right: 3px solid red;
+}
+
 #table-jeu .testMoral {
   opacity: 0.3;
 }

@@ -552,8 +552,7 @@ header {
       position: absolute;
       bottom: 5px;
       right: 5px;
-
-    }
+      }
     }
 
     #flagCarte {
@@ -599,6 +598,18 @@ header {
     }
     #flagCarte.not-visible {
       display: none;
+    }
+    img.front-top {
+      border-top: 3px solid red;
+    }
+    img.front-bottom {
+      border-bottom: 3px solid red;
+    }
+    img.front-left {
+      border-left: 3px solid red;
+    }
+    img.front-right {
+      border-right: 3px solid red;
     }
   }
   .testMoral {

@@ -7,13 +7,8 @@ use Illuminate\Database\Eloquent\Collection;
 
 use App\Http\Requests;
 use Auth;
-use App\Events\DeplacerCarteDefausse;
-use App\Events\DragCarteZoneJeu;
 use App\Events\PartieLancee;
-use App\Events\UpdateInfos;
-use App\Events\UpdateEtatCarte;
-use App\Events\UpdateZoneDecor;
-use App\Events\UpdateCartePiochee;
+
 
 use App\Http\Helpers\DeckUtils;
 
@@ -22,7 +17,7 @@ use App\Deck;
 use App\DeckEnCours;
 use App\CarteEnCours;
 
-class PartieController extends Controller {
+class GererPartieController extends Controller {
 
 
   public function index(Request $request) {
@@ -219,137 +214,6 @@ class PartieController extends Controller {
     broadcast(new PartieLancee($partieId))->toOthers();
   }
 
-  // Quand les 2 joueurs ont cliqué sur le lancement de la partie, on affiche la zone de jeu.
-  public function zoneJeu(Request $request) {
-    $partieId = $_GET['idPartie'];
-    $partie = PartieEnCours::find($partieId);
-    $partie->statut = "en_cours";
-    $partie->save();
-    $request->session()->put('partieId', $partieId);
-
-    // Determiner les zones de flancs et de centre
-    $positionsParZone = array(
-      "flancCoco" => [0,1,9,10,18,19,27,28,36,37,45,46],
-      "flancQuetsch" => [7,8,16,17,25,26,34,35,43,44,52,53]
-    );
-
-    $cartesRestantesJ1 = $partie->deck_en_cours_1->cartes_en_cours->where("statut", "DECK")->count();
-    $cartesRestantesJ2 = $partie->deck_en_cours_2->cartes_en_cours->where("statut", "DECK")->count();
-
-    return view("zone-jeu.zone-jeu")
-    ->with('partie', $partie)
-    ->with("positionsParZone", $positionsParZone)
-    ->with("cartesRestantesJ1", $cartesRestantesJ1)
-    ->with("cartesRestantesJ2", $cartesRestantesJ2)
-    ;
-  }
-
-  // Piocher un carte dans le deck, pour la mettre dans la main
-  public function piocher(Request $request) {
-    $partieId = $request->session()->get('partieId');
-    $partie = PartieEnCours::find($partieId);
-    $userId = $request->input('userId');
-    $deckEnCours = DeckEnCours::find($partie->getDeckEnCoursIdByUser($userId));
-
-    $cartesEnMain = $deckEnCours->cartes_en_cours->where("statut", "MAIN");
-    $cartesEnCoursMain = $deckEnCours->cartes_en_cours->where("statut", "DECK");
-    // Si on a moins que 5 cartes en main ET qu'il reste des cartes dans le deck
-    if($cartesEnMain->count() < 5 && $cartesEnCoursMain->count() > 0) {
-      $cartePioche = $cartesEnCoursMain->random();
-
-      $cartePioche->statut = "MAIN";
-      $cartePioche->save();
-
-      //MAJ affichage du nombre cartes restantes
-      $cartesRestantesJ1 = $partie->deck_en_cours_1->cartes_en_cours->where("statut", "DECK")->count();
-      $cartesRestantesJ2 = $partie->deck_en_cours_2->cartes_en_cours->where("statut", "DECK")->count();
-
-      $data = array(
-        "carteId" => $cartePioche->id,
-        "id" => $request->input('id'),
-        "userId" => $request->input('userId'),
-        "cartesRestantesJ1" => $cartesRestantesJ1,
-        "cartesRestantesJ2" => $cartesRestantesJ2
-      );
-
-      broadcast(new UpdateCartePiochee($data))->toOthers();
-
-      return view('zone-jeu.carte')
-      ->with('partie', $partie)
-      ->with('userId', $userId)
-      ->with('carte', $cartePioche);
-    }
-
-    return "KO";
-  }
-
-  public function getCarteView(Request $request) {
-    $partieId = $request->session()->get('partieId');
-    $partie = PartieEnCours::find($partieId);
-
-    $carteId = $request->input('carteId');
-    $userId = $request->input('userId');
-    $cartePioche = CarteEnCours::find($carteId);
-
-    return view('zone-jeu.carte')
-    ->with('partie', $partie)
-    ->with('userId', $userId)
-    ->with('carte', $cartePioche);
-  }
-
-  // Quand une carte est drag dans la zone de jeu
-  // - on change le statut de la carte
-  // - on trigger un event pour le refresh dans le browser
-  public function dragCarte() {
-    $data = $_GET['data'];
-    $carte = CarteEnCours::find($data['carteId']);
-    $carte->position = $data['position'];
-    $statut = $data['statut'];
-
-    $carte->statut = "ZONE_JEU";
-    $carte->save();
-
-    broadcast(new DragCarteZoneJeu($data))->toOthers();
-  }
-
-  // Quand une carte est déplacée dans la défausse
-  // - on change le statut de la carte
-  // - on trigger un event pour le refresh dans le browser
-  public function deplacerDefausse() {
-    $data = $_GET['data'];
-    $carte = CarteEnCours::find($data['carteId']);
-
-    $carte->statut = "DEFAUSSE";
-    $carte->save();
-
-    broadcast(new DeplacerCarteDefausse($data))->toOthers();
-  }
-
-  // Quand l'état de la carte est modifié (combat, dégats, fuite, moral)
-  // - on trigger un event pour le refresh dans le browser (non presisté)
-  public function updateEtatCarte() {
-    $data = $_GET['data'];
-    $carteId = explode("_", $data['carteId'])[1];
-    $carte = CarteEnCours::find($carteId);
-
-    broadcast(new UpdateEtatCarte($data))->toOthers();
-  }
-
-  // Quand on update une zone de décor
-  // - on trigger un event pour le refresh dans le browser (non presisté)
-  public function updateZoneDecor() {
-    $data = $_GET['data'];
-
-    broadcast(new UpdateZoneDecor($data))->toOthers();
-  }
-
-  // Quand les dés sont lancés
-  // - on trigger un event pour le refresh dans le browser (non presisté)
-  public function updateInfos() {
-    $data = $_GET['data'];
-    broadcast(new UpdateInfos($data))->toOthers();
-  }
-
   // On supprime la partie, ainsi que les cartes et decks en cours associés
   public function detruirePartie(Request $request) {
     $partieId = $request->input("partieId");
@@ -361,5 +225,6 @@ class PartieController extends Controller {
 
     return "OK";
   }
+
 
 }

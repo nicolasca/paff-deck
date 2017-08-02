@@ -37,10 +37,15 @@ $(function() {
 
       // Update zones combat
       if (data.combat) {
-          $(carte).css("border-" + data.combat, "3px solid red");
-          if (data.combat == "aucun") {
-              $(carte).css("border", "none");
-          }
+
+        if (data.combat == "aucun") {
+          $(carte).removeClass("front-top");
+          $(carte).removeClass("front-bottom");
+          $(carte).removeClass("front-right");
+          $(carte).removeClass("front-left");
+        } else {
+          $(carte).addClass("front-" + data.combat);
+        }
       }
       // Update degats
       if (data.degats) {
@@ -52,23 +57,19 @@ $(function() {
           }
 
       }
-
       // Update moral
       if (data.moral) {
           var parent = $(carte).parent();
           $("#" + $(parent).attr("id")).toggleClass("testMoral");
       }
-
-      // Update moral
+      // Update flag
       if (data.flag) {
         var parent = $(carte).parent();
         $("#" + $(parent).attr("id")).find("#flagCarte").toggleClass("not-visible");
       }
-
       // Update fuite
       if (data.fuite) {
-          var parent = $(carte).parent();
-          $("#" + $(parent).attr("id")).toggleClass("enFuite");
+          $(carte).toggleClass("enFuite");
       }
   });
 

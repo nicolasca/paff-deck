@@ -2,7 +2,6 @@ $(function() {
 
     // Clic "Utiliser" pour une carte.
     // On met à jour le model $deckEnCours
-
     $("body").on('click', "button.utiliserCarte", function() {
         var carte_id = $(this).attr("id");
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -57,6 +56,8 @@ $(function() {
             'idPartie': idPartie
         });
     });
+
+    //MAJ des border selon l'état des cartes
 
     // Les cartes sont draggable
     $(".carte-main").draggable({
@@ -182,8 +183,9 @@ $(function() {
             var data = {
                 carteId: $(parent).attr("id"),
                 moral: true,
-                hasMoral: $("#" + $(parent).attr("id")).hasClass("testMoral")
+                hasMoral: !$("#" + $(parent).attr("id")).hasClass("testMoral")
             }
+            $("#tooltip-carte-action").toggle();
             var url = $("#url").val();
             $.get(url + "/partie/update-etat-carte", {
                 data: data
@@ -197,8 +199,9 @@ $(function() {
             // Mettre à jour le statut de la carte, et refresh dans le client
             var data = {
                 carteId: $(parent).attr("id"),
-                flag: true
+                flag: $("#" + $(parent).attr("id")).find("#flagCarte").hasClass("not-visible")
             }
+            $("#tooltip-carte-action").toggle();
             var url = $("#url").val();
             $.get(url + "/partie/update-etat-carte", {
                 data: data
@@ -208,14 +211,14 @@ $(function() {
         // Sur le click, afficher l'indicateur de fuite (retourner la carte)
         $("#tooltip-carte-action .bouton-fuite").unbind("click");
         $("#tooltip-carte-action .bouton-fuite").click(function() {
-            var parent = $(carte).parent();
-
+          var parent = $(carte).parent();
             // Mettre à jour le statut de la carte, et refresh dans le client
             var data = {
                 carteId: $(parent).attr("id"),
                 fuite: true,
-                isFuite: $("#" + $(parent).attr("id") + " img").hasClass("enFuite")
+                isFuite: !$(carte).hasClass("enFuite")
             }
+            $("#tooltip-carte-action").toggle();
             var url = $("#url").val();
             $.get(url + "/partie/update-etat-carte", {
                 data: data
@@ -270,9 +273,14 @@ $(function() {
         $("#tooltip-carte-action .bouton-combat").unbind("click");
         $("#tooltip-carte-action .bouton-combat").click(function(event) {
             var flancCombat = $(this).prop("name");
-            $(carte).css("border-" + flancCombat, "3px solid red");
-            if (flancCombat == "none") {
-                $(carte).css("border", "none");
+
+            if (flancCombat == "aucun") {
+              $(carte).removeClass("front-top");
+              $(carte).removeClass("front-bottom");
+              $(carte).removeClass("front-right");
+              $(carte).removeClass("front-left");
+            } else {
+              $(carte).addClass("front-" + flancCombat);
             }
             $("#tooltip-carte-action").css("display", "none");
 
