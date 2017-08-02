@@ -132,7 +132,8 @@ class JouerPartieController extends Controller {
   }
 
   // Quand l'état de la carte est modifié (combat, dégats, fuite, moral)
-  // - on trigger un event pour le refresh dans le browser (non presisté)
+  // - on save en base
+  // - on trigger un event pour le refresh dans le browser
   public function updateEtatCarte() {
     $data = $_GET['data'];
     $carteId = explode("_", $data['carteId'])[1];
@@ -182,10 +183,23 @@ class JouerPartieController extends Controller {
     broadcast(new UpdateZoneDecor($data))->toOthers();
   }
 
-  // Quand les dés sont lancés
+  // Quand on update des informations de la partie
+  // - on save en base
   // - on trigger un event pour le refresh dans le browser (non presisté)
-  public function updateInfos() {
+  public function updateInfos(Request $request) {
     $data = $_GET['data'];
+    $partieId = $request->session()->get('partieId');
+    $partie = PartieEnCours::find($partieId);
+
+    if($data['type'] == "tour") {
+      $partie->nb_tour = $data['valeur'];
+    }
+    else if($data['type'] == "depl") {
+      $partie->depl_J1 = $data['valeurJ1'];
+      $partie->depl_J2 = $data['valeurJ2'];
+    }
+
+    $partie->save();
     broadcast(new UpdateInfos($data))->toOthers();
   }
 

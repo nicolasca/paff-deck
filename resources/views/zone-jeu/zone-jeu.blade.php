@@ -15,7 +15,7 @@
 
       <div class="item">{{$partie->user_1->name}}</div>
       <div class="item">{{$partie->deck_1->faction->nom}}</div>
-      <div class="item ptsDeploiement"><input type="number" name="" value="0"></div>
+      <div class="item ptsDeploiement"><input type="number" name="" value="{{$partie->depl_J1}}"></div>
     </div>
 
 
@@ -116,13 +116,13 @@
 
     <div class="item">{{$partie->user_2->name}}</div>
     <div class="item">{{$partie->deck_2->faction->nom}}</div>
-    <div class="item ptsDeploiement"><input type="number" name="" value="0"></div>
+    <div class="item ptsDeploiement"><input type="number" name="" value="{{$partie->depl_J2}}"></div>
   </div>
 
 
 <div id="infos-partie">
   <div id="tour">
-    <b>Tour</b> <input type="number" name="" value="1">
+    <b>Tour</b> <input type="number" name="" value="{{$partie->nb_tour}}">
   </div>
     <div id="generateur-des">
       <p>Générateur de dés</p>
