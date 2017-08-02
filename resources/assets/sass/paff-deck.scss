@@ -58,6 +58,8 @@
 // Grids
 @import "grids/_grillade.scss"; // grids
 
+
+// -------- GLOBAL ----------------
 .button {
   font-family: $font-stack-headings;
   font-weight: bold;
@@ -100,6 +102,9 @@ h1, h2 {
   width: 80%;
   padding: 1rem;
 }
+//----------------------------
+
+//---------- HEADER ------------------------
 
 header {
   background-color: white;
@@ -134,14 +139,10 @@ header {
     }
   }
 }
+//---------------------
 
-#home {
-  background-image: url("../images/orc.jpg");
-  background-attachment: fixed;
-  min-height: 100vh;
-  padding-top: 50px;
-}
 
+//-------------- ENREGISTRER UN COMPTE-----------
 #page-register {
   .form-item label {
     display: block;
@@ -152,7 +153,9 @@ header {
     padding: 1rem;
   }
 }
+//---------------------------
 
+//------------ PAGE DE LOGIN -------------------
 #connexion-page {
   display: flex;
   margin-top: 50px;
@@ -169,13 +172,23 @@ header {
     padding: 1rem;
   }
 }
+// -------------------
+
+// ------ PAGE ACCUEIL-------------
+#home {
+  background-image: url("../images/orc.jpg");
+  background-attachment: fixed;
+  min-height: 100vh;
+  padding-top: 50px;
+}
 
 #dashboard {
   display: flex;
   justify-content: center;
 }
+//-----------------------
 
-
+// -------------- AFFICHAGE DU DECK dans deckEdit, deckShow, deploiement -----------------
 #deck_cartes {
   text-align: center;
   .description-faction {
@@ -257,30 +270,6 @@ header {
     right: 0;
   }
 
-  //---------- Tooltip for recap cartes----------
-  .tooltip {
-    display: inline-block;
-  }
-  .tooltip-text {
-    visibility: hidden;
-    border: 1px solid $color2;
-    width: 300px;
-    background-color: white;
-    margin: 0;
-    padding: 5px 5px;
-    p {
-      text-align: left;
-    }
-
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-  }
-  .tooltip:hover .tooltip-text {
-    visibility: visible;
-  }
-  //---------------
-
   .titre_deck_create {
     border: none;
   }
@@ -307,6 +296,9 @@ header {
   }
 }
 
+//----------------------------------
+
+//------------CREER UN DECK------------------
 #creer-deck {
   .nav-choix-faction {
     margin: 10px 0;
@@ -402,6 +394,9 @@ header {
   }
 }
 
+//------------------------------
+
+//---------------------JOUER UN DECK------------------------
 #cartes-jeu {
 
   #cartes-main {
@@ -417,9 +412,10 @@ header {
       margin: 5px;
     }
   }
-
 }
+//------------------------------
 
+//------------CREATION DE PARTIE------------
 #recap-avant-partie {
   .partie-item {
     border: 1px solid black;
@@ -448,6 +444,9 @@ header {
   }
 }
 
+//-----------------------------
+
+//--------- ZONE DE JEU----------------------
 #table-jeu {
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
@@ -652,6 +651,8 @@ header {
     }
   }
 }
+//-----------------------
+
 #cartes-defausse {
   width: 100%;
   border: 1px solid black;
@@ -661,11 +662,3 @@ header {
     display: inline-block;
   }
 }
-
-/* ----------------------------- */
-/* ==Own stylesheet              */
-/* ----------------------------- */
-
-/* Here should go your own CSS styles */
-// You can also link them with a Sass @import
-// @import "my-styles";
