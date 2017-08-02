@@ -219,11 +219,11 @@ $(function() {
 
         // Mettre à jour les dés chez tous les joueurs
         var data = {
-            valeurs: valeurs
+            valeurs: valeurs,
+            type: "dice"
         }
         var url = $("#url").val();
         $.get(url + "/partie/update-infos", {
-            type: "dice",
             data: data
         });
     });
