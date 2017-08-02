@@ -503,10 +503,15 @@ header {
   #zone-de-jeu {
     grid-area: zoneJeu;
     display: grid;
-    grid-template-columns: repeat(9, 1fr);
+    grid-template-columns: repeat(2, auto) 6px repeat(5, auto) 6px repeat(2, auto);
     grid-template-rows: repeat(6, 1fr);
     grid-gap: 10px 10px;
     margin: 10px;
+
+    .separation-zone {
+      background: #f1a629;
+      height: 125%
+    }
 
     .flanc-coco {
       background-color: rgba(blue, 0.1);
@@ -637,7 +642,7 @@ header {
 
   #infos-partie {
     grid-area: infosPartie;
-    justify-self: center;
+    justify-self: end;
 
     #tour{
       input {

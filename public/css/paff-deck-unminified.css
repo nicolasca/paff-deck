@@ -2576,13 +2576,6 @@ header nav h1 {
   margin: 0;
 }
 
-#home {
-  background-image: url("../images/orc.jpg");
-  background-attachment: fixed;
-  min-height: 100vh;
-  padding-top: 50px;
-}
-
 #page-register .form-item label {
   display: block;
   margin-bottom: 1rem;
@@ -2611,6 +2604,13 @@ header nav h1 {
 #login-page .form-text {
   width: 80%;
   padding: 1rem;
+}
+
+#home {
+  background-image: url("../images/orc.jpg");
+  background-attachment: fixed;
+  min-height: 100vh;
+  padding-top: 50px;
 }
 
 #dashboard {
@@ -2707,30 +2707,6 @@ header nav h1 {
 #deck_cartes .fixed {
   position: fixed;
   right: 0;
-}
-
-#deck_cartes .tooltip {
-  display: inline-block;
-}
-
-#deck_cartes .tooltip-text {
-  visibility: hidden;
-  border: 1px solid #0F601E;
-  width: 300px;
-  background-color: white;
-  margin: 0;
-  padding: 5px 5px;
-  /* Position the tooltip */
-  position: absolute;
-  z-index: 1;
-}
-
-#deck_cartes .tooltip-text p {
-  text-align: left;
-}
-
-#deck_cartes .tooltip:hover .tooltip-text {
-  visibility: visible;
 }
 
 #deck_cartes .titre_deck_create {
@@ -2979,12 +2955,17 @@ header nav h1 {
   grid-area: zoneJeu;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[9];
-      grid-template-columns: repeat(9, 1fr);
+  -ms-grid-columns: (auto)[2] 6px (auto)[5] 6px (auto)[2];
+      grid-template-columns: repeat(2, auto) 6px repeat(5, auto) 6px repeat(2, auto);
   -ms-grid-rows: (1fr)[6];
       grid-template-rows: repeat(6, 1fr);
   grid-gap: 10px 10px;
   margin: 10px;
+}
+
+#table-jeu #zone-de-jeu .separation-zone {
+  background: #f1a629;
+  height: 125%;
 }
 
 #table-jeu #zone-de-jeu .flanc-coco {
@@ -3136,7 +3117,7 @@ header nav h1 {
 
 #table-jeu #infos-partie {
   grid-area: infosPartie;
-  justify-self: center;
+  justify-self: end;
 }
 
 #table-jeu #infos-partie #tour input {
@@ -3157,8 +3138,3 @@ header nav h1 {
   max-width: 106.5px;
   display: inline-block;
 }
-
-/* ----------------------------- */
-/* ==Own stylesheet              */
-/* ----------------------------- */
-/* Here should go your own CSS styles */

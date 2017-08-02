@@ -38,12 +38,16 @@ class JouerPartieController extends Controller {
       "flancQuetsch" => [7,8,16,17,25,26,34,35,43,44,52,53]
     );
 
+    // Determiner les zones de flancs et de centre
+    $delimitationZone = array(2,7,11,16,20,25,29,34,38,43,47,52);
+
     $cartesRestantesJ1 = $partie->deck_en_cours_1->cartes_en_cours->where("statut", "DECK")->count();
     $cartesRestantesJ2 = $partie->deck_en_cours_2->cartes_en_cours->where("statut", "DECK")->count();
 
     return view("zone-jeu.zone-jeu")
     ->with('partie', $partie)
     ->with("positionsParZone", $positionsParZone)
+    ->with("delimitationZone", $delimitationZone)
     ->with("cartesRestantesJ1", $cartesRestantesJ1)
     ->with("cartesRestantesJ2", $cartesRestantesJ2)
     ;

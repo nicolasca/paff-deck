@@ -49,32 +49,36 @@
 
     <div id="zone-de-jeu">
       @for ($i = 0; $i < 54; $i++)
-      <div class=" zoneJeu {{in_array($i, $positionsParZone['flancCoco']) ? 'flanc-coco' : ''}}
-                  {{in_array($i, $positionsParZone['flancQuetsch']) ? 'flanc-quetsch' : ''}} "
-        id="position_{{$i}}"
-        data-position="{{$i}}"
-        data-statut="zone-jeu">
-        @foreach($partie->cartes_en_cours as $carteEnCours)
-          @if($carteEnCours->statut == "ZONE_JEU" && $carteEnCours->position !=null && $carteEnCours->position == $i)
-          <div class="inbl carte-main {{$carteEnCours->jetMoral == 1 ? 'testMoral' : ''}}"
-            id="carte_{{$carteEnCours->id}}">
-            <img src="{{ URL::to('/') }}/images/{{$carteEnCours->carte->faction->nom}}/{{$carteEnCours->carte->path}}"
-            data-degats="{{$carteEnCours->degats != 0 ? $carteEnCours->degats : ''}}"
-            class=" {{$carteEnCours->enFuite == 1 ? 'enFuite' : ''}}
-                  {{$carteEnCours->frontHaut == 1 ? 'front-top' : ''}}
-                  {{$carteEnCours->frontBas == 1 ? 'front-bottom' : ''}}
-                  {{$carteEnCours->frontGauche == 1 ? 'front-left' : ''}}
-                  {{$carteEnCours->frontDroite == 1 ? 'front-right' : ''}} "/>
-            <div id="degats">
-              <p>{{$carteEnCours->degats != 0 ? $carteEnCours->degats : ''}}</p>
-            </div>
-            <i id="flagCarte" class="fa fa-bolt {{$carteEnCours->flag == 1 ? '' : 'not-visible'}}" aria-hidden="true"></i>
+        @if(in_array($i, $delimitationZone))
+        <div class="separation-zone">
+        </div>
+        @endif
+        <div class=" zoneJeu {{in_array($i, $positionsParZone['flancCoco']) ? 'flanc-coco' : ''}}
+                    {{in_array($i, $positionsParZone['flancQuetsch']) ? 'flanc-quetsch' : ''}} "
+          id="position_{{$i}}"
+          data-position="{{$i}}"
+          data-statut="zone-jeu">
+          @foreach($partie->cartes_en_cours as $carteEnCours)
+            @if($carteEnCours->statut == "ZONE_JEU" && $carteEnCours->position !=null && $carteEnCours->position == $i)
+            <div class="inbl carte-main {{$carteEnCours->jetMoral == 1 ? 'testMoral' : ''}}"
+              id="carte_{{$carteEnCours->id}}">
+              <img src="{{ URL::to('/') }}/images/{{$carteEnCours->carte->faction->nom}}/{{$carteEnCours->carte->path}}"
+              data-degats="{{$carteEnCours->degats != 0 ? $carteEnCours->degats : ''}}"
+              class=" {{$carteEnCours->enFuite == 1 ? 'enFuite' : ''}}
+                    {{$carteEnCours->frontHaut == 1 ? 'front-top' : ''}}
+                    {{$carteEnCours->frontBas == 1 ? 'front-bottom' : ''}}
+                    {{$carteEnCours->frontGauche == 1 ? 'front-left' : ''}}
+                    {{$carteEnCours->frontDroite == 1 ? 'front-right' : ''}} "/>
+              <div id="degats">
+                <p>{{$carteEnCours->degats != 0 ? $carteEnCours->degats : ''}}</p>
+              </div>
+              <i id="flagCarte" class="fa fa-bolt {{$carteEnCours->flag == 1 ? '' : 'not-visible'}}" aria-hidden="true"></i>
 
-          </div>
-          @endif
-        @endforeach
-      </div>
-    @endfor
+            </div>
+            @endif
+          @endforeach
+        </div>
+      @endfor
 
     @include('zone-jeu.tooltip-carte-action')
 
