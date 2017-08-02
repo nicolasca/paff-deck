@@ -2955,8 +2955,8 @@ header nav h1 {
   grid-area: zoneJeu;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (auto)[2] 6px (auto)[5] 6px (auto)[2];
-      grid-template-columns: repeat(2, auto) 6px repeat(5, auto) 6px repeat(2, auto);
+  -ms-grid-columns: (1fr)[2] 6px (1fr)[5] 6px (1fr)[2];
+      grid-template-columns: repeat(2, 1fr) 6px repeat(5, 1fr) 6px repeat(2, 1fr);
   -ms-grid-rows: (1fr)[6];
       grid-template-rows: repeat(6, 1fr);
   grid-gap: 10px 10px;

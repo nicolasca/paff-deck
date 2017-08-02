@@ -503,7 +503,7 @@ header {
   #zone-de-jeu {
     grid-area: zoneJeu;
     display: grid;
-    grid-template-columns: repeat(2, auto) 6px repeat(5, auto) 6px repeat(2, auto);
+    grid-template-columns: repeat(2, 1fr) 6px repeat(5, 1fr) 6px repeat(2, 1fr);
     grid-template-rows: repeat(6, 1fr);
     grid-gap: 10px 10px;
     margin: 10px;
