@@ -214,8 +214,6 @@ $(function() {
             valeurs += random + "";
         }
 
-        $("#historique-des").prepend("<span>"+valeurs+"</span>");
-
         // Mettre à jour les dés chez tous les joueurs
         var data = {
             valeurs: valeurs,

@@ -3042,23 +3042,23 @@ header nav h1 {
 }
 
 #table-jeu .zoneJeu.decor {
-  border: 5px solid yellowgreen;
+  border: 5px solid yellowgreen !important;
 }
 
 #table-jeu .zoneJeu.colline {
-  background-color: chartreuse;
+  background-color: chartreuse !important;
 }
 
 #table-jeu .zoneJeu.foret {
-  background-color: forestgreen;
+  background-color: forestgreen !important;
 }
 
 #table-jeu .zoneJeu.lac {
-  background-color: cornflowerblue;
+  background-color: cornflowerblue !important;
 }
 
 #table-jeu .zoneJeu.ruines {
-  background-color: grey;
+  background-color: grey !important;
 }
 
 #table-jeu .carte-main {
