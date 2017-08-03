@@ -2897,7 +2897,7 @@ header nav h1 {
       grid-template-columns: 25% 25% 30% 20%;
   -ms-grid-rows: auto;
       grid-template-rows: auto;
-  grid-template-areas: "cartesMain1 cartesMain1 . presJoueur1" "cartesMain1 cartesMain1 . ." "cartesDeploiement1 cartesDeploiement1 . ." "zoneJeu zoneJeu zoneJeu ." "zoneJeu zoneJeu zoneJeu infosPartie" "zoneJeu zoneJeu zoneJeu ." "cartesDeploiement2 cartesDeploiement2 . ." "cartesMain2 cartesMain2 . ." "cartesMain2 cartesMain2 . presJoueur2" "defausse defausse defausse defausse";
+  grid-template-areas: "cartesMain1 cartesMain1 presJoueur1 presJoueur1" "cartesMain1 cartesMain1 . ." "cartesDeploiement1 cartesDeploiement1 . ." "zoneJeu zoneJeu zoneJeu ." "zoneJeu zoneJeu zoneJeu infosPartie" "zoneJeu zoneJeu zoneJeu ." "cartesDeploiement2 cartesDeploiement2 . ." "cartesMain2 cartesMain2 . ." "cartesMain2 cartesMain2 presJoueur2 presJoueur2" "defausse defausse defausse defausse";
   margin-top: 10px;
 }
 
@@ -2931,15 +2931,16 @@ header nav h1 {
 
 #table-jeu .presentation-joueur {
   margin: 10px;
-  width: 70%;
   background-color: white;
+  width: 50%;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr 1fr;
       grid-template-columns: 1fr 1fr 1fr;
-  -ms-grid-rows: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
   grid-auto-flow: row;
+  justify-self: end;
 }
 
 #table-jeu .presentation-joueur .item {
@@ -2948,7 +2949,7 @@ header nav h1 {
 }
 
 #table-jeu .presentation-joueur .ptsDeploiement input {
-  width: 50px;
+  width: 40px;
 }
 
 #table-jeu #zone-de-jeu {
