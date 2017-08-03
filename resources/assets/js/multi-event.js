@@ -92,7 +92,11 @@ $(function() {
           // Afficher la carte
           $('#' + data["id"]).prepend(view);
           $(".carte-main").draggable({
-              revert: "invalid"
+              revert: "invalid",
+              start: function(event, ui) {
+                // Because bug in droppable ui, we remove the active zone from here
+                $(this).parent(".zoneJeu").removeClass("active-zone");
+              }
           });
           // MAJ cartes restantes
           $("#button1").text("Piocher ("+data.cartesRestantesJ1+")");

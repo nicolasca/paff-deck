@@ -59,12 +59,29 @@ $(function() {
 
     // Les cartes sont draggable
     $(".carte-main").draggable({
-        revert: "invalid"
+        revert: "invalid",
+        start: function(event, ui) {
+          // Because bug in droppable ui, we remove the active zone from here
+          $(this).parent(".zoneJeu").removeClass("active-zone");
+        }
     });
 
     // Les zones sont droppable
     $(".zoneJeu").droppable({
-        accept: ".carte-main",
+        // Accept une carte uniquement quand la zone est vide
+        accept: function(drag) {
+          var isACarte = drag.hasClass("carte-main");
+          var hasAlreadyDraggable = $(this).has('.ui-draggable').length;
+          return (isACarte & !hasAlreadyDraggable);
+        },
+        tolerance: "intersect",
+        over: function(event, ui) {
+            $(this).addClass("active-zone");
+        },
+        out: function(event, ui) {
+            $(this).removeClass("active-zone");
+            // Authorize again one card to drop inside this zone
+        },
         drop: function(ev, ui) {
             // Snap la carte dans l'emplacement
             var dropped = ui.draggable;

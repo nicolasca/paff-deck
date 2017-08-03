@@ -2668,10 +2668,6 @@ header nav h1 {
   text-align: center;
 }
 
-#deck_cartes .titre_deck #description-deckShow {
-  width: 50%;
-}
-
 #deck_cartes .titre_deck #description-deckShow p {
   text-align: left;
 }
@@ -2977,14 +2973,6 @@ header nav h1 {
   height: 110%;
 }
 
-#table-jeu #zone-de-jeu .flanc-coco {
-  background-color: rgba(0, 0, 255, 0.1);
-}
-
-#table-jeu #zone-de-jeu .flanc-quetsch {
-  background-color: rgba(0, 0, 255, 0.1);
-}
-
 #table-jeu #zone-de-jeu #tooltip-carte-action {
   background: #1d1d1d;
   color: #fff;
@@ -3049,24 +3037,36 @@ header nav h1 {
   min-width: 106.5px;
 }
 
+#table-jeu .zoneJeu.flanc-coco {
+  background-color: rgba(0, 0, 255, 0.1);
+}
+
+#table-jeu .zoneJeu.flanc-quetsch {
+  background-color: rgba(0, 0, 255, 0.1);
+}
+
+#table-jeu .zoneJeu.active-zone {
+  background: rgba(241, 166, 41, 0.5);
+}
+
 #table-jeu .zoneJeu.decor {
   border: 5px solid yellowgreen !important;
 }
 
 #table-jeu .zoneJeu.colline {
-  background-color: chartreuse !important;
+  background: chartreuse !important;
 }
 
 #table-jeu .zoneJeu.foret {
-  background-color: forestgreen !important;
+  background: forestgreen !important;
 }
 
 #table-jeu .zoneJeu.lac {
-  background-color: cornflowerblue !important;
+  background: cornflowerblue !important;
 }
 
 #table-jeu .zoneJeu.ruines {
-  background-color: grey !important;
+  background: grey !important;
 }
 
 #table-jeu .carte-main {

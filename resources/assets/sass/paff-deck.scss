@@ -518,13 +518,6 @@ header {
       height: 110%
     }
 
-    .flanc-coco {
-      background-color: rgba(blue, 0.1);
-    }
-    .flanc-quetsch {
-      background-color: rgba(blue, 0.1);
-    }
-
     #tooltip-carte-action {
       background:#1d1d1d;
       color:#fff;
@@ -583,20 +576,29 @@ header {
     background: white;
     min-height: $hauteur-carte;
     min-width : ($hauteur-carte * 0.71);
+    &.flanc-coco {
+      background-color: rgba(blue, 0.1);
+    }
+    &.flanc-quetsch {
+      background-color: rgba(blue, 0.1);
+    }
+    &.active-zone {
+      background: rgba(#f1a629, 0.5);
+    }
     &.decor {
       border: 5px solid yellowgreen !important;
     }
     &.colline {
-      background-color: chartreuse !important;
+      background: chartreuse !important;
     }
     &.foret {
-      background-color: forestgreen !important;
+      background: forestgreen !important;
     }
     &.lac {
-      background-color: cornflowerblue !important;
+      background: cornflowerblue !important;
     }
     &.ruines {
-      background-color: grey !important;
+      background: grey !important;
     }
   }
   .carte-main {
