@@ -214,7 +214,7 @@ $(function() {
             valeurs += random + "";
         }
 
-        $("#resultat-roll-dice").html(valeurs);
+        $("#historique-des").prepend("<span>"+valeurs+"</span>");
 
         // Mettre à jour les dés chez tous les joueurs
         var data = {
@@ -593,7 +593,7 @@ $(function() {
 
   channel.bind('App\\Events\\UpdateInfos', function(data) {
       if(data.type == 'dice') {
-        $("#resultat-roll-dice").html(data.valeurs);
+        $("#historique-des").prepend("<span>"+data.valeurs+"</span>");
       }
       else if(data.type == 'tour') {
         $("#tour input").val(data.valeur);

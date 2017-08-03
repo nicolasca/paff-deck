@@ -3119,14 +3119,47 @@ header nav h1 {
   grid-area: infosPartie;
   justify-self: end;
   margin-right: 10px;
+  text-align: center;
+}
+
+#table-jeu #infos-partie hr {
+  margin: 10px 0 10px 0;
 }
 
 #table-jeu #infos-partie #tour input {
   width: 50px;
 }
 
-#table-jeu #carte-grand img {
+#table-jeu #infos-partie #carte-grand {
+  border: 1px solid black;
+  height: 300px;
+  width: 213px;
+}
+
+#table-jeu #infos-partie #carte-grand img {
   max-height: 300px;
+}
+
+#table-jeu #infos-partie #historique-des {
+  height: 90px;
+  margin-top: 10px;
+  text-align: left;
+  overflow: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-preferred-size: 30px;
+      flex-basis: 30px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: white;
+  border: 1px solid black;
+}
+
+#table-jeu #infos-partie #historique-des span {
+  line-height: 1;
 }
 
 #cartes-defausse {

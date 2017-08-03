@@ -644,17 +644,39 @@ header {
     grid-area: infosPartie;
     justify-self: end;
     margin-right: 10px;
+    text-align: center;
+    hr {
+      margin: 10px 0 10px 0;
+    }
     #tour{
       input {
         width: 50px;
       }
     }
-  }
-  #carte-grand {
-    img {
-      max-height: 300px;
+    #carte-grand {
+      border: 1px solid black;
+      height: 300px;
+      width: (300px * 0.71);
+      img {
+        max-height: 300px;
+      }
+    }
+    #historique-des {
+      height: 90px;
+      margin-top: 10px;
+      text-align: left;
+      overflow: auto;
+      display: flex;
+      flex-basis: 30px;
+      flex-direction: column;
+      background-color: white;
+      border: 1px solid black;
+      span {
+        line-height: 1;
+      }
     }
   }
+
 }
 //-----------------------
 

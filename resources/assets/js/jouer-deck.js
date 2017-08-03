@@ -32,7 +32,7 @@ $(function() {
             valeurs += random + "";
         }
 
-        $("#resultat-roll-dice").html(valeurs);
+        $("#historique-des").prepend("<span>"+valeurs+"</span>");
 
         // Mettre à jour les dés chez tous les joueurs
         var data = {

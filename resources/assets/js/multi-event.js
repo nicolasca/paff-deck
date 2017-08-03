@@ -75,7 +75,7 @@ $(function() {
 
   channel.bind('App\\Events\\UpdateInfos', function(data) {
       if(data.type == 'dice') {
-        $("#resultat-roll-dice").html(data.valeurs);
+        $("#historique-des").prepend("<span>"+data.valeurs+"</span>");
       }
       else if(data.type == 'tour') {
         $("#tour input").val(data.valeur);
