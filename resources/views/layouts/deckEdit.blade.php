@@ -29,9 +29,7 @@
         </p>
         <p class="form-item center">
           <label for="description">Description</label>
-          <textarea rows="2" cols="50" name="description" id="description" class="form-text">
-            {{$deckShow->description}}
-          </textarea>
+          <textarea rows="2" cols="50" name="description" id="description" class="form-text">{{$deckShow->description}}</textarea>
         </p>
       </div>
       @else
