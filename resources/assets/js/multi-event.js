@@ -84,6 +84,19 @@ $(function() {
         $("#presentation-joueur-1 .ptsDeploiement input[type='number']").val(data.valeurJ1);
         $("#presentation-joueur-2 .ptsDeploiement input[type='number']").val(data.valeurJ2);
       }
+      else if (data.type == 'decor') {
+        for(let decor of data.decorJ1) {
+          $("#cartes-decor-J1").append("<div class='"+decor+" cartes-decor' data-decor='"+decor+"'></div>");
+        }
+        for(let decor of data.decorJ2) {
+          console.log(decor);
+          $("#cartes-decor-J2").append("<div class='"+decor+" cartes-decor' data-decor='"+decor+"'></div>");
+        }
+
+        $(".cartes-decor").draggable({
+            revert: "invalid"
+          });
+      }
 
   });
 
@@ -108,6 +121,18 @@ $(function() {
       $('[data-position=' + data.zoneJeu + ']').removeClass("foret ruines colline lac decor");
       if (data.decor != "none") {
           $('[data-position=' + data.zoneJeu + ']').addClass(data.decor + " decor");
+      }
+  });
+
+  channel.bind('App\\Events\\UpdatePeriode', function(periode) {
+      if (periode == "deploiement") {
+        $("#periode-partie span").html("Déploiement");
+        $("#periode-partie").data("deploiement");
+      }
+      else if(periode == "combat") {
+        $("#periode-partie span").html("Combat");
+        $("#periode-partie").data("combat");
+        $(".section-pioche").show();
       }
   });
 

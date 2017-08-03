@@ -239,6 +239,15 @@ $(function() {
         });
     });
 
+
+    $("#pioche-carte-decor").click(function() {
+        $(this).hide();
+        $.get("piocher-carte-decor",
+            function(data) {
+
+            });
+    });
+
     //MAJ des border selon l'état des cartes
 
     // Les cartes sont draggable
@@ -252,9 +261,11 @@ $(function() {
 
     // Les zones sont droppable
     $(".zoneJeu").droppable({
-        // Accept une carte uniquement quand la zone est vide
+        // Accepte:
+        // - au début une carte décor
+        // - une carte uniquement quand la zone est vide
         accept: function(drag) {
-          var isACarte = drag.hasClass("carte-main");
+          var isACarte = drag.hasClass("carte-main") || drag.hasClass("cartes-decor");
           var hasAlreadyDraggable = $(this).has('.ui-draggable').length;
           return (isACarte & !hasAlreadyDraggable);
         },
@@ -267,24 +278,61 @@ $(function() {
             // Authorize again one card to drop inside this zone
         },
         drop: function(ev, ui) {
-            // Snap la carte dans l'emplacement
+            $(this).removeClass("active-zone");
             var dropped = ui.draggable;
             var droppedOn = $(this);
-            $(dropped).detach().css({
-                top: 0,
-                left: 0
-            }).appendTo(droppedOn);
 
-            // Envoyer la carte id et sa position
-            var data = {
-                statut: $(this).data("statut"),
-                position: $(this).data("position"),
-                carteId: ui.draggable.prop("id").split('_')[1]
+            // ---------Si c'est une carte decor
+            if($(dropped).hasClass("cartes-decor")) {
+              var decor = $(dropped).data("decor");
+              $(dropped).remove();
+              $(this).addClass(decor + " decor");
+
+              // Mettre à jour le statut de la carte, et refresh dans le client
+              var data = {
+                  'carteId': $(dropped).attr("id"),
+                  'decor': decor,
+                  'zoneJeu': $(this).data("position")
+              }
+              var url = $("#url").val();
+              $.get(url + "/partie/update-zone-decor", {
+                  data: data
+              });
             }
-            var url = $("#url").val();
-            $.get(url + "/partie/drag-carte", {
-                data: data
-            });
+            // --------Si une carte de deck
+            else {
+              // Snap la carte dans l'emplacement
+              $(dropped).detach().css({
+                  top: 0,
+                  left: 0
+              }).appendTo(droppedOn);
+
+              // On vérifie si c'est la dernière carte du déploiement
+            //  if($("#periode-partie").data() == "deploiement") {
+                var deplJ1 = $("#cartes-deploiement-1").children(".carte-main").length;
+                var deplJ2 = $("#cartes-deploiement-2").children(".carte-main").length;
+                if (deplJ1 + deplJ2 == 0) {
+                  var url = $("#url").val();
+                  var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                  $.post(url + "/partie/update-periode", {
+                      _token: CSRF_TOKEN,
+                      periode: "combat"
+                  });
+              //  }
+              }
+
+
+              // Envoyer la carte id et sa position
+              var data = {
+                  statut: $(this).data("statut"),
+                  position: $(this).data("position"),
+                  carteId: ui.draggable.prop("id").split('_')[1]
+              }
+              var url = $("#url").val();
+              $.get(url + "/partie/drag-carte", {
+                  data: data
+              });
+            }
         }
     });
 
@@ -619,6 +667,19 @@ $(function() {
         $("#presentation-joueur-1 .ptsDeploiement input[type='number']").val(data.valeurJ1);
         $("#presentation-joueur-2 .ptsDeploiement input[type='number']").val(data.valeurJ2);
       }
+      else if (data.type == 'decor') {
+        for(let decor of data.decorJ1) {
+          $("#cartes-decor-J1").append("<div class='"+decor+" cartes-decor' data-decor='"+decor+"'></div>");
+        }
+        for(let decor of data.decorJ2) {
+          console.log(decor);
+          $("#cartes-decor-J2").append("<div class='"+decor+" cartes-decor' data-decor='"+decor+"'></div>");
+        }
+
+        $(".cartes-decor").draggable({
+            revert: "invalid"
+          });
+      }
 
   });
 
@@ -643,6 +704,18 @@ $(function() {
       $('[data-position=' + data.zoneJeu + ']').removeClass("foret ruines colline lac decor");
       if (data.decor != "none") {
           $('[data-position=' + data.zoneJeu + ']').addClass(data.decor + " decor");
+      }
+  });
+
+  channel.bind('App\\Events\\UpdatePeriode', function(periode) {
+      if (periode == "deploiement") {
+        $("#periode-partie span").html("Déploiement");
+        $("#periode-partie").data("deploiement");
+      }
+      else if(periode == "combat") {
+        $("#periode-partie span").html("Combat");
+        $("#periode-partie").data("combat");
+        $(".section-pioche").show();
       }
   });
 

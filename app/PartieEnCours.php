@@ -21,6 +21,12 @@ class PartieEnCours extends Model {
     "en_cours" => "En cours motherfucker"
   );
 
+  private $periodes = array(
+    "choix_decor" => "Décor",
+    "deploiement" => "Déploiement",
+    "combat" => "Combat"
+  );
+
   public $timestamps = false;
 
   public function deck_en_cours_1() {
@@ -55,6 +61,10 @@ class PartieEnCours extends Model {
 
   public function getStatut() {
     return $this->statuts[$this->statut];
+  }
+
+  public function getPeriode() {
+    return $this->periodes[$this->periode];
   }
 
   public function getMode() {

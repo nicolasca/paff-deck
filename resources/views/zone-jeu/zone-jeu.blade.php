@@ -24,7 +24,7 @@
         @endif
         @endforeach
 
-        <div>
+        <div class="section-pioche {{$partie->periode == 'jeu' ? '' : 'is-hidden'}}">
           @if(Auth::user()->id == $partie->user_1_id)
           <button id="button1" type="button" name="button1" class="bouton-pioche button"
           data-userid="{{$partie->user_1_id}}">Piocher ({{$cartesRestantesJ1}})</button>
@@ -42,6 +42,11 @@
       @endif
       @endforeach
     </div>
+
+    @if(Auth::user()->id == $partie->user_1_id && $partie->periode =="choix_decor")
+    <div id="cartes-decor-J1">
+    </div>
+    @endif
 
     <div id="zone-de-jeu">
       @for ($i = 0; $i < 54; $i++)
@@ -90,7 +95,7 @@
       @endif
     @endforeach
 
-    <div>
+    <div class="section-pioche {{$partie->periode == 'jeu' ? '' : 'is-hidden'}}">
       @if(Auth::user()->id == $partie->user_2_id)
       <button id="button2" type="button" name="button2" class="button bouton-pioche"
       data-userid="{{$partie->user_2_id}}">Piocher ({{$cartesRestantesJ2}})</button>
@@ -108,6 +113,11 @@
     @endforeach
   </div>
 
+  @if(Auth::user()->id == $partie->user_2_id && $partie->periode =="choix_decor")
+  <div id="cartes-decor-J2">
+  </div>
+  @endif
+
 
   <div id="presentation-joueur-2" class="presentation-joueur">
     <div class="item">{{$partie->user_2->name}}</div>
@@ -117,6 +127,14 @@
 
 
 <div id="infos-partie">
+  @if($partie->periode =="choix_decor")
+  <div>
+    <button id="pioche-carte-decor" type="button" name="button" class="button">Cartes décor</button>
+  </div>
+  @endif
+  <div id="periode-partie" data-periode="{{$partie->getPeriode()}}">
+    <b>Phase:</b> <span>{{$partie->getPeriode()}}</span>
+  </div>
   <div id="tour">
     <b>Tour</b> <input type="number" name="" value="{{$partie->nb_tour}}">
   </div>

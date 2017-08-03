@@ -14,6 +14,7 @@ use App\Events\UpdateInfos;
 use App\Events\UpdateEtatCarte;
 use App\Events\UpdateZoneDecor;
 use App\Events\UpdateCartePiochee;
+use App\Events\UpdatePeriode;
 
 use App\Http\Helpers\DeckUtils;
 
@@ -51,6 +52,47 @@ class JouerPartieController extends Controller {
     ->with("cartesRestantesJ1", $cartesRestantesJ1)
     ->with("cartesRestantesJ2", $cartesRestantesJ2)
     ;
+  }
+
+  // Pioche les cartes decors pour chaque joueur, et renvoie 2 tableaux avec les valeurs
+  public function piocherCarteDecor(Request $request) {
+    $partieId = $request->session()->get('partieId');
+    $partie = PartieEnCours::find($partieId);
+
+    $decorJ1 = $decorJ2 = "";
+
+    // 2 cartes pour le mode classique, 1 carte pour le mode escarmouche
+    $nombreDecorsParJoueur = $partie->mode == "classique" ? 2 : 1;
+    // Liste des cartes decors pour le tirage au sort
+    $cartesDecor = ["foret","foret","foret","foret","lac","lac","lac","lac",
+                    "ruines","ruines","ruines","ruines","colline","colline","colline","colline"];
+
+    shuffle($cartesDecor);
+    $decorJ1 = array_slice($cartesDecor, 0, $nombreDecorsParJoueur);
+    $decorJ2 = array_slice($cartesDecor, $nombreDecorsParJoueur, $nombreDecorsParJoueur);
+
+    $partie->periode = "deploiement";
+    $partie->save();
+
+    $data = array(
+      "type" => "decor",
+      "decorJ1" => $decorJ1,
+      "decorJ2" => $decorJ2
+    );
+    broadcast(new UpdateInfos($data))->toOthers();
+
+    return $data;
+
+  }
+
+  // MAJ de la phase de la partie (decor, deploiement, combat)
+  public function updatePeriode(Request $request) {
+    $partieId = $request->session()->get('partieId');
+    $partie = PartieEnCours::find($partieId);
+    $partie->periode = $_POST['periode'];
+    $partie->save();
+
+    broadcast(new UpdatePeriode(array($_POST['periode'])))->toOthers();
   }
 
   // Piocher un carte dans le deck, pour la mettre dans la main

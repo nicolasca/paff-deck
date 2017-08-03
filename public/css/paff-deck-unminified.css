@@ -2901,7 +2901,7 @@ header nav h1 {
       grid-template-columns: 25% 25% 30% 20%;
   -ms-grid-rows: auto;
       grid-template-rows: auto;
-  grid-template-areas: "cartesMain1 cartesMain1 presJoueur1 presJoueur1" "cartesMain1 cartesMain1 . ." "cartesDeploiement1 cartesDeploiement1 . ." "zoneJeu zoneJeu zoneJeu ." "zoneJeu zoneJeu zoneJeu infosPartie" "zoneJeu zoneJeu zoneJeu ." "cartesDeploiement2 cartesDeploiement2 . ." "cartesMain2 cartesMain2 . ." "cartesMain2 cartesMain2 presJoueur2 presJoueur2" "defausse defausse defausse defausse";
+  grid-template-areas: "cartesMain1 cartesMain1 presJoueur1 presJoueur1" "cartesMain1 cartesMain1 . ." "cartesDeploiement1 cartesDeploiement1 decorJ1 ." "zoneJeu zoneJeu zoneJeu ." "zoneJeu zoneJeu zoneJeu infosPartie" "zoneJeu zoneJeu zoneJeu ." "cartesDeploiement2 cartesDeploiement2 decorJ2 ." "cartesMain2 cartesMain2 . ." "cartesMain2 cartesMain2 presJoueur2 presJoueur2" "defausse defausse defausse defausse";
   margin-top: 10px;
 }
 
@@ -2927,6 +2927,20 @@ header nav h1 {
 
 #table-jeu #cartes-deploiement-2 {
   grid-area: cartesDeploiement2;
+}
+
+#table-jeu #cartes-decor-J1 {
+  grid-area: decorJ1;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+#table-jeu #cartes-decor-J2 {
+  grid-area: decorJ2;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
 }
 
 #table-jeu #defausse {
@@ -3030,6 +3044,34 @@ header nav h1 {
   display: none;
 }
 
+#table-jeu .cartes-decor {
+  display: inline-block;
+  border: 1px solid black;
+  background: white;
+  height: 150px;
+  width: 106.5px;
+}
+
+#table-jeu .cartes-decor.decor {
+  border: 5px solid yellowgreen !important;
+}
+
+#table-jeu .cartes-decor.colline {
+  background: chartreuse !important;
+}
+
+#table-jeu .cartes-decor.foret {
+  background: forestgreen !important;
+}
+
+#table-jeu .cartes-decor.lac {
+  background: cornflowerblue !important;
+}
+
+#table-jeu .cartes-decor.ruines {
+  background: grey !important;
+}
+
 #table-jeu .zoneJeu {
   border: 1px solid black;
   background: white;
@@ -3105,6 +3147,11 @@ header nav h1 {
 #table-jeu .enFuite {
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
+}
+
+#table-jeu .cartes-deploiement .carte-main {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 #table-jeu .cartes-main, #table-jeu .cartes-deploiement, #table-jeu #cartes-defausse {

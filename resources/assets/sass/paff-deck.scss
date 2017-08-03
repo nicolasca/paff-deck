@@ -457,11 +457,11 @@ header {
   grid-template-rows: auto;
   grid-template-areas:  "cartesMain1 cartesMain1 presJoueur1 presJoueur1"
                         "cartesMain1 cartesMain1 . ."
-                        "cartesDeploiement1 cartesDeploiement1 . ."
+                        "cartesDeploiement1 cartesDeploiement1 decorJ1 ."
                         "zoneJeu zoneJeu zoneJeu ."
                         "zoneJeu zoneJeu zoneJeu infosPartie"
                         "zoneJeu zoneJeu zoneJeu ."
-                        "cartesDeploiement2 cartesDeploiement2 . ."
+                        "cartesDeploiement2 cartesDeploiement2 decorJ2 ."
                         "cartesMain2 cartesMain2 . ."
                         "cartesMain2 cartesMain2 presJoueur2 presJoueur2"
                         "defausse defausse defausse defausse";
@@ -483,6 +483,14 @@ header {
   }
   #cartes-deploiement-2 {
     grid-area: cartesDeploiement2;
+  }
+  #cartes-decor-J1 {
+    grid-area: decorJ1;
+    align-self:  center;
+  }
+  #cartes-decor-J2 {
+    grid-area: decorJ2;
+    align-self: center;
   }
   #defausse {
     grid-area: defausse;
@@ -571,6 +579,29 @@ header {
     }
   }
 
+  .cartes-decor {
+    display: inline-block;
+    border: 1px solid black;
+    background: white;
+    height: $hauteur-carte;
+    width : ($hauteur-carte * 0.71);
+    &.decor {
+      border: 5px solid yellowgreen !important;
+    }
+    &.colline {
+      background: chartreuse !important;
+    }
+    &.foret {
+      background: forestgreen !important;
+    }
+    &.lac {
+      background: cornflowerblue !important;
+    }
+    &.ruines {
+      background: grey !important;
+    }
+  }
+
   .zoneJeu {
     border: 1px solid black;
     background: white;
@@ -628,6 +659,13 @@ header {
   }
   .enFuite {
     transform: rotate(180deg);
+  }
+
+  .cartes-deploiement {
+    .carte-main {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
   }
 
   .cartes-main, .cartes-deploiement, #cartes-defausse {

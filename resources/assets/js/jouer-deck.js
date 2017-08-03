@@ -55,6 +55,15 @@ $(function() {
         });
     });
 
+
+    $("#pioche-carte-decor").click(function() {
+        $(this).hide();
+        $.get("piocher-carte-decor",
+            function(data) {
+
+            });
+    });
+
     //MAJ des border selon l'état des cartes
 
     // Les cartes sont draggable
@@ -68,9 +77,11 @@ $(function() {
 
     // Les zones sont droppable
     $(".zoneJeu").droppable({
-        // Accept une carte uniquement quand la zone est vide
+        // Accepte:
+        // - au début une carte décor
+        // - une carte uniquement quand la zone est vide
         accept: function(drag) {
-          var isACarte = drag.hasClass("carte-main");
+          var isACarte = drag.hasClass("carte-main") || drag.hasClass("cartes-decor");
           var hasAlreadyDraggable = $(this).has('.ui-draggable').length;
           return (isACarte & !hasAlreadyDraggable);
         },
@@ -83,24 +94,76 @@ $(function() {
             // Authorize again one card to drop inside this zone
         },
         drop: function(ev, ui) {
-            // Snap la carte dans l'emplacement
+            $(this).removeClass("active-zone");
             var dropped = ui.draggable;
             var droppedOn = $(this);
-            $(dropped).detach().css({
-                top: 0,
-                left: 0
-            }).appendTo(droppedOn);
 
-            // Envoyer la carte id et sa position
-            var data = {
-                statut: $(this).data("statut"),
-                position: $(this).data("position"),
-                carteId: ui.draggable.prop("id").split('_')[1]
+            // ---------Si c'est une carte decor
+            if($(dropped).hasClass("cartes-decor")) {
+
+              // MAJ de la zoneJeu avec la carte décor
+              var decor = $(dropped).data("decor");
+              $(dropped).remove();
+              $(this).addClass(decor + " decor");
+
+              // MAJ dans les autres browsers
+              var data = {
+                  'carteId': $(dropped).attr("id"),
+                  'decor': decor,
+                  'zoneJeu': $(this).data("position")
+              }
+              var url = $("#url").val();
+              $.get(url + "/partie/update-zone-decor", {
+                  data: data
+              });
+
+              // On vérifie si c'est la dernière carte de décor
+                var deplJ1 = $("#cartes-decor-J1").children(".cartes-decor").length;
+                var deplJ2 = $("#cartes-decor-J2").children(".cartes-decor").length;
+                // Dernière carte decor, on met à jour la phase
+                if (deplJ1 + deplJ2 == 0) {
+                  var url = $("#url").val();
+                  var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                  $.post(url + "/partie/update-periode", {
+                      _token: CSRF_TOKEN,
+                      periode: "deploiement"
+                  });
+                }
             }
-            var url = $("#url").val();
-            $.get(url + "/partie/drag-carte", {
-                data: data
-            });
+            // --------Si une carte de deck
+            else {
+              // Snap la carte dans l'emplacement
+              $(dropped).detach().css({
+                  top: 0,
+                  left: 0
+              }).appendTo(droppedOn);
+
+              // On vérifie si c'est la dernière carte du déploiement
+              if($("#periode-partie").data() == "deploiement") {
+                var deplJ1 = $("#cartes-deploiement-1").children(".carte-main").length;
+                var deplJ2 = $("#cartes-deploiement-2").children(".carte-main").length;
+                if (deplJ1 + deplJ2 == 0) {
+                  var url = $("#url").val();
+                  var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                  $.post(url + "/partie/update-periode", {
+                      _token: CSRF_TOKEN,
+                      periode: "combat"
+                  });
+                }
+              }
+
+
+              // Envoyer la carte id et sa position
+              var data = {
+                  statut: $(this).data("statut"),
+                  position: $(this).data("position"),
+                  carteId: ui.draggable.prop("id").split('_')[1]
+              }
+              var url = $("#url").val();
+              $.get(url + "/partie/drag-carte", {
+                  data: data
+              });
+            }
         }
     });
 
