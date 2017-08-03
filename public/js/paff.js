@@ -115,11 +115,13 @@ $(function() {
         miseJourRecapBox();
     });
 
-    // Quand on appuie sur la touche "Entrée" dans un input des decks, on enlève le comportement
+    // Quand on appuie sur la touche "Entrée" dans un input number des decks, on enlève le comportement
     // par default (submit le form), et on MAJ le recap box
     $(window).keydown(function(event) {
         var divDeck = $("#deck_cartes");
-        if (divDeck.length) {
+        var isInputNumber = event.target.type == "number";
+
+        if (divDeck.length && isInputNumber) {
             if (event.keyCode == 13) {
                 event.preventDefault();
                 // if input number, on MAJ le recap

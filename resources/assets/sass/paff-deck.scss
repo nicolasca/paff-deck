@@ -225,11 +225,15 @@ header {
       margin-bottom: 0;
       text-align: center;
     }
-
     input {
       padding: 5px;
       margin-top: 10px;
       text-align: center;
+    }
+    #description-deckShow {
+      p {
+        text-align: left;
+      }
     }
   }
 

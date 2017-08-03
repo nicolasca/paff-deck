@@ -2668,6 +2668,14 @@ header nav h1 {
   text-align: center;
 }
 
+#deck_cartes .titre_deck #description-deckShow {
+  width: 50%;
+}
+
+#deck_cartes .titre_deck #description-deckShow p {
+  text-align: left;
+}
+
 #deck_cartes #recap-edit {
   text-align: center;
   background-color: white;

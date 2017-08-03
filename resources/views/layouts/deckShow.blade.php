@@ -3,9 +3,10 @@
   <div class="titre_deck center w50">
     <h2 class="center">{{$deckShow->nom}}</h2>
     <span>Mode {{$deckShow->getMode()}}</span>
-    <p>Description: <br />
-      {{$deckShow->description}}
-    </p>
+    <div id="description-deckShow" class="center w50">
+      Description:
+      <p>{!! nl2br(e($deckShow->description)) !!}</p>
+    </div>
   </div>
 
   <div>
