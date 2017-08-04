@@ -284,11 +284,13 @@ $(function() {
 
             // ---------Si c'est une carte decor
             if($(dropped).hasClass("cartes-decor")) {
+
+              // MAJ de la zoneJeu avec la carte décor
               var decor = $(dropped).data("decor");
               $(dropped).remove();
               $(this).addClass(decor + " decor");
 
-              // Mettre à jour le statut de la carte, et refresh dans le client
+              // MAJ dans les autres browsers
               var data = {
                   'carteId': $(dropped).attr("id"),
                   'decor': decor,
@@ -298,6 +300,19 @@ $(function() {
               $.get(url + "/partie/update-zone-decor", {
                   data: data
               });
+
+              // On vérifie si c'est la dernière carte de décor
+                var deplJ1 = $("#cartes-decor-J1").children(".cartes-decor").length;
+                var deplJ2 = $("#cartes-decor-J2").children(".cartes-decor").length;
+                // Dernière carte decor, on met à jour la phase
+                if (deplJ1 + deplJ2 == 0) {
+                  var url = $("#url").val();
+                  var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                  $.post(url + "/partie/update-phase", {
+                      _token: CSRF_TOKEN,
+                      phase: "deploiement"
+                  });
+                }
             }
             // --------Si une carte de deck
             else {
@@ -308,17 +323,17 @@ $(function() {
               }).appendTo(droppedOn);
 
               // On vérifie si c'est la dernière carte du déploiement
-            //  if($("#periode-partie").data() == "deploiement") {
+              if($("#phase-partie").data() == "deploiement") {
                 var deplJ1 = $("#cartes-deploiement-1").children(".carte-main").length;
                 var deplJ2 = $("#cartes-deploiement-2").children(".carte-main").length;
                 if (deplJ1 + deplJ2 == 0) {
                   var url = $("#url").val();
                   var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                  $.post(url + "/partie/update-periode", {
+                  $.post(url + "/partie/update-phase", {
                       _token: CSRF_TOKEN,
-                      periode: "combat"
+                      phase: "combat"
                   });
-              //  }
+                }
               }
 
 
@@ -707,14 +722,14 @@ $(function() {
       }
   });
 
-  channel.bind('App\\Events\\UpdatePeriode', function(periode) {
-      if (periode == "deploiement") {
-        $("#periode-partie span").html("Déploiement");
-        $("#periode-partie").data("deploiement");
+  channel.bind('App\\Events\\UpdatePhase', function(phase) {
+      if (phase == "deploiement") {
+        $("#phase-partie span").html("Déploiement");
+        $("#phase-partie").data("deploiement");
       }
-      else if(periode == "combat") {
-        $("#periode-partie span").html("Combat");
-        $("#periode-partie").data("combat");
+      else if(phase == "combat") {
+        $("#phase-partie span").html("Combat");
+        $("#phase-partie").data("combat");
         $(".section-pioche").show();
       }
   });

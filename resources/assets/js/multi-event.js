@@ -124,14 +124,14 @@ $(function() {
       }
   });
 
-  channel.bind('App\\Events\\UpdatePeriode', function(periode) {
-      if (periode == "deploiement") {
-        $("#periode-partie span").html("Déploiement");
-        $("#periode-partie").data("deploiement");
+  channel.bind('App\\Events\\UpdatePhase', function(phase) {
+      if (phase == "deploiement") {
+        $("#phase-partie span").html("Déploiement");
+        $("#phase-partie").data("deploiement");
       }
-      else if(periode == "combat") {
-        $("#periode-partie span").html("Combat");
-        $("#periode-partie").data("combat");
+      else if(phase == "combat") {
+        $("#phase-partie span").html("Combat");
+        $("#phase-partie").data("combat");
         $(".section-pioche").show();
       }
   });

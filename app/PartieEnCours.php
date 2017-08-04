@@ -21,7 +21,7 @@ class PartieEnCours extends Model {
     "en_cours" => "En cours motherfucker"
   );
 
-  private $periodes = array(
+  private $phases = array(
     "choix_decor" => "Décor",
     "deploiement" => "Déploiement",
     "combat" => "Combat"
@@ -63,8 +63,8 @@ class PartieEnCours extends Model {
     return $this->statuts[$this->statut];
   }
 
-  public function getPeriode() {
-    return $this->periodes[$this->periode];
+  public function getPhase() {
+    return $this->phases[$this->phase];
   }
 
   public function getMode() {

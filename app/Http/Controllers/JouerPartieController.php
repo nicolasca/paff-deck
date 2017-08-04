@@ -14,7 +14,7 @@ use App\Events\UpdateInfos;
 use App\Events\UpdateEtatCarte;
 use App\Events\UpdateZoneDecor;
 use App\Events\UpdateCartePiochee;
-use App\Events\UpdatePeriode;
+use App\Events\UpdatePhase;
 
 use App\Http\Helpers\DeckUtils;
 
@@ -45,12 +45,16 @@ class JouerPartieController extends Controller {
     $cartesRestantesJ1 = $partie->deck_en_cours_1->cartes_en_cours->where("statut", "DECK")->count();
     $cartesRestantesJ2 = $partie->deck_en_cours_2->cartes_en_cours->where("statut", "DECK")->count();
 
+    //Affichage des zones décor
+    $arrayDecors = json_decode($partie->zones_decor, true);
+
     return view("zone-jeu.zone-jeu")
     ->with('partie', $partie)
     ->with("positionsParZone", $positionsParZone)
     ->with("delimitationZone", $delimitationZone)
     ->with("cartesRestantesJ1", $cartesRestantesJ1)
     ->with("cartesRestantesJ2", $cartesRestantesJ2)
+    ->with("zonesDecors", $arrayDecors)
     ;
   }
 
@@ -71,7 +75,7 @@ class JouerPartieController extends Controller {
     $decorJ1 = array_slice($cartesDecor, 0, $nombreDecorsParJoueur);
     $decorJ2 = array_slice($cartesDecor, $nombreDecorsParJoueur, $nombreDecorsParJoueur);
 
-    $partie->periode = "deploiement";
+    $partie->phase = "deploiement";
     $partie->save();
 
     $data = array(
@@ -86,13 +90,13 @@ class JouerPartieController extends Controller {
   }
 
   // MAJ de la phase de la partie (decor, deploiement, combat)
-  public function updatePeriode(Request $request) {
+  public function updatePhase(Request $request) {
     $partieId = $request->session()->get('partieId');
     $partie = PartieEnCours::find($partieId);
-    $partie->periode = $_POST['periode'];
+    $partie->phase = $_POST['phase'];
     $partie->save();
 
-    broadcast(new UpdatePeriode(array($_POST['periode'])))->toOthers();
+    broadcast(new UpdatePhase(array($_POST['phase'])))->toOthers();
   }
 
   // Piocher un carte dans le deck, pour la mettre dans la main
@@ -222,16 +226,30 @@ class JouerPartieController extends Controller {
   }
 
   // Quand on update une zone de décor
-  // - on trigger un event pour le refresh dans le browser (non presisté)
-  public function updateZoneDecor() {
+  // - on l'enregistre en json dans la bdd
+  // - on trigger un event pour le refresh dans le browser
+  public function updateZoneDecor(Request $request) {
     $data = $_GET['data'];
+    $partieId = $request->session()->get('partieId');
+    $partie = PartieEnCours::find($partieId);
+
+    // On sauvegarde en BDD
+    $arrayDecors = json_decode($partie->zones_decor, true);
+
+    if($data["decor"] == "none") {
+      unset($arrayDecors[$data["zoneJeu"]]);
+    } else {
+      $arrayDecors[$data["zoneJeu"]] = $data["decor"];
+    }
+    $partie->zones_decor = json_encode($arrayDecors);
+    $partie->save();
 
     broadcast(new UpdateZoneDecor($data))->toOthers();
   }
 
   // Quand on update des informations de la partie
   // - on save en base
-  // - on trigger un event pour le refresh dans le browser (non presisté)
+  // - on trigger un event pour le refresh dans le browser
   public function updateInfos(Request $request) {
     $data = $_GET['data'];
     $partieId = $request->session()->get('partieId');

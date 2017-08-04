@@ -69,4 +69,4 @@ Route::get('partie/update-etat-carte', 'JouerPartieController@updateEtatCarte');
 Route::get('partie/update-zone-decor', 'JouerPartieController@updateZoneDecor');
 Route::get('partie/update-infos', 'JouerPartieController@updateInfos');
 Route::get('partie/getCarteView', 'JouerPartieController@getCarteView');
-Route::post('partie/update-periode', 'JouerPartieController@updatePeriode');
+Route::post('partie/update-phase', 'JouerPartieController@updatePhase');

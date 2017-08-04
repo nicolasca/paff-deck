@@ -24,7 +24,7 @@
         @endif
         @endforeach
 
-        <div class="section-pioche {{$partie->periode == 'jeu' ? '' : 'is-hidden'}}">
+        <div class="section-pioche {{$partie->phase == 'jeu' ? '' : 'is-hidden'}}">
           @if(Auth::user()->id == $partie->user_1_id)
           <button id="button1" type="button" name="button1" class="bouton-pioche button"
           data-userid="{{$partie->user_1_id}}">Piocher ({{$cartesRestantesJ1}})</button>
@@ -43,7 +43,7 @@
       @endforeach
     </div>
 
-    @if(Auth::user()->id == $partie->user_1_id && $partie->periode =="choix_decor")
+    @if(Auth::user()->id == $partie->user_1_id && $partie->phase =="choix_decor")
     <div id="cartes-decor-J1">
     </div>
     @endif
@@ -55,7 +55,9 @@
         </div>
         @endif
         <div class=" zoneJeu {{in_array($i, $positionsParZone['flancCoco']) ? 'flanc-coco' : ''}}
-                    {{in_array($i, $positionsParZone['flancQuetsch']) ? 'flanc-quetsch' : ''}} "
+                    {{in_array($i, $positionsParZone['flancQuetsch']) ? 'flanc-quetsch' : ''}}
+                    {{isset($zonesDecors[$i]) ? 'decor '.$zonesDecors[$i] : ''}}
+                    "
           id="position_{{$i}}"
           data-position="{{$i}}"
           data-statut="zone-jeu">
@@ -95,7 +97,7 @@
       @endif
     @endforeach
 
-    <div class="section-pioche {{$partie->periode == 'jeu' ? '' : 'is-hidden'}}">
+    <div class="section-pioche {{$partie->phase == 'jeu' ? '' : 'is-hidden'}}">
       @if(Auth::user()->id == $partie->user_2_id)
       <button id="button2" type="button" name="button2" class="button bouton-pioche"
       data-userid="{{$partie->user_2_id}}">Piocher ({{$cartesRestantesJ2}})</button>
@@ -113,7 +115,7 @@
     @endforeach
   </div>
 
-  @if(Auth::user()->id == $partie->user_2_id && $partie->periode =="choix_decor")
+  @if(Auth::user()->id == $partie->user_2_id && $partie->phase =="choix_decor")
   <div id="cartes-decor-J2">
   </div>
   @endif
@@ -127,13 +129,13 @@
 
 
 <div id="infos-partie">
-  @if($partie->periode =="choix_decor")
+  @if($partie->phase =="choix_decor")
   <div>
     <button id="pioche-carte-decor" type="button" name="button" class="button">Cartes décor</button>
   </div>
   @endif
-  <div id="periode-partie" data-periode="{{$partie->getPeriode()}}">
-    <b>Phase:</b> <span>{{$partie->getPeriode()}}</span>
+  <div id="phase-partie" data-phase="{{$partie->getPhase()}}">
+    <b>Phase:</b> <span>{{$partie->getPhase()}}</span>
   </div>
   <div id="tour">
     <b>Tour</b> <input type="number" name="" value="{{$partie->nb_tour}}">
