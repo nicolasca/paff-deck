@@ -57,7 +57,6 @@ $(function() {
 
 
     $("#pioche-carte-decor").click(function() {
-        $(this).hide();
         $.get("piocher-carte-decor",
             function(data) {
 
@@ -139,7 +138,7 @@ $(function() {
               }).appendTo(droppedOn);
 
               // On vérifie si c'est la dernière carte du déploiement
-              if($("#phase-partie").data() == "deploiement") {
+              if($("#phase-partie").data("phase") == "deploiement") {
                 var deplJ1 = $("#cartes-deploiement-1").children(".carte-main").length;
                 var deplJ2 = $("#cartes-deploiement-2").children(".carte-main").length;
                 if (deplJ1 + deplJ2 == 0) {
@@ -238,6 +237,7 @@ $(function() {
         $("#tooltip-carte-action .bouton-defausse").click(function() {
             var flancCombat = $(this).prop("name");
             var parent = $(carte).parent();
+
             $("#" + $(parent).attr("id")).appendTo("#cartes-defausse");
             $("#" + $(parent).attr("id")).wrap("<div class='zoneDefausse'></div>");
             $("#tooltip-carte-action").toggle();

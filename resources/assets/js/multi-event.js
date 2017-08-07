@@ -126,13 +126,14 @@ $(function() {
 
   channel.bind('App\\Events\\UpdatePhase', function(phase) {
       if (phase == "deploiement") {
+        $("#pioche-carte-decor").hide();
         $("#phase-partie span").html("Déploiement");
-        $("#phase-partie").data("deploiement");
+        $("#phase-partie").data("phase", "deploiement");
       }
       else if(phase == "combat") {
         $("#phase-partie span").html("Combat");
-        $("#phase-partie").data("combat");
-        $(".section-pioche").show();
+        $("#phase-partie").data("phase", "combat");
+        $(".cartes-main").removeClass("not-visible");
       }
   });
 

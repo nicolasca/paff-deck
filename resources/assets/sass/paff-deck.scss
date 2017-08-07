@@ -677,6 +677,9 @@ header {
   }
 
   .cartes-main, .cartes-deploiement {
+    &.not-visible {
+      display: none;
+    }
     .not-visible {
       background-color: black;
       img {

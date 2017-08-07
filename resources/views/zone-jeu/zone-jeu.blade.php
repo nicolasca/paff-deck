@@ -16,23 +16,22 @@
 
 
 
-      <div id="cartes-main-1" class="cartes-main grid has-gutter">
-        @foreach($partie->deck_en_cours_1->cartes_en_cours as $carte)
-        @if($carte->statut == "MAIN")
-        @include('zone-jeu.carte', ['userId' => $partie->user_1_id,
-        'carte' => $carte])
+
+    <div id="cartes-main-1" class="cartes-main grid has-gutter {{$partie->phase == 'combat' ? '' : 'not-visible'}}">
+      @foreach($partie->deck_en_cours_1->cartes_en_cours as $carte)
+      @if($carte->statut == "MAIN")
+      @include('zone-jeu.carte', ['userId' => $partie->user_1_id,
+      'carte' => $carte])
+      @endif
+      @endforeach
+
+      <div>
+        @if(Auth::user()->id == $partie->user_1_id)
+        <button id="button1" type="button" name="button1" class="bouton-pioche button"
+        data-userid="{{$partie->user_1_id}}">Piocher ({{$cartesRestantesJ1}})</button>
         @endif
-        @endforeach
-
-        <div class="section-pioche {{$partie->phase == 'jeu' ? '' : 'is-hidden'}}">
-          @if(Auth::user()->id == $partie->user_1_id)
-          <button id="button1" type="button" name="button1" class="bouton-pioche button"
-          data-userid="{{$partie->user_1_id}}">Piocher ({{$cartesRestantesJ1}})</button>
-          @endif
-        </div>
       </div>
-
-
+    </div>
 
     <div id="cartes-deploiement-1" class="cartes-deploiement grid-5 has-gutter">
       @foreach($partie->deck_en_cours_1->cartes_en_cours as $carte)
@@ -89,7 +88,8 @@
 
   </div>
 
-  <div id="cartes-main-2"  class="cartes-main grid has-gutter">
+
+  <div id="cartes-main-2"  class="cartes-main grid has-gutter {{$partie->phase == 'combat' ? '' : 'not-visible'}}">
     @foreach($partie->deck_en_cours_2->cartes_en_cours as $carte)
       @if($carte->statut == "MAIN")
         @include('zone-jeu.carte', ['userId' => $partie->user_2_id,
@@ -97,7 +97,7 @@
       @endif
     @endforeach
 
-    <div class="section-pioche {{$partie->phase == 'jeu' ? '' : 'is-hidden'}}">
+    <div>
       @if(Auth::user()->id == $partie->user_2_id)
       <button id="button2" type="button" name="button2" class="button bouton-pioche"
       data-userid="{{$partie->user_2_id}}">Piocher ({{$cartesRestantesJ2}})</button>
@@ -134,7 +134,7 @@
     <button id="pioche-carte-decor" type="button" name="button" class="button">Cartes décor</button>
   </div>
   @endif
-  <div id="phase-partie" data-phase="{{$partie->getPhase()}}">
+  <div id="phase-partie" data-phase="{{$partie->phase}}">
     <b>Phase:</b> <span>{{$partie->getPhase()}}</span>
   </div>
   <div id="tour">

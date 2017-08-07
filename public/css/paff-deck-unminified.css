@@ -3163,6 +3163,10 @@ header nav h1 {
   max-width: 106.5px;
 }
 
+#table-jeu .cartes-main.not-visible, #table-jeu .cartes-deploiement.not-visible {
+  display: none;
+}
+
 #table-jeu .cartes-main .not-visible, #table-jeu .cartes-deploiement .not-visible {
   background-color: black;
 }
