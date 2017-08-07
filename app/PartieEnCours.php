@@ -15,10 +15,10 @@ class PartieEnCours extends Model {
 
   private $statuts = array(
     "attente_joueur" => "En attente d'un joueur",
-    "choix_deck" => "Choix des decks",
-    "choix_deploiement" => "Choix des déploiements",
+    "choix_deck" => "Choix deck",
+    "choix_deploiement" => "Choix déploiement",
     'attente_lancement' => "Attente de lancement",
-    "en_cours" => "En cours motherfucker"
+    "en_cours" => "En cours"
   );
 
   private $phases = array(

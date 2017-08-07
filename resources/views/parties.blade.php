@@ -1,7 +1,14 @@
 @extends('layouts.app')
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<table class="table-parties">
+
+<h1 class="center w50 txtcenter">Liste des parties</h1>
+
+<div id="creer-partie">
+  <a id="creer-partie-btn" href="{{ url('/creation-partie') }}"><i class="fa fa-plus-square-o fa-2x" aria-hidden="true"></i></a>
+</div>
+
+<table id="table-parties">
   <thead>
     <tr>
       <th>Nom</th>
@@ -9,7 +16,7 @@
       <th>Joueur 2</th>
       <th>Mode</th>
       <th>Statut</th>
-      <th></th>
+      <th>Action</th>
     </tr>
   </thead>
 
@@ -23,40 +30,50 @@
 
     <!-- Affichage du bouton correspond selon le statut et userId -->
     @if($boutonAction[$partie->id] == "rejoindre")
-    <td><a href="{{ url('/rejoindre-partie')}}/{{$partie->id}}" >Rejoindre</a></td>
+    <td><a href="{{ url('/rejoindre-partie')}}/{{$partie->id}}" >Rejoindre</a>
+      <span id="detruire-partie" data-partieid="{{$partie->id}}"><i class="fa fa-trash-o" aria-hidden="true" title="Supprimer une partie"></i></span>
+    </td>
     @elseif($boutonAction[$partie->id] == "choix_deck")
     <td>
       <form action="partie/choix-deck" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <input type="hidden" name="id_partie" value="{{$partie->id}}">
-        <input type="submit" value="Choisir un deck">
+        <input type="submit" class="fa submit-with-icon" value="&#xf24d;" class="submit-with-icon" title="Choisir un deck"></i></button>
       </form>
-    </td>
+      <span id="detruire-partie" data-partieid="{{$partie->id}}"><i class="fa fa-trash-o" aria-hidden="true" title="Supprimer une partie"></i></span>
+      </td>
+
     @elseif($boutonAction[$partie->id] == "choix_deploiement")
     <td>
       <form action="partie/choix-deploiement" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <input type="hidden" name="id_partie" value="{{$partie->id}}">
-        <input type="submit" value="Choisir son déploiement">
+        <input type="submit" class="fa submit-with-icon" value="&#xf24d;" class="submit-with-icon" title="Choisir son déploiement"></i></button>
       </form>
-    </td>
+      <span id="detruire-partie" data-partieid="{{$partie->id}}"><i class="fa fa-trash-o" aria-hidden="true" title="Supprimer une partie"></i></span>
+      </td>
+
     @elseif($boutonAction[$partie->id] == "attente_lancement")
     <td>
-      <a href="partie/recap-avant-partie/{{$partie->id}}">Lancer la partie</a>
-    </td>
+      <a href="partie/recap-avant-partie/{{$partie->id}}"><i class="fa fa-gamepad" aria-hidden="true"  title="Lancer la partie"></i></a>
+      <span id="detruire-partie" data-partieid="{{$partie->id}}"><i class="fa fa-trash-o" aria-hidden="true" title="Supprimer une partie"></i></span>
+      </td>
+
     @elseif($boutonAction[$partie->id] == "en_cours")
     <td>
-      <a href="partie/zone-jeu?idPartie={{$partie->id}}">Aller sur la partie</a>
+      <a href="partie/zone-jeu?idPartie={{$partie->id}}"><i class="fa fa-arrow-circle-right" aria-hidden="true" title="Rejoindre la partie"></i></a>
+      <span id="detruire-partie" data-partieid="{{$partie->id}}"><i class="fa fa-trash-o" aria-hidden="true" title="Supprimer une partie"></i></span>
+      </td>
+    @elseif($partie->statut =="attente_joueur")
+    <td>
+      <span id="detruire-partie" data-partieid="{{$partie->id}}"><i class="fa fa-trash-o" aria-hidden="true" title="Supprimer une partie"></i></span>
     </td>
     @endif
-    <td>
-      <span id="detruire-partie" data-partieid="{{$partie->id}}"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
-    </td>
+
+
 
   </tr>
   @endforeach
 </table>
-
-<a id="creer-partie-btn" class="card button" href="{{ url('/creation-partie') }}">Créer une partie</a>
 
 @endsection

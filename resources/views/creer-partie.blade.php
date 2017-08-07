@@ -2,6 +2,8 @@
 @section('content')
 <div id="creer-partie">
 
+  <h1 class="center w50 txtcenter">Créer une partie</h1>
+
   <form class="form" action="creer-partie" method="post">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
 

@@ -2890,8 +2890,57 @@ header nav h1 {
   font-weight: bold;
 }
 
-.table-parties #detruire-partie:hover {
+#table-parties {
+  width: 95%;
+  margin: 10px 20px 0 20px;
+  background: white;
+  border-collapse: collapse;
+  border-spacing: 0;
+  /* Cells in even rows (2,4,6...) are one color */
+  /* Cells in odd rows (1,3,5...) are another (excludes header cells)  */
+}
+
+#table-parties td {
+  border: 1px solid grey;
+}
+
+#table-parties th {
+  background-color: rgba(15, 96, 30, 0.9);
+  color: white;
+  font-weight: bold;
+}
+
+#table-parties tr:nth-child(even) td {
+  background: #F1F1F1;
+}
+
+#table-parties tr:nth-child(odd) td {
+  background: white;
+}
+
+#table-parties form {
+  display: inline-block;
+}
+
+#table-parties .submit-with-icon {
   cursor: pointer;
+  background: transparent;
+  border: 0px;
+  padding: 0;
+  outline: 0;
+}
+
+#table-parties #detruire-partie:hover {
+  cursor: pointer;
+}
+
+#creer-partie {
+  margin-left: 20px;
+  margin-top: 15px;
+}
+
+#creer-partie i {
+  color: #AF9A0E;
 }
 
 #table-jeu {

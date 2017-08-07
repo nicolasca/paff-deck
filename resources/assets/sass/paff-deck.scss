@@ -440,11 +440,48 @@ header {
   }
 }
 
-.table-parties {
+#table-parties {
+  width: 95%;
+  margin: 10px 20px 0 20px;
+  background: white;
+  border-collapse: collapse;
+  border-spacing: 0;
+  td {
+    border: 1px solid grey;
+  }
+  th {
+    background-color: rgba($color2, 0.9);
+    color: white;
+    font-weight: bold;
+  }
+    /* Cells in even rows (2,4,6...) are one color */
+  tr:nth-child(even) td { background: #F1F1F1; }
+  /* Cells in odd rows (1,3,5...) are another (excludes header cells)  */
+  tr:nth-child(odd) td { background: white; }
+
+  form {
+    display: inline-block;
+  }
+  .submit-with-icon {
+  cursor: pointer;
+  background: transparent;
+    border: 0px;
+    padding: 0;
+    outline: 0;
+}
+
   #detruire-partie {
     &:hover {
       cursor: pointer;
     }
+  }
+}
+
+#creer-partie {
+  margin-left: 20px;
+  margin-top: 15px;
+  i {
+    color: $color3;
   }
 }
 
