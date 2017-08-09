@@ -27,7 +27,8 @@ gulp.task('css', function() {
 });
 
 gulp.task('js', function() {
-    gulp.src(['./resources/assets/js/paff-deck.js', './resources/assets/js/jouer-deck.js','./resources/assets/js/multi-event.js'])
+    gulp.src(['./resources/assets/js/paff-deck.js', './resources/assets/js/jouer-deck.js',
+            './resources/assets/js/multi-event.js','./resources/assets/js/profile.js'])
         .pipe(concat('paff.js'))
         .pipe(gulp.dest('./public/js'));
 });

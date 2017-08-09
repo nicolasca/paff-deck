@@ -125,7 +125,7 @@ header {
     h1:hover {
 
     }
-    a,span, h1  {
+    span, h1  {
       display: block;
       padding: .4em 1em .4em 1em;
     }
@@ -186,6 +186,83 @@ header {
   display: flex;
   justify-content: center;
 }
+//-----------------------
+
+//------- PAGE MEMBRES --------------
+#liste-membres {
+  text-align: center;
+  padding-top: 50px;
+  .membre {
+    display: inline-block;
+    cursor: pointer;
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 5px;
+    margin: 20px;
+    width: 15%;
+    a {
+      display: inline-block;
+      font-size: 3rem;
+      color: #D2691E;
+      padding: 15px;
+      width: 100%;
+    }
+  }
+  .membre:hover {
+    background-color:rgba(#D2691E, 0.9);
+    a { 
+      color: white;
+    }
+  }
+
+}
+
+//---------------------------------
+
+// ------ PAGE PROFIl-------------
+#profile-page {
+  padding-top: 50px;
+
+  #profil-user {
+    display: grid;
+    grid-template-columns: 10% 30% 10% 40% 10% ;
+    grid-template-rows: 50% 50%;
+    grid-template-areas:  ". avatarUser . infosDecks ."
+                          ". infosUser .  infosDecks .";
+    align-items: center;
+    #avatar-user {
+      grid-area: avatarUser;
+      justify-self: center;
+      img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+      }
+    }
+    #infos-user {
+      grid-area: infosUser;
+    }
+    #infos-decks {
+      grid-area: infosDecks;
+      text-align: center;
+    }
+    .section {
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      border: 2px solid $color2;
+
+      h3 {
+        color: $color2;
+        border-bottom: 1px solid $color3;
+      }
+    }
+
+  }
+}
+
+
+
 //-----------------------
 
 // -------------- AFFICHAGE DU DECK dans deckEdit, deckShow, deploiement -----------------

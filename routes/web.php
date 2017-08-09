@@ -22,6 +22,11 @@ Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('/home', 'HomeController@index');
 
+//------------ MEMBRES ET PROFIL ---------------------
+Route::get('/membres', 'MembresController@index');
+Route::get('/profil/{id}', 'ProfilController@index');
+Route::get('/profil/chart/{userId}', 'ProfilController@getChartData');
+
 // --------- MES DECKS --------------
 Route::get('mes-decks', [
   'as' => 'mes-decks',

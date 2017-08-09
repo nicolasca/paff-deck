@@ -20,7 +20,7 @@
   @if (Auth::check())
   <header>
     <nav>
-      <span><i class="fa fa-user" aria-hidden="true"></i></i> {{ Auth::user()->name }} </span>
+      <span><i class="fa fa-user" aria-hidden="true"></i></i> <a href="{{ url('/profil')}}/{{Auth::user()->id }}">{{ Auth::user()->name }}</a> </span>
       <h1><a href="{{ url('/home') }}">PAFF</a></h1>
       <a href="{{ url('/logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
     </nav>
@@ -33,6 +33,7 @@
 <script src="{{URL::asset('js/jquery-3.2.1.min.js')}}"></script>
 <script src="{{URL::asset('js/jquery-ui.min.js')}}"></script>
 <script type="application/javascript" src="{{URL::asset('js/paff.js')}}"></script>
+
 <script src="https://js.pusher.com/4.0/pusher.min.js"></script>
 <script>
 // Enable pusher logging - don't include this in production
