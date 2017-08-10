@@ -2538,6 +2538,7 @@ h1, h2 {
 header {
   background-color: white;
   border-bottom: 1px solid #0F601E;
+  height: 15%;
 }
 
 header nav {
@@ -2607,9 +2608,9 @@ header nav h1 {
 }
 
 #home {
-  background-image: url("../images/orc.jpg");
-  background-attachment: fixed;
-  min-height: 100vh;
+  background: url("../images/orc.jpg");
+  background-size: cover;
+  height: 85vh;
   padding-top: 50px;
 }
 
@@ -2679,6 +2680,7 @@ header nav h1 {
   width: 150px;
   height: 150px;
   border-radius: 50%;
+  border: 1px solid #0F601E;
 }
 
 #profile-page #profil-user #infos-user {
@@ -2694,7 +2696,7 @@ header nav h1 {
   background-color: white;
   border-radius: 10px;
   padding: 20px;
-  border: 2px solid #0F601E;
+  border: 1px solid #0F601E;
 }
 
 #profile-page #profil-user .section h3 {
@@ -2988,6 +2990,10 @@ header nav h1 {
   background-color: rgba(15, 96, 30, 0.9);
   color: white;
   font-weight: bold;
+}
+
+#table-parties a {
+  color: #D2691E;
 }
 
 #table-parties tr:nth-child(even) td {
