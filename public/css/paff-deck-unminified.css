@@ -2535,6 +2535,33 @@ h1, h2 {
   padding: 1rem;
 }
 
+table {
+  /* Cells in even rows (2,4,6...) are one color */
+  /* Cells in odd rows (1,3,5...) are another (excludes header cells)  */
+}
+
+table td {
+  border: 1px solid grey;
+}
+
+table th {
+  background-color: rgba(15, 96, 30, 0.9);
+  color: white;
+  font-weight: bold;
+}
+
+table a {
+  color: #D2691E;
+}
+
+table tr:nth-child(even) td {
+  background: #F1F1F1;
+}
+
+table tr:nth-child(odd) td {
+  background: white;
+}
+
 header {
   background-color: white;
   border-bottom: 1px solid #0F601E;
@@ -2983,30 +3010,6 @@ header nav h1 {
   background: white;
   border-collapse: collapse;
   border-spacing: 0;
-  /* Cells in even rows (2,4,6...) are one color */
-  /* Cells in odd rows (1,3,5...) are another (excludes header cells)  */
-}
-
-#table-parties td {
-  border: 1px solid grey;
-}
-
-#table-parties th {
-  background-color: rgba(15, 96, 30, 0.9);
-  color: white;
-  font-weight: bold;
-}
-
-#table-parties a {
-  color: #D2691E;
-}
-
-#table-parties tr:nth-child(even) td {
-  background: #F1F1F1;
-}
-
-#table-parties tr:nth-child(odd) td {
-  background: white;
 }
 
 #table-parties form {
@@ -3034,12 +3037,82 @@ header nav h1 {
   color: #D2691E;
 }
 
-#ajouter-resultat {
-  margin-left: 20px;
+#table-resultats {
+  width: 95%;
+  margin: 0 20px 0 20px;
 }
 
-#ajouter-resultat i {
-  color: #D2691E;
+#grid-resultat {
+  margin: 20px 0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 25% 50% 25%;
+      grid-template-columns: 25% 50% 25%;
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
+  -ms-grid-column-align: center;
+      justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+#grid-resultat #infos-resultat {
+  background-color: white;
+  border: 1px solid #D2691E;
+  padding: 15px 50px;
+  border-radius: 10px;
+}
+
+#grid-resultat #infos-resultat .radio {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  -ms-grid-column: 1fr 1fr;
+      grid-column: 1fr 1fr;
+  grid-auto-flow: row;
+}
+
+#grid-resultat #infos-resultat .radio label {
+  display: block;
+}
+
+#grid-resultat .joueur {
+  width: 80%;
+  color: #0F601E;
+  background-color: white;
+  border: 1px solid #D2691E;
+  padding: 50px 0;
+  border-radius: 10px;
+}
+
+#grid-resultat .joueur h3 {
+  margin: 0;
+}
+
+#grid-resultat input[type=number] {
+  width: 50px;
+}
+
+#grid-resultat input[type=radio] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #999;
+  transition: 0.2s all linear;
+  outline: none;
+  margin-right: 5px;
+  position: relative;
+  top: 4px;
+}
+
+#grid-resultat input[type=radio]:checked {
+  border: 10px solid #D2691E;
 }
 
 #table-jeu {

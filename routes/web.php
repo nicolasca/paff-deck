@@ -75,3 +75,8 @@ Route::get('partie/update-zone-decor', 'JouerPartieController@updateZoneDecor');
 Route::get('partie/update-infos', 'JouerPartieController@updateInfos');
 Route::get('partie/getCarteView', 'JouerPartieController@getCarteView');
 Route::post('partie/update-phase', 'JouerPartieController@updatePhase');
+
+//-----------------RESULTATS -------------------
+Route::get('resultats', ['as' => 'resultats', 'uses' => 'ResultatsController@index']);
+Route::get('resultats/ajouter-resultat', 'ResultatsController@ajouterResultat');
+Route::post('resultats/enregistrer-resultat', 'ResultatsController@create');

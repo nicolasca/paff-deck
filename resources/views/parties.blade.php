@@ -62,8 +62,9 @@
     @elseif($boutonAction[$partie->id] == "en_cours")
     <td>
       <a href="partie/zone-jeu?idPartie={{$partie->id}}"><i class="fa fa-arrow-circle-right" aria-hidden="true" title="Rejoindre la partie"></i></a>
+      <a href="resultats/ajouter-resultat?idPartie={{$partie->id}}"><i class="fa fa-floppy-o" aria-hidden="true" title="Rejoindre la partie"></i></a>
       <span id="detruire-partie" data-partieid="{{$partie->id}}"><i class="fa fa-trash-o" aria-hidden="true" title="Supprimer une partie"></i></span>
-      </td>
+    </td>
     @elseif($partie->statut =="attente_joueur")
     <td>
       <span id="detruire-partie" data-partieid="{{$partie->id}}"><i class="fa fa-trash-o" aria-hidden="true" title="Supprimer une partie"></i></span>
