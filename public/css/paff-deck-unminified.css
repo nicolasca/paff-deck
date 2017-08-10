@@ -2892,8 +2892,8 @@ header nav h1 {
 }
 
 #creer-deck .nav-choix-faction .bg-Nains {
-  background-color: #e5a800;
-  border: 1px groove #e5a800;
+  background-color: #e67e22;
+  border: 1px groove #e67e22;
 }
 
 #creer-deck .nav-choix-faction .bg-Nordiques {
@@ -2924,6 +2924,11 @@ header nav h1 {
 #creer-deck .nav-choix-faction .bg-Skavens {
   background-color: #2def10;
   border: 1px groove #2def10;
+}
+
+#creer-deck .nav-choix-faction .bg-HL {
+  background-color: #f4d03f;
+  border: 1px solid #f4d03f;
 }
 
 #creer-deck .presentation-faction {
@@ -3026,6 +3031,14 @@ header nav h1 {
 }
 
 #creer-partie i {
+  color: #D2691E;
+}
+
+#ajouter-resultat {
+  margin-left: 20px;
+}
+
+#ajouter-resultat i {
   color: #D2691E;
 }
 

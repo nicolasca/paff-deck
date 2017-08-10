@@ -469,6 +469,10 @@ header {
       background-color: $color-skavens-bg;
       border: 1px groove $color-skavens-bg;
     }
+    .bg-HL {
+      background-color: $color-hl-bg;
+      border: 1px solid $color-hl-bg;
+    }
   }
   .presentation-faction {
     margin-top: 20px;
@@ -567,8 +571,15 @@ header {
     color: $color3;
   }
 }
-
 //-----------------------------
+
+//-------------RESULTATS------------
+#ajouter-resultat {
+  margin-left: 20px;
+  i {
+    color: $color3;
+  }
+}
 
 //--------- ZONE DE JEU----------------------
 #table-jeu {
