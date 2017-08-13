@@ -812,7 +812,8 @@ header {
       display: none;
     }
     .not-visible {
-      background-color: black;
+      background-image: url("../images/backcard2.jpg");
+      background-size: cover;
       img {
         visibility: hidden;
       }
