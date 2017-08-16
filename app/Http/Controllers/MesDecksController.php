@@ -17,7 +17,7 @@ class MesDecksController extends Controller {
 
   // Affichage de la vue principale. Aucun deck affiché.
   public function index() {
-    $decksByMode = Auth::user()->decks->groupBy("mode");
+    $decksByMode = Auth::user()->decks()->orderBy("nom")->get()->groupBy("mode");
     $deckShow = '';
 
     return view('mes-decks')->with('decksByMode', $decksByMode)
