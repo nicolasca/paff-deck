@@ -3407,7 +3407,8 @@ header nav h1 {
 }
 
 #table-jeu .cartes-main .not-visible, #table-jeu .cartes-deploiement .not-visible {
-  background-color: black;
+  background-image: url("../images/backcard2.jpg");
+  background-size: cover;
 }
 
 #table-jeu .cartes-main .not-visible img, #table-jeu .cartes-deploiement .not-visible img {
