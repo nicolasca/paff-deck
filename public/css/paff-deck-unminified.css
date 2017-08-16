@@ -2670,7 +2670,10 @@ header nav h1 {
   font-size: 3rem;
   color: #0F601E;
   padding: 15px;
-  width: 100%;
+}
+
+#liste-membres .membre i {
+  color: green;
 }
 
 #liste-membres .membre:hover {

@@ -226,7 +226,9 @@ header {
       font-size: 3rem;
       color: $color2;
       padding: 15px;
-      width: 100%;
+    }
+    i {
+      color: green;
     }
   }
   .membre:hover {
