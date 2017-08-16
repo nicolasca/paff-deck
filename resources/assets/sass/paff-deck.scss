@@ -216,7 +216,7 @@ header {
   .membre {
     display: inline-block;
     cursor: pointer;
-    border: 1px solid black;
+    border: 1px solid $color3;
     background-color: white;
     border-radius: 5px;
     margin: 20px;
@@ -224,7 +224,7 @@ header {
     a {
       display: inline-block;
       font-size: 3rem;
-      color: #D2691E;
+      color: $color2;
       padding: 15px;
       width: 100%;
     }
@@ -399,6 +399,19 @@ header {
 }
 
 //----------------------------------
+
+//-----------MES DECKS------------------
+#div-choix-deck {
+  display: inline-block;
+}
+#creer-deck-btn {
+  margin-left: 20px;
+  vertical-align: middle;
+  display: inline-block;
+  i {
+    color: $color3;
+  }
+}
 
 //------------CREER UN DECK------------------
 #creer-deck {
@@ -579,7 +592,11 @@ header {
 //-------------RESULTATS------------
 #table-resultats {
   width: 95%;
-  margin: 0 20px 0 20px;
+  margin: 0 20px 50px 20px;
+
+  #modifier-resultat, #detruire-resultat {
+    cursor: pointer;
+  }
 }
 
 #grid-resultat {
@@ -593,7 +610,7 @@ header {
 
   #infos-resultat {
     background-color: white;
-    border: 1px solid $color3;
+    border: 1px solid $color2;
     padding: 15px 50px;
     border-radius: 10px;
 

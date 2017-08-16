@@ -2658,7 +2658,7 @@ header nav h1 {
 #liste-membres .membre {
   display: inline-block;
   cursor: pointer;
-  border: 1px solid black;
+  border: 1px solid #D2691E;
   background-color: white;
   border-radius: 5px;
   margin: 20px;
@@ -2668,7 +2668,7 @@ header nav h1 {
 #liste-membres .membre a {
   display: inline-block;
   font-size: 3rem;
-  color: #D2691E;
+  color: #0F601E;
   padding: 15px;
   width: 100%;
 }
@@ -2850,6 +2850,20 @@ header nav h1 {
 
 #deck_cartes h3 i {
   font-size: 1.4rem;
+}
+
+#div-choix-deck {
+  display: inline-block;
+}
+
+#creer-deck-btn {
+  margin-left: 20px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+#creer-deck-btn i {
+  color: #D2691E;
 }
 
 #creer-deck .nav-choix-faction {
@@ -3039,7 +3053,11 @@ header nav h1 {
 
 #table-resultats {
   width: 95%;
-  margin: 0 20px 0 20px;
+  margin: 0 20px 50px 20px;
+}
+
+#table-resultats #modifier-resultat, #table-resultats #detruire-resultat {
+  cursor: pointer;
 }
 
 #grid-resultat {
@@ -3060,7 +3078,7 @@ header nav h1 {
 
 #grid-resultat #infos-resultat {
   background-color: white;
-  border: 1px solid #D2691E;
+  border: 1px solid #0F601E;
   padding: 15px 50px;
   border-radius: 10px;
 }

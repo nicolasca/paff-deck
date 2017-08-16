@@ -79,4 +79,7 @@ Route::post('partie/update-phase', 'JouerPartieController@updatePhase');
 //-----------------RESULTATS -------------------
 Route::get('resultats', ['as' => 'resultats', 'uses' => 'ResultatsController@index']);
 Route::get('resultats/ajouter-resultat', 'ResultatsController@ajouterResultat');
-Route::post('resultats/enregistrer-resultat', 'ResultatsController@create');
+Route::post('resultats/enregistrer-resultat', 'ResultatsController@enregistrer');
+Route::get('resultats/edit-resultat', 'ResultatsController@afficherEditResultat');
+Route::post('resultats/maj-resultat', 'ResultatsController@majResultat');
+Route::post('resultats/detruire-resultat', 'ResultatsController@detruireResultat');

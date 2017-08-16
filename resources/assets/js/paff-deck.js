@@ -163,6 +163,9 @@ $(function() {
         $("#deplacement-total").html(deplacement);
     }
 
+
+    //--------------Parties -------------------------------
+
     // Dans l'écran e l aliste des parties
     $("body").on("click", "#detruire-partie", function() {
         var deletePartie = confirm("Etes vous sûr et certains de vouloir supprimer cette partie à tout jamais," +
@@ -179,5 +182,34 @@ $(function() {
                     location.reload();
                 });
         }
+    });
+
+    //---------------Resultats--------------------
+
+    // Dans l'écran de la liste des résultats
+    $("body").on("click", "#detruire-resultat", function() {
+        var deleteResultat = confirm("Etes vous sûr et certains de vouloir supprimer ce résultat à tout jamais," +
+            "jusqu'à la fin de la nuit des temps ? Vous êtes sûr ? T'es sûr kikoulol ?")
+        if (deleteResultat) {
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            var resultatId = $(this).data("resultatid");
+            console.log(resultatId);
+            $.post("resultats/detruire-resultat", {
+                    resultatId: resultatId,
+                    _token: CSRF_TOKEN
+                },
+                function(data) {
+                    var url = $("#url").val();
+                    location.reload();
+                });
+        }
+    });
+
+    $("input[name=resultat]:radio").click(function() {
+      console.log($(this).val());
+      if($(this).val() == 0) {
+        console.log(("passe"));
+        $("input[name=type]:radio").prop("checked", false);
+      }
     });
 });
