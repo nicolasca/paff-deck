@@ -3458,11 +3458,39 @@ header nav h1 {
       -ms-flex-direction: column;
           flex-direction: column;
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid #D2691E;
+  border-radius: 10px;
 }
 
 #table-jeu #infos-partie #historique-des span {
   line-height: 1;
+}
+
+#table-jeu #infos-partie #recap-phases {
+  margin-top: 10px;
+  text-align: left;
+  overflow: auto;
+  background: linear-gradient(to bottom right, white 60%, #F4F0EB);
+  color: #0F601E;
+  border: 1px solid #D2691E;
+  border-radius: 10px;
+  padding: 5px 0;
+}
+
+#table-jeu #infos-partie #recap-phases ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#table-jeu #infos-partie #recap-phases li {
+  padding-left: 1em;
+  text-indent: -.7em;
+}
+
+#table-jeu #infos-partie #recap-phases li::before {
+  content: "• ";
+  color: #0F601E;
 }
 
 #cartes-defausse {

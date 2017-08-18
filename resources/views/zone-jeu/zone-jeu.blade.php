@@ -157,6 +157,17 @@
       <div id="historique-des">
 
       </div>
+      <div id="recap-phases">
+        <ul>
+          <li>Phase de carte</li>
+          <li>Phase de moral</li>
+          <li>Calcul des zones</li>
+          <li>Phase de déplacement</li>
+          <li>Phase de Tir</li>
+          <li>Phase de Cac</li>
+          <li>Phase de déploiement</li>
+        </ul>
+      </div>
   </div>
 
 <div id="defausse">

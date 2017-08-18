@@ -934,9 +934,34 @@ header {
       flex-basis: 30px;
       flex-direction: column;
       background-color: white;
-      border: 1px solid black;
+      border: 1px solid $color3;
+      border-radius: 10px;
       span {
         line-height: 1;
+      }
+    }
+    #recap-phases {
+      margin-top: 10px;
+      text-align: left;
+      overflow: auto;
+      background: linear-gradient(to bottom right,white 60%, $color1);
+      color: $color2;
+      //text-shadow: 1px 1px 2px $color3;
+      border: 1px solid $color3;
+      border-radius: 10px;
+      padding: 5px 0;
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      li {
+        padding-left: 1em;
+        text-indent: -.7em;
+      }
+      li::before {
+        content: "• ";
+        color: $color2;
       }
     }
   }
