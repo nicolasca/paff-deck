@@ -261,6 +261,8 @@ class JouerPartieController extends Controller {
     else if($data['type'] == "depl") {
       $partie->depl_J1 = $data['valeurJ1'];
       $partie->depl_J2 = $data['valeurJ2'];
+    } else if ($data['type'] == "dice") {
+      $data['joueur'] = Auth::user()->name;
     }
 
     $partie->save();

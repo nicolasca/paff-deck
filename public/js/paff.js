@@ -705,7 +705,7 @@ $(function() {
 
   channel.bind('App\\Events\\UpdateInfos', function(data) {
       if(data.type == 'dice') {
-        $("#historique-des").prepend("<span>"+data.valeurs+"</span>");
+        $("#historique-des").prepend("<span>"+data.joueur+": "+data.valeurs+"</span>");
       }
       else if(data.type == 'tour') {
         $("#tour input").val(data.valeur);
