@@ -2564,7 +2564,7 @@ table tr:nth-child(odd) td {
 
 header {
   background-color: white;
-  border-bottom: 1px solid #0F601E;
+  padding-bottom: 20px;
   height: 15%;
 }
 
@@ -2579,17 +2579,12 @@ header nav {
           align-items: center;
 }
 
-header nav h1 {
-  text-align: center;
-  font-weight: normal;
-  margin: 0;
+header nav img {
+  height: 100px;
+  padding-top: 10px;
 }
 
-header nav h1 a {
-  color: #0F601E;
-}
-
-header nav span, header nav h1 {
+header nav span {
   display: block;
   padding: .4em 1em .4em 1em;
 }
@@ -3322,11 +3317,11 @@ header nav h1 {
 }
 
 #table-jeu .zoneJeu.flanc-coco {
-  background-color: rgba(0, 0, 255, 0.1);
+  background: rgba(0, 0, 255, 0.1);
 }
 
 #table-jeu .zoneJeu.flanc-quetsch {
-  background-color: rgba(0, 0, 255, 0.1);
+  background: rgba(0, 0, 255, 0.1);
 }
 
 #table-jeu .zoneJeu.active-zone {
