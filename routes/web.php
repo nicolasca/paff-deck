@@ -83,3 +83,7 @@ Route::post('resultats/enregistrer-resultat', 'ResultatsController@enregistrer')
 Route::get('resultats/edit-resultat', 'ResultatsController@afficherEditResultat');
 Route::post('resultats/maj-resultat', 'ResultatsController@majResultat');
 Route::post('resultats/detruire-resultat', 'ResultatsController@detruireResultat');
+
+
+//-------------- PRIANA ------------------------
+Route::get('priana', 'PrianaController@index');
