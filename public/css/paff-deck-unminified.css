@@ -3284,22 +3284,22 @@ header nav h1 {
 }
 
 #table-jeu .cartes-decor.colline {
-  background: chartreuse !important;
-  border: 5px solid chartreuse !important;
+  background: Khaki !important;
+  border: 5px solid DarkKhaki !important;
 }
 
 #table-jeu .cartes-decor.foret {
   background: forestgreen !important;
-  border: 5px solid forestgreen !important;
+  border: 5px solid green !important;
 }
 
 #table-jeu .cartes-decor.lac {
   background: cornflowerblue !important;
-  border: 5px solid cornflowerblue !important;
+  border: 5px solid DodgerBlue !important;
 }
 
 #table-jeu .cartes-decor.ruines {
-  background: grey !important;
+  background: DarkGrey !important;
   border: 5px solid grey !important;
 }
 
@@ -3327,22 +3327,22 @@ header nav h1 {
 }
 
 #table-jeu .zoneJeu.colline {
-  background: chartreuse !important;
-  border: 5px solid chartreuse !important;
+  background: Khaki !important;
+  border: 5px solid DarkKhaki !important;
 }
 
 #table-jeu .zoneJeu.foret {
   background: forestgreen !important;
-  border: 5px solid forestgreen !important;
+  border: 5px solid green !important;
 }
 
 #table-jeu .zoneJeu.lac {
   background: cornflowerblue !important;
-  border: 5px solid cornflowerblue !important;
+  border: 5px solid DodgerBlue !important;
 }
 
 #table-jeu .zoneJeu.ruines {
-  background: grey !important;
+  background: DarkGrey !important;
   border: 5px solid grey !important;
 }
 
