@@ -12,6 +12,8 @@
     @endforeach
   </div>
 
+
+
   <!-- Div qui contient les decks affichés par un appel Ajax  -->
   <div id="faction_show">
   </div>
