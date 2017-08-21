@@ -144,7 +144,8 @@
           <textarea rows="2" cols="50" name="description" id="description" class="form-text"></textarea>
         </p>
         <p class="form-item center">
-          <p><div class="tooltip"><label for="mode">Mode</label>
+          <p><div class="tooltip">
+            <label for="mode">Mode</label>
                       <span class="tooltiptext">
                         <table style="width:99%">
                             <tr>

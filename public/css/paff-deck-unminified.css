@@ -3285,18 +3285,22 @@ header nav h1 {
 
 #table-jeu .cartes-decor.colline {
   background: chartreuse !important;
+  border: 5px solid chartreuse !important;
 }
 
 #table-jeu .cartes-decor.foret {
   background: forestgreen !important;
+  border: 5px solid forestgreen !important;
 }
 
 #table-jeu .cartes-decor.lac {
   background: cornflowerblue !important;
+  border: 5px solid cornflowerblue !important;
 }
 
 #table-jeu .cartes-decor.ruines {
   background: grey !important;
+  border: 5px solid grey !important;
 }
 
 #table-jeu .zoneJeu {
@@ -3324,18 +3328,22 @@ header nav h1 {
 
 #table-jeu .zoneJeu.colline {
   background: chartreuse !important;
+  border: 5px solid chartreuse !important;
 }
 
 #table-jeu .zoneJeu.foret {
   background: forestgreen !important;
+  border: 5px solid forestgreen !important;
 }
 
 #table-jeu .zoneJeu.lac {
   background: cornflowerblue !important;
+  border: 5px solid cornflowerblue !important;
 }
 
 #table-jeu .zoneJeu.ruines {
   background: grey !important;
+  border: 5px solid grey !important;
 }
 
 #table-jeu .carte-main {
