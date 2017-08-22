@@ -32,7 +32,7 @@
 <!-- JavaScripts -->
 <script src="{{URL::asset('js/jquery-3.2.1.min.js')}}"></script>
 <script src="{{URL::asset('js/jquery-ui.min.js')}}"></script>
-<script src="{{URL::asset('js/animate.min.js')}}"></script>
+<script src="{{URL::asset('js/anime.min.js')}}"></script>
 <script type="application/javascript" src="{{URL::asset('js/paff.js')}}"></script>
 
 <script src="https://js.pusher.com/4.0/pusher.min.js"></script>

@@ -44,7 +44,7 @@ $(function() {
           $(carte).removeClass("front-right");
           $(carte).removeClass("front-left");
         } else {
-          $(carte).addClass("front-" + data.combat);
+          $(carte).toggleClass("front-" + data.combat);
         }
       }
       // Update degats

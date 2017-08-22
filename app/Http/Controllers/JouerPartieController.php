@@ -97,13 +97,16 @@ class JouerPartieController extends Controller {
     $partie->save();
 
     broadcast(new UpdatePhase(array($_POST['phase'])))->toOthers();
+
+    return array($_POST['phase']);
   }
 
   // Piocher un carte dans le deck, pour la mettre dans la main
   public function piocher(Request $request) {
+    $data = $_POST['data'];
     $partieId = $request->session()->get('partieId');
     $partie = PartieEnCours::find($partieId);
-    $userId = $request->input('userId');
+    $userId = $data['userId'];
     $deckEnCours = DeckEnCours::find($partie->getDeckEnCoursIdByUser($userId));
 
     $cartesEnMain = $deckEnCours->cartes_en_cours->where("statut", "MAIN");
@@ -121,18 +124,15 @@ class JouerPartieController extends Controller {
 
       $data = array(
         "carteId" => $cartePioche->id,
-        "id" => $request->input('id'),
-        "userId" => $request->input('userId'),
+        "id" => $data['id'],
+        "userId" => $data['userId'],
         "cartesRestantesJ1" => $cartesRestantesJ1,
         "cartesRestantesJ2" => $cartesRestantesJ2
       );
 
       broadcast(new UpdateCartePiochee($data))->toOthers();
 
-      return view('zone-jeu.carte')
-      ->with('partie', $partie)
-      ->with('userId', $userId)
-      ->with('carte', $cartePioche);
+      return $data;
     }
 
     return "KO";
@@ -157,7 +157,7 @@ class JouerPartieController extends Controller {
   // - on change le statut de la carte
   // - on trigger un event pour le refresh dans le browser
   public function dragCarte() {
-    $data = $_GET['data'];
+    $data = $_POST['data'];
     $carte = CarteEnCours::find($data['carteId']);
     $carte->position = $data['position'];
     $statut = $data['statut'];
@@ -166,26 +166,30 @@ class JouerPartieController extends Controller {
     $carte->save();
 
     broadcast(new DragCarteZoneJeu($data))->toOthers();
+
+    return $data;
   }
 
   // Quand une carte est déplacée dans la défausse
   // - on change le statut de la carte
   // - on trigger un event pour le refresh dans le browser
   public function deplacerDefausse() {
-    $data = $_GET['data'];
+    $data = $_POST['data'];
     $carte = CarteEnCours::find($data['carteId']);
 
     $carte->statut = "DEFAUSSE";
     $carte->save();
 
     broadcast(new DeplacerCarteDefausse($data))->toOthers();
+
+    return $data;
   }
 
   // Quand l'état de la carte est modifié (combat, dégats, fuite, moral)
   // - on save en base
   // - on trigger un event pour le refresh dans le browser
   public function updateEtatCarte() {
-    $data = $_GET['data'];
+    $data = $_POST['data'];
     $carteId = explode("_", $data['carteId'])[1];
     $carte = CarteEnCours::find($carteId);
 
@@ -197,13 +201,13 @@ class JouerPartieController extends Controller {
         $carte->frontDroite = 0;
         $carte->frontGauche = 0;
       } else if($data['combat'] == "top") {
-        $carte->frontHaut = 1;
+        $carte->frontHaut = ($carte->frontHaut == 0) ? 1 : 0;
       } else if($data['combat'] == "left") {
-        $carte->frontGauche = 1;
+        $carte->frontGauche = ($carte->frontGauche == 0) ? 1 : 0;
       } else if($data['combat'] == "bottom") {
-        $carte->frontBas = 1;
+      $carte->frontBas = ($carte->frontBas == 0) ? 1 : 0;
       } else if($data['combat'] == "right") {
-        $carte->frontDroite = 1;
+        $carte->frontDroite = ($carte->frontDroite == 0) ? 1 : 0;
       }
     // Degats
     } else if (isset($data['degats'])) {
@@ -223,13 +227,15 @@ class JouerPartieController extends Controller {
     $carte->save();
 
     broadcast(new UpdateEtatCarte($data))->toOthers();
+
+    return $data;
   }
 
   // Quand on update une zone de décor
   // - on l'enregistre en json dans la bdd
   // - on trigger un event pour le refresh dans le browser
   public function updateZoneDecor(Request $request) {
-    $data = $_GET['data'];
+    $data = $_POST['data'];
     $partieId = $request->session()->get('partieId');
     $partie = PartieEnCours::find($partieId);
 
@@ -245,13 +251,15 @@ class JouerPartieController extends Controller {
     $partie->save();
 
     broadcast(new UpdateZoneDecor($data))->toOthers();
+
+    return $data;
   }
 
   // Quand on update des informations de la partie
   // - on save en base
   // - on trigger un event pour le refresh dans le browser
   public function updateInfos(Request $request) {
-    $data = $_GET['data'];
+    $data = $_POST['data'];
     $partieId = $request->session()->get('partieId');
     $partie = PartieEnCours::find($partieId);
 
@@ -267,6 +275,8 @@ class JouerPartieController extends Controller {
 
     $partie->save();
     broadcast(new UpdateInfos($data))->toOthers();
+
+    return $data;
   }
 
 }

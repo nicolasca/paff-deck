@@ -66,13 +66,13 @@ Route::post('parties/detruire-partie', 'GererPartieController@detruirePartie');
 
 //-------------JOUER UNE PARTIE----------------
 Route::get('partie/zone-jeu', 'JouerPartieController@zoneJeu');
-Route::get('partie/piocher-carte-decor', 'JouerPartieController@piocherCarteDecor');
+Route::post('partie/piocher-carte-decor', 'JouerPartieController@piocherCarteDecor');
 Route::post('partie/piocher', 'JouerPartieController@piocher');
-Route::get('partie/drag-carte', 'JouerPartieController@dragCarte');
-Route::get('partie/deplacer-defausse', 'JouerPartieController@deplacerDefausse');
-Route::get('partie/update-etat-carte', 'JouerPartieController@updateEtatCarte');
-Route::get('partie/update-zone-decor', 'JouerPartieController@updateZoneDecor');
-Route::get('partie/update-infos', 'JouerPartieController@updateInfos');
+Route::post('partie/drag-carte', 'JouerPartieController@dragCarte');
+Route::post('partie/deplacer-defausse', 'JouerPartieController@deplacerDefausse');
+Route::post('partie/update-etat-carte', 'JouerPartieController@updateEtatCarte');
+Route::post('partie/update-zone-decor', 'JouerPartieController@updateZoneDecor');
+Route::post('partie/update-infos', 'JouerPartieController@updateInfos');
 Route::get('partie/getCarteView', 'JouerPartieController@getCarteView');
 Route::post('partie/update-phase', 'JouerPartieController@updatePhase');
 

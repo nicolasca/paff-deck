@@ -216,6 +216,8 @@ $(function() {
 
 $(function() {
 
+  var urlPartie = $("#url").val();
+
     // Clic "Utiliser" pour une carte.
     // On met à jour le model $deckEnCours
     $("body").on('click', "button.utiliserCarte", function() {
@@ -236,8 +238,50 @@ $(function() {
         });
     });
 
+
+
+    //--------------PARTIE ZONE DE JEU---------------------
+    //-----------------------------------------------------
+
+    // Quand un joueur clique sur le bouton "Lancer la partie",
+    // on notifie le serveur qui va trigger un Event
+    $("#btn-lancer-partie").click(function() {
+        $("#btn-lancer-partie").prop("disabled", true);
+        $("#btn-lancer-partie").html("Attente du joueur...");
+        var idPartie = $("#btn-lancer-partie").data("partieid");
+        var url = $("#url").val();
+        $.get(url + "/partie/lancer-partie", {
+            'idPartie': idPartie
+        });
+    });
+
+    //-------PIOCHE DECORS---------
+    $("#pioche-carte-decor").click(function() {
+      $.ajax({
+        url: "piocher-carte-decor",
+        type: 'post',
+        headers: {
+          'X-CSRF-TOKEN':  $('meta[name="csrf-token"]').attr('content'),
+          'X-Socket-Id': pusher.connection.socket_id
+        },
+        success: function(data) {
+          for(let decor of data.decorJ1) {
+            $("#cartes-decor-J1").append("<div class='"+decor+" cartes-decor' data-decor='"+decor+"'></div>");
+          }
+          for(let decor of data.decorJ2) {
+            console.log(decor);
+            $("#cartes-decor-J2").append("<div class='"+decor+" cartes-decor' data-decor='"+decor+"'></div>");
+          }
+
+          $(".cartes-decor").draggable({
+              revert: "invalid"
+            });
+      }});
+    });
+
     // Quand on lance les dés
     $("body").on('click', "#roll-dice", function() {
+
         var nombreDes = parseInt($("#nombre-des").val());
         var valeurs = "";
         for (i = 0; i < nombreDes; i++) {
@@ -253,33 +297,21 @@ $(function() {
             valeurs: valeurs,
             type: "dice"
         }
-        var url = $("#url").val();
-        $.get(url + "/partie/update-infos", {
+        var urlPartie = $("#url").val();
+        $.ajax({
+          url: urlPartie + "/partie/update-infos",
+          type: 'post',
+          headers: {
+            'X-CSRF-TOKEN':  $('meta[name="csrf-token"]').attr('content'),
+            'X-Socket-Id': pusher.connection.socket_id
+          },
+          data: {
             data: data
-        });
+        },
+        success: function(data) {
+          $("#historique-des").prepend("<span>"+data.joueur+": "+data.valeurs+"</span>");
+        }});
     });
-
-    // Quand un joueur clique sur le bouton "Lancer la partie",
-    // on notifie le serveur qui va trigger un Event
-    $("#btn-lancer-partie").click(function() {
-        $("#btn-lancer-partie").prop("disabled", true);
-        $("#btn-lancer-partie").html("Attente du joueur...");
-        var idPartie = $("#btn-lancer-partie").data("partieid");
-        var url = $("#url").val();
-        $.get(url + "/partie/lancer-partie", {
-            'idPartie': idPartie
-        });
-    });
-
-
-    $("#pioche-carte-decor").click(function() {
-        $.get("piocher-carte-decor",
-            function(data) {
-
-            });
-    });
-
-    //MAJ des border selon l'état des cartes
 
     // Les cartes sont draggable
     $(".carte-main").draggable({
@@ -327,22 +359,45 @@ $(function() {
                   'decor': decor,
                   'zoneJeu': $(this).data("position")
               }
-              var url = $("#url").val();
-              $.get(url + "/partie/update-zone-decor", {
+              var urlPartie = $("#url").val();
+              $.ajax({
+                url: urlPartie + "/partie/update-infos",
+                type: 'post',
+                headers: {
+                  'X-CSRF-TOKEN':  $('meta[name="csrf-token"]').attr('content'),
+                  'X-Socket-Id': pusher.connection.socket_id
+                },
+                data: {
                   data: data
-              });
+              },
+              success: function(data) {
+                $('[data-position=' + data.zoneJeu + ']').removeClass("foret ruines colline lac decor");
+                if (data.decor != "none") {
+                    $('[data-position=' + data.zoneJeu + ']').addClass(data.decor + " decor");
+                }
+              }});
 
               // On vérifie si c'est la dernière carte de décor
                 var deplJ1 = $("#cartes-decor-J1").children(".cartes-decor").length;
                 var deplJ2 = $("#cartes-decor-J2").children(".cartes-decor").length;
                 // Dernière carte decor, on met à jour la phase
                 if (deplJ1 + deplJ2 == 0) {
-                  var url = $("#url").val();
-                  var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                  $.post(url + "/partie/update-phase", {
-                      _token: CSRF_TOKEN,
+                  var urlPartie = $("#url").val();
+                  $.ajax({
+                    url: urlPartie + "/partie/update-phase",
+                    type: 'post',
+                    headers: {
+                      'X-CSRF-TOKEN':  $('meta[name="csrf-token"]').attr('content'),
+                      'X-Socket-Id': pusher.connection.socket_id
+                    },
+                    data: {
                       phase: "deploiement"
-                  });
+                  },
+                  success: function(data) {
+                    $("#pioche-carte-decor").hide();
+                    $("#phase-partie span").html("Déploiement");
+                    $("#phase-partie").data("phase", "deploiement");
+                  }});
                 }
             }
             // --------Si une carte de deck
@@ -358,26 +413,46 @@ $(function() {
                 var deplJ1 = $("#cartes-deploiement-1").children(".carte-main").length;
                 var deplJ2 = $("#cartes-deploiement-2").children(".carte-main").length;
                 if (deplJ1 + deplJ2 == 0) {
-                  var url = $("#url").val();
-                  var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                  $.post(url + "/partie/update-phase", {
-                      _token: CSRF_TOKEN,
-                      phase: "combat"
-                  });
+                  var urlPartie = $("#url").val();
+                  $.ajax({
+                    url: urlPartie + "/partie/update-phase",
+                    type: 'post',
+                    headers: {
+                      'X-CSRF-TOKEN':  $('meta[name="csrf-token"]').attr('content'),
+                      'X-Socket-Id': pusher.connection.socket_id
+                    },
+                    data: {
+                        phase: "combat"
+                  },
+                  success: function(data) {
+                    $("#phase-partie span").html("Combat");
+                    $("#phase-partie").data("phase", "combat");
+                    $(".cartes-main").removeClass("not-visible");
+                  }});
+
                 }
               }
-
-
               // Envoyer la carte id et sa position
               var data = {
                   statut: $(this).data("statut"),
                   position: $(this).data("position"),
                   carteId: ui.draggable.prop("id").split('_')[1]
               }
-              var url = $("#url").val();
-              $.get(url + "/partie/drag-carte", {
-                  data: data
-              });
+              var urlPartie = $("#url").val();
+              $.ajax({
+                url: urlPartie + "/partie/drag-carte",
+                type: 'post',
+                headers: {
+                  'X-CSRF-TOKEN':  $('meta[name="csrf-token"]').attr('content'),
+                  'X-Socket-Id': pusher.connection.socket_id
+                },
+                data: {
+                    data: data
+              },
+              success: function(data) {
+                  $("#carte_" + data.carteId).appendTo("#position_" + data.position);
+              }});
+
             }
         }
     });
@@ -386,13 +461,21 @@ $(function() {
     $("body").on("change", "#tour input[type='number']", function() {
 
       var valeur = $(this).val();
-      // Mettre à jour les dés chez tous les joueurs
-      var url = $("#url").val();
-      $.get(url + "/partie/update-infos", {data:
-        {
+      var data = {
           type: "tour",
-          valeur: valeur}
-      });
+          valeur: valeur
+      };
+      // Mettre à jour les dés chez tous les joueurs
+      $.ajax({
+        url: urlPartie + "/partie/update-infos",
+        type: 'post',
+        headers: {
+          'X-CSRF-TOKEN':  $('meta[name="csrf-token"]').attr('content'),
+          'X-Socket-Id': pusher.connection.socket_id
+        },
+        data: {
+          data: data
+      }});
     });
 
     // Quand on change le nombre de déploiement d'un joueur, on actualise chez tous les clients
@@ -400,14 +483,21 @@ $(function() {
       var valeurJ1 = $("#presentation-joueur-1 .ptsDeploiement input[type='number']").val();
       var valeurJ2 = $("#presentation-joueur-2 .ptsDeploiement input[type='number']").val();
       // Mettre à jour les dés chez tous les joueurs
-      var url = $("#url").val();
-      $.get(url + "/partie/update-infos", {data:
-        {
-          type: "depl",
-          valeurJ1: valeurJ1,
-          valeurJ2: valeurJ2
-        }
-      });
+      var data = {
+        type: "depl",
+        valeurJ1: valeurJ1,
+        valeurJ2: valeurJ2
+      };
+      $.ajax({
+        url: urlPartie + "/partie/update-infos",
+        type: 'post',
+        headers: {
+          'X-CSRF-TOKEN':  $('meta[name="csrf-token"]').attr('content'),
+          'X-Socket-Id': pusher.connection.socket_id
+        },
+        data: {
+            data: data
+      }});
     });
 
 
@@ -417,14 +507,37 @@ $(function() {
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         // Recuperer l'id de la zone des cartes main pour ajouter la carte
         var idZoneMain = $(this).parent().parent().attr("id");
-        $.post("piocher", {
-                _token: CSRF_TOKEN,
-                userId: userId,
-                id: idZoneMain
-            },
-            function(data) {
+        var data = {
+          userId: userId,
+          id: idZoneMain
+        }
+        $.ajax({
+          url: "piocher",
+          type: 'post',
+          headers: {
+            'X-CSRF-TOKEN':  $('meta[name="csrf-token"]').attr('content'),
+            'X-Socket-Id': pusher.connection.socket_id
+          },
+          data: {
+              data: data
+        },
+        success: function(data) {
+          $.get("getCarteView", data, function(view) {
+              // Afficher la carte
+              $('#' + data["id"]).prepend(view);
+              $(".carte-main").draggable({
+                  revert: "invalid",
+                  start: function(event, ui) {
+                    // Because bug in droppable ui, we remove the active zone from here
+                    $(this).parent(".zoneJeu").removeClass("active-zone");
+                  }
+              });
+              // MAJ cartes restantes
+              $("#button1").text("Piocher ("+data.cartesRestantesJ1+")");
+              $("#button2").text("Piocher ("+data.cartesRestantesJ2+")");
+          });
+        }});
 
-            });
     });
 
     // Quand on survole une carte, on l'affiche en grand
@@ -462,10 +575,18 @@ $(function() {
             var data = {
                 carteId: $(parent).attr("id").split('_')[1]
             }
-            var url = $("#url").val();
-            $.get(url + "/partie/deplacer-defausse", {
-                data: data
-            });
+
+            $.ajax({
+              url: urlPartie + "/partie/deplacer-defausse",
+              type: 'post',
+              headers: {
+                'X-CSRF-TOKEN':  $('meta[name="csrf-token"]').attr('content'),
+                'X-Socket-Id': pusher.connection.socket_id
+              },
+              data: {
+                  data: data
+            }});
+
         });
 
         // Sur le click, afficher l'indicateur de test de moral (opacity)
@@ -480,10 +601,19 @@ $(function() {
                 hasMoral: !$("#" + $(parent).attr("id")).hasClass("testMoral")
             }
             $("#tooltip-carte-action").toggle();
-            var url = $("#url").val();
-            $.get(url + "/partie/update-etat-carte", {
-                data: data
-            });
+            $.ajax({
+              url: urlPartie + "/partie/update-etat-carte",
+              type: 'post',
+              headers: {
+                'X-CSRF-TOKEN':  $('meta[name="csrf-token"]').attr('content'),
+                'X-Socket-Id': pusher.connection.socket_id
+              },
+              data: {
+                  data: data
+            },
+            success: function(data) {
+              $("#" + $(parent).attr("id")).toggleClass("testMoral");
+            }});
         });
 
         // Sur le click, afficher l'indicateur du flag (opacity)
@@ -496,10 +626,19 @@ $(function() {
                 flag: $("#" + $(parent).attr("id")).find("#flagCarte").hasClass("not-visible")
             }
             $("#tooltip-carte-action").toggle();
-            var url = $("#url").val();
-            $.get(url + "/partie/update-etat-carte", {
-                data: data
-            });
+            $.ajax({
+              url: urlPartie + "/partie/update-etat-carte",
+              type: 'post',
+              headers: {
+                'X-CSRF-TOKEN':  $('meta[name="csrf-token"]').attr('content'),
+                'X-Socket-Id': pusher.connection.socket_id
+              },
+              data: {
+                  data: data
+            },
+            success: function(data) {
+              $("#" + $(parent).attr("id")).find("#flagCarte").toggleClass("not-visible");
+            }});
         });
 
         // Sur le click, afficher l'indicateur de fuite (retourner la carte)
@@ -513,10 +652,19 @@ $(function() {
                 isFuite: !$(carte).hasClass("enFuite")
             }
             $("#tooltip-carte-action").toggle();
-            var url = $("#url").val();
-            $.get(url + "/partie/update-etat-carte", {
-                data: data
-            });
+            $.ajax({
+              url: urlPartie + "/partie/update-etat-carte",
+              type: 'post',
+              headers: {
+                'X-CSRF-TOKEN':  $('meta[name="csrf-token"]').attr('content'),
+                'X-Socket-Id': pusher.connection.socket_id
+              },
+              data: {
+                  data: data
+            },
+            success: function(data) {
+              $(carte).toggleClass("enFuite");
+            }});
         });
 
     });
@@ -553,9 +701,16 @@ $(function() {
                 'zoneJeu': $(zoneJeu).data("position")
             }
             var url = $("#url").val();
-            $.get(url + "/partie/update-zone-decor", {
-                data: data
-            });
+            $.ajax({
+              url: urlPartie + "/partie/update-zone-decor",
+              type: 'post',
+              headers: {
+                'X-CSRF-TOKEN':  $('meta[name="csrf-token"]').attr('content'),
+                'X-Socket-Id': pusher.connection.socket_id
+              },
+              data: {
+                  data: data
+            }});
         });
     });
 
@@ -574,7 +729,7 @@ $(function() {
               $(carte).removeClass("front-right");
               $(carte).removeClass("front-left");
             } else {
-              $(carte).addClass("front-" + flancCombat);
+              $(carte).toggleClass("front-" + flancCombat);
             }
             $("#tooltip-carte-action").css("display", "none");
 
@@ -584,10 +739,16 @@ $(function() {
                 carteId: $(parent).attr("id"),
                 combat: flancCombat
             }
-            var url = $("#url").val();
-            $.get(url + "/partie/update-etat-carte", {
-                data: data
-            });
+            $.ajax({
+              url: urlPartie + "/partie/update-etat-carte",
+              type: 'post',
+              headers: {
+                'X-CSRF-TOKEN':  $('meta[name="csrf-token"]').attr('content'),
+                'X-Socket-Id': pusher.connection.socket_id
+              },
+              data: {
+                  data: data
+            }});
         });
     }
 
@@ -619,10 +780,16 @@ $(function() {
                 carteId: $(parent).attr("id"),
                 degats: degats
             }
-            var url = $("#url").val();
-            $.get(url + "/partie/update-etat-carte", {
-                data: data
-            });
+            $.ajax({
+              url: urlPartie + "/partie/update-etat-carte",
+              type: 'post',
+              headers: {
+                'X-CSRF-TOKEN':  $('meta[name="csrf-token"]').attr('content'),
+                'X-Socket-Id': pusher.connection.socket_id
+              },
+              data: {
+                  data: data
+            }});
         });
     }
 
@@ -674,7 +841,7 @@ $(function() {
           $(carte).removeClass("front-right");
           $(carte).removeClass("front-left");
         } else {
-          $(carte).addClass("front-" + data.combat);
+          $(carte).toggleClass("front-" + data.combat);
         }
       }
       // Update degats
