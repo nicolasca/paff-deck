@@ -20,7 +20,7 @@ class MesDecksController extends Controller {
     $decksByMode = Auth::user()->decks()->orderBy("nom")->get()->groupBy("mode");
     $deckShow = '';
 
-    return view('mes-decks')->with('decksByMode', $decksByMode)
+    return view('decks.mes-decks')->with('decksByMode', $decksByMode)
     ->with('deckShow', $deckShow);
   }
 
@@ -32,7 +32,7 @@ class MesDecksController extends Controller {
     $cartesByType = $this->orderArrayByType($cartesByType);
     $recapitulatif = DeckUtils::createRecapitulatif($deckShow);
 
-    return view('layouts.deckShow')
+    return view('decks.deckShow')
     ->with("cartesByType",$cartesByType)
     ->with('deckShow', $deckShow)
     ->with('recapitulatif', $recapitulatif);
@@ -62,7 +62,7 @@ class MesDecksController extends Controller {
     $cartesByType = $this->orderArrayByType($cartesByType);
     $recapitulatif = DeckUtils::createRecapitulatif($deckShow);
 
-    return view('layouts.deckEdit')
+    return view('decks.deckEdit')
     ->with("cartesByType",$cartesByType)
     ->with("faction",$deckShow->faction)
     ->with('deckShow', $deckShow)
@@ -125,7 +125,7 @@ class MesDecksController extends Controller {
     $deckShow->delete();
 
     $decks = Auth::user()->decks;
-    return view('mes-decks')->with('decks', $decks)
+    return view('decks.mes-decks')->with('decks', $decks)
     ->with('deckShow', $deckShow);
   }
 

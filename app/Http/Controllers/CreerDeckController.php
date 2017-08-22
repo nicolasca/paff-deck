@@ -17,7 +17,7 @@ class CreerDeckController extends Controller {
   // Affichage de la vue principale. Aucun deck affiché.
   public function index() {
     $factions = Faction::all();
-    return view('creerDeck')->with('factions', $factions);
+    return view('decks.creerDeck')->with('factions', $factions);
   }
 
   // Afficher les cartes d'une faction
@@ -34,7 +34,7 @@ class CreerDeckController extends Controller {
     $recapitulatif["deplacement"] = 0;
     $recapitulatif["recap"] = array();
 
-    return view('layouts.deckEdit')
+    return view('decks.deckEdit')
     ->with("recapitulatif",$recapitulatif)
     ->with("cartesByType",$cartesByType)
     ->with('faction', $faction);
