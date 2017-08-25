@@ -22,7 +22,19 @@ $(function() {
   });
 
   channel.bind('App\\Events\\DragCarteZoneJeu', function(data) {
-      $("#carte_" + data.carteId).appendTo("#position_" + data.position);
+      anime({
+        targets: "#carte_" + data.carteId,
+        translateX: "-="+($("#carte_" + data.carteId).position().left - $("#position_" + data.position).position().left),
+        translateY: "-="+($("#carte_" + data.carteId).position().top - $("#position_" + data.position).position().top),
+        duration: 3000,
+        easing: 'easeInOutQuad'
+        });
+  });
+
+  channel.bind('App\\Events\\CarteDeployee', function(data) {
+    $("#carte_" + data.carteId).slideUp(1000);
+    $("#carte_" + data.carteId).appendTo("#position_" + data.position);
+    $("#carte_" + data.carteId).fadeIn(1500);
   });
 
   channel.bind('App\\Events\\DeplacerCarteDefausse', function(data) {

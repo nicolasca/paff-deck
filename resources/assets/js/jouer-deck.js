@@ -65,7 +65,6 @@ $(function() {
 
     // Quand on lance les dés
     $("body").on('click', "#roll-dice", function() {
-
         var nombreDes = parseInt($("#nombre-des").val());
         var valeurs = "";
         for (i = 0; i < nombreDes; i++) {
@@ -97,13 +96,48 @@ $(function() {
         }});
     });
 
-    // Les cartes sont draggable
-    $(".carte-main").draggable({
+    // Les cartes sont draggable dans la zone de jeu et la defausse
+    $("#zone-de-jeu .carte-main, #defausse .carte-main").draggable({
         revert: "invalid",
         start: function(event, ui) {
           // Because bug in droppable ui, we remove the active zone from here
           $(this).parent(".zoneJeu").removeClass("active-zone");
         }
+    });
+    //Dans la main, les zones sont selectionnables, et on peut poser la carte
+    $('body').on("click", ".cartes-main .carte-main", function(){
+        $(".cartes-main .carte-main").not(this).removeClass('active');
+        $(this).toggleClass("active");
+        var carte = $(this);
+
+        // Sur le click, déplacer la carte dans l'emplacement
+        $(".zoneJeu").unbind("click");
+        $(".zoneJeu").click(function() {
+            var position = $(this).data("position");
+
+            // Envoyer la carte id et sa position
+            var data = {
+                statut: $(this).data("statut"),
+                position: $(this).data("position"),
+                carteId: $(carte).prop("id").split('_')[1]
+            }
+            var urlPartie = $("#url").val();
+            $.ajax({
+              url: urlPartie + "/partie/deployer-carte",
+              type: 'post',
+              headers: {
+                'X-CSRF-TOKEN':  $('meta[name="csrf-token"]').attr('content'),
+                'X-Socket-Id': pusher.connection.socket_id
+              },
+              data: {
+                  data: data
+            }, success: function() {
+              $("#carte_" + data.carteId).slideUp(1000);
+              $("#carte_" + data.carteId).appendTo("#position_" + data.position);
+              $("#carte_" + data.carteId).fadeIn(1500);
+            }});
+
+        });
     });
 
     // Les zones sont droppable
@@ -232,9 +266,6 @@ $(function() {
                 },
                 data: {
                     data: data
-              },
-              success: function(data) {
-                  $("#carte_" + data.carteId).appendTo("#position_" + data.position);
               }});
 
             }
@@ -309,7 +340,7 @@ $(function() {
           $.get("getCarteView", data, function(view) {
               // Afficher la carte
               $('#' + data["id"]).prepend(view);
-              $(".carte-main").draggable({
+              $("#zone-de-jeu .carte-main, #defausse .carte-main").draggable({
                   revert: "invalid",
                   start: function(event, ui) {
                     // Because bug in droppable ui, we remove the active zone from here
@@ -453,50 +484,53 @@ $(function() {
 
     });
 
-    // quand on click sur une une zone de jeu, on affiche le tooltip décor
-    $("body").on("click", "div.zoneJeu", function() {
-        // On affiche la tooltip seulement si pas de carte sur la zone
-        if ($(this).children('.carte-main').length == 0) {
-            var offset = $(this).offset();
-            $("#tooltip-zone-decor").css({
-                top: offset.top + 150,
-                left: offset.left
-            });
-            $("#tooltip-zone-decor").toggle();
-        }
+    // Si phase de décor, quand on click sur une une zone de jeu, on affiche le tooltip décor
+    if($("#phase-partie").data("phase") == "choix_decor") {
+      $("body").on("click", "div.zoneJeu", function() {
+          // On affiche la tooltip seulement si pas de carte sur la zone
+          if ($(this).children('.carte-main').length == 0) {
+              var offset = $(this).offset();
+              $("#tooltip-zone-decor").css({
+                  top: offset.top + 150,
+                  left: offset.left
+              });
+              $("#tooltip-zone-decor").toggle();
+          }
 
-        var zoneJeu = this;
+          var zoneJeu = this;
 
-        // quand on choix un décor, on associe une classe à la zone
-        $("#tooltip-zone-decor .bouton-decor").unbind("click");
-        $("#tooltip-zone-decor .bouton-decor").click(function() {
+          // quand on choix un décor, on associe une classe à la zone
+          $("#tooltip-zone-decor .bouton-decor").unbind("click");
+          $("#tooltip-zone-decor .bouton-decor").click(function() {
 
-            var decor = $(this).prop("name");
-            $(zoneJeu).removeClass("foret ruines colline lac decor");
-            if (decor != "none") {
-                $(zoneJeu).addClass(decor + " decor");
-            }
-            $("#tooltip-zone-decor").css("display", "none");
+              var decor = $(this).prop("name");
+              $(zoneJeu).removeClass("foret ruines colline lac decor");
+              if (decor != "none") {
+                  $(zoneJeu).addClass(decor + " decor");
+              }
+              $("#tooltip-zone-decor").css("display", "none");
 
-            // Mettre à jour le statut de la carte, et refresh dans le client
-            var data = {
-                'carteId': $(parent).attr("id"),
-                'decor': decor,
-                'zoneJeu': $(zoneJeu).data("position")
-            }
-            var url = $("#url").val();
-            $.ajax({
-              url: urlPartie + "/partie/update-zone-decor",
-              type: 'post',
-              headers: {
-                'X-CSRF-TOKEN':  $('meta[name="csrf-token"]').attr('content'),
-                'X-Socket-Id': pusher.connection.socket_id
-              },
-              data: {
-                  data: data
-            }});
-        });
-    });
+              // Mettre à jour le statut de la carte, et refresh dans le client
+              var data = {
+                  'carteId': $(parent).attr("id"),
+                  'decor': decor,
+                  'zoneJeu': $(zoneJeu).data("position")
+              }
+              var url = $("#url").val();
+              $.ajax({
+                url: urlPartie + "/partie/update-zone-decor",
+                type: 'post',
+                headers: {
+                  'X-CSRF-TOKEN':  $('meta[name="csrf-token"]').attr('content'),
+                  'X-Socket-Id': pusher.connection.socket_id
+                },
+                data: {
+                    data: data
+              }});
+          });
+      });
+
+    }
 
 
     // Gestion des bordures pour indiquer les zones de combat

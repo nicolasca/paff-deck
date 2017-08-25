@@ -9,6 +9,7 @@ use App\Http\Requests;
 use Auth;
 use App\Events\DeplacerCarteDefausse;
 use App\Events\DragCarteZoneJeu;
+use App\Events\CarteDeployee;
 use App\Events\PartieLancee;
 use App\Events\UpdateInfos;
 use App\Events\UpdateEtatCarte;
@@ -166,6 +167,23 @@ class JouerPartieController extends Controller {
     $carte->save();
 
     broadcast(new DragCarteZoneJeu($data))->toOthers();
+
+    return $data;
+  }
+
+  // Quand une carte est depl dans la zone de jeu
+  // - on change le statut de la carte
+  // - on trigger un event pour le refresh dans le browser
+  public function deployerCarte() {
+    $data = $_POST['data'];
+    $carte = CarteEnCours::find($data['carteId']);
+    $carte->position = $data['position'];
+    $statut = $data['statut'];
+
+    $carte->statut = "ZONE_JEU";
+    $carte->save();
+
+    broadcast(new CarteDeployee($data))->toOthers();
 
     return $data;
   }
