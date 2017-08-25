@@ -3442,13 +3442,8 @@ header nav h1 {
 }
 
 #table-jeu .cartes-main .carte-main, #table-jeu .cartes-deploiement .carte-main, #table-jeu #cartes-defausse .carte-main {
-  border: 5px solid transparent;
   max-height: 150px;
   max-width: 106.5px;
-}
-
-#table-jeu .cartes-main .carte-main:hover, #table-jeu .cartes-main .carte-main.active, #table-jeu .cartes-deploiement .carte-main:hover, #table-jeu .cartes-deploiement .carte-main.active, #table-jeu #cartes-defausse .carte-main:hover, #table-jeu #cartes-defausse .carte-main.active {
-  border: 5px solid #D2691E;
 }
 
 #table-jeu .cartes-main.not-visible, #table-jeu .cartes-deploiement.not-visible {
@@ -3462,6 +3457,14 @@ header nav h1 {
 
 #table-jeu .cartes-main .not-visible img, #table-jeu .cartes-deploiement .not-visible img {
   visibility: hidden;
+}
+
+#table-jeu .cartes-main .carte-main, #table-jeu .cartes-deploiement .carte-main {
+  border: 5px solid transparent;
+}
+
+#table-jeu .cartes-main .carte-main:hover, #table-jeu .cartes-main .carte-main.active, #table-jeu .cartes-deploiement .carte-main:hover, #table-jeu .cartes-deploiement .carte-main.active {
+  border: 5px solid #D2691E;
 }
 
 #table-jeu #infos-partie {

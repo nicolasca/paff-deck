@@ -32,9 +32,9 @@ $(function() {
   });
 
   channel.bind('App\\Events\\CarteDeployee', function(data) {
-    $("#carte_" + data.carteId).slideUp(1000);
-    $("#carte_" + data.carteId).appendTo("#position_" + data.position);
-    $("#carte_" + data.carteId).fadeIn(1500);
+    $("#carte_" + data.carteId).slideUp(500, function() {
+      $(this).appendTo("#position_" + data.position).fadeIn(1500);
+    });
   });
 
   channel.bind('App\\Events\\DeplacerCarteDefausse', function(data) {

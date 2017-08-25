@@ -348,9 +348,21 @@ $(function() {
               data: {
                   data: data
             }, success: function() {
-              $("#carte_" + data.carteId).slideUp(1000);
-              $("#carte_" + data.carteId).appendTo("#position_" + data.position);
-              $("#carte_" + data.carteId).fadeIn(1500);
+              // Deplacer la carte dans la zone de jeu
+              $("#carte_" + data.carteId).slideUp(500, function() {
+                $(this).appendTo("#position_" + data.position).fadeIn(1500);
+
+                // Detacher l'event onclick sur cette carte, et la mettre draggable
+                $(this).unbind("click");
+                $(".zoneJeu").unbind("click");
+                $(this).draggable({
+                    revert: "invalid",
+                    start: function(event, ui) {
+                      // Because bug in droppable ui, we remove the active zone from here
+                      $(this).parent(".zoneJeu").removeClass("active-zone");
+                    }
+                });
+                });
             }});
 
         });
@@ -556,13 +568,6 @@ $(function() {
           $.get("getCarteView", data, function(view) {
               // Afficher la carte
               $('#' + data["id"]).prepend(view);
-              $("#zone-de-jeu .carte-main, #defausse .carte-main").draggable({
-                  revert: "invalid",
-                  start: function(event, ui) {
-                    // Because bug in droppable ui, we remove the active zone from here
-                    $(this).parent(".zoneJeu").removeClass("active-zone");
-                  }
-              });
               // MAJ cartes restantes
               $("#button1").text("Piocher ("+data.cartesRestantesJ1+")");
               $("#button2").text("Piocher ("+data.cartesRestantesJ2+")");
@@ -863,9 +868,9 @@ $(function() {
   });
 
   channel.bind('App\\Events\\CarteDeployee', function(data) {
-    $("#carte_" + data.carteId).slideUp(1000);
-    $("#carte_" + data.carteId).appendTo("#position_" + data.position);
-    $("#carte_" + data.carteId).fadeIn(1500);
+    $("#carte_" + data.carteId).slideUp(500, function() {
+      $(this).appendTo("#position_" + data.position).fadeIn(1500);
+    });
   });
 
   channel.bind('App\\Events\\DeplacerCarteDefausse', function(data) {

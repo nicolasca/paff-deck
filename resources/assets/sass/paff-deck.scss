@@ -926,12 +926,8 @@ header {
   .cartes-main, .cartes-deploiement, #cartes-defausse {
     margin-left: 10px;
     .carte-main {
-      border: 5px solid transparent;
       max-height: $hauteur-carte;
       max-width : ($hauteur-carte * 0.71);
-    }
-    .carte-main:hover, .carte-main.active {
-      border: 5px solid $color3;
     }
   }
 
@@ -945,6 +941,12 @@ header {
       img {
         visibility: hidden;
       }
+    }
+    .carte-main {
+      border: 5px solid transparent;
+    }
+    .carte-main:hover, .carte-main.active {
+      border: 5px solid $color3;
     }
   }
 
