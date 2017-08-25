@@ -21,7 +21,7 @@
   <header>
     <nav>
       <span><i class="fa fa-user" aria-hidden="true"></i></i> <a href="{{ url('/profil')}}/{{Auth::user()->id }}">{{ Auth::user()->name }}</a> </span>
-      <a href="{{ url('/home') }}"><img src="{{URL::asset('images/paff-logo.png')}} " alt="PAFF logo"></a>
+      <a href="{{ url('/home') }}"><img src="{{URL::asset('images/lama-logo.jpg')}} " alt="PAFF logo"></a>
       <a href="{{ url('/logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
     </nav>
   </header>
