@@ -105,7 +105,7 @@ $(function() {
         }
     });
     //Dans la main, les zones sont selectionnables, et on peut poser la carte
-    $('body').on("click", ".cartes-main .carte-main", function(){
+    $('body').on("click", ".cartes-main .carte-main, .cartes-deploiement .carte-main", function(){
         $(".cartes-main .carte-main").not(this).removeClass('active');
         $(this).toggleClass("active");
         var carte = $(this);
@@ -191,7 +191,7 @@ $(function() {
               }
               var urlPartie = $("#url").val();
               $.ajax({
-                url: urlPartie + "/partie/update-infos",
+                url: urlPartie + "/partie/update-zone-decor",
                 type: 'post',
                 headers: {
                   'X-CSRF-TOKEN':  $('meta[name="csrf-token"]').attr('content'),
@@ -200,12 +200,12 @@ $(function() {
                 data: {
                   data: data
               },
-              success: function(data) {
-                $('[data-position=' + data.zoneJeu + ']').removeClass("foret ruines colline lac decor");
-                if (data.decor != "none") {
-                    $('[data-position=' + data.zoneJeu + ']').addClass(data.decor + " decor");
-                }
-              }});
+                success: function(data) {
+                  $('[data-position=' + data.zoneJeu + ']').removeClass("foret ruines colline lac decor");
+                  if (data.decor != "none") {
+                      $('[data-position=' + data.zoneJeu + ']').addClass(data.decor + " decor");
+                  }
+                }});
 
               // On vérifie si c'est la dernière carte de décor
                 var deplJ1 = $("#cartes-decor-J1").children(".cartes-decor").length;
