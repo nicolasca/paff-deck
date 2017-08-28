@@ -2689,7 +2689,7 @@ header nav h1 {
       grid-template-columns: 10% 30% 10% 40% 10%;
   -ms-grid-rows: 50% 50%;
       grid-template-rows: 50% 50%;
-  grid-template-areas: ". avatarUser . infosDecks ." ". infosUser .  infosDecks .";
+  grid-template-areas: ". avatarUser . infosDecks ." ". infosUser .  infosDecks .";
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -3176,7 +3176,7 @@ header nav h1 {
       grid-template-columns: 25% 25% 30% 20%;
   -ms-grid-rows: auto;
       grid-template-rows: auto;
-  grid-template-areas: "cartesMain1 cartesMain1 presJoueur1 presJoueur1" "cartesMain1 cartesMain1 . ." "cartesDeploiement1 cartesDeploiement1 decorJ1 ." "zoneJeu zoneJeu zoneJeu ." "zoneJeu zoneJeu zoneJeu infosPartie" "zoneJeu zoneJeu zoneJeu ." "cartesDeploiement2 cartesDeploiement2 decorJ2 ." "cartesMain2 cartesMain2 . ." "cartesMain2 cartesMain2 presJoueur2 presJoueur2" "defausse defausse defausse defausse";
+  grid-template-areas: "cartesMain1 cartesMain1 presJoueur1 presJoueur1" "cartesMain1 cartesMain1 . ." "cartesDeploiement1 cartesDeploiement1 decorJ1 ." "zoneJeu zoneJeu zoneJeu ." "zoneJeu zoneJeu zoneJeu infosPartie" "zoneJeu zoneJeu zoneJeu ." "cartesDeploiement2 cartesDeploiement2 decorJ2 ." "cartesMain2 cartesMain2 . ." "cartesMain2 cartesMain2 presJoueur2 presJoueur2" "defausse defausse defausse defausse";
   margin-top: 10px;
 }
 
@@ -3551,4 +3551,64 @@ header nav h1 {
   max-height: 150px;
   max-width: 106.5px;
   display: inline-block;
+}
+
+#map-priana {
+  background-color: #e0cb94;
+  padding: 20px 0;
+  text-align: center;
+}
+
+#map-priana img {
+  width: 800px;
+  height: auto;
+}
+
+#arenes {
+  background-color: #c4c2c2;
+  text-align: center;
+}
+
+#arenes .classement-liste {
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: 20px;
+  border: 1px solid #D2691E;
+  /* Cells in even rows (2,4,6...) are one color */
+  /* Cells in odd rows (1,3,5...) are another (excludes header cells)  */
+}
+
+#arenes .classement-liste > .combattant:nth-child(even) {
+  background: #F4F0EB;
+}
+
+#arenes .classement-liste > .combattant:nth-child(odd) {
+  background: white;
+}
+
+#arenes .classement-liste .combattant {
+  padding: 10px;
+}
+
+#arenes .classement-liste .combattant div {
+  display: inline-block;
+  vertical-align: top;
+}
+
+#arenes .classement-liste div span {
+  font: bold italic 30px Helvetica, Verdana, sans-serif;
+  color: #D2691E;
+}
+
+#arenes .classement-liste div p {
+  padding-left: 20px;
+  color: #555;
+}
+
+#arenes .classement-liste div p:first-child {
+  font-weight: bold;
+  color: #0F601E;
 }

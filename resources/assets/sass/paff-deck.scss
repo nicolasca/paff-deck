@@ -1024,3 +1024,53 @@ header {
     display: inline-block;
   }
 }
+
+//-----------PRIANA----------------
+#map-priana {
+  background-color: $color-liches-bg;
+  padding: 20px 0;
+  text-align: center;
+  img {
+    width: 800px;
+    height: auto;
+  }
+}
+
+#arenes {
+  background-color: $color-jeldi-bg;
+  text-align: center;
+  .classement-liste {
+    display: grid;
+    align-items: center;
+    margin-left: 20px;
+    border: 1px solid $color3;
+
+      /* Cells in even rows (2,4,6...) are one color */
+    & > .combattant:nth-child(even) { background: $color1; }
+    /* Cells in odd rows (1,3,5...) are another (excludes header cells)  */
+    & > .combattant:nth-child(odd) { background: white; }
+
+    .combattant {
+      padding: 10px;
+      div {
+        display: inline-block;
+        vertical-align: top;
+      }
+    }
+    div {
+      span {
+        font: bold italic 30px Helvetica, Verdana, sans-serif;
+        color: $color3;
+      }
+
+      p {
+        padding-left: 20px;
+        color: #555;
+      }
+      p:first-child {
+        font-weight: bold;
+        color: $color2;
+      }
+    }
+  }
+}
