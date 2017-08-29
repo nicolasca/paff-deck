@@ -3245,14 +3245,21 @@ header nav h1 {
   width: 40px;
 }
 
+#table-jeu .emplacements-board {
+  justify-self: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
 #table-jeu #zone-de-jeu {
   grid-area: zoneJeu;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[2] 6px (1fr)[5] 6px (1fr)[2];
-      grid-template-columns: repeat(2, 1fr) 6px repeat(5, 1fr) 6px repeat(2, 1fr);
-  -ms-grid-rows: (1fr)[6];
-      grid-template-rows: repeat(6, 1fr);
+  -ms-grid-columns: 15px (1fr)[2] 6px (1fr)[5] 6px (1fr)[2];
+      grid-template-columns: 15px repeat(2, 1fr) 6px repeat(5, 1fr) 6px repeat(2, 1fr);
+  -ms-grid-rows: 15px (1fr)[6];
+      grid-template-rows: 15px repeat(6, 1fr);
   grid-gap: 10px 10px;
   margin: 10px;
 }

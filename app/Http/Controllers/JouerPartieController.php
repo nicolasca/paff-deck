@@ -34,13 +34,36 @@ class JouerPartieController extends Controller {
     $partie->save();
     $request->session()->put('partieId', $partieId);
 
-    // Determiner les zones de flancs et de centre
+    // Determiner les zones de flancs et de centre (pour colorer)
     $positionsParZone = array(
       "flancCoco" => [0,1,9,10,18,19,27,28,36,37,45,46],
       "flancQuetsch" => [7,8,16,17,25,26,34,35,43,44,52,53]
     );
 
-    // Determiner les zones de flancs et de centre
+    // Lettres et chiffres qui servent à définir les emplacements des zones
+    $emplacements = array (
+      "colonne" => array (
+          1 => "A",
+          2 => "B",
+          4 => "C",
+          5 => "D",
+          6 => "E",
+          7 => "F",
+          8 => "G",
+          10 => "H",
+          11 => "I"
+        ),
+        "ligne" => array (
+          0 => "1",
+          9 => "2",
+          18 => "3",
+          27 => "4",
+          36 => "5",
+          45 => "6"
+          )
+    );
+
+    // Determiner les délimitations de zones de flanc et de centre
     $delimitationZone = array(2,7,11,16,20,25,29,34,38,43,47,52);
 
     $cartesRestantesJ1 = $partie->deck_en_cours_1->cartes_en_cours->where("statut", "DECK")->count();
@@ -56,6 +79,7 @@ class JouerPartieController extends Controller {
     ->with("cartesRestantesJ1", $cartesRestantesJ1)
     ->with("cartesRestantesJ2", $cartesRestantesJ2)
     ->with("zonesDecors", $arrayDecors)
+    ->with("emplacements", $emplacements)
     ;
   }
 

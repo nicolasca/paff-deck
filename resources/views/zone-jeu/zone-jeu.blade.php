@@ -48,9 +48,20 @@
     @endif
 
     <div id="zone-de-jeu">
+      @for($i=0; $i < 12; $i++)
+        <div class="emplacements-board">
+          @if(isset($emplacements["colonne"][$i]))
+            {{$emplacements["colonne"][$i]}}
+          @endif
+        </div>
+      @endfor
       @for ($i = 0; $i < 54; $i++)
         @if(in_array($i, $delimitationZone))
         <div class="separation-zone">
+        </div>
+        @elseif(isset($emplacements["ligne"][$i]))
+        <div class="emplacements-board">
+          {{$emplacements["ligne"][$i]}}
         </div>
         @endif
         <div class=" zoneJeu {{in_array($i, $positionsParZone['flancCoco']) ? 'flanc-coco' : ''}}
@@ -82,11 +93,9 @@
         </div>
       @endfor
 
-    @include('zone-jeu.tooltip-carte-action')
-
-    @include('zone-jeu.tooltip-zone-decor')
-
-  </div>
+      @include('zone-jeu.tooltip-carte-action')
+      @include('zone-jeu.tooltip-zone-decor')
+    </div>
 
 
   <div id="cartes-main-2"  class="cartes-main grid has-gutter {{$partie->phase == 'combat' ? '' : 'not-visible'}}">
