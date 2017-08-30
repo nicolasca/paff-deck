@@ -28,3 +28,7 @@
 
 </div>
 @endsection
+
+@push('scripts')
+<script type="application/javascript" src="{{URL::asset('js/jouer-deck.js')}}"></script>
+@endpush
