@@ -19,11 +19,38 @@
 
   @if (Auth::check())
   <header>
-    <nav>
-      <span><i class="fa fa-user" aria-hidden="true"></i></i> <a href="{{ url('/profil')}}/{{Auth::user()->id }}">{{ Auth::user()->name }}</a> </span>
-      <a href="{{ url('/home') }}"><img src="{{URL::asset('images/lama-logo.jpg')}} " alt="PAFF logo"></a>
-      <a href="{{ url('/logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+    <nav role="navigation">
+      <ul>
+        <li {{{ (Request::is('home') ? 'class=active' : '') }}}>
+          <a href="{{ url('/home') }}">Home</a>
+        </li >
+        <li {{{ (Request::is('mes-decks') ? 'class=active' : '') }}}>
+          <a href="{{ url('/mes-decks') }}">Mes Decks</a>
+        </li>
+        <li {{{ (Request::is('parties') ? 'class=active' : '') }}}>
+          <a href="{{ url('/parties') }}">Parties</a>
+        </li>
+        <li {{{ (Request::is('resultats') ? 'class=active' : '') }}}>
+          <a href="{{ url('/resultats') }}">Résultats</a>
+        </li>
+        <li {{{ (Request::is('factions') ? 'class=active' : '') }}}>
+          <a href="{{ url('/factions') }}">Factions</a>
+        </li>
+        <li {{{ (Request::is('priana') ? 'class=active' : '') }}}>
+          <a href="{{ url('/priana') }}">Priana</a>
+        </li>
+      </ul>
     </nav>
+    <div class="">
+      <a href="{{ url('/home') }}"><img src="{{URL::asset('images/lama-logo.jpg')}} " alt="PAFF logo"></a>
+    </div>
+    <div class="">
+        <a class="right item" href="{{ url('/profil')}}/{{Auth::user()->id }}"><i class="fa fa-user" aria-hidden="true"></i>{{ Auth::user()->name }}</a>
+    </div>
+    <div class="">
+      <a href="{{ url('/logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+    </div>
+
   </header>
     @endif
 

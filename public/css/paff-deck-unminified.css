@@ -2563,12 +2563,6 @@ table tr:nth-child(odd) td {
 }
 
 header {
-  background-color: white;
-  padding-bottom: 10px;
-  height: 15%;
-}
-
-header nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2577,6 +2571,29 @@ header nav {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  background-color: white;
+  height: 80px;
+  border-bottom: 1px solid #0F601E;
+}
+
+header a:hover {
+  color: #D2691E;
+}
+
+header nav ul {
+  list-style-type: none;
+}
+
+header nav ul li {
+  display: inline;
+  padding: 0 0.5em;
+}
+
+header nav ul li.active a {
+  color: #D2691E;
+  border-bottom: 1px solid #D2691E;
+  padding-bottom: 2px;
+  font-weight: bold;
 }
 
 header nav img {
@@ -2586,16 +2603,6 @@ header nav img {
 header nav span {
   display: block;
   padding: .4em 1em .4em 1em;
-}
-
-header nav a {
-  color: #D2691E;
-}
-
-header nav h1 {
-  text-align: center;
-  font-weight: normal;
-  margin: 0;
 }
 
 .nav-choix-faction {
@@ -2734,10 +2741,37 @@ header nav h1 {
 }
 
 #home {
-  background: url("../images/orc.jpg");
-  background-size: cover;
-  height: 85vh;
-  padding-top: 50px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 100%;
+      grid-template-columns: 100%;
+  -ms-grid-rows: 200px auto;
+      grid-template-rows: 200px auto;
+}
+
+#home .priana {
+  background-color: #0F601E;
+}
+
+#home .priana h1 {
+  color: white;
+  font-size: 5rem;
+  position: relative;
+  top: 30%;
+}
+
+#home .description {
+  padding: 30px;
+  text-align: justify;
+}
+
+#home .description em {
+  color: #D2691E;
+}
+
+#home .description i {
+  font-size: 3.4rem;
+  color: #D2691E;
 }
 
 #liste-membres {
@@ -3614,13 +3648,13 @@ header nav h1 {
   padding: 30px;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 50% 50%;
-      grid-template-columns: 50% 50%;
+  -ms-grid-columns: 40% 60%;
+      grid-template-columns: 40% 60%;
   -ms-grid-rows: auto;
       grid-template-rows: auto;
   grid-column-gap: 10px;
   grid-row-gap: 20px;
-  grid-template-areas: "imageFaction descriptionFaction" "descriptionArmee descriptionArmee" "typeArmee typeArmee" "coupCoeur coupCoeur" "yeuxAdversaire yeuxAdversaire";
+  grid-template-areas: "imageFaction descriptionFaction" "imageFaction tableauCarac" "descriptionArmee ." "coupCoeur ." "yeuxAdversaire .";
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -3637,6 +3671,7 @@ header nav h1 {
 
 [id="factions"] [id="factionDescription"] [id="image-faction"] img {
   max-height: 500px;
+  border: 1px solid black;
   border-radius: 50%;
 }
 
@@ -3644,12 +3679,25 @@ header nav h1 {
   grid-area: descriptionFaction;
 }
 
-[id="factions"] [id="factionDescription"] [id="description-armee"] {
-  grid-area: descriptionArmee;
+[id="factions"] [id="factionDescription"] [id="tableau-carac"] {
+  grid-area: tableauCarac;
 }
 
-[id="factions"] [id="factionDescription"] [id="type-armee"] {
-  grid-area: typeArmee;
+[id="factions"] [id="factionDescription"] [id="tableau-carac"] table td, [id="factions"] [id="factionDescription"] [id="tableau-carac"] table th {
+  text-align: center;
+}
+
+[id="factions"] [id="factionDescription"] [id="tableau-carac"] i {
+  color: #D2691E;
+}
+
+[id="factions"] [id="factionDescription"] [id="description-armee"] {
+  grid-area: descriptionArmee;
+  justify-self: center;
+}
+
+[id="factions"] [id="factionDescription"] [id="description-armee"] em {
+  text-decoration: underline;
 }
 
 [id="factions"] [id="factionDescription"] [id="coup-coeur"] {

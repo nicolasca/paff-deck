@@ -127,13 +127,31 @@ table {
 //---------- HEADER ------------------------
 
 header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   background-color: white;
-  padding-bottom: 10px;
-  height: 15%;
+  height: 80px;
+  border-bottom: 1px solid $color2;
+  a:hover {
+    color: $color3;
+  }
   nav {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    ul {
+      list-style-type: none;
+    }
+    ul li {
+      display: inline;
+      padding: 0 0.5em;
+    }
+    ul li.active {
+      a {
+        color: $color3;
+        border-bottom: 1px solid $color3;
+        padding-bottom: 2px;
+        font-weight: bold;
+      }
+    }
 
     img {
       height: 125px;
@@ -141,14 +159,6 @@ header {
     span  {
       display: block;
       padding: .4em 1em .4em 1em;
-    }
-    a {
-      color: $color3;
-    }
-    h1 {
-      text-align: center;
-      font-weight: normal;
-      margin: 0;
     }
   }
 }
@@ -281,10 +291,29 @@ header {
 
 // ------ PAGE ACCUEIL-------------
 #home {
-  background: url("../images/orc.jpg");
-  background-size: cover;
-  height: 85vh;
-  padding-top: 50px;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 200px auto;
+  .priana {
+    background-color: $color2;
+    h1 {
+      color: white;
+      font-size: 5rem;
+      position: relative;
+      top: 30%;
+    }
+  }
+  .description {
+    padding: 30px;
+    text-align: justify;
+    em {
+      color: $color3;
+    }
+    i {
+      font-size: $h1-size-l;
+      color: $color3;
+    }
+  }
 }
 
 #dashboard {
@@ -1086,15 +1115,15 @@ header {
   [id="factionDescription"] {
     padding: 30px;
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 40% 60%;
     grid-template-rows: auto;
     grid-column-gap: 10px;
     grid-row-gap: 20px;
     grid-template-areas:  "imageFaction descriptionFaction"
-                          "descriptionArmee descriptionArmee"
-                          "typeArmee typeArmee"
-                          "coupCoeur coupCoeur"
-                          "yeuxAdversaire yeuxAdversaire";
+                          "imageFaction tableauCarac"
+                          "descriptionArmee ."
+                          "coupCoeur ."
+                          "yeuxAdversaire .";
     justify-content: center;
     align-items: center;
     text-align: justify;
@@ -1103,17 +1132,28 @@ header {
     justify-self: center;
     img {
       max-height: 500px;
+      border: 1px solid black;
       border-radius: 50%;
     }
   }
   [id="description-faction"] {
     grid-area: descriptionFaction;
   }
+  [id="tableau-carac"] {
+    grid-area: tableauCarac;
+    table td, table th {
+      text-align: center;
+    }
+    i {
+      color: $color3;
+    }
+  }
   [id="description-armee"] {
     grid-area: descriptionArmee;
-  }
-  [id="type-armee"] {
-    grid-area: typeArmee;
+    justify-self: center;
+    em {
+      text-decoration: underline;
+    }
   }
   [id="coup-coeur"] {
     grid-area: coupCoeur;
