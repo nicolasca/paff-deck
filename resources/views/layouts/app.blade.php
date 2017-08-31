@@ -60,18 +60,12 @@
 <script src="{{URL::asset('js/jquery-3.2.1.min.js')}}"></script>
 <script src="{{URL::asset('js/jquery-ui.min.js')}}"></script>
 <script src="{{URL::asset('js/anime.min.js')}}"></script>
-<script type="application/javascript" src="{{URL::asset('js/paff.js')}}"></script>
-
+<script type="application/javascript" src="{{URL::asset('js/paff-deck.js')}}"></script>
 <script src="https://js.pusher.com/4.0/pusher.min.js"></script>
-<script>
-// Enable pusher logging - don't include this in production
-  Pusher.logToConsole = true;
 
-  var pusher = new Pusher('d93830141cb957ba30fa', {
-    cluster: 'eu',
-    encrypted: true
-  });
+<!--Dynamic StyleSheets added from a view would be pasted here-->
+@stack('pusher-script')
+@stack('scripts')
 
-</script>
 </body>
 </html>
