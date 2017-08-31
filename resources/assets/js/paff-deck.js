@@ -83,7 +83,7 @@ $(function() {
 
     // Quand on change la faction, on récupère l'id, et on appelle le controller.
     // Celui ci nous renvoie une vue que l'on insert dans le div faction_show
-    $(".nav-faction").click(function() {
+    $("#creer-deck .nav-faction").click(function() {
         var id_faction = $(this).attr('id');
 
         // On gère l'opacity du circle et nom de la faction (qui ont des opcacités de base différentes)
@@ -95,6 +95,24 @@ $(function() {
             'id_faction': id_faction
         }, function(data) {
             $("#faction_show").html(data);
+        });
+    });
+
+    // Quand on change la faction, on récupère l'id, et on appelle le controller.
+    // Celui ci nous renvoie une vue que l'on insert dans le div faction_show
+    $("#factions .nav-faction").click(function() {
+        var id_faction = $(this).attr('id');
+
+        // On gère l'opacity du circle et nom de la faction (qui ont des opcacités de base différentes)
+        $(".nav-faction").removeClass("dark");
+        $(".nav-faction").addClass("clear");
+        $(this).addClass("dark");
+
+        $.get("factions/afficherFaction", {
+            'id_faction': id_faction
+        }, function(data) {
+            $("#presentation-univers").hide();
+            $("#factionToInclude").html(data);
         });
     });
 

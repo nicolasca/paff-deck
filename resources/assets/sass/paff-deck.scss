@@ -154,6 +154,98 @@ header {
 }
 //---------------------
 
+.nav-choix-faction {
+  margin: 10px 0;
+  .nav-faction {
+    text-align: center;
+    cursor: pointer;
+  }
+  .nav-faction:hover, {
+    opacity: 1;
+  }
+
+  .clear {
+    opacity: 0.3;
+  }
+  .dark {
+    opacity: 1;
+  }
+
+  .circle {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    border-radius: 50%;
+    text-align: center;
+    background-image: linear-gradient(90deg, rgba(255,255,255,.07) 50%, transparent 50%),
+    linear-gradient(90deg, rgba(255,255,255,.13) 50%, transparent 50%),
+    linear-gradient(90deg, transparent 50%, rgba(255,255,255,.17) 50%),
+    linear-gradient(90deg, transparent 50%, rgba(255,255,255,.19) 50%);
+    background-size: 13px, 29px, 37px, 53px;
+  }
+  .choix_faction {
+    margin: 0;
+  }
+
+}
+
+.bg-Elfes {
+  background-color: $color-elfes-bg;
+  border: 1px solid grey;
+}
+.bg-Gaeli {
+  background-color: $color-gaeli-bg;
+  border: 1px solid $color-gaeli-bg;
+}
+.bg-Gobelins {
+  background-color: $color-gobelins-bg;
+  border: 1px groove $color-gobelins-bg;
+}
+.bg-Jeldi {
+  background-color: $color-jeldi-bg;
+  border: 1px groove $color-jeldi-bg;
+}
+.bg-Liches {
+  background-color: $color-liches-bg;
+  border: 1px groove $color-liches-bg;
+}
+.bg-Mors {
+  background-color: $color-mors-bg;
+  border: 1px groove $color-mors-bg;
+}
+.bg-Nains {
+  background-color: $color-nains-bg;
+  border: 1px groove $color-nains-bg;
+}
+.bg-Nordiques {
+  background-color: $color-nordiques-bg;
+  border: 1px groove $color-nordiques-bg;
+}
+.bg-Orcs {
+  background-color: $color-orcs-bg;
+  border: 1px groove $color-orcs-bg;
+}
+.bg-Paoli {
+  background-color: $color-paoli-bg;
+  border: 1px groove $color-paoli-bg;
+}
+.bg-Priana {
+  background-color: $color-priana-bg;
+  border: 1px groove $color-priana-bg;
+}
+.bg-Sephosi {
+  background-color: $color-sephosi-bg;
+  border: 1px groove $color-sephosi-bg;
+}
+.bg-Skavens {
+  background-color: $color-skavens-bg;
+  border: 1px groove $color-skavens-bg;
+}
+.bg-HL {
+  background-color: $color-hl-bg;
+  border: 1px solid $color-hl-bg;
+}
+
 
 //-------------- ENREGISTRER UN COMPTE-----------
 #page-register {
@@ -196,8 +288,7 @@ header {
 }
 
 #dashboard {
-  display: flex;
-  justify-content: center;
+
 }
 //-----------------------
 
@@ -449,96 +540,6 @@ header {
 
 //------------CREER UN DECK------------------
 #creer-deck {
-  .nav-choix-faction {
-    margin: 10px 0;
-    .nav-faction {
-      text-align: center;
-      cursor: pointer;
-    }
-    .nav-faction:hover, {
-      opacity: 1;
-    }
-
-    .clear {
-      opacity: 0.3;
-    }
-    .dark {
-      opacity: 1;
-    }
-
-    .circle {
-      width: 50px;
-      height: 50px;
-      display: inline-block;
-      border-radius: 50%;
-      background-color:white;
-      text-align: center;
-      background-image: linear-gradient(90deg, rgba(255,255,255,.07) 50%, transparent 50%),
-      linear-gradient(90deg, rgba(255,255,255,.13) 50%, transparent 50%),
-      linear-gradient(90deg, transparent 50%, rgba(255,255,255,.17) 50%),
-      linear-gradient(90deg, transparent 50%, rgba(255,255,255,.19) 50%);
-      background-size: 13px, 29px, 37px, 53px;
-    }
-    .choix_faction {
-      margin: 0;
-    }
-    .bg-Elfes {
-      background-color: $color-elfes-bg;
-      border: 1px solid grey;
-    }
-    .bg-Gaeli {
-      background-color: $color-gaeli-bg;
-      border: 1px solid $color-gaeli-bg;
-    }
-    .bg-Gobelins {
-      background-color: $color-gobelins-bg;
-      border: 1px groove $color-gobelins-bg;
-    }
-    .bg-Jeldi {
-      background-color: $color-jeldi-bg;
-      border: 1px groove $color-jeldi-bg;
-    }
-    .bg-Liches {
-      background-color: $color-liches-bg;
-      border: 1px groove $color-liches-bg;
-    }
-    .bg-Mors {
-      background-color: $color-mors-bg;
-      border: 1px groove $color-mors-bg;
-    }
-    .bg-Nains {
-      background-color: $color-nains-bg;
-      border: 1px groove $color-nains-bg;
-    }
-    .bg-Nordiques {
-      background-color: $color-nordiques-bg;
-      border: 1px groove $color-nordiques-bg;
-    }
-    .bg-Orcs {
-      background-color: $color-orcs-bg;
-      border: 1px groove $color-orcs-bg;
-    }
-    .bg-Paoli {
-      background-color: $color-paoli-bg;
-      border: 1px groove $color-paoli-bg;
-    }
-    .bg-Priana {
-      background-color: $color-priana-bg;
-      border: 1px groove $color-priana-bg;
-    }
-    .bg-Sephosi {
-      background-color: $color-sephosi-bg;
-      border: 1px groove $color-sephosi-bg;
-    }
-    .bg-Skavens {
-      background-color: $color-skavens-bg;
-      border: 1px groove $color-skavens-bg;
-    }
-    .bg-HL {
-      background-color: $color-hl-bg;
-      border: 1px solid $color-hl-bg;
-    }
-  }
   .presentation-faction {
     margin-top: 20px;
   }
@@ -1077,5 +1078,57 @@ header {
         color: $color2;
       }
     }
+  }
+}
+
+[id="factions"] {
+
+  [id="factionDescription"] {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto;
+    grid-column-gap: 10px;
+    grid-row-gap: 20px;
+    grid-template-areas:  "imageFaction descriptionFaction"
+                          "descriptionArmee descriptionArmee"
+                          "typeArmee typeArmee"
+                          "coupCoeur coupCoeur"
+                          "yeuxAdversaire yeuxAdversaire";
+    justify-content: center;
+    align-items: center;
+    text-align: justify;
+  [id="image-faction"] {
+    grid-area: imageFaction;
+    justify-self: center;
+    img {
+      max-height: 500px;
+      border-radius: 50%;
+    }
+  }
+  [id="description-faction"] {
+    grid-area: descriptionFaction;
+  }
+  [id="description-armee"] {
+    grid-area: descriptionArmee;
+  }
+  [id="type-armee"] {
+    grid-area: typeArmee;
+  }
+  [id="coup-coeur"] {
+    grid-area: coupCoeur;
+  }
+  [id="yeux-adversaire"] {
+    grid-area: yeuxAdversaire;
+  }
+
+  h3 {
+    color: $color3;
+  }
+}
+
+  pre {
+    text-align: justify;
+    margin: 10px;
   }
 }

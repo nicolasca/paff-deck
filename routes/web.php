@@ -88,3 +88,8 @@ Route::post('resultats/detruire-resultat', 'ResultatsController@detruireResultat
 
 //-------------- PRIANA ------------------------
 Route::get('priana', 'PrianaController@index');
+
+
+//-------------- FACTIONS ------------------------
+Route::get('factions', 'FactionsController@index');
+Route::get('factions/afficherFaction', 'FactionsController@afficherFaction');

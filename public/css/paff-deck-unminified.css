@@ -2598,6 +2598,111 @@ header nav h1 {
   margin: 0;
 }
 
+.nav-choix-faction {
+  margin: 10px 0;
+}
+
+.nav-choix-faction .nav-faction {
+  text-align: center;
+  cursor: pointer;
+}
+
+.nav-choix-faction .nav-faction:hover {
+  opacity: 1;
+}
+
+.nav-choix-faction .clear {
+  opacity: 0.3;
+}
+
+.nav-choix-faction .dark {
+  opacity: 1;
+}
+
+.nav-choix-faction .circle {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  border-radius: 50%;
+  text-align: center;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.07) 50%, transparent 50%), linear-gradient(90deg, rgba(255, 255, 255, 0.13) 50%, transparent 50%), linear-gradient(90deg, transparent 50%, rgba(255, 255, 255, 0.17) 50%), linear-gradient(90deg, transparent 50%, rgba(255, 255, 255, 0.19) 50%);
+  background-size: 13px, 29px, 37px, 53px;
+}
+
+.nav-choix-faction .choix_faction {
+  margin: 0;
+}
+
+.bg-Elfes {
+  background-color: #fbf7f4;
+  border: 1px solid grey;
+}
+
+.bg-Gaeli {
+  background-color: #03447c;
+  border: 1px solid #03447c;
+}
+
+.bg-Gobelins {
+  background-color: #6cc400;
+  border: 1px groove #6cc400;
+}
+
+.bg-Jeldi {
+  background-color: #c4c2c2;
+  border: 1px groove #c4c2c2;
+}
+
+.bg-Liches {
+  background-color: #e0cb94;
+  border: 1px groove #e0cb94;
+}
+
+.bg-Mors {
+  background-color: #110d0a;
+  border: 1px groove #110d0a;
+}
+
+.bg-Nains {
+  background-color: #e67e22;
+  border: 1px groove #e67e22;
+}
+
+.bg-Nordiques {
+  background-color: #c2d5e4;
+  border: 1px groove #c2d5e4;
+}
+
+.bg-Orcs {
+  background-color: #004000;
+  border: 1px groove #004000;
+}
+
+.bg-Paoli {
+  background-color: #aa37a9;
+  border: 1px groove #aa37a9;
+}
+
+.bg-Priana {
+  background-color: #021a40;
+  border: 1px groove #021a40;
+}
+
+.bg-Sephosi {
+  background-color: #bf0101;
+  border: 1px groove #bf0101;
+}
+
+.bg-Skavens {
+  background-color: #2def10;
+  border: 1px groove #2def10;
+}
+
+.bg-HL {
+  background-color: #f4d03f;
+  border: 1px solid #f4d03f;
+}
+
 #page-register .form-item label {
   display: block;
   margin-bottom: 1rem;
@@ -2633,15 +2738,6 @@ header nav h1 {
   background-size: cover;
   height: 85vh;
   padding-top: 50px;
-}
-
-#dashboard {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
 }
 
 #liste-membres {
@@ -2900,112 +2996,6 @@ header nav h1 {
 
 #creer-deck-btn i {
   color: #D2691E;
-}
-
-#creer-deck .nav-choix-faction {
-  margin: 10px 0;
-}
-
-#creer-deck .nav-choix-faction .nav-faction {
-  text-align: center;
-  cursor: pointer;
-}
-
-#creer-deck .nav-choix-faction .nav-faction:hover {
-  opacity: 1;
-}
-
-#creer-deck .nav-choix-faction .clear {
-  opacity: 0.3;
-}
-
-#creer-deck .nav-choix-faction .dark {
-  opacity: 1;
-}
-
-#creer-deck .nav-choix-faction .circle {
-  width: 50px;
-  height: 50px;
-  display: inline-block;
-  border-radius: 50%;
-  background-color: white;
-  text-align: center;
-  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.07) 50%, transparent 50%), linear-gradient(90deg, rgba(255, 255, 255, 0.13) 50%, transparent 50%), linear-gradient(90deg, transparent 50%, rgba(255, 255, 255, 0.17) 50%), linear-gradient(90deg, transparent 50%, rgba(255, 255, 255, 0.19) 50%);
-  background-size: 13px, 29px, 37px, 53px;
-}
-
-#creer-deck .nav-choix-faction .choix_faction {
-  margin: 0;
-}
-
-#creer-deck .nav-choix-faction .bg-Elfes {
-  background-color: #fbf7f4;
-  border: 1px solid grey;
-}
-
-#creer-deck .nav-choix-faction .bg-Gaeli {
-  background-color: #03447c;
-  border: 1px solid #03447c;
-}
-
-#creer-deck .nav-choix-faction .bg-Gobelins {
-  background-color: #6cc400;
-  border: 1px groove #6cc400;
-}
-
-#creer-deck .nav-choix-faction .bg-Jeldi {
-  background-color: #c4c2c2;
-  border: 1px groove #c4c2c2;
-}
-
-#creer-deck .nav-choix-faction .bg-Liches {
-  background-color: #e0cb94;
-  border: 1px groove #e0cb94;
-}
-
-#creer-deck .nav-choix-faction .bg-Mors {
-  background-color: #110d0a;
-  border: 1px groove #110d0a;
-}
-
-#creer-deck .nav-choix-faction .bg-Nains {
-  background-color: #e67e22;
-  border: 1px groove #e67e22;
-}
-
-#creer-deck .nav-choix-faction .bg-Nordiques {
-  background-color: #c2d5e4;
-  border: 1px groove #c2d5e4;
-}
-
-#creer-deck .nav-choix-faction .bg-Orcs {
-  background-color: #004000;
-  border: 1px groove #004000;
-}
-
-#creer-deck .nav-choix-faction .bg-Paoli {
-  background-color: #aa37a9;
-  border: 1px groove #aa37a9;
-}
-
-#creer-deck .nav-choix-faction .bg-Priana {
-  background-color: #021a40;
-  border: 1px groove #021a40;
-}
-
-#creer-deck .nav-choix-faction .bg-Sephosi {
-  background-color: #bf0101;
-  border: 1px groove #bf0101;
-}
-
-#creer-deck .nav-choix-faction .bg-Skavens {
-  background-color: #2def10;
-  border: 1px groove #2def10;
-}
-
-#creer-deck .nav-choix-faction .bg-HL {
-  background-color: #f4d03f;
-  border: 1px solid #f4d03f;
 }
 
 #creer-deck .presentation-faction {
@@ -3618,4 +3608,63 @@ header nav h1 {
 #arenes .classement-liste div p:first-child {
   font-weight: bold;
   color: #0F601E;
+}
+
+[id="factions"] [id="factionDescription"] {
+  padding: 30px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 50% 50%;
+      grid-template-columns: 50% 50%;
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
+  grid-column-gap: 10px;
+  grid-row-gap: 20px;
+  grid-template-areas: "imageFaction descriptionFaction" "descriptionArmee descriptionArmee" "typeArmee typeArmee" "coupCoeur coupCoeur" "yeuxAdversaire yeuxAdversaire";
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: justify;
+}
+
+[id="factions"] [id="factionDescription"] [id="image-faction"] {
+  grid-area: imageFaction;
+  justify-self: center;
+}
+
+[id="factions"] [id="factionDescription"] [id="image-faction"] img {
+  max-height: 500px;
+  border-radius: 50%;
+}
+
+[id="factions"] [id="factionDescription"] [id="description-faction"] {
+  grid-area: descriptionFaction;
+}
+
+[id="factions"] [id="factionDescription"] [id="description-armee"] {
+  grid-area: descriptionArmee;
+}
+
+[id="factions"] [id="factionDescription"] [id="type-armee"] {
+  grid-area: typeArmee;
+}
+
+[id="factions"] [id="factionDescription"] [id="coup-coeur"] {
+  grid-area: coupCoeur;
+}
+
+[id="factions"] [id="factionDescription"] [id="yeux-adversaire"] {
+  grid-area: yeuxAdversaire;
+}
+
+[id="factions"] [id="factionDescription"] h3 {
+  color: #D2691E;
+}
+
+[id="factions"] pre {
+  text-align: justify;
+  margin: 10px;
 }
