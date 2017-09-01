@@ -2,8 +2,8 @@
 <div id="factionDescription" >
 
 
-  <div id="image-faction">
-    <img src="{{$faction->path_image}}" alt="Image Faction">
+  <div id="image-faction-1">
+    <img src="{{$images['img1']}}" alt="Image Faction">
   </div>
 
   <div id="description-faction">
@@ -15,7 +15,7 @@
     <table>
       <thead>
         <tr>
-          <th>Prise en main</th>
+          <th>Difficulté</th>
           <th>Offensif</th>
           <th>Défensif</th>
           <th>Taille de l'armée</th>
@@ -54,6 +54,10 @@
     <p>{{$faction->type_armee}}</p>
   </div>
 
+  <div id="image-faction-2">
+    <img src="{{$images['img2']}}" alt="Image Faction">
+  </div>
+
   <div id="coup-coeur">
     <h3>Coup de coeur</h3>
     <p>{{$faction->coup_coeur}}</p>
@@ -62,6 +66,10 @@
   <div id="yeux-adversaire">
     <h3>"Voir dans les yeux de l'adversaire...</h3>
     <p>{{$faction->menace_adversaire}}</p>
+  </div>
+
+  <div id="image-faction-3">
+    <img src="{{$images['img3']}}" alt="Image Faction">
   </div>
 
 </div>

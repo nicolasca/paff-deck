@@ -7,12 +7,11 @@
   </div>
 
   <div class="carte">
-
+    <img src="./images/carte_priana.jpg" alt="Carte de Priana">
   </div>
 
   <div class="description">
     <pre>
-
   <i class="fa fa-quote-left" aria-hidden="true"></i>
   Depuis plus de six siècles et l’avènement de la <em>Grande Nuit</em>, les peuples humains ont prospérés au sein des <em>Royaumes Protégés</em>, vivant aux côtés des Nains, reclus dans leurs Montagnes, et guerroyant aussi bien entre eux que contre les Orcs et les Gobelins, toujours avides de combat.
 

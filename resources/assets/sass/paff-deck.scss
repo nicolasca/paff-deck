@@ -303,6 +303,14 @@ header {
       top: 30%;
     }
   }
+  .carte {
+    background-color: white;
+    padding: 50px;
+    text-align: center;
+    img {
+      width: 80%;
+    }
+  }
   .description {
     padding: 30px;
     text-align: justify;
@@ -1119,21 +1127,38 @@ header {
     grid-template-rows: auto;
     grid-column-gap: 10px;
     grid-row-gap: 20px;
-    grid-template-areas:  "imageFaction descriptionFaction"
-                          "imageFaction tableauCarac"
-                          "descriptionArmee ."
-                          "coupCoeur ."
-                          "yeuxAdversaire .";
+    grid-template-areas:  "imageFaction1 descriptionFaction"
+                          "imageFaction1 tableauCarac"
+                          "descriptionArmee imageFaction2"
+                          "coupCoeur imageFaction2"
+                          "yeuxAdversaire yeuxAdversaire"
+                          "imageFaction3 imageFaction3";
     justify-content: center;
     align-items: center;
     text-align: justify;
-  [id="image-faction"] {
-    grid-area: imageFaction;
+  [id="image-faction-1"] {
+    grid-area: imageFaction1;
     justify-self: center;
     img {
       max-height: 500px;
       border: 1px solid black;
       border-radius: 50%;
+    }
+  }
+  [id="image-faction-2"] {
+    grid-area: imageFaction2;
+    justify-self: center;
+    img {
+      max-height: 500px;
+      border: 1px solid black;
+    }
+  }
+  [id="image-faction-3"] {
+    grid-area: imageFaction3;
+    justify-self: center;
+    img {
+      max-height: 500px;
+      border: 1px solid black;
     }
   }
   [id="description-faction"] {
@@ -1160,6 +1185,7 @@ header {
   }
   [id="yeux-adversaire"] {
     grid-area: yeuxAdversaire;
+    justify-self: center;
   }
 
   h3 {

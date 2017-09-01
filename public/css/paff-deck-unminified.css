@@ -2760,6 +2760,16 @@ header nav span {
   top: 30%;
 }
 
+#home .carte {
+  background-color: white;
+  padding: 50px;
+  text-align: center;
+}
+
+#home .carte img {
+  width: 80%;
+}
+
 #home .description {
   padding: 30px;
   text-align: justify;
@@ -3654,7 +3664,7 @@ header nav span {
       grid-template-rows: auto;
   grid-column-gap: 10px;
   grid-row-gap: 20px;
-  grid-template-areas: "imageFaction descriptionFaction" "imageFaction tableauCarac" "descriptionArmee ." "coupCoeur ." "yeuxAdversaire .";
+  grid-template-areas: "imageFaction1 descriptionFaction" "imageFaction1 tableauCarac" "descriptionArmee imageFaction2" "coupCoeur imageFaction2" "yeuxAdversaire yeuxAdversaire" "imageFaction3 imageFaction3";
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -3664,15 +3674,35 @@ header nav span {
   text-align: justify;
 }
 
-[id="factions"] [id="factionDescription"] [id="image-faction"] {
-  grid-area: imageFaction;
+[id="factions"] [id="factionDescription"] [id="image-faction-1"] {
+  grid-area: imageFaction1;
   justify-self: center;
 }
 
-[id="factions"] [id="factionDescription"] [id="image-faction"] img {
+[id="factions"] [id="factionDescription"] [id="image-faction-1"] img {
   max-height: 500px;
   border: 1px solid black;
   border-radius: 50%;
+}
+
+[id="factions"] [id="factionDescription"] [id="image-faction-2"] {
+  grid-area: imageFaction2;
+  justify-self: center;
+}
+
+[id="factions"] [id="factionDescription"] [id="image-faction-2"] img {
+  max-height: 500px;
+  border: 1px solid black;
+}
+
+[id="factions"] [id="factionDescription"] [id="image-faction-3"] {
+  grid-area: imageFaction3;
+  justify-self: center;
+}
+
+[id="factions"] [id="factionDescription"] [id="image-faction-3"] img {
+  max-height: 500px;
+  border: 1px solid black;
 }
 
 [id="factions"] [id="factionDescription"] [id="description-faction"] {
@@ -3706,6 +3736,7 @@ header nav span {
 
 [id="factions"] [id="factionDescription"] [id="yeux-adversaire"] {
   grid-area: yeuxAdversaire;
+  justify-self: center;
 }
 
 [id="factions"] [id="factionDescription"] h3 {

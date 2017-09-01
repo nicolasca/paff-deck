@@ -24,7 +24,10 @@ class FactionsController extends Controller
     $id = $_GET['id_faction'];
 
     $faction = Faction::find($id);
+    $listeImages = json_decode($faction->path_image, true);
 
-    return view('factions.description-faction')->with('faction', $faction);
+    return view('factions.description-faction')
+    ->with('faction', $faction)
+    ->with('images', $listeImages);
   }
 }
