@@ -39,6 +39,9 @@
         <li {{{ (Request::is('priana') ? 'class=active' : '') }}}>
           <a href="{{ url('/priana') }}">Priana</a>
         </li>
+        <li {{{ (Request::is('membres') ? 'class=active' : '') }}}>
+          <a href="{{ url('/membres') }}">Membres</a>
+        </li>
       </ul>
     </nav>
     <div class="">
