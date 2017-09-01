@@ -207,7 +207,6 @@
     encrypted: true
   });
 </script>
-<script type="application/javascript" src="{{URL::asset('js/jouer-deck.js')}}"></script>
 @endpush
 @push('scripts')
 <script type="application/javascript" src="{{URL::asset('js/jouer-deck.js')}}"></script>

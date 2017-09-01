@@ -1,7 +1,5 @@
 $(function() {
 
-  var channel = pusher.subscribe('partie-channel');
-
   // -------------------- ZONE DE JEU ------------------------
 
   // On ecoute l'event pour lancer la partie.

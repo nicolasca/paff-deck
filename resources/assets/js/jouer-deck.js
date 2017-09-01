@@ -1,5 +1,7 @@
 $(function() {
 
+  var channel = pusher.subscribe('partie-channel');
+
   var urlPartie = $("#url").val();
 
     // Clic "Utiliser" pour une carte.
