@@ -140,7 +140,6 @@ $(function() {
 
                 // Detacher l'event onclick sur cette carte, et la mettre draggable
                 $(this).unbind("click");
-                $(".zoneJeu").unbind("click");
                 $(this).draggable({
                     revert: "invalid",
                     start: function(event, ui) {
@@ -576,6 +575,51 @@ $(function() {
             }});
         });
     }
+
+    // quand on click sur une une zone de jeu, on affiche le tooltip décor
+    $("body").on("click", "div.zoneJeu", function() {
+        // On affiche la tooltip seulement si pas de carte sur la zone
+        if ($(this).children('.carte-main').length == 0) {
+            var offset = $(this).offset();
+            $("#tooltip-zone-decor").css({
+                top: offset.top + 150,
+                left: offset.left
+            });
+            $("#tooltip-zone-decor").toggle();
+        }
+
+        var zoneJeu = this;
+
+        // quand on choix un décor, on associe une classe à la zone
+        $("#tooltip-zone-decor .bouton-decor").unbind("click");
+        $("#tooltip-zone-decor .bouton-decor").click(function() {
+
+            var decor = $(this).prop("name");
+            $(zoneJeu).removeClass("foret ruines colline lac decor");
+            if (decor != "none") {
+                $(zoneJeu).addClass(decor + " decor");
+            }
+            $("#tooltip-zone-decor").css("display", "none");
+
+            // Mettre à jour le statut de la carte, et refresh dans le client
+            var data = {
+                'carteId': $(parent).attr("id"),
+                'decor': decor,
+                'zoneJeu': $(zoneJeu).data("position")
+            }
+            var url = $("#url").val();
+            $.ajax({
+              url: urlPartie + "/partie/update-zone-decor",
+              type: 'post',
+              headers: {
+                'X-CSRF-TOKEN':  $('meta[name="csrf-token"]').attr('content'),
+                'X-Socket-Id': pusher.connection.socket_id
+              },
+              data: {
+                data: data
+            }});
+        });
+    });
 
     // Gestion des points de dégats
     function _gestionDegats(carte) {
