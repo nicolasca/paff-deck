@@ -67,7 +67,11 @@ class CreerDeckController extends Controller {
       }
     }
     //If no error, display the show deck view
-    return redirect()->back()->with('message', 'Vous avez créé le plus beau deck du monde !!');
+    $decksByMode = Auth::user()->decks()->orderBy("nom")->get()->groupBy("mode");
+    $deckShow = '';
+
+    return view('decks.mes-decks')->with('decksByMode', $decksByMode)
+    ->with('deckShow', $deckShow);
   }
 
   // Trier le tableau par type dans l'ordre de clé suivant:

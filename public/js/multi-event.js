@@ -8,6 +8,7 @@ $(function() {
     // Quand les 2 joueurs ont cliqué sur le boutton,
     // on les redirige
     channel.bind('App\\Events\\PartieLancee', function(data) {
+      console.log("partie est lancée");
         var idPartie = data.idPartie;
         var idUser = data.idUser;
         // Si un des joueurs a déjà rejoint, on redirige vers la zone de jeu
@@ -22,13 +23,7 @@ $(function() {
     });
 
     channel.bind('App\\Events\\DragCarteZoneJeu', function(data) {
-        anime({
-            targets: "#carte_" + data.carteId,
-            translateX: "-=" + ($("#carte_" + data.carteId).position().left - $("#position_" + data.position).position().left),
-            translateY: "-=" + ($("#carte_" + data.carteId).position().top - $("#position_" + data.position).position().top),
-            duration: 3000,
-            easing: 'easeInOutQuad'
-        });
+          $("#carte_" + data.carteId).appendTo("#position_" + data.position);
     });
 
     channel.bind('App\\Events\\CarteDeployee', function(data) {

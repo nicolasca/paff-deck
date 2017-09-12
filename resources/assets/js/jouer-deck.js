@@ -98,60 +98,15 @@ $(function() {
         }});
     });
 
-    // Les cartes sont draggable dans la zone de jeu et la defausse
-    $("#zone-de-jeu .carte-main, #defausse .carte-main").draggable({
+    // Les cartes sont draggable
+    $(".carte-main").draggable({
         revert: "invalid",
         start: function(event, ui) {
           // Because bug in droppable ui, we remove the active zone from here
           $(this).parent(".zoneJeu").removeClass("active-zone");
         }
     });
-    //Dans la main, les zones sont selectionnables, et on peut poser la carte
-    $('body').on("click", ".cartes-main .carte-main, .cartes-deploiement .carte-main", function(){
-        $(".cartes-main .carte-main").not(this).removeClass('active');
-        $(this).toggleClass("active");
-        var carte = $(this);
 
-        // Sur le click, déplacer la carte dans l'emplacement
-        $(".zoneJeu").unbind("click");
-        $(".zoneJeu").click(function() {
-            var position = $(this).data("position");
-
-            // Envoyer la carte id et sa position
-            var data = {
-                statut: $(this).data("statut"),
-                position: $(this).data("position"),
-                carteId: $(carte).prop("id").split('_')[1]
-            }
-            var urlPartie = $("#url").val();
-            $.ajax({
-              url: urlPartie + "/partie/deployer-carte",
-              type: 'post',
-              headers: {
-                'X-CSRF-TOKEN':  $('meta[name="csrf-token"]').attr('content'),
-                'X-Socket-Id': pusher.connection.socket_id
-              },
-              data: {
-                  data: data
-            }, success: function() {
-              // Deplacer la carte dans la zone de jeu
-              $("#carte_" + data.carteId).slideUp(500, function() {
-                $(this).appendTo("#position_" + data.position).fadeIn(1500);
-
-                // Detacher l'event onclick sur cette carte, et la mettre draggable
-                $(this).unbind("click");
-                $(this).draggable({
-                    revert: "invalid",
-                    start: function(event, ui) {
-                      // Because bug in droppable ui, we remove the active zone from here
-                      $(this).parent(".zoneJeu").removeClass("active-zone");
-                    }
-                });
-                });
-            }});
-
-        });
-    });
 
     // Les zones sont droppable
     $(".zoneJeu").droppable({
@@ -279,6 +234,9 @@ $(function() {
                 },
                 data: {
                     data: data
+              },
+                success: function(data) {
+                  $("#carte_" + data.carteId).appendTo("#position_" + data.position);
               }});
 
             }
@@ -490,9 +448,8 @@ $(function() {
 
     });
 
-    // Si phase de décor, quand on click sur une une zone de jeu, on affiche le tooltip décor
-    if($("#phase-partie").data("phase") == "choix_decor") {
-      $("body").on("click", "div.zoneJeu", function() {
+    // Quand on click sur une une zone de jeu, on affiche le tooltip décor
+      $("body").on("click", ".zoneJeu", function() {
           // On affiche la tooltip seulement si pas de carte sur la zone
           if ($(this).children('.carte-main').length == 0) {
               var offset = $(this).offset();
@@ -535,9 +492,6 @@ $(function() {
               }});
           });
       });
-
-    }
-
 
     // Gestion des bordures pour indiquer les zones de combat
     function _gestionZonesCombat(carte) {

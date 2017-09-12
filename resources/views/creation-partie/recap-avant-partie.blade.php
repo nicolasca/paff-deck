@@ -30,5 +30,14 @@
 @endsection
 
 @push('scripts')
+<script>
+// Enable pusher logging - don't include this in production
+  Pusher.logToConsole = true;
+  var pusher = new Pusher('d93830141cb957ba30fa', {
+    cluster: 'eu',
+    encrypted: true
+  });
+</script>
 <script type="application/javascript" src="{{URL::asset('js/jouer-deck.js')}}"></script>
+<script type="application/javascript" src="{{URL::asset('js/multi-event.js')}}"></script>
 @endpush
