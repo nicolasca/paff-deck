@@ -71,7 +71,7 @@ $(function() {
         var valeurs = "";
         for (i = 0; i < nombreDes; i++) {
             if (i != 0) {
-                valeurs += " - "
+                valeurs += " - ";
             }
             var random = Math.floor(Math.random() * 6) + 1;
             valeurs += random + "";
@@ -81,7 +81,7 @@ $(function() {
         var data = {
             valeurs: valeurs,
             type: "dice"
-        }
+        };
         var urlPartie = $("#url").val();
         $.ajax({
           url: urlPartie + "/partie/update-infos",
@@ -144,7 +144,7 @@ $(function() {
                   'carteId': $(dropped).attr("id"),
                   'decor': decor,
                   'zoneJeu': $(this).data("position")
-              }
+              };
               var urlPartie = $("#url").val();
               $.ajax({
                 url: urlPartie + "/partie/update-zone-decor",
@@ -223,7 +223,7 @@ $(function() {
                   statut: $(this).data("statut"),
                   position: $(this).data("position"),
                   carteId: ui.draggable.prop("id").split('_')[1]
-              }
+              };
               var urlPartie = $("#url").val();
               $.ajax({
                 url: urlPartie + "/partie/drag-carte",
@@ -296,7 +296,7 @@ $(function() {
         var data = {
           userId: userId,
           id: idZoneMain
-        }
+        };
         $.ajax({
           url: "piocher",
           type: 'post',
@@ -322,7 +322,7 @@ $(function() {
     // Quand on survole une carte, on l'affiche en grand
     $("body").on("mouseover", ".carte-main img", function() {
         var srcImg = $(this).prop("src");
-        $("#carte-grand img").prop("src", srcImg)
+        $("#carte-grand img").prop("src", srcImg);
     });
 
     // quand on click sur une carte de la zone de jeu, tooltip action s'affiche
@@ -336,7 +336,7 @@ $(function() {
         $("#tooltip-carte-action").toggle();
 
         // Gestion des bordures pour indiquer les zones de combat
-        _gestionZonesCombat(carte)
+        _gestionZonesCombat(carte);
         // Gestion des points de dégats
         _gestionDegats(carte);
 
@@ -353,7 +353,7 @@ $(function() {
             // Mettre à jour le statut de la carte, et refresh dans le client
             var data = {
                 carteId: $(parent).attr("id").split('_')[1]
-            }
+            };
 
             $.ajax({
               url: urlPartie + "/partie/deplacer-defausse",
@@ -378,7 +378,7 @@ $(function() {
                 carteId: $(parent).attr("id"),
                 moral: true,
                 hasMoral: !$("#" + $(parent).attr("id")).hasClass("testMoral")
-            }
+            };
             $("#tooltip-carte-action").toggle();
             $.ajax({
               url: urlPartie + "/partie/update-etat-carte",
@@ -403,7 +403,7 @@ $(function() {
             var data = {
                 carteId: $(parent).attr("id"),
                 flag: $("#" + $(parent).attr("id")).find("#flagCarte").hasClass("not-visible")
-            }
+            };
             $("#tooltip-carte-action").toggle();
             $.ajax({
               url: urlPartie + "/partie/update-etat-carte",
@@ -429,7 +429,7 @@ $(function() {
                 carteId: $(parent).attr("id"),
                 fuite: true,
                 isFuite: !$(carte).hasClass("enFuite")
-            }
+            };
             $("#tooltip-carte-action").toggle();
             $.ajax({
               url: urlPartie + "/partie/update-etat-carte",
@@ -448,7 +448,7 @@ $(function() {
 
     });
 
-    
+
 
     // Gestion des bordures pour indiquer les zones de combat
     function _gestionZonesCombat(carte) {
@@ -473,7 +473,7 @@ $(function() {
             var data = {
                 carteId: $(parent).attr("id"),
                 combat: flancCombat
-            }
+            };
             $.ajax({
               url: urlPartie + "/partie/update-etat-carte",
               type: 'post',
@@ -517,7 +517,7 @@ $(function() {
                 'carteId': $(parent).attr("id"),
                 'decor': decor,
                 'zoneJeu': $(zoneJeu).data("position")
-            }
+            };
             var url = $("#url").val();
             $.ajax({
               url: urlPartie + "/partie/update-zone-decor",
@@ -559,7 +559,7 @@ $(function() {
             var data = {
                 carteId: $(parent).attr("id"),
                 degats: degats
-            }
+            };
             $.ajax({
               url: urlPartie + "/partie/update-etat-carte",
               type: 'post',
