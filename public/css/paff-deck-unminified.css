@@ -98,7 +98,8 @@ figure {
  * 2. Show the overflow in Edge and IE.
  */
 hr {
-  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
   /* 1 */
   height: 0;
   /* 1 */
@@ -148,7 +149,8 @@ abbr[title] {
   /* 1 */
   text-decoration: underline;
   /* 2 */
-  text-decoration: underline dotted;
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
   /* 2 */
 }
 
@@ -346,7 +348,8 @@ fieldset {
  *    `fieldset` elements in all browsers.
  */
 legend {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   /* 1 */
   color: inherit;
   /* 2 */
@@ -384,7 +387,8 @@ textarea {
  */
 [type="checkbox"],
 [type="radio"] {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   /* 1 */
   padding: 0;
   /* 2 */
@@ -476,11 +480,13 @@ template {
 /* ----------------------------- */
 /* switching to border-box model for all elements */
 html {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 * {
-  box-sizing: inherit;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
 }
 
 html {
@@ -713,7 +719,8 @@ img {
 @media print {
   * {
     background: transparent !important;
-    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+            box-shadow: none !important;
     text-shadow: none !important;
   }
   body {
@@ -1086,7 +1093,8 @@ input[type="reset"].unstyled {
   text-align: left;
   background: none;
   border-radius: 0;
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -1096,7 +1104,8 @@ button.unstyled:focus,
 input[type="button"].unstyled:focus,
 input[type="submit"].unstyled:focus,
 input[type="reset"].unstyled:focus {
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
   outline: none;
 }
 
@@ -1130,7 +1139,6 @@ input[type="reset"].unstyled:focus {
   }
   .o-media-figure--center {
     -ms-flex-item-align: center;
-        -ms-grid-row-align: center;
         align-self: center;
   }
 }
@@ -1902,7 +1910,8 @@ ul.is-unstyled, ul.unstyled {
   }
   [class*=" grid-"] > *,
   [class^="grid-"] > * {
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     min-width: 0;
     min-height: 0;
   }
@@ -1920,7 +1929,8 @@ ul.is-unstyled, ul.unstyled {
     -webkit-box-flex: 1;
         -ms-flex: 1 1 0%;
             flex: 1 1 0%;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     min-width: 0;
     min-height: 0;
   }
@@ -2632,6 +2642,7 @@ header nav span {
   display: inline-block;
   border-radius: 50%;
   text-align: center;
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(50%, rgba(255, 255, 255, 0.07)), color-stop(50%, transparent)), -webkit-gradient(linear, left top, right top, color-stop(50%, rgba(255, 255, 255, 0.13)), color-stop(50%, transparent)), -webkit-gradient(linear, left top, right top, color-stop(50%, transparent), color-stop(50%, rgba(255, 255, 255, 0.17))), -webkit-gradient(linear, left top, right top, color-stop(50%, transparent), color-stop(50%, rgba(255, 255, 255, 0.19)));
   background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.07) 50%, transparent 50%), linear-gradient(90deg, rgba(255, 255, 255, 0.13) 50%, transparent 50%), linear-gradient(90deg, transparent 50%, rgba(255, 255, 255, 0.17) 50%), linear-gradient(90deg, transparent 50%, rgba(255, 255, 255, 0.19) 50%);
   background-size: 13px, 29px, 37px, 53px;
 }
@@ -2741,12 +2752,9 @@ header nav span {
 }
 
 #home {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 100%;
-      grid-template-columns: 100%;
-  -ms-grid-rows: 200px auto;
-      grid-template-rows: 200px auto;
+  grid-template-columns: 100%;
+  grid-template-rows: 200px auto;
 }
 
 #home .priana {
@@ -2823,13 +2831,10 @@ header nav span {
 }
 
 #profile-page #profil-user {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 10% 30% 10% 40% 10%;
-      grid-template-columns: 10% 30% 10% 40% 10%;
-  -ms-grid-rows: 50% 50%;
-      grid-template-rows: 50% 50%;
-  grid-template-areas: ". avatarUser . infosDecks ." ". infosUser .  infosDecks .";
+  grid-template-columns: 10% 30% 10% 40% 10%;
+  grid-template-rows: 50% 50%;
+  grid-template-areas: ". avatarUser . infosDecks ." ". infosUser .  infosDecks .";
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -3008,6 +3013,7 @@ header nav span {
   left: 50%;
   margin-left: -400px;
   opacity: 0;
+  -webkit-transition: opacity 1s;
   transition: opacity 1s;
 }
 
@@ -3132,14 +3138,10 @@ header nav span {
 
 #grid-resultat {
   margin: 20px 0;
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 25% 50% 25%;
-      grid-template-columns: 25% 50% 25%;
-  -ms-grid-rows: auto;
-      grid-template-rows: auto;
-  -ms-grid-column-align: center;
-      justify-items: center;
+  grid-template-columns: 25% 50% 25%;
+  grid-template-rows: auto;
+  justify-items: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -3154,12 +3156,9 @@ header nav span {
 }
 
 #grid-resultat #infos-resultat .radio {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr;
-  -ms-grid-column: 1fr 1fr;
-      grid-column: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column: 1fr 1fr;
   grid-auto-flow: row;
 }
 
@@ -3192,6 +3191,7 @@ header nav span {
   width: 30px;
   height: 30px;
   border: 2px solid #999;
+  -webkit-transition: 0.2s all linear;
   transition: 0.2s all linear;
   outline: none;
   margin-right: 5px;
@@ -3204,13 +3204,10 @@ header nav span {
 }
 
 #table-jeu {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 25% 25% 30% 20%;
-      grid-template-columns: 25% 25% 30% 20%;
-  -ms-grid-rows: auto;
-      grid-template-rows: auto;
-  grid-template-areas: "cartesMain1 cartesMain1 presJoueur1 presJoueur1" "cartesMain1 cartesMain1 . ." "cartesDeploiement1 cartesDeploiement1 decorJ1 ." "zoneJeu zoneJeu zoneJeu ." "zoneJeu zoneJeu zoneJeu infosPartie" "zoneJeu zoneJeu zoneJeu ." "cartesDeploiement2 cartesDeploiement2 decorJ2 ." "cartesMain2 cartesMain2 . ." "cartesMain2 cartesMain2 presJoueur2 presJoueur2" "defausse defausse defausse defausse";
+  grid-template-columns: 25% 25% 30% 20%;
+  grid-template-rows: auto;
+  grid-template-areas: "cartesMain1 cartesMain1 presJoueur1 presJoueur1" "cartesMain1 cartesMain1 . ." "cartesDeploiement1 cartesDeploiement1 decorJ1 ." "zoneJeu zoneJeu zoneJeu ." "zoneJeu zoneJeu zoneJeu infosPartie" "zoneJeu zoneJeu zoneJeu ." "cartesDeploiement2 cartesDeploiement2 decorJ2 ." "cartesMain2 cartesMain2 . ." "cartesMain2 cartesMain2 presJoueur2 presJoueur2" "defausse defausse defausse defausse";
   margin-top: 10px;
 }
 
@@ -3241,14 +3238,12 @@ header nav span {
 #table-jeu #cartes-decor-J1 {
   grid-area: decorJ1;
   -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
       align-self: center;
 }
 
 #table-jeu #cartes-decor-J2 {
   grid-area: decorJ2;
   -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
       align-self: center;
 }
 
@@ -3260,12 +3255,9 @@ header nav span {
   margin: 10px;
   background-color: white;
   width: 50%;
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr;
-  -ms-grid-rows: 1fr;
-      grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
   grid-auto-flow: row;
   justify-self: end;
 }
@@ -3282,18 +3274,14 @@ header nav span {
 #table-jeu .emplacements-board {
   justify-self: center;
   -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
       align-self: center;
 }
 
 #table-jeu #zone-de-jeu {
   grid-area: zoneJeu;
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 15px (1fr)[2] 6px (1fr)[5] 6px (1fr)[2];
-      grid-template-columns: 15px repeat(2, 1fr) 6px repeat(5, 1fr) 6px repeat(2, 1fr);
-  -ms-grid-rows: 15px (1fr)[6];
-      grid-template-rows: 15px repeat(6, 1fr);
+  grid-template-columns: 15px repeat(2, 1fr) 6px repeat(5, 1fr) 6px repeat(2, 1fr);
+  grid-template-rows: 15px repeat(6, 1fr);
   grid-gap: 10px 10px;
   margin: 10px;
 }
@@ -3525,12 +3513,12 @@ header nav span {
 
 #table-jeu #infos-partie #carte-grand {
   border: 1px solid black;
-  height: 300px;
-  width: 213px;
+  height: 340px;
+  width: 241.4px;
 }
 
 #table-jeu #infos-partie #carte-grand img {
-  max-height: 300px;
+  max-height: 340px;
 }
 
 #table-jeu #infos-partie #historique-des {
@@ -3560,6 +3548,7 @@ header nav span {
   margin-top: 10px;
   text-align: left;
   overflow: auto;
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(60%, white), to(#F4F0EB));
   background: linear-gradient(to bottom right, white 60%, #F4F0EB);
   color: #0F601E;
   border: 1px solid #D2691E;
@@ -3611,7 +3600,6 @@ header nav span {
 }
 
 #arenes .classement-liste {
-  display: -ms-grid;
   display: grid;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -3656,15 +3644,12 @@ header nav span {
 
 [id="factions"] [id="factionDescription"] {
   padding: 30px;
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 40% 60%;
-      grid-template-columns: 40% 60%;
-  -ms-grid-rows: auto;
-      grid-template-rows: auto;
+  grid-template-columns: 40% 60%;
+  grid-template-rows: auto;
   grid-column-gap: 10px;
   grid-row-gap: 20px;
-  grid-template-areas: "imageFaction1 descriptionFaction" "imageFaction1 tableauCarac" "descriptionArmee imageFaction2" "coupCoeur imageFaction2" "yeuxAdversaire yeuxAdversaire" "imageFaction3 imageFaction3";
+  grid-template-areas: "imageFaction1 descriptionFaction" "imageFaction1 tableauCarac" "descriptionArmee imageFaction2" "coupCoeur imageFaction2" "yeuxAdversaire yeuxAdversaire" "imageFaction3 imageFaction3";
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
