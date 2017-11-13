@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'faqVersion' => "3.0"
+    'faqVersion' => "3.1"
 
 
 ];
