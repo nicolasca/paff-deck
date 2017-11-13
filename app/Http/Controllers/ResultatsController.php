@@ -20,7 +20,7 @@ class ResultatsController extends Controller {
 
   // Afficher la liste des résultats
   public function index(Request $request) {
-    $resultats = Resultat::orderBy("updated_at", "desc")->take(10)->get();
+    $resultats = Resultat::orderBy("updated_at", "desc")->get();
 
     return view('resultats.resultats')->with("resultats", $resultats);
   }
